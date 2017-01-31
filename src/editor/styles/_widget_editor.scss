@@ -1,0 +1,27 @@
+.widget-editor {
+  margin-top: 25px;
+
+
+  .title-row {
+    h5 {margin-bottom: 0!important;}
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: {
+      style: solid;
+      width: 1px;
+      color: white;
+    }
+
+    .icons {
+        width: 60%;
+
+
+    }
+
+  }
+
+
+}

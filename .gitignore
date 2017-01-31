@@ -38,3 +38,5 @@ jspm_packages
 
 /.env
 /.idea/
+/node_modules/
+/yarn.lock

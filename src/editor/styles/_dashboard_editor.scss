@@ -1,0 +1,160 @@
+@import 'variables';
+
+
+
+.grid-props {
+  display: flex;
+  justify-content: space-around;
+  .column {width: 50%;}
+
+}
+
+
+
+
+.title-editor, .properties-section {
+  h4  {margin-bottom: 0!important;}
+  width: $left-panel-width!important;
+  margin: {
+
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  padding: {
+    left: 5px;
+    right: 5px;
+  }
+
+
+  .title-row.false {
+    margin-bottom: 0px;
+
+  }
+  .title-row {
+    margin-bottom: 10px;
+    button {
+      font-size: 18px!important;
+      font-weight: 600!important;
+      padding: 0!important;
+      text-align: left!important;
+      &::before {
+        margin-right: 5px!important;
+
+      }
+    }
+
+    h5 {margin-bottom: 0!important;}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: {
+      style: solid;
+      width: 1px;
+      color: white;
+    }
+
+    .icons {
+
+    }
+
+  }
+  .title-row.button { padding-bottom: 0px!important;}
+  .content {
+    padding: {
+      left: 5px;
+      right: 5px;
+    }
+
+  }
+
+  .content > h5 { margin-bottom: 0!important;}
+  .content > .row {
+    h5 { margin-bottom: 0!important;}
+    max-width: 100%!important;
+    margin: {
+      left: 0!important;
+      right: 0!important;
+    }
+
+
+  }
+
+}
+
+
+.title-deviceType-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+
+
+}
+
+.title-deviceType-container > h4 {
+  margin-bottom: 0!important;
+
+}
+
+
+.widget-label-editor.true {
+  color:  rgba(216, 225, 232, 0.0980392)!important;
+}
+.dashboard-title.false {
+  color:  #049600!important;
+}
+
+
+.create-new-dashboard-button {
+  margin-right: 10px;
+
+}
+.color-picker-disabled {pointer-events: none!important;}
+
+
+.color-picker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-picker-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.widget-color-picker-row {
+  margin-top: -20px;
+
+}
+.widget-props {
+  margin: {
+    bottom: 10px;
+  }
+
+}
+
+
+.number-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 12px;
+  .input-section {
+    font-size: 12px;
+    button, input {
+      border-radius: 0!important;
+    }
+    .number-input {
+      width: 45px;
+    }
+
+  }
+}
+

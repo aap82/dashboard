@@ -5,5 +5,23 @@
   "main": "index.js",
   "repository": "https://github.com/aap82/dashboard.git",
   "author": "aap82 <aapatel115@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "101": "^1.6.2",
+    "body-parser": "^1.16.0",
+    "compression": "^1.6.2",
+    "express": "^4.14.1",
+    "express-device": "^0.4.2",
+    "graphql": "^0.9.1",
+    "graphql-sequelize": "^5.0.0",
+    "graphql-server-express": "^0.5.2",
+    "graphql-server-module-operation-store": "^0.5.2",
+    "isomorphic-fetch": "^2.2.1",
+    "path": "^0.12.7",
+    "sequelize": "^3.30.0",
+    "sqlite": "^2.2.4"
+  },
+  "devDependencies": {
+    "getenv": "^0.7.0"
+  }
 }

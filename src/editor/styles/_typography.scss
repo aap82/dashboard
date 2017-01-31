@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'),
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* ubuntu-500 - latin */
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Ubuntu Medium'), local('Ubuntu-Medium'),
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* ubuntu-700 - latin */
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ubuntu Bold'), local('Ubuntu-Bold'),
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('styles/fonts/Ubuntu/ubuntu-v9-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+
+
+
+.font-size-11 { font-size: 11px; }
+.font-size-12 { font-size: 12px; }
+.font-size-13 { font-size: 13px; }
+.font-size-14 { font-size: 14px; }
+.font-size-15 {font-size: 15px; }
+.font-size-16 { font-size: 16px; }
+.font-size-17 { font-size: 17px; }
+.font-size-18 { font-size: 18px; }
+.font-size-19 { font-size: 19px; }
+.font-size-20 { font-size: 20px; }
