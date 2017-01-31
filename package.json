@@ -1,0 +1,9 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "Home Automation Dashboard with GUI Designer",
+  "main": "index.js",
+  "repository": "https://github.com/aap82/dashboard.git",
+  "author": "aap82 <aapatel115@gmail.com>",
+  "license": "MIT"
+}
