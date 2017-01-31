@@ -1,9 +1,9 @@
 {crel, div, text} = require 'teact'
 React = require 'react'
-LeftPanel = require('./LeftPanel')
+LeftPanel = require('../LeftPanel')
 SplitPane = require 'react-split-pane'
 Dashboard = require './Dashboard'
-DialogComponentContainer = require './components/DialogComponent'
+DialogComponentContainer = require '../components/DialogComponent'
 {inject} = require 'mobx-react'
 
 

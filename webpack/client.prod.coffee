@@ -1,12 +1,11 @@
 path = require 'path'
 paths = require '../config/paths.coffee'
-console.log paths
 
 
 module.exports =
   context: paths.root
   entry:
-    editor: path.join(paths.editor, 'devEntry.coffee')
+    editor: path.join(paths.editor, 'prodEntry.coffee')
   resolve:
     modules: ["node_modules"]
     extensions: ['.js', '.coffee', '.scss']
@@ -51,5 +50,5 @@ module.exports =
         ]
       }
 
-    ]
+   ]
 

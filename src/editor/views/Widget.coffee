@@ -1,8 +1,8 @@
 {crel, div} = require 'teact'
 {inject, observer} = require 'mobx-react'
 
-SwitchWidget = require '../widgets/SwitchWidget'
-ButtonWidget = require '../widgets/ButtonWidget'
+SwitchWidget = require '../../widgets/SwitchWidget'
+ButtonWidget = require '../../widgets/ButtonWidget'
 
 
 Widget = observer(({widget, dashboard, deviceStore}) ->

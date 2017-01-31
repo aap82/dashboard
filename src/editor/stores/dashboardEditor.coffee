@@ -1,8 +1,37 @@
 {extendObservable, action, computed, toJS} = require 'mobx'
 WidgetEditor = require './widgetEditor'
-dashboardDefaultProps = require '../../models/defaultProps'
 DeviceStore = require './deviceStore'
 hexToRgba = require('hex-rgba')
+
+class DefaultDashboardProps
+  constructor: ->
+    @tablet =
+      deviceType: 'tablet'
+      cols: 155
+      rowHeight: 5
+      marginX: 0
+      marginY: 0
+      dashboardBackgroundColor: '#fff'
+      widgetBackgroundColor: '#0900FF'
+      title: 'Dashboard Title'
+      width: 1200
+
+
+    @phone =
+      deviceType: 'phone'
+      cols: 155
+      rowHeight: 5
+      marginX: 0
+      marginY: 0
+      dashboardBackgroundColor: '#fff'
+      widgetBackgroundColor: '#0900FF'
+      title: 'Dashboard Title'
+      width: 600
+
+dashboardDefaultProps = new DefaultDashboardProps()
+
+
+
 class DashboardEditor
   constructor: (defaultProps) ->
     @fetch = null

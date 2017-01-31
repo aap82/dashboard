@@ -8,5 +8,6 @@ paths =
   src:            path.join root, 'src'
   editor:         path.join root, 'src', 'editor'
   devBuild:       path.join root, 'build'
+  prodBuild:      path.join root, 'dist', 'editor'
 
 module.exports = paths

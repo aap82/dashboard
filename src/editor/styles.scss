@@ -1,11 +1,16 @@
+
+@import '../styles/_flexbox-grid.scss';
 @import 'styles/setup_page';
 @import '../widgets/styles';
+@import '~normalize.css/normalize.css';
+@import '~@blueprintjs/core/dist/blueprint.css';
 
 
 html {
   box-sizing: border-box;
   min-height: 100vh;
   max-height: 100vh;
+  font-family: 'Ubuntu', sans-serif
 }
 
 html, body {
@@ -38,4 +43,13 @@ html, body {
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+.widget {
+  h4
+  {
+    color: inherit!important;
+  }
+
+
 }

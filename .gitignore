@@ -40,3 +40,5 @@ jspm_packages
 /.idea/
 /node_modules/
 /yarn.lock
+/db.development.sqlite
+/dist/

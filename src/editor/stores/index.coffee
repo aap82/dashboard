@@ -1,6 +1,6 @@
 viewStore = require './viewStore'
 deviceStore = require './deviceStore'
-editor = require './editor'
+editor = require './editorStore'
 DashboardStore = require './dashboardStore'
 dashboard = require './dashboardEditor'
 widgets = require './widgetEditor'

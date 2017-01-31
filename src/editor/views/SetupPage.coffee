@@ -1,9 +1,9 @@
 {crel, div, h2, h3, br} = require 'teact'
 {inject, observer} = require 'mobx-react'
 React = require 'react'
-SelectDashboardDropDown = require './components/SelectDashboardDropDown'
+SelectDashboardDropDown = require '../components/SelectDashboardDropDown'
 { Button, Intent} = require('@blueprintjs/core')
-CreateNewDashboard = require './components/CreateNewDashboard'
+CreateNewDashboard = require '../components/CreateNewDashboard'
 LoadDashboard = observer(({viewStore, onClick}) =>
   crel Button,
     disabled: viewStore.selectedDashboardId is 0

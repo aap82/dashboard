@@ -9,7 +9,7 @@ class SwitchWidget extends React.Component
   render: ->
     {widget, device} = @props
     crel Tappable, onTap: @handleTapEvent, =>
-      div className: 'widget light-switch-widget center', =>
+      div className: 'widget switch-widget center', =>
         div className: 'title-container center middle', ->
           h4 widget.label
         div className: 'switch-container center middle', =>
