@@ -1,10 +1,7 @@
-#require './styles/style.scss'
 {inject, observer} = require 'mobx-react'
 {crel} = require 'teact'
-EditorPage = require './editor/EditorPage'
-SetupPage = require './editor/SetupPage'
-
-
+EditorPage = require './views/EditorPage'
+SetupPage = require './views/SetupPage'
 
 EditorApp = observer(({viewStore}) =>
   switch viewStore.currentPageView

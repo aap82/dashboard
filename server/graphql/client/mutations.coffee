@@ -1,4 +1,4 @@
-{DashboardSetupFields} = require './types/dashboard'
+{DashboardSetupFields} = require '../types/dashboard'
 m = {}
 
 

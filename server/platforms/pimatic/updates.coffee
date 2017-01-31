@@ -6,13 +6,13 @@ password = getenv 'PIMATIC_PASSWORD'
 io = require('socket.io-client')
 u = encodeURIComponent(username)
 p = encodeURIComponent(password)
-
+socketUrl = 'http://' + host + ':' + port + '/?username=' + u + '&password=' + p
 
 
 
 
 exports.start = (sse) ->
-  socket = io('http://' + host + ':' + port + '/?username=' + u + '&password=' + p,
+  socket = io(socketUrl,
     reconnection: true
     reconnectionDelay: 1000
     reconnectionDelayMax: 3000

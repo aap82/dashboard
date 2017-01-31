@@ -1,5 +1,5 @@
-{DashboardSetupFields} = require './types/dashboard'
-{DevicesQueryFields} = require './types/devices'
+{DashboardSetupFields} = require '../types/dashboard'
+{DevicesQueryFields} = require '../types/devices'
 q = {}
 
 

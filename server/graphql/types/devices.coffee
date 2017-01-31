@@ -23,9 +23,9 @@ actionType =  new GraphQLObjectType({
 exports.deviceType = new GraphQLObjectType({
   name: 'DeviceType'
   fields: =>
-    platform: type: GraphQLString
     id:  type: GraphQLString
     name: type: GraphQLString
+    platform: type: GraphQLString
     deviceClass: type: GraphQLString #Light, Thermostat, Sensor, etc.
     deviceClassType: type: GraphQLString #define futher...switch, dimmer (with is switch, plus dimming => 0=off, 100=on)
     state: type: GraphQLString

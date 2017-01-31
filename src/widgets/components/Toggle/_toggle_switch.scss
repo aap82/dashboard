@@ -1,0 +1,50 @@
+$width: 50px;
+$height: $width / 2.5;
+
+input[type='checkbox'] {
+  display: none;
+
+  &:checked ~ .toggle {
+    background: #049600;
+    left: ($width - ($height * 1.4 - $height) / 2) - $height;
+    transition: .5s;
+  }
+
+  &:checked ~ .switch {
+    background: #37be47;
+    transition: .5s;
+  }
+}
+
+.switch {
+  display: block;
+  width: $width;
+  height: $height;
+  background: #939393;
+  border-radius: $height / 2;
+  position: absolute;
+  top: 0;
+  transition: .5s;
+}
+
+.toggle {
+  height: $height * 1.4;
+  width: $height * 1.4;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: ($height * 1.4 - $height) / -2;
+  left: ($height * 1.4 - $height) / -2;
+  box-shadow: 0 $width / 50 $width / 25 rgba(black, .4);
+  transition: .5s;
+}
+
+.card {
+  display: inline-block;
+  margin: (($height * 1.4 - $height) / 2) + 5px;
+  margin: (($height * 1.5 - $height) / 2);
+  width: $width;
+  height: $height;
+  text-align: center;
+  position: relative;
+}

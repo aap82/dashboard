@@ -1,4 +1,4 @@
-{Dashboard} = require '../database/models'
+{Dashboard} = require '../../database/models'
 {GraphQLInt} = require 'graphql'
 {dashboardType, dashboardInputType} = require '../types/dashboard'
 
@@ -32,9 +32,3 @@ exports.deleteDashboardMutation =
     Dashboard.findById(args.id).then (dashboard) =>
       dashboard.destroy({force: true})
       return {id: args.id}
-
-module.exports =
-  mutation:
-    create: createDashboardMutation
-    update: updateDashboardMutation
-    delete: deleteDashboardMutation

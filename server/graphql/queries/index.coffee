@@ -1,6 +1,6 @@
 {GraphQLObjectType, GraphQLString} = require 'graphql'
 dashboard = require('./dashboard')
-{devices} = require('./devices').query
+{devices} = require('./devices')
 
 
 query =

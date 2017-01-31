@@ -1,4 +1,4 @@
-{Dashboard} = require '../database/models'
+{Dashboard} = require '../../database/models'
 {defaultArgs, resolver, defaultListArgs} = require 'graphql-sequelize'
 {GraphQLList} = require 'graphql'
 {dashboardType} = require '../types/dashboard'

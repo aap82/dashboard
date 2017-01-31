@@ -1,9 +1,9 @@
-viewStore = require './editor/stores/viewStore'
-deviceStore = require './editor/stores/deviceStore'
-editor = require './editor/stores/editor'
-DashboardStore = require './editor/stores/dashboardStore'
-dashboard = require './editor/stores/dashboardEditor'
-widgets = require './editor/stores/widgetEditor'
+viewStore = require './viewStore'
+deviceStore = require './deviceStore'
+editor = require './editor'
+DashboardStore = require './dashboardStore'
+dashboard = require './dashboardEditor'
+widgets = require './widgetEditor'
 
 
 exports.configureStores = (data, gqlFetch) ->
