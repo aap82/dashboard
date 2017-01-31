@@ -4,7 +4,7 @@
   "description": "Home Automation Dashboard with GUI Designer",
   "main": "index.js",
   "repository": "https://github.com/aap82/dashboard.git",
-  "author": "aap82 <aapatel115@gmail.com>",
+  "author": "aap82",
   "license": "MIT",
   "dependencies": {
     "101": "^1.6.2",
