@@ -13,7 +13,6 @@ config =
     alias:
       editor: paths.editor + '/'
       widgets: paths.widgets + '/'
-
     modules: ["node_modules"]
     extensions: ['.js', '.json',  '.jsx', '.coffee', '.css', '.scss']
   module:

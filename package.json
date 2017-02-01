@@ -60,7 +60,8 @@
     "webpack-merge": "^2.6.1"
   },
   "scripts": {
-    "start-server": "coffee server/index.coffee",
+    "start-server-dev": "NODE_ENV=development coffee server/index.coffee",
+    "start-server-prod": "NODE_ENV=production coffee server/index.coffee",
     "build-editor": "webpack -p --config ./webpack/client.prod.coffee"
   }
 }
