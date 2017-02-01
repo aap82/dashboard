@@ -1,54 +1,73 @@
+webpack = require 'webpack'
 path = require 'path'
+glob = require('glob')
+merge = require 'webpack-merge'
 paths = require '../config/paths.coffee'
+baseConfig = require './client.base'
+vendors = require './vendors'
+ExtractTextPlugin = require('extract-text-webpack-plugin')
+CleanWebpackPlugin = require('clean-webpack-plugin');
+UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+#PurifyCSSPlugin = require('purifycss-webpack')
+prodConfig =
 
-
-module.exports =
-  context: paths.root
   entry:
     editor: path.join(paths.editor, 'prodEntry.coffee')
-  resolve:
-    modules: ["node_modules"]
-    extensions: ['.js', '.coffee', '.scss']
-
+    vendor: vendors
   output:
     path: paths.prodBuild
     filename: '[name].js'
 
+
   module:
     rules: [
       {
-        test: /\.coffee$/
-        include: paths.src
-        use: [{
-          loader: 'coffee-loader'
-        }]
+        test: /\.(css|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader', 'sass-loader']
+        })
+      }
+    ]
 
 
-      }
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { modules: true }
-          },
-        ],
-      }
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      }
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/
-        use: [
-          'url-loader'
-        ]
-      }
+  plugins: [
+    new webpack.DefinePlugin({
+        NODE_ENV: 'production'
+    })
+    new CleanWebpackPlugin(['dist'], {
+      root: paths.root
+      verbose: true,
+      dry: false,
+    })
 
-   ]
 
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+      filename: "vendors.js"
+      minChunks: Infinity
+    })
+
+    new UglifyJSPlugin({
+      minimize: true
+      sourceMap: false
+      output:
+        comments: false
+
+      compressor:
+        warnings: false
+
+    })
+
+    new ExtractTextPlugin({
+      filename: 'styles/[name].css',
+      allChunks: true
+    })
+
+
+  ]
+
+
+config = merge(prodConfig, baseConfig)
+
+module.exports = config

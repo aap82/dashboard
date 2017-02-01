@@ -1,4 +1,6 @@
 require('dotenv').config()
+getenv = require('getenv')
+
 paths = require('../config/paths')
 {connect} = require './database/models'
 express = require 'express'
@@ -6,7 +8,17 @@ express = require 'express'
 {OperationStore} = require 'graphql-server-module-operation-store'
 app = express()
 
-app.use('/static', express.static(paths.prodBuild))
+SERVER_HOST = getenv 'SERVER_HOST'
+SERVER_PORT = getenv 'SERVER_PORT'
+
+app.use('/assets', express.static(paths.prodBuild))
+
+
+
+
+
+
+
 compression = require 'compression'
 
 bodyParser = require 'body-parser'
@@ -43,7 +55,8 @@ start = ->
     }))
 
     app.use('*', require('./routes/editor'))
-    app.listen(9000)
+    app.listen(SERVER_PORT)
+    console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
 
 
 start()

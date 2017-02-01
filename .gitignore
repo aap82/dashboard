@@ -42,3 +42,4 @@ jspm_packages
 /yarn.lock
 /db.development.sqlite
 /dist/
+/.env

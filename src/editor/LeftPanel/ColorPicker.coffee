@@ -1,7 +1,6 @@
 React = require 'react'
-{crel, div, span, h3, h4, h5, text, input, select, option } = require 'teact'
-{inject, observer} = require 'mobx-react'
-{Button} = require('@blueprintjs/core')
+{crel, div, span, text} = require 'teact'
+{ observer} = require 'mobx-react'
 ColorPicker = require('rc-color-picker')
 
 exports = module.exports

@@ -1,31 +1,16 @@
 path = require 'path'
+merge = require 'webpack-merge'
 paths = require '../config/paths.coffee'
-console.log paths
+baseConfig = require './client.base'
 
-
-module.exports =
-  context: paths.root
+devConfig =
   entry:
     editor: path.join(paths.editor, 'devEntry.coffee')
-  resolve:
-    modules: ["node_modules"]
-    extensions: ['.js', '.coffee', '.scss']
-
   output:
     path: paths.prodBuild
     filename: '[name].js'
-
   module:
     rules: [
-      {
-        test: /\.coffee$/
-        include: paths.src
-        use: [{
-          loader: 'coffee-loader'
-        }]
-
-
-      }
       {
         test: /\.css$/,
         use: [
@@ -38,18 +23,11 @@ module.exports =
       }
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['style-loader','css-loader','sass-loader']
       }
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/
-        use: [
-          'url-loader'
-        ]
-      }
-
     ]
 
+
+config = merge(devConfig, baseConfig)
+
+module.exports = config
