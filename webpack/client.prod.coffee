@@ -13,10 +13,12 @@ prodConfig =
 
   entry:
     editor: path.join(paths.editor, 'prodEntry.coffee')
+    widgets: path.join paths.widgets, 'widgets.scss'
     vendor: vendors
   output:
     path: paths.prodBuild
     filename: '[name].js'
+    publicPath: '/'
 
 
   module:
@@ -49,14 +51,17 @@ prodConfig =
     })
 
     new UglifyJSPlugin({
-      minimize: true
-      sourceMap: false
+      minimize: yes
+      beautify: no
+      sourceMap: no
       output:
         comments: false
 
       compressor:
         warnings: false
-
+      mangle:
+        except: ['webpackJsonp']
+        screw_ie: yes
     })
 
     new ExtractTextPlugin({

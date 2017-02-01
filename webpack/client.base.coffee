@@ -3,10 +3,10 @@ path = require('path')
 paths = require '../config/paths.coffee'
 
 config =
+  name: 'client'
   context: paths.root
   entry:
     blueprint: paths.blueprintCSS
-    widgets: path.join paths.widgets, 'widgets.scss'
     global: path.join paths.styles, 'global.scss'
 
   resolve:
