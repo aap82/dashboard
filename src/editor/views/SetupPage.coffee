@@ -31,7 +31,7 @@ class SetupPage extends React.Component
           crel SelectDashboardDropDown, viewStore: viewStore
           crel LoadDashboard, viewStore: viewStore, onClick: @handleLoadDashboard
         br()
-        h2 'OR'
+        h2 'OR test'
         br()
         crel CreateNewDashboard, viewStore: viewStore
   handleLoadDashboard: =>

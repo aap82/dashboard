@@ -55,7 +55,9 @@
     "getenv": "^0.7.0",
     "glob": "^7.1.1",
     "graphql-relay": "^0.5.1",
+    "happypack": "^3.0.2",
     "node-sass": "^4.4.0",
+    "nodemon": "^1.11.0",
     "npm-install-webpack-plugin": "^4.0.4",
     "purifycss-webpack": "^0.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
@@ -69,10 +71,11 @@
     "webpack-merge": "^2.6.1"
   },
   "scripts": {
-    "start-server-dev": "NODE_ENV=development coffee server/index.coffee",
+    "start-server-dev": "NODE_ENV=development nodemon --watch server server/index.coffee",
     "start-server-prod": "NODE_ENV=production coffee server/index.coffee",
     "build-editor": "webpack -p --config ./webpack/client.prod.coffee",
-    "development": "webpack-dev-server --config ./webpack/client.dev.coffee --host 0.0.0.0",
+    "client-development-server": "webpack-dev-server --config ./webpack/client.dev.coffee --host 0.0.0.0 --open",
+    "development": "run-p \"client-development-server\" \"start-server-dev\"",
     "start": "npm run build-editor && npm run start-server-prod"
   }
 }

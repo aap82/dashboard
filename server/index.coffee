@@ -36,7 +36,7 @@ app.use '/commands', require('./middleware/commands')
 app.get('*', require('./middleware/deviceTypeHandler'))
 
 
-
+app.get('/chicken', (req, res, next) -> next())
 
 
 

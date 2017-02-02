@@ -10,9 +10,12 @@ html
 
 
 
-
-  body
+    body
     div(id='app')
     script.
       window.__APP_STATE__ = !{state};
-    script(src='http://192.168.1.10:9001/bundle.js')
+
+    script(src='http://192.168.1.10:9001/vendors.js')
+    script(src='http://192.168.1.10:9001/global.js')
+    script(src='http://192.168.1.10:9001/editor.js')
+    script(src='http://192.168.1.10:9001/blueprint.js')

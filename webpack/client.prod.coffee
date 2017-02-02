@@ -23,6 +23,7 @@ prodConfig =
 
   module:
     rules: [
+      { test: /\.coffee$/, loader: 'coffee-loader', include: paths.src }
       {
         test: /\.(css|scss)$/,
         loader: ExtractTextPlugin.extract({

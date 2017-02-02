@@ -156,6 +156,7 @@ LeftPanel = observer((props) ->
       crel BaseWidgetProperties, dashboard: dashboard
       br()
       br()
+
       crel AddNewWidgetButton, dashboard: dashboard, editor: editor
 )
 

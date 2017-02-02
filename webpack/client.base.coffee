@@ -15,7 +15,7 @@ config =
     extensions: ['.js', '.json',  '.jsx', '.coffee', '.css', '.scss']
   module:
     rules: [
-      { test: /\.coffee$/, loader: 'coffee-loader', include: paths.src }
+
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/,  loader: ['url-loader'] }
 
     ]
