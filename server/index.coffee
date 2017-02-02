@@ -13,10 +13,10 @@ SERVER_PORT = getenv 'SERVER_PORT'
 
 
 app.set 'view engine', 'pug'
+app.use(require('./routes'))
 
 
-
-app.use('/assets', express.static(paths.prodBuild))
+#app.use('/assets', express.static(paths.prodBuild))
 
 
 
@@ -48,7 +48,7 @@ start = ->
   connect().then ->
     graphQLoptions = require('./graphql').getGraphQLOptions(OperationStore)
     app.use('/graphql', jsonParser, graphqlExpress(graphQLoptions))
-    app.use(require('./routes'))
+
     app.listen(SERVER_PORT)
     console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
 

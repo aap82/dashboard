@@ -28,7 +28,7 @@ class AddNewWidgetButton extends React.Component
   render: ->
     {dashboard} = @props
     crel Button,
-      text: 'Add Widget'
+      text: 'Add Widget Now'
       iconName: 'add'
       onClick: @addNewWidget
       className: 'pt-large pt-fill'

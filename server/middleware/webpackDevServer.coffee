@@ -9,8 +9,8 @@ module.exports = (app) ->
   webpackConfig = require('../../webpack/client.dev')
   compiler = webpack(webpackConfig)
   app.use(webpackDevMiddleware compiler, {
-    host: SERVER_HOST
-    historyApiFallback: true
+    inline: no
+    historyApiFallback: no
     hot: false
     publicPath: webpackConfig.output.publicPath
     filename: webpackConfig.output.filename
