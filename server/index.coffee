@@ -12,10 +12,11 @@ SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
 
 
+app.set 'view engine', 'pug'
 
 
 
-
+app.use('/assets', express.static(paths.prodBuild))
 
 
 
@@ -29,12 +30,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(device.capture({parseUserAgent: true}));
 
 
-app.use('/assets', express.static(paths.prodBuild))
 
-
-app.get('*', require('./middleware/deviceTypeHandler'))
-app.use '/commands', require('./middleware/commands')
 app.use '/updates', require('./middleware/updates')
+app.use '/commands', require('./middleware/commands')
+app.get('*', require('./middleware/deviceTypeHandler'))
+
+
 
 
 

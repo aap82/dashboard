@@ -1,46 +1,44 @@
 path = require 'path'
+webpack = require 'webpack'
 merge = require 'webpack-merge'
 paths = require '../config/paths.coffee'
 baseConfig = require './client.base'
-vendors = require './vendors'
+CleanWebpackPlugin = require('clean-webpack-plugin');
 devConfig =
-  entry:
-    editor: path.join(paths.editor, 'devEntry.coffee')
-    vendor: vendors
+  name: 'client'
+  devtool: 'cheap-eval-source-map'
+  context: paths.root
+  entry: [
+    "#{path.join(paths.editor, 'devEntry.coffee')}"
+  ]
   output:
     path: paths.devBuild
-    filename: '[name].js'
+    filename: 'bundle.js'
+    publicPath: '/'
+  resolve:
+    alias:
+      editor: paths.editor + '/'
+      widgets: paths.widgets + '/'
+    modules: ["node_modules"]
+    extensions: ['.js', '.json',  '.jsx', '.coffee', '.css', '.scss']
   module:
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { modules: true }
-          },
-        ],
-      }
-      {
-        test: /\.scss$/,
-        use: ['style-loader','css-loader','sass-loader']
-      }
+      { test: /\.(css|scss)$/, loaders: ['style-loader','css-loader', 'sass-loader'], include: paths.src }
+      { test: /\.coffee$/, loader: 'coffee-loader', include: paths.src }
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/,  loader: ['url-loader'] }
     ]
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
     new CleanWebpackPlugin(['build'], {
       root: paths.root
       verbose: true,
       dry: false,
     })
-    new NpmInstallPlugin({
-      dev: yes,
-      peerDependencies: no,
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
-  ]
-config = merge(devConfig, baseConfig)
 
-module.exports = config
+    new webpack.NamedModulesPlugin()
+
+  ]
+
+module.exports = devConfig

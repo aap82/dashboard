@@ -1,15 +1,13 @@
+getenv = require('getenv')
+path = require 'path'
 express = require('express')
 pug = require 'pug'
 app = express()
-{graphiqlExpress } = require 'graphql-server-express'
+paths = require('../../config/paths')
+
+viewPath = path.join paths.views, getenv('NODE_ENV')
 
 
-if process.env.NODE_ENV is 'development'
-  app.use '/graphiql', graphiqlExpress( endpointURL: '/graphql' )
-
-
-
-
-app.get '/editor', require('./editor')
+app.get '/editor', require('./editor')(viewPath)
 
 module.exports = app

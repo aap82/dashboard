@@ -23,9 +23,9 @@ exports.start = (sse) ->
     console.log attrEvent
     console.log sse.clients.length
     sse.broadcast('pimatic', attrEvent.deviceId, attrEvent)
-    return
+
 
   socket.on 'error', (error) ->
     console.log error
-    return
+
   socket

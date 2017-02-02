@@ -23,7 +23,7 @@ stores = configureStores(state, gqlFetch)
 container = document.querySelector('#app')
 ReactDOM.render(
   T.crel Provider, stores, =>
-    T.crel EditorApp,
+    T.crel EditorApp, viewStore: stores.viewStore,
   container
 )
 

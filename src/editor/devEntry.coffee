@@ -2,7 +2,6 @@ require './styles.scss'
 { FocusStyleManager } = require '@blueprintjs/core'
 
 T = require 'teact'
-React = require 'react'
 ReactDOM = require 'react-dom'
 {Provider, useStaticRendering} = require 'mobx-react'
 gqlFetch = require('../utils/fetch')('/graphql')
@@ -22,8 +21,9 @@ container = document.querySelector('#app')
 renderApp = (App) =>
   ReactDOM.render(
     T.crel Provider, stores, =>
-      T.crel App
+      T.crel App, viewStore: stores.viewStore
     , container
   )
 
 renderApp(EditorApp)
+

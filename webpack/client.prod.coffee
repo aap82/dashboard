@@ -10,7 +10,7 @@ CleanWebpackPlugin = require('clean-webpack-plugin');
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 #PurifyCSSPlugin = require('purifycss-webpack')
 prodConfig =
-
+  name: 'client'
   entry:
     editor: path.join(paths.editor, 'prodEntry.coffee')
     widgets: path.join paths.widgets, 'widgets.scss'

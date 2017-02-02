@@ -1,12 +1,12 @@
 express = require('express')
-app = express()
+router = express.Router()
 sse = require './utils/sse'
 
 require('../platforms/pimatic/updates').start(sse)
 
 
 
-app.use '/pimatic',  (req, res) ->
+router.get '/pimatic', (req, res) ->
   client = null
   if !req.id?
     client = sse.add(req, res)
@@ -17,8 +17,6 @@ app.use '/pimatic',  (req, res) ->
   return
 
 
-app.get '/', (req, res) ->
-  sse.add(req, res)
 
 
-module.exports = app
+module.exports = router
