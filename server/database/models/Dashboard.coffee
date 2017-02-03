@@ -28,7 +28,6 @@ Dashboard = Model.define('Dashboard', {
     type: DataType.INTEGER
   widgetCardDepth:
     type: DataType.INTEGER
-
   widgetBackgroundColor:
     type: DataType.STRING
   widgetStyle:
@@ -37,8 +36,8 @@ Dashboard = Model.define('Dashboard', {
     type: DataType.STRING
   widgets:
     type: DataType.STRING
-
-
+  devices:
+    type: DataType.STRING
 
 }, {
   timestamps: false

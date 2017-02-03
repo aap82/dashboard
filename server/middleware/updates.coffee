@@ -6,6 +6,7 @@ require('../platforms/pimatic/updates').start(sse)
 
 
 
+
 router.get '/pimatic', (req, res) ->
   client = null
   if !req.id?

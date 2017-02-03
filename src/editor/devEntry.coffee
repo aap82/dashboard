@@ -3,5 +3,5 @@ require '../widgets/widgets.scss'
 
 
 
-module.exports = require('./EditorApp')
+module.exports = require('./views/App')
 

@@ -1,12 +1,16 @@
 require('dotenv').config()
 getenv = require('getenv')
-
-paths = require('../config/paths')
-{connect} = require './database/models'
 express = require 'express'
+paths = require('../config/paths')
+compression = require 'compression'
+device = require('express-device')
+bodyParser = require 'body-parser'
 { graphqlExpress } = require 'graphql-server-express'
 {OperationStore} = require 'graphql-server-module-operation-store'
+
+{connect} = require './database/models'
 app = express()
+jsonParser = bodyParser.json()
 
 SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
@@ -16,32 +20,21 @@ app.set 'view engine', 'pug'
 app.use(require('./routes'))
 
 
-#app.use('/assets', express.static(paths.prodBuild))
+if getenv('NODE_ENV') is 'production'
+  app.use('/assets', express.static(paths.prodBuild))
 
 
 
-compression = require 'compression'
-
-bodyParser = require 'body-parser'
-jsonParser = bodyParser.json()
-device = require('express-device')
 app.use(jsonParser);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(device.capture({parseUserAgent: true}));
 
-
-
 app.use '/updates', require('./middleware/updates')
 app.use '/commands', require('./middleware/commands')
-app.get('*', require('./middleware/deviceTypeHandler'))
+app.use(require('./middleware/deviceTypeHandler'))
 
 
 app.get('/chicken', (req, res, next) -> next())
-
-
-
-
-
 
 
 start = ->

@@ -22,6 +22,7 @@ exports.dashboardType = new GraphQLObjectType({
 
     layouts: type: GraphQLString
     widgets: type: GraphQLString
+    devices: type: GraphQLString
 
 })
 
@@ -48,7 +49,7 @@ exports.dashboardInputType = new GraphQLInputObjectType({
 
     layouts: type: GraphQLString
     widgets: type: GraphQLString
-
+    devices: type: GraphQLString
 })
 
 

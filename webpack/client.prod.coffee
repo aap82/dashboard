@@ -8,7 +8,7 @@ vendors = require './vendors'
 ExtractTextPlugin = require('extract-text-webpack-plugin')
 CleanWebpackPlugin = require('clean-webpack-plugin');
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-#PurifyCSSPlugin = require('purifycss-webpack')
+
 prodConfig =
   name: 'client'
   entry:

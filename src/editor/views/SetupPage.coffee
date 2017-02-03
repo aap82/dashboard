@@ -15,10 +15,6 @@ LoadDashboard = observer(({viewStore, onClick}) =>
 
 )
 
-
-
-
-
 class SetupPage extends React.Component
 
   render: ->

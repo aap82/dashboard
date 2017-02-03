@@ -14,8 +14,6 @@ sendCommand = (device, action) -> fetch(BASE_URL + device + '/' + action).then(-
 router.get '/:device/:action', (req, res) ->
   res.sendStatus(200)
   console.log 'received pimatic action request'
-  console.log  req.params.device
-  console.log  req.params.action
   sendCommand(req.params.device, req.params.action)
   return
 

@@ -26,26 +26,19 @@ exports.deviceType = new GraphQLObjectType({
     id:  type: GraphQLString
     name: type: GraphQLString
     platform: type: GraphQLString
-    deviceClass: type: GraphQLString #Light, Thermostat, Sensor, etc.
-    deviceClassType: type: GraphQLString #define futher...switch, dimmer (with is switch, plus dimming => 0=off, 100=on)
-    state: type: GraphQLString
     type: type: GraphQLString
-    stateType: type: GraphQLString
     attributes: type: new GraphQLList(attributeType)
     actions: type: new GraphQLList(actionType)
-
+    extraInfo: type: GraphQLString
 
 })
 
 exports.DevicesQueryFields = "
     id
     platform
-    state
-    stateType
-    deviceClass
-    deviceClassType
     type
     name
+
     attributes {
       type
       value

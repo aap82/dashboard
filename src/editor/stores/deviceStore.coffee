@@ -3,13 +3,14 @@ widgetEditor = require './widgetEditor'
 
 class Device
   constructor: (device) ->
+    console.log device
     @platform = device.platform
     @id = device.id
     @name = device.name
     @type = device.type
-    @deviceClass = device.deviceClass
-    @deviceClassType = device.deviceClassType
-    @stateType = device.stateType
+##    @deviceClass = device.deviceClass
+##    @deviceClassType = device.deviceClassType
+#    @stateType = device.stateType
     @actions = device.actions
 
 
@@ -20,7 +21,7 @@ class Device
       val = if attr.type is 'boolean' then JSON.parse(attr.value) else attr.value
       @attributes.set(attr.name, val)
 
-  sendCommand: (command) =>   fetch('/commands/pimatic/' + @id +  '/' + command).then(-> return)
+  sendCommand: (command) =>   fetch('/commands/' + @platform +  '/' + @id +  '/' + command).then(-> return)
 
 class DeviceStore
   constructor: ->
@@ -30,10 +31,10 @@ class DeviceStore
 
 
   handlePimaticUpdate: (e) =>
+
     data = JSON.parse(e.data)
     console.log data
-    console.log @subscriptions
-    @devices["#{data.deviceId}"].attributes.set(data.attributeName, data.value)
+    @devices["#{data.device}"].attributes.set(data.attr, data.value)
 
   loadDevices: (userDevices) => userDevices.map((device) =>  @devices["#{device.id}"] = new Device(device))
 

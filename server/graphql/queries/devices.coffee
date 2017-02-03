@@ -1,10 +1,10 @@
 {GraphQLList} = require 'graphql'
-{getDeviceData} = require '../../platforms/pimatic/utils/fetchState'
 {deviceType} = require '../types/devices'
+DeviceStore = require '../../stores/DeviceStore'
 
 devicesQuery =
   type: new GraphQLList(deviceType)
-  resolve: -> getDeviceData().then((data) -> return data)
+  resolve: -> DeviceStore.getDevices()
 
 
 

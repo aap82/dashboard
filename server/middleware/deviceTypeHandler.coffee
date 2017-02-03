@@ -1,5 +1,10 @@
-module.exports =  (req, res, next) =>
-  if req.url is '/editor' and req.device.type is 'desktop'
+express = require('express')
+app = express()
+
+
+
+app.get '*', (req, res, next) =>
+  if req.url in ['/editor', '/graphiql'] and req.device.type is 'desktop'
     return next()
   else if req.url is '/dashboard' and req.device.type in ['tablet', 'phone']
     return next()
@@ -9,3 +14,6 @@ module.exports =  (req, res, next) =>
     res.redirect '/dashboard'
   else
     res.sendStatus(404)
+
+
+module.exports = app
