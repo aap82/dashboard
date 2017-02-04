@@ -32,6 +32,18 @@ baseMap =
       when item.extraInfo.deviceClassType.slice(0, 3) is 'hue' then 'dimmer'
       else
         item.extraInfo.deviceClassType
+    if item.type in ['switch', 'dimmer']
+      state = null
+      for attr in item.attributes
+        if attr.name is 'state'
+          state = attr
+        if state isnt null then break
+      item.attributes.push
+        type: attr.type
+        name: 'on'
+        unit: attr.unit
+        value: attr.value
+
 
 
 
@@ -42,7 +54,14 @@ attributesMap =
     name: 'name'
     unit: 'unit'
     value: 'value'
-
+#  operate: [
+#    {
+#      run: (name) -> if name is 'state' then 'on' else name
+#      on: 'name'
+#    }
+#
+#
+#  ]
 
 
 

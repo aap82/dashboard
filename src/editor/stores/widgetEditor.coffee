@@ -6,12 +6,14 @@ class WidgetEditor
   constructor: ->
     @widget_oldLabel = ''
     @key = 0
+    @availablePlatforms = []
     extendObservable @, {
       activeWidget: null
       activeDevice: null
       selectedDevice: '0'
       widgets: WidgetStore.widgets
       newWidget: null
+
 
       setActiveWidget: action((widget) -> @activeWidget = widget)
 
@@ -59,7 +61,6 @@ class WidgetEditor
 
 
 
-      availablePlatforms: ['pimatic']
       selectedDevicePlatform: '0'
       changeSelectedDevicePlatform: action((platform) ->
         @selectedDevicePlatform = platform

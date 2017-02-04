@@ -1,4 +1,5 @@
 {GraphQLObjectType, GraphQLString, GraphQLList} = require 'graphql'
+DeviceStore = require '../../store'
 exports = module.exports
 
 
@@ -30,8 +31,15 @@ exports.deviceType = new GraphQLObjectType({
     attributes: type: new GraphQLList(attributeType)
     actions: type: new GraphQLList(actionType)
     extraInfo: type: GraphQLString
+    state:
+      type: GraphQLString
+      resolve: (root) ->
+        return JSON.stringify(DeviceStore.states[root.id])
+
+
 
 })
+
 
 
 
@@ -51,4 +59,5 @@ exports.DevicesQueryFields = "
       name
       description
     }
+    state
 "

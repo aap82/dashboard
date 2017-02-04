@@ -1,6 +1,6 @@
 {GraphQLObjectType} = require 'graphql'
 dashboard = require('./dashboard')
-{devicesSetupQuery, getFullStateQuery} = require('./devices')
+{devicesSetupQuery, getFullStateQuery, getAllPlatformsQuery} = require('./devices')
 
 
 query =
@@ -10,7 +10,7 @@ query =
     dashboards: dashboard.dashboardsQuery
     devicesSetup: devicesSetupQuery
     deviceStates: getFullStateQuery
-
+    devicePlatforms: getAllPlatformsQuery
 
 
 

@@ -14,6 +14,9 @@ q.getDashboardsAndDevices = "
     deviceStates {
       states
     }
+    devicePlatforms {
+      platforms
+    }
 
   }
 "

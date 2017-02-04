@@ -2,14 +2,12 @@
 {observer} = require 'mobx-react'
 
 
-ToggleSwitch = observer(({device}) =>
-  console.log device
+ToggleSwitch = observer(({state}) =>
   div className: 'card', ->
     label ->
       input
         type: 'checkbox'
-        id: device.deviceId
-        checked: yes #device.states.state
+        checked: state.on
         onChange: -> return
       span className: 'switch'
       span className: 'toggle'

@@ -5,16 +5,17 @@ SwitchWidget = require '../../widgets/SwitchWidget'
 ButtonWidget = require '../../widgets/ButtonWidget'
 
 
-Widget = observer(({widget, dashboard, deviceStore}) ->
+Widget = observer(({widget, dashboard, deviceStore, stateStore}) ->
+  {devices} = stateStore
   device = if widget.device is '' then 'office-cold' else widget.device
   div id: widget.id, style: dashboard.baseWidgetStyle, className: 'base-widget z-depth-' + dashboard.widgetCardDepth, ->
     if widget.type is 'ButtonWidget'
-      crel ButtonWidget, widget: widget, device: deviceStore.devices["#{device}"]
+      crel ButtonWidget, widget: widget, device: devices[widget.device]
     else
-      crel SwitchWidget, widget: widget, device: deviceStore.devices["#{device}"]
+      crel SwitchWidget, widget: widget, device: devices[widget.device]
 
 )
 
 
 
-module.exports = inject('deviceStore')(Widget)
+module.exports = inject('deviceStore', 'stateStore')(Widget)

@@ -1,6 +1,6 @@
 {GraphQLList} = require 'graphql'
 {deviceType} = require '../types/devices'
-{deviceStatesType} = require '../types/states'
+{deviceStatesType, devicePlatformType} = require '../types/states'
 DeviceStore = require '../../store'
 
 
@@ -11,12 +11,13 @@ devicesSetupQuery =
 
 getFullStateQuery =
   type: deviceStatesType
-  resolve: ->
-    console.log DeviceStore.states
-    return states: JSON.stringify(DeviceStore.states)
+  resolve: -> DeviceStore.getAllStatesQuery()
 
-
+getAllPlatformsQuery =
+  type: devicePlatformType
+  resolve: -> DeviceStore.getPlatformsQuery()
 
 module.exports =
     devicesSetupQuery: devicesSetupQuery
     getFullStateQuery: getFullStateQuery
+    getAllPlatformsQuery: getAllPlatformsQuery

@@ -4,3 +4,9 @@ exports.deviceStatesType = new GraphQLObjectType({
   fields:
     states: type: GraphQLString
 })
+
+exports.devicePlatformType = new GraphQLObjectType({
+  name: 'DevicePlatformType'
+  fields:
+    platforms: type: GraphQLString
+})

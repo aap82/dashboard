@@ -21,6 +21,8 @@ Device = require '../../models/Device'
 class DeviceStore
   constructor: ->
     @devices = {}
+    @platforms = []
+
 
 
 

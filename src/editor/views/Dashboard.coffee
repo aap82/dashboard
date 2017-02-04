@@ -89,4 +89,4 @@ class Dashboard extends React.Component
 
 
 
-module.exports = inject('widgetEditor')(observer(Dashboard))
+module.exports = inject('widgetEditor', 'stateStore')(observer(Dashboard))
