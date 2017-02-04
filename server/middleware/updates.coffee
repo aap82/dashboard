@@ -1,13 +1,14 @@
 express = require('express')
 router = express.Router()
 sse = require './utils/sse'
+Store = require '../store'
+Store.setSSE(sse)
+require('../platforms/pimatic/updates').start(Store)
 
-require('../platforms/pimatic/updates').start(sse)
 
 
 
-
-router.get '/pimatic', (req, res) ->
+router.get '/', (req, res) ->
   client = null
   if !req.id?
     client = sse.add(req, res)

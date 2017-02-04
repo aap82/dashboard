@@ -9,9 +9,9 @@ Widget = observer(({widget, dashboard, deviceStore}) ->
   device = if widget.device is '' then 'office-cold' else widget.device
   div id: widget.id, style: dashboard.baseWidgetStyle, className: 'base-widget z-depth-' + dashboard.widgetCardDepth, ->
     if widget.type is 'ButtonWidget'
-      crel ButtonWidget, id: device, widget: widget, device: deviceStore.devices["#{device}"]
+      crel ButtonWidget, widget: widget, device: deviceStore.devices["#{device}"]
     else
-      crel SwitchWidget, id: device, widget: widget, device: deviceStore.devices["#{device}"]
+      crel SwitchWidget, widget: widget, device: deviceStore.devices["#{device}"]
 
 )
 

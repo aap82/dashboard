@@ -23,9 +23,7 @@ ContextMenuTarget(
   observer(class EditableWidget extends React.Component
     render: ->
       {widget, dashboard} = @props
-      div widget.key,
-        id: widget.key
-        style: widgetStyle, =>
+      div widget.key, style: widgetStyle, =>
           crel Widget, widget: widget, dashboard: dashboard
 
 
@@ -59,10 +57,9 @@ Widgets = pureComponent (editor, dashboard, widgetEditor) ->
       switch dashboard.isEditing
         when yes then crel EditableWidget, widget: widget, editor: editor, dashboard: dashboard, widgetEditor: widgetEditor
         else
-          div widget.key,
-            id: widget.key
-            style: widgetStyle, =>
-              crel Widget, widget: widget, dashboard: dashboard
+          div widget.key, style: widgetStyle, =>
+            crel Widget, widget: widget, dashboard: dashboard
+
 
 
 

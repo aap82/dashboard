@@ -13,6 +13,7 @@ that = module.exports =
     _o =
       id: _id
       rooms: []
+      devices: []
       res: res
     @clients.push _o
     req.socket.setTimeout 0x7FFFFFFF
@@ -85,7 +86,7 @@ that = module.exports =
     client.res.write '\n'
     #For compression module of express
     if client.res.flush
-      client.res.flush()
+      client.res.flushHeaders()
     return
   broadcast: (room, event, data) ->
     i = 0
@@ -100,14 +101,14 @@ that = module.exports =
     client.res.write 'retry: ' + retry + '\n'
     client.res.write '\n'
     if client.res.flush
-      client.res.flush()
+      client.res.flushHeaders()
     return
   sendHeartbeat: ->
     i = 0
     while i < that.clients.length
       that.clients[i].res.write ':heartbeat signal\n\n'
       if that.clients[i].res.flush
-        that.clients[i].res.flush()
+        that.clients[i].res.flushHeaders()
       i++
     return
 

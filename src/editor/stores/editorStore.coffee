@@ -62,6 +62,7 @@ class Editor
 
       saveDashboard: action(->
         props = DashboardEditor.toJSON()
+        console.log props
         id = DashboardEditor.dashboardId
         switch
           when id < 500 then @fetch('opName', 'UpdateDashboard', {id: id, dashboard: props}).then(@updateDashboardFromResponse)

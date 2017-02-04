@@ -1,6 +1,6 @@
-{GraphQLObjectType, GraphQLString} = require 'graphql'
+{GraphQLObjectType} = require 'graphql'
 dashboard = require('./dashboard')
-{devices} = require('./devices')
+{devicesSetupQuery, getFullStateQuery} = require('./devices')
 
 
 query =
@@ -8,9 +8,8 @@ query =
   fields:
     dashboard: dashboard.dashboardQuery
     dashboards: dashboard.dashboardsQuery
-    devices: devices
-
-
+    devicesSetup: devicesSetupQuery
+    deviceStates: getFullStateQuery
 
 
 

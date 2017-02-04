@@ -1,12 +1,22 @@
 {GraphQLList} = require 'graphql'
 {deviceType} = require '../types/devices'
-DeviceStore = require '../../stores/DeviceStore'
+{deviceStatesType} = require '../types/states'
+DeviceStore = require '../../store'
 
-devicesQuery =
+
+
+devicesSetupQuery =
   type: new GraphQLList(deviceType)
-  resolve: -> DeviceStore.getDevices()
+  resolve: -> DeviceStore.devices
+
+getFullStateQuery =
+  type: deviceStatesType
+  resolve: ->
+    console.log DeviceStore.states
+    return states: JSON.stringify(DeviceStore.states)
 
 
 
 module.exports =
-    devices: devicesQuery
+    devicesSetupQuery: devicesSetupQuery
+    getFullStateQuery: getFullStateQuery

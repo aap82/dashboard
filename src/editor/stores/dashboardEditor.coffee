@@ -1,6 +1,5 @@
 {extendObservable, action, computed, toJS} = require 'mobx'
 WidgetEditor = require './widgetEditor'
-DeviceStore = require './deviceStore'
 hexToRgba = require('hex-rgba')
 
 class DefaultDashboardProps
@@ -39,7 +38,7 @@ class DashboardEditor
     @resetProps = ['deviceType', 'dashboardBackgroundColor', 'widgetBackgroundColor', 'widgetBackgroundAlpha']
     @defaultProps = defaultProps
     @newDashboardId = 500
-
+    @devices = []
     @newLayout = []
     extendObservable @, {
       isDefaultDashboardStyle: no
@@ -90,7 +89,8 @@ class DashboardEditor
         @dashboardId = dashboard.id
         @setAllPropsFromDashboard(dashboard)
         WidgetEditor.key = parseInt(dashboard.widgets[dashboard.widgets.length-1].key, 10) if dashboard.widgets.length > 0
-        DeviceStore.addDevice(widget.device) for widget in dashboard.widgets
+        for widget in dashboard.widgets
+          @devices.push widget.device if widget.device not in @devices
 
       )
 
@@ -141,6 +141,7 @@ class DashboardEditor
         @width = 1200
         @widgetFontColor = "#fff"
         @widgetBorderRadius = 2
+        @devices = []
         @widgets.clear()
         @layouts.clear()
 
@@ -162,7 +163,6 @@ class DashboardEditor
       )
 
       close: action(->
-        DeviceStore.close()
         @layouts.clear()
         @widgets.clear()
         @newLayout = []
@@ -184,6 +184,8 @@ class DashboardEditor
       )
 
       addWidget: action(->
+        console.log @widgets
+        @devices.push "#{WidgetEditor.selectedDevicePlatform}-#{WidgetEditor.selectedDevice}" if WidgetEditor.selectedDevice not in @devices
         @layouts.replace(@newLayout)
         WidgetEditor.key++
 
@@ -200,14 +202,13 @@ class DashboardEditor
         }
 
         @widgets.push {
-          platform: WidgetEditor.newDevicePlatform
+          platform: WidgetEditor.selectedDevicePlatform
           key: WidgetEditor.key.toString()
           device: WidgetEditor.selectedDevice
           label: WidgetEditor.newWidgetLabel
           type: WidgetEditor.selectedWidgetType
         }
 
-        DeviceStore.addDevice(WidgetEditor.selectedDevice)
         WidgetEditor.reset()
       )
 
@@ -217,6 +218,8 @@ class DashboardEditor
 
 
   toJSON: =>
+    console.log 'devices'
+    console.log @devices
     toJS({
       title: @title
       deviceType: @deviceType
@@ -228,6 +231,7 @@ class DashboardEditor
       widgetBackgroundColor: @widgetBackgroundColor
       widgetBackgroundAlpha: @widgetBackgroundAlpha
       widgets: JSON.stringify @widgets.map((widget) -> toJS(widget))
+      devices: JSON.stringify @devices
       layouts: JSON.stringify @newLayout
       dashboardStyle: JSON.stringify({
         isDefault: @isDefaultDashboardStyle

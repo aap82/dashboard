@@ -13,6 +13,7 @@ class Dashboard
     @widgetStyle
     @widgets
     @layouts
+    @devices
 
     @width
     @widgetBackgroundColor
@@ -74,6 +75,8 @@ setProps = (dashboard, props) ->
     dashboard.widgetStyle = JSON.parse(props.widgetStyle)
     dashboard.widgets = JSON.parse(props.widgets)
     dashboard.layouts = JSON.parse(props.layouts)
+    dashboard.devices = JSON.parse(props.devices)
+
     dashboard.width = props.width or 1200
     dashboard.widgetBackgroundColor = props.widgetBackgroundColor
     dashboard.widgetBackgroundAlpha = props.widgetBackgroundAlpha

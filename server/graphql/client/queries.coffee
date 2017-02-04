@@ -8,8 +8,20 @@ q.getDashboardsAndDevices = "
     dashboards {
        #{DashboardSetupFields}
   }
-    devices {
+    devicesSetup {
       #{DevicesQueryFields}
+    }
+    deviceStates {
+      states
+    }
+
+  }
+"
+
+q.getDeviceStatesAll = "
+  query getDeviceStatesAll {
+    deviceStates {
+      states
     }
 
   }

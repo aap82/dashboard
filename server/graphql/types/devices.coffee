@@ -6,7 +6,6 @@ attributeType = new GraphQLObjectType({
   name: 'DeviceAttributeType'
   fields: =>
     type: type: GraphQLString
-    value: type: GraphQLString
     name: type: GraphQLString
     unit: type: GraphQLString
 
@@ -24,6 +23,7 @@ exports.deviceType = new GraphQLObjectType({
   name: 'DeviceType'
   fields: =>
     id:  type: GraphQLString
+    deviceId:  type: GraphQLString
     name: type: GraphQLString
     platform: type: GraphQLString
     type: type: GraphQLString
@@ -33,15 +33,17 @@ exports.deviceType = new GraphQLObjectType({
 
 })
 
+
+
 exports.DevicesQueryFields = "
     id
+    deviceId
     platform
     type
     name
-
+    extraInfo
     attributes {
       type
-      value
       name
       unit
     }

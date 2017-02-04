@@ -69,5 +69,6 @@ exports.DashboardSetupFields = "
   widgetBackgroundColor
   widgetBackgroundAlpha
   layouts
+  devices
 
 "

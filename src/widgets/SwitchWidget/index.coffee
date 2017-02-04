@@ -7,6 +7,7 @@ class SwitchWidget extends React.Component
   handleTapEvent: => @props.device.sendCommand('toggle')
 
   render: ->
+    console.log @props
     {widget, device} = @props
     crel Tappable, onTap: @handleTapEvent, =>
       div className: 'widget switch-widget center', =>

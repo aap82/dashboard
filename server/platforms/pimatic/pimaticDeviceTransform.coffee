@@ -1,15 +1,14 @@
 DataTransform = require("node-json-transform").DataTransform
 exports.getTransformedObj = (json) ->
-
-  dataTransform = DataTransform(json, baseMap)
-  result = dataTransform.transform()
-  return result
+  _dataTransform = DataTransform(json, baseMap)
+  _result = _dataTransform.transform()
+  return _result
 
 
 baseMap =
   list: 'devices'
   item:
-    id: 'id'
+    deviceId: 'id'
     name: 'name'
     type: ''
     actions: 'actions'
@@ -28,6 +27,7 @@ baseMap =
   ]
   each: (item) ->
     item.platform = 'pimatic'
+    item.id = 'pimatic-' + item.deviceId
     item.type = switch
       when item.extraInfo.deviceClassType.slice(0, 3) is 'hue' then 'dimmer'
       else
@@ -39,17 +39,12 @@ attributesMap =
   list: 'list'
   item:
     type: 'type'
-    value: 'value'
     name: 'name'
     unit: 'unit'
-  operate: [
-    {
-      run: (val) -> "#{val}"
-      on: 'value'
-    }
+    value: 'value'
 
 
-  ]
+
 
 
 

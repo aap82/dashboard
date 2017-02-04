@@ -8,7 +8,8 @@ widgets = require './widgetEditor'
 
 exports.configureStores = (data, gqlFetch) ->
   editor.fetch = gqlFetch
-  deviceStore.loadDevices(data.devices)
+  states = JSON.parse data.deviceStates.states
+  deviceStore.loadDevices(data.devicesSetup)
   DashboardStore.loadDashboards(data.dashboards, deviceStore.devices)
   viewStore.userDashboards.replace DashboardStore.getUserDashboards()
   return {

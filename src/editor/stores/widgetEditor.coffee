@@ -93,7 +93,8 @@ class WidgetEditor
         if @selectedWidgetType is '0'
           return []
         else
-          types = @newWidget.types
+
+          types = (@newWidget.types).slice()
           return ({id: key, name: value.name} for key, value of DeviceStore.devices when value.type in types and value.platform is @selectedDevicePlatform)
 
 
