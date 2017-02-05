@@ -1,4 +1,6 @@
+remotedev = require('mobx-remotedev')
 {extendObservable, action, computed, asMap, toJS} = require 'mobx'
+
 
 DashboardStore = require './dashboardStore'
 DashboardEditor = require './dashboardEditor'
@@ -14,7 +16,7 @@ class Editor
       activeModel: ''
       modalTitle: ''
       iconName: ''
-
+      dashboard: null
       closeModal: action(->
         @activeModal = ''
         @modalTitle = ''
@@ -107,9 +109,8 @@ class Editor
 
 
 
-
 editor = new Editor()
 
 
 
-module.exports =  editor
+module.exports =  remotedev(editor)

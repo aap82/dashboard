@@ -8,7 +8,7 @@ DashboardItem = require './DashboardItem'
 DeviceType = (observer(({dashboard, onChange}) ->
   div ->
     div className: 'pt-select', ->
-      select onChange: onChange, value: dashboard.deviceType, disabled: !dashboard.isEditing, ->
+      select onChange: onChange, value: dashboard.activeDashboard.deviceType, disabled: !dashboard.isEditing, ->
         option value: '', ''
         option value: 'tablet', 'Tablet'
         option value: 'phone', 'Phone'

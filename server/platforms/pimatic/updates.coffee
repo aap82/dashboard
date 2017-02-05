@@ -10,6 +10,7 @@ u = encodeURIComponent(username)
 p = encodeURIComponent(password)
 socketUrl = 'http://' + host + ':' + port + '/?username=' + u + '&password=' + p
 
+
 exports.start =  (store) ->
   store.addPlatform('pimatic')
   socket = io(socketUrl,
@@ -21,6 +22,8 @@ exports.start =  (store) ->
   )
   socket.on 'devices', (devices) -> return store.addDevices('pimatic', getTransformedObj({devices: devices}))
   socket.on 'deviceAttributeChanged', (attrEvent) ->
-    return store.setDeviceState('pimatic', attrEvent.deviceId, attrEvent.attributeName, attrEvent.value)
+    attrName = if attrEvent.attributeName is 'state' then 'on' else attrEvent.attributeName
+    store.setDeviceState('pimatic', attrEvent.deviceId, attrName, attrEvent.value)
+    return
   socket.on 'error', (error) -> return  console.log error
   socket

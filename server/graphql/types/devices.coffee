@@ -30,7 +30,9 @@ exports.deviceType = new GraphQLObjectType({
     type: type: GraphQLString
     attributes: type: new GraphQLList(attributeType)
     actions: type: new GraphQLList(actionType)
-    extraInfo: type: GraphQLString
+    other:
+      type: GraphQLString
+      resolve: (root) -> return JSON.stringify(root.other)
     state:
       type: GraphQLString
       resolve: (root) ->
@@ -49,7 +51,7 @@ exports.DevicesQueryFields = "
     platform
     type
     name
-    extraInfo
+    other
     attributes {
       type
       name

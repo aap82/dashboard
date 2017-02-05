@@ -66,17 +66,18 @@ Widgets = pureComponent (editor, dashboard, widgetEditor) ->
 class Dashboard extends React.Component
   render: ->
     {editor, dashboard, widgetEditor} = @props
-    div style: dashboard.dashboardStyle, =>
+    {activeDashboard} = dashboard
+    div style: activeDashboard.style, =>
       crel GridLayout,
         verticalCompact: no
         autoSize: no
         isDraggable: dashboard.isEditing
         isResizable: dashboard.isEditing
-        cols: dashboard.cols
-        margin: [dashboard.marginX, dashboard.marginY]
+        cols: activeDashboard.cols
+        margin: [activeDashboard.marginX, activeDashboard.marginY]
         containerPadding: [0, 0]
-        rowHeight: dashboard.rowHeight
-        layout: (dashboard.layouts).slice()
+        rowHeight: activeDashboard.rowHeight
+        layout: (activeDashboard.layouts).slice()
         onLayoutChange: @handleLayoutChange
         Widgets editor, dashboard, widgetEditor
 

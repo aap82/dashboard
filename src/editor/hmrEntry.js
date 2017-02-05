@@ -2,7 +2,7 @@ import React from 'react';
 import { FocusStyleManager } from '@blueprintjs/core';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import {configureStores} from './stores';
+import {configureStores} from './store';
 import gqlFetch from '../utils/fetch'
 import App from './devEntry';
 import {Provider, useStaticRendering} from 'mobx-react'

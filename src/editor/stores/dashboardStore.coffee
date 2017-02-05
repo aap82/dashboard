@@ -1,30 +1,35 @@
 ViewStore = require './viewStore'
-class Dashboard
+{DashboardStoreModel} = require '../../stores/DashboardStore'
+DashboardModel = require '../../models/Dashboard'
+{setDashboardProps, setWidgetProps} = require '../../stores/helpers'
+
+widgetEditorProps =
+    backgroundColor: "#fff"
+    backgroundAlpha: 100
+    fontColor: "#fff"
+    borderRadius: 2
+    cardDepth: 2
+
+
+class DashboardStoreEditor extends DashboardStoreModel
+
+
   constructor: ->
-    @id
-    @deviceType
-    @title
-    @cols
-    @marginX
-    @marginY
-    @rowHeight
-    @widgetCardDepth
-    @dashboardStyle
-    @widgetStyle
-    @widgets
-    @layouts
-    @devices
+    super
 
-    @width
-    @widgetBackgroundColor
-    @widgetBackgroundAlpha
+  loadDashboards: (dashboards) ->
+    @dashboards = dashboards.map((dashboard) =>
+      @loadDashboardProps(dashboard)
 
 
+    )
+
+  getDashboard: (props) =>
+    if !props.widgetEditor? then props.widgetEditor =  widgetEditorProps
+    dashboard = setDashboardProps(new DashboardModel(), props)
+    return dashboard
 
 
-class DashboardStore
-  constructor: ->
-    @dashboards = []
 
   getUserDashboards: =>
     userDashboards = @dashboards.map((dashboard) -> id: dashboard.id, title: dashboard.title, deviceType: dashboard.deviceType)
@@ -35,14 +40,8 @@ class DashboardStore
     return @dashboards[idx]
 
 
-
-  loadDashboards: (array) ->
-    @dashboards = array.map((dashboard) => setProps(new Dashboard(), dashboard))
-    return
-
-
   createDashboard: (props) ->
-    dashboard = setProps(new Dashboard(), props)
+    dashboard = setProps(new DashboardModel(), props)
     @dashboards.push dashboard
     ViewStore.userDashboards.replace @getUserDashboards()
     ViewStore.setSelectedDashboard props.id
@@ -84,5 +83,5 @@ setProps = (dashboard, props) ->
 
 
 
-dashboardStore = new DashboardStore()
+dashboardStore = new DashboardStoreEditor()
 module.exports = dashboardStore

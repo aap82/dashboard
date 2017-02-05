@@ -10,11 +10,12 @@ CreateNewDashboard = require '../components/CreateNewDashboard'
 
 
 Title = observer(({dashboard, onChange}) ->
+  {activeDashboard} = dashboard
   h3 ->
     crel EditableText,
       className: ' pt-rtl dashboard-title ' + !dashboard.isEditing
-      placeholder: dashboard.title
-      value: dashboard.title
+      placeholder: activeDashboard.title
+      value: activeDashboard.title
       disabled: !dashboard.isEditing
       selectAllOnFocus: yes
       onChange: onChange

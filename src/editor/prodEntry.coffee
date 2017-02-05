@@ -7,7 +7,7 @@ T = require 'teact'
 ReactDOM = require 'react-dom'
 {Provider, useStaticRendering} = require 'mobx-react'
 gqlFetch = require('../utils/fetch')('/graphql')
-{configureStores} = require './stores'
+{configureStores} = require './store'
 
 EditorApp = require('./views/App')
 

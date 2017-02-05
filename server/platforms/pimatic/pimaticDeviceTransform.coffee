@@ -13,7 +13,7 @@ baseMap =
     type: ''
     actions: 'actions'
     attributes: 'attributes'
-    extraInfo:
+    other:
       deviceClass: 'config.class'
       deviceClassType: 'template'
 
@@ -29,20 +29,20 @@ baseMap =
     item.platform = 'pimatic'
     item.id = 'pimatic-' + item.deviceId
     item.type = switch
-      when item.extraInfo.deviceClassType.slice(0, 3) is 'hue' then 'dimmer'
+      when item.other.deviceClassType.slice(0, 3) is 'hue' then 'dimmer'
       else
-        item.extraInfo.deviceClassType
-    if item.type in ['switch', 'dimmer']
-      state = null
+        item.other.deviceClassType
+    if item.type not in ['buttons', 'device']
+      item.state = {}
       for attr in item.attributes
-        if attr.name is 'state'
-          state = attr
-        if state isnt null then break
-      item.attributes.push
-        type: attr.type
-        name: 'on'
-        unit: attr.unit
-        value: attr.value
+        item.state[attr.name] = attr.value
+      if item.type in ['switch', 'dimmer'] and attr.name is 'state'
+          item.state.on = attr.value
+          item.attributes.push
+            type: attr.type
+            name: 'on'
+            unit: attr.unit
+            value: attr.value
 
 
 

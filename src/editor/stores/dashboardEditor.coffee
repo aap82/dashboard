@@ -1,51 +1,26 @@
-{extendObservable, action, computed, toJS} = require 'mobx'
+remotedev = require('mobx-remotedev')
+{extendObservable, action, computed, toJS, observable} = require 'mobx'
 WidgetEditor = require './widgetEditor'
 hexToRgba = require('hex-rgba')
+DashboardStoreEditor = require './dashboardStore'
 
-class DefaultDashboardProps
-  constructor: ->
-    @tablet =
-      deviceType: 'tablet'
-      cols: 155
-      rowHeight: 5
-      marginX: 0
-      marginY: 0
-      dashboardBackgroundColor: '#fff'
-      widgetBackgroundColor: '#0900FF'
-      title: 'Dashboard Title'
-      width: 1200
-
-
-    @phone =
-      deviceType: 'phone'
-      cols: 155
-      rowHeight: 5
-      marginX: 0
-      marginY: 0
-      dashboardBackgroundColor: '#fff'
-      widgetBackgroundColor: '#0900FF'
-      title: 'Dashboard Title'
-      width: 600
-
-dashboardDefaultProps = new DefaultDashboardProps()
-
-
+Widget = require '../../models/Widget'
 
 class DashboardEditor
-  constructor: (defaultProps) ->
-    @fetch = null
+  @activeDashboard
+  constructor:  ->
     @props = ['cols', 'marginX', 'marginY', 'rowHeight', 'title', 'width', 'deviceType', 'dashboardBackgroundColor', 'widgetBackgroundColor', 'widgetBackgroundAlpha']
     @resetProps = ['deviceType', 'dashboardBackgroundColor', 'widgetBackgroundColor', 'widgetBackgroundAlpha']
-    @defaultProps = defaultProps
     @newDashboardId = 500
     @devices = []
     @newLayout = []
     extendObservable @, {
+      activeDashboard: {}
       isDefaultDashboardStyle: no
       isDefaultWidgetStyle: no
       dashboardId: -1
-
       isEditing: no
+
       deviceType: ''
       title: 'Dashboard Title'
       cols: ''
@@ -64,22 +39,6 @@ class DashboardEditor
       widgetBorderRadius: 2
       widgetCardDepth: 2
 
-      dashboardStyle: computed(->
-        position: 'relative'
-        height: "100%"
-        width: @width
-        backgroundColor: @dashboardBackgroundColor
-        fontFamily: 'Ubuntu'
-        color: @widgetFontColor
-      )
-
-      baseWidgetStyle: computed(->
-        backgroundColor: hexToRgba(@widgetBackgroundColor, @widgetBackgroundAlpha)
-        borderRadius: @widgetBorderRadius
-        pointerEvents: if @isEditing then 'none' else 'all'
-      )
-
-
       setProp: action((prop, value) ->
         if prop is 'widgetCardDepth' and value > 5 then value = 5
         @["#{prop}"] = value if prop in @props or prop in ['dashboardId', 'widgetFontColor', 'widgetBorderRadius', 'widgetCardDepth', 'widgetBackgroundAlpha']
@@ -94,36 +53,6 @@ class DashboardEditor
 
       )
 
-
-
-
-      setAllPropsFromDashboard: action((dashboard) ->
-        @deviceType = dashboard.deviceType
-        @title = dashboard.title
-        @cols = dashboard.cols
-        @marginX = dashboard.marginX
-        @marginY = dashboard.marginY
-        @rowHeight = dashboard.rowHeight
-
-        @widgetCardDepth = dashboard.widgetCardDepth
-        @widgetBackgroundColor = dashboard.widgetBackgroundColor
-        @widgetBackgroundAlpha = dashboard.widgetBackgroundAlpha
-
-
-        {dashboardStyle} = dashboard
-        @isDefaultDashboardStyle = dashboardStyle.isDefault
-        @dashboardBackgroundColor = dashboardStyle.props.backgroundColor
-        @width = dashboardStyle.props.width
-        @widgetFontColor = dashboardStyle.props.color
-
-        {widgetStyle} = dashboard
-        @isDefaultWidgetStyle = widgetStyle.isDefault
-        @widgetBorderRadius = widgetStyle.props.borderRadius
-
-
-        @widgets.replace(dashboard.widgets)
-        @layouts.replace(dashboard.layouts)
-      )
 
 
       resetAllPropsToDefault: action(->
@@ -168,12 +97,11 @@ class DashboardEditor
         @newLayout = []
         @dashboardId = -1
       )
-
-      create: action((title, deviceType) ->
-        @setProp(prop, value) for prop, value of @defaultProps["#{deviceType}"] when prop in @props
-        @setProp('title', title)
-        @setProp('deviceType', deviceType)
-        @setProp('dashboardId', @newDashboardId)
+      setActiveDashboard: action((dashboard) => @activeDashboard = dashboard)
+      create: action((title, deviceType) =>
+        @setActiveDashboard DashboardStoreEditor.getDashboard(
+          {id: @newDashboardId, title: title, deviceType: deviceType}
+        )
         @isEditing = yes
         @newDashboardId++
       )
@@ -218,8 +146,6 @@ class DashboardEditor
 
 
   toJSON: =>
-    console.log 'devices'
-    console.log @devices
     toJS({
       title: @title
       deviceType: @deviceType
@@ -234,11 +160,9 @@ class DashboardEditor
       devices: JSON.stringify @devices
       layouts: JSON.stringify @newLayout
       dashboardStyle: JSON.stringify({
-        isDefault: @isDefaultDashboardStyle
         props: toJS(@dashboardStyle)
       })
       widgetStyle: JSON.stringify({
-        isDefault: @isDefaultWidgetStyle
         props:
           backgroundColor: hexToRgba(@widgetBackgroundColor, @widgetBackgroundAlpha)
           borderRadius: @widgetBorderRadius
@@ -252,9 +176,9 @@ class DashboardEditor
 
 
 
-dashboardEditor = new DashboardEditor(dashboardDefaultProps)
+dashboardEditor = new DashboardEditor()
 
 
 
-module.exports =  dashboardEditor
+module.exports =  remotedev(dashboardEditor)
 

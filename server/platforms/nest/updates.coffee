@@ -2,8 +2,7 @@ getenv = require('getenv')
 Firebase = require("firebase")
 
 NEST_TOKEN = getenv('NEST_TOKEN')
-NEST_STRUCTURE_ID = getenv('NEST_STRUCTURE_ID')
-
+camelCase = require('camelcase')
 client = new Firebase('wss://developer-api.nest.com')
 console.log NEST_TOKEN
 
@@ -23,4 +22,5 @@ exports.start = ->
   client.once 'value', (snapshot) =>
     therm = snapshot.child('devices/thermostats')
     thermData = therm.val()
-    console.log thermData
+    for key, value of thermData
+      console.log camelCase(value.name).split(' ')[0]

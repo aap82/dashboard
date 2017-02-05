@@ -1,28 +1,52 @@
-{GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLInputObjectType} = require 'graphql'
-exports = module.exports
+{GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLInputObjectType, GraphQLList} = require 'graphql'
+{widgetType, WidgetQueryFields} = require './widget'
+{dashboardEditorType, DashboardEditorQueryFields} = require './editor'
 
+
+
+dashboardLayoutType = new GraphQLObjectType({
+  name: 'DashboardLayoutType'
+  fields:
+    i: type: GraphQLString
+    w: type: GraphQLInt
+    h: type: GraphQLInt
+    x: type: GraphQLInt
+    y: type: GraphQLInt
+    minW: type: GraphQLInt
+    minH: type: GraphQLInt
+})
+
+dashboardStyleType = new GraphQLObjectType({
+  name: 'DashboardStyleType'
+  fields:
+    backgroundColor: type: GraphQLString
+    color: type: GraphQLString
+
+})
+exports = module.exports
 exports.dashboardType = new GraphQLObjectType({
   name: 'Dashboard'
-  fields:
+  fields: =>
     id: type: GraphQLInt
     title: type: GraphQLString
     deviceType:  type: GraphQLString
-
     cols: type: GraphQLInt
     marginX: type: GraphQLInt
     marginY: type: GraphQLInt
     rowHeight: type: GraphQLInt
 
-    dashboardStyle: type:  GraphQLString
-    widgetColor: type: GraphQLString
-    widgetCardDepth: type: GraphQLInt
-    widgetBackgroundAlpha: type: GraphQLInt
-    widgetBackgroundColor: type: GraphQLString
-    widgetStyle: type: GraphQLString
+    style: type:  dashboardStyleType
+    layouts:
+      type: new GraphQLList(dashboardLayoutType)
+      resolve: (obj) -> JSON.parse(obj.layouts)
+    widgets:
+      type: new GraphQLList(widgetType)
+      resolve: (obj) ->
+        if obj.widgets? then JSON.parse(obj.widgets)
+        else return
 
-    layouts: type: GraphQLString
-    widgets: type: GraphQLString
     devices: type: GraphQLString
+    widgetEditor: type: dashboardEditorType
 
 })
 
@@ -34,22 +58,16 @@ exports.dashboardInputType = new GraphQLInputObjectType({
   fields:
     title: type: GraphQLString
     deviceType:  type: GraphQLString
-
     cols: type: GraphQLInt
     marginX: type: GraphQLInt
     marginY: type: GraphQLInt
     rowHeight: type: GraphQLInt
-
-    dashboardStyle: type:  GraphQLString
-    widgetColor: type: GraphQLString
-    widgetCardDepth: type: GraphQLInt
-    widgetBackgroundAlpha: type: GraphQLInt
-    widgetBackgroundColor: type: GraphQLString
-    widgetStyle: type: GraphQLString
-
+    style: type:  GraphQLString
+    editor: type: GraphQLString
     layouts: type: GraphQLString
     widgets: type: GraphQLString
     devices: type: GraphQLString
+    widgetEditor: type: GraphQLString
 })
 
 
@@ -59,16 +77,24 @@ exports.DashboardSetupFields = "
   title
   deviceType
   cols
-  dashboardStyle
-  widgetStyle
   rowHeight
   marginX
   marginY
-  widgets
-  widgetCardDepth
-  widgetBackgroundColor
-  widgetBackgroundAlpha
-  layouts
+  layouts {
+    i
+    x
+    y
+    w
+    h
+    minH
+    minW
+  }
   devices
+  style {
+    backgroundColor
+    color
+  }
+  widgets {#{WidgetQueryFields}}
+  widgetEditor {#{DashboardEditorQueryFields}}
 
 "

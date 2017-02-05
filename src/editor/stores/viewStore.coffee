@@ -1,9 +1,11 @@
+remotedev = require('mobx-remotedev')
 {extendObservable, action, toJS} = require 'mobx'
 DashboardEditor = require './dashboardEditor'
 
 class ViewStore
   constructor: ->
     extendObservable @, {
+      dashboards: []
       userDashboards: []
       setUserDashboards: action((dashboards) -> @userDashboards.replace(dashboards))
 
@@ -26,7 +28,6 @@ class ViewStore
       changeNewDashboardDeviceType: action((type) -> @newDashboardDeviceType = type)
 
       createNewDashboard: action( ->
-        DashboardEditor.resetAllPropsToDefault()
         DashboardEditor.create(@newDashboardTitle, @newDashboardDeviceType)
         @closeCreateDashboardPanel()
         @showEditorPage()
@@ -47,4 +48,4 @@ class ViewStore
 
 viewStore = new ViewStore()
 
-module.exports = viewStore
+module.exports = remotedev(viewStore)
