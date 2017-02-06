@@ -5,10 +5,10 @@ React = require 'react'
 DashboardItem = require './DashboardItem'
 {DashboardColorPicker} = require './ColorPicker'
 
-DeviceType = (observer(({dashboard, onChange}) ->
+DeviceType = (observer(({editor, dashboard, onChange}) ->
   div ->
     div className: 'pt-select', ->
-      select onChange: onChange, value: dashboard.activeDashboard.deviceType, disabled: !dashboard.isEditing, ->
+      select onChange: onChange, value: dashboard.deviceType, disabled: !editor.isEditing, ->
         option value: '', ''
         option value: 'tablet', 'Tablet'
         option value: 'phone', 'Phone'
@@ -19,10 +19,10 @@ DeviceType = (observer(({dashboard, onChange}) ->
 class DeviceTypeEditor extends React.Component
   onDeviceTypeChange: (e) => @props.dashboard.setProp('deviceType', e.target.value)
   render: ->
-    {dashboard} = @props
+    {dashboard, editor} = @props
     div className: 'row between middle', =>
       crel 'div', 'Device Type'
-      crel DeviceType, dashboard: dashboard, onChange: @onDeviceTypeChange
+      crel DeviceType, dashboard: dashboard, editor: editor, onChange: @onDeviceTypeChange
 
 
 PropertiesSectionTitleButton = ->

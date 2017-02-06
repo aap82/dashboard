@@ -1,6 +1,7 @@
+{extendObservable, action, computed, toJS, observable} = require 'mobx'
 ViewStore = require './viewStore'
-{DashboardStoreModel} = require '../../stores/DashboardStore'
 DashboardModel = require '../../models/Dashboard'
+WidgetModel = require '../../models/Widget'
 {setDashboardProps, setWidgetProps} = require '../../stores/helpers'
 
 widgetEditorProps =
@@ -11,22 +12,34 @@ widgetEditorProps =
     cardDepth: 2
 
 
-class DashboardStoreEditor extends DashboardStoreModel
+class DashboardStoreEditor
 
 
   constructor: ->
-    super
+    @dashboards = []
+
+  loadDashboardProps: (d) ->
+    dashboard = setDashboardProps(new DashboardModel(), d)
+    dashboard.widgets = (d.widgets.map((widget) -> setWidgetProps(new WidgetModel(), widget)))
+    dashboard.widgetEditor = d.widgetEditor
+    dashboard
+
+
+
 
   loadDashboards: (dashboards) ->
-    @dashboards = dashboards.map((dashboard) =>
-      @loadDashboardProps(dashboard)
+    @dashboards = dashboards.map((d) =>
 
-
+      @loadDashboardProps(d)
     )
+    console.log @dashboards
+    return
+
+
 
   getDashboard: (props) =>
     if !props.widgetEditor? then props.widgetEditor =  widgetEditorProps
-    dashboard = setDashboardProps(new DashboardModel(), props)
+    dashboard = setDashboardProps(new DashboardModel(props.widgetEditor), props)
     return dashboard
 
 

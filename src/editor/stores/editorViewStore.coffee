@@ -1,14 +1,13 @@
-remotedev = require('mobx-remotedev')
 {extendObservable, action, computed, asMap, toJS} = require 'mobx'
 
-
+DashboardView = require './DashboardView'
 DashboardStore = require './dashboardStore'
 DashboardEditor = require './dashboardEditor'
 WidgetEditor = require './widgetEditor'
 
 
 
-class Editor
+class EditorView
   constructor:  ->
     @fetch = null
     extendObservable @, {
@@ -16,7 +15,6 @@ class Editor
       activeModel: ''
       modalTitle: ''
       iconName: ''
-      dashboard: null
       closeModal: action(->
         @activeModal = ''
         @modalTitle = ''
@@ -59,36 +57,53 @@ class Editor
       loadDashboard: action((id) =>
         @selectedDashboardId = id
         dashboard = DashboardStore.getDashboardById(id)
+        console.log dashboard
         DashboardEditor.load(dashboard)
       )
+      close: action(->
+        DashboardEditor.close()
+      )
 
-      saveDashboard: action(->
-        props = DashboardEditor.toJSON()
+      saveDashboard: action(=>
+        DashboardView.setProp('layouts', DashboardEditor.newLayout)
+        props = toJS(DashboardEditor.toJSON())
         console.log props
-        id = DashboardEditor.dashboardId
+        id = props.id
+        delete props['id']
+        console.log props
+
+
         switch
           when id < 500 then @fetch('opName', 'UpdateDashboard', {id: id, dashboard: props}).then(@updateDashboardFromResponse)
           else @fetch('opName', 'CreateDashboard', dashboard: props).then(@addDashboardFromResponse)
       )
 
-      discardDashboardChanges: action(->
-        id = DashboardEditor.dashboardId
-        dashboard = DashboardStore.getDashboardById(id)
-        DashboardEditor.load(dashboard)
-      )
-      addDashboardFromResponse: action((response) ->
-        data = response.data.create
-        DashboardEditor.dashboardId = data.id
-        DashboardStore.createDashboard(data)
+
+      addDashboardFromResponse: action((response) =>
+        if response.errors
+          console.log response.errors
+          return
+        else
+          console.log response
+          data = response.data.create
+          DashboardView.id = data.id
+          DashboardStore.createDashboard(data)
       )
 
-      updateDashboardFromResponse: action((response) ->
-        data = response.data.update
-        DashboardStore.updateDashboard(data.id, data)
+      updateDashboardFromResponse: action((response) =>
+        if response.errors
+          console.log response.errors
+          return
+        else
+          console.log response
+          data = response.data.update
+          DashboardStore.updateDashboard(data.id, data)
+
       )
 
       deleteDashboard: action(->
-        id = DashboardEditor.dashboardId
+        console.log DashboardView.id
+        id = DashboardView.id
         @fetch('opName', 'DeleteDashboard', {id: id}).then(@deleteDashboardResponse)
       )
 
@@ -101,7 +116,10 @@ class Editor
           return
       )
 
-
+      discardDashboardChanges: action(->
+        dashboard = DashboardStore.getDashboardById(DashboardView.id)
+        DashboardEditor.load(dashboard)
+      )
 
 
 
@@ -109,8 +127,8 @@ class Editor
 
 
 
-editor = new Editor()
+editor = new EditorView()
 
 
 
-module.exports =  remotedev(editor)
+module.exports =  editor

@@ -46,7 +46,11 @@ exports.dashboardType = new GraphQLObjectType({
         else return
 
     devices: type: GraphQLString
-    widgetEditor: type: dashboardEditorType
+    widgetEditor:
+      type: dashboardEditorType
+      resolve: (obj) ->
+        if obj.widgetEditor? then JSON.parse(obj.widgetEditor)
+        else return
 
 })
 
@@ -89,11 +93,12 @@ exports.DashboardSetupFields = "
     minH
     minW
   }
-  devices
+
   style {
     backgroundColor
     color
   }
+  devices
   widgets {#{WidgetQueryFields}}
   widgetEditor {#{DashboardEditorQueryFields}}
 

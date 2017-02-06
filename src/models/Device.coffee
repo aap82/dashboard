@@ -1,5 +1,5 @@
-class Device
-  constructor: (device, requestor = '') ->
+class DeviceProps
+  constructor: (device) ->
     @platform = device.platform
     @id = device.id
     @deviceId = device.deviceId
@@ -7,9 +7,8 @@ class Device
     @type = device.type
     @actions = device.actions
     @attributes = device.attributes
-    @details = switch requestor
-      when 'client' then JSON.parse(device.other)
-      else device.other
+    @other = device.other
 
 
-module.exports = Device
+
+module.exports = DeviceProps

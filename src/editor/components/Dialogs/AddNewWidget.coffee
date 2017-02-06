@@ -81,12 +81,13 @@ class AddNewWidgetDialogContent extends React.Component
   onNewDeviceChange: (e) => @props.widgetEditor.changeSelectedDevice(e.target.value)
   onNewWidgetLabelChange: (value) => @props.widgetEditor.changeNewWidgetLabel(value)
   addNewWidget: =>
-    @props.dashboard.addWidget()
-    @props.editor.closeModal()
-  cancelAddNewWidget: => @props.editor.closeModal()
+    @props.editor.addWidget()
+    @props.editorView.closeModal()
+  cancelAddNewWidget: => @props.editorView.closeModal()
 
   render: ->
     {widgetEditor} = @props
+    console.log widgetEditor.selectedWidgetProperties
     div className: 'create-widget-dialog', =>
       crel SelectNewWidgetPlatform, widgetEditor: widgetEditor, onChange: @onNewWidgetDevicePlatformChange
       br()
@@ -108,5 +109,5 @@ class AddNewWidgetDialogContent extends React.Component
             onClick: @cancelAddNewWidget
 
 
-module.exports = inject('widgetEditor', 'dashboard')(observer(AddNewWidgetDialogContent))
+module.exports = inject('widgetEditor', 'editor')(observer(AddNewWidgetDialogContent))
 

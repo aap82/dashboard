@@ -22,8 +22,7 @@ exports.start =  (store) ->
   )
   socket.on 'devices', (devices) -> return store.addDevices('pimatic', getTransformedObj({devices: devices}))
   socket.on 'deviceAttributeChanged', (attrEvent) ->
-    attrName = if attrEvent.attributeName is 'state' then 'on' else attrEvent.attributeName
-    store.setDeviceState('pimatic', attrEvent.deviceId, attrName, attrEvent.value)
+    store.setDeviceState('pimatic', attrEvent.deviceId, attrEvent.attributeName, attrEvent.value)
     return
   socket.on 'error', (error) -> return  console.log error
   socket

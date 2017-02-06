@@ -1,10 +1,14 @@
 express = require('express')
 app = express()
 
-
+app.post '*', (req, res, next) =>
+  console.log req.url
+  next()
 
 app.get '*', (req, res, next) =>
-  if req.url in ['/editor', '/graphiql'] and req.device.type is 'desktop'
+  if req.url in ['/graphql']
+    return next()
+  if req.url in ['/editor', '/graphiql', '/graphql'] and req.device.type is 'desktop'
     return next()
   else if req.url is '/dashboard' and req.device.type in ['tablet', 'phone']
     return next()

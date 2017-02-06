@@ -7,19 +7,19 @@ exports = module.exports
 class DashboardColorPicker extends React.Component
   handleDashboardChange: (colors) =>
     {dashboard} = @props
-    dashboard.setProp('dashboardBackgroundColor', colors.color) if colors.color isnt  dashboard.dashboardBackgroundColor
+    dashboard.setStyleProp('backgroundColor', colors.color) if colors.color isnt  dashboard.dashboardStyle.backgroundColor
     return
 
   render: ->
-    {dashboard} = @props
-    className = if !dashboard.isEditing then 'color-picker-disabled' else ''
+    {dashboard, editor} = @props
+    className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row', =>
       text 'Background Color'
       div className: 'color-picker-text', =>
-        text "#{dashboard.dashboardBackgroundColor}"
+        text "#{dashboard.dashboardStyle.backgroundColor}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: dashboard.dashboardBackgroundColor
+            color: dashboard.dashboardStyle.backgroundColor
             alpha: 100
             mode: 'RGB'
             align:
@@ -31,21 +31,21 @@ class DashboardColorPicker extends React.Component
 
 class WidgetBackgroundColorPicker  extends React.Component
   handleWidgetColorChange: (colors) =>
-    {dashboard} = @props
-    dashboard.setProp('widgetBackgroundColor', colors.color) if colors.color isnt dashboard.widgetBackgroundColor
-    dashboard.setProp('widgetBackgroundAlpha', colors.alpha) if colors.alpha isnt dashboard.widgetBackgroundAlpha
+    {editor} = @props
+    editor.setWidgetEditorProp('backgroundColor', colors.color) if colors.color isnt editor.widgetProps.backgroundColor
+    editor.setWidgetEditorProp('backgroundAlpha', colors.alpha) if colors.alpha isnt editor.widgetProps.backgroundAlpha
     return
   render: ->
-    {dashboard} = @props
-    className = if !dashboard.isEditing then 'color-picker-disabled' else ''
+    {editor} = @props
+    className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row widget-color-picker-row', =>
       text 'Background Color'
       div className: 'color-picker-text', =>
-        text "#{dashboard.widgetBackgroundColor}"
+        text "#{editor.widgetProps.backgroundColor}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: dashboard.widgetBackgroundColor
-            alpha: dashboard.widgetBackgroundAlpha
+            color: editor.widgetProps.backgroundColor
+            alpha: editor.widgetProps.backgroundAlpha
             align:
               points: ['br', 'tl']
               offset: [0, 0]
@@ -54,19 +54,19 @@ class WidgetBackgroundColorPicker  extends React.Component
 
 class WidgetFontColorPicker extends React.Component
   handleWidgetFontColorChange: (colors) =>
-    {dashboard} = @props
-    dashboard.setProp('widgetFontColor', colors.color) if colors.color isnt  dashboard.widgetFontColor
+    {editor} = @props
+    editor.setWidgetEditorProp('color', colors.color) if colors.color isnt editor.widgetProps.fontColor
     return
   render: ->
-    {dashboard} = @props
-    className = if !dashboard.isEditing then 'color-picker-disabled' else ''
+    {editor} = @props
+    className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row widget-color-picker-row', =>
       text 'Font Color'
       div className: 'color-picker-text', =>
-        text "#{dashboard.widgetFontColor}"
+        text "#{editor.widgetProps.color}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: dashboard.widgetFontColor
+            color: editor.widgetProps.color
             alpha: 100
             align:
               points: ['br', 'tl']

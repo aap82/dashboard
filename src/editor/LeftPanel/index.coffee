@@ -9,14 +9,13 @@ BaseWidgetProperties = require './BaseWidgetProperties'
 CreateNewDashboard = require '../components/CreateNewDashboard'
 
 
-Title = observer(({dashboard, onChange}) ->
-  {activeDashboard} = dashboard
+Title = observer(({editor, dashboard, onChange}) ->
   h3 ->
     crel EditableText,
-      className: ' pt-rtl dashboard-title ' + !dashboard.isEditing
-      placeholder: activeDashboard.title
-      value: activeDashboard.title
-      disabled: !dashboard.isEditing
+      className: ' pt-rtl dashboard-title ' + !editor.isEditing
+      placeholder: dashboard.title
+      value: dashboard.title
+      disabled: !editor.isEditing
       selectAllOnFocus: yes
       onChange: onChange
 )
@@ -25,16 +24,96 @@ Title = observer(({dashboard, onChange}) ->
 
 
 class AddNewWidgetButton extends React.Component
-  addNewWidget: => @props.editor.showAddNewWidgetDialog()
+  addNewWidget: => @props.editorView.showAddNewWidgetDialog()
   render: ->
-    {dashboard} = @props
+    {editor} = @props
     crel Button,
       text: 'Add Widget Now'
       iconName: 'add'
       onClick: @addNewWidget
       className: 'pt-large pt-fill'
       intent: Intent.SUCCESS
-      disabled: !dashboard.isEditing
+      disabled: !editor.isEditing
+
+AddNewWidgetButton = inject('editorView')(AddNewWidgetButton)
+
+class TitleEditor extends React.Component
+  onTitleChange: (value) => @props.dashboard.setProp('title', value)
+  render: ->
+    {dashboard, editor} = @props
+    div className: 'row between middle', =>
+      text 'Title'
+      crel Title, editor: editor, dashboard: dashboard, onChange: @onTitleChange
+
+
+class LeftPanelEditing extends React.Component
+  stopEditing: =>   @props.editor.stopEditing()
+  saveDashboard: => @props.editorView.saveDashboard()
+  discardChanges: =>
+    @props.editor.setLayout()
+    @props.editorView.showDiscardDashboardChangesDialog()
+  render: ->
+    {editor} = @props
+    div =>
+      div className: 'dashboard-editor-buttons', =>
+        crel SaveDashboardButton, onClick: @saveDashboard
+        crel DoneEditButton, onClick: @stopEditing
+      br()
+      div className: 'title-row-container middle', =>
+        div className: 'middle between', =>
+          h3 'Editor'
+        div =>
+          crel DiscardChangesButton, onClick: @discardChanges
+      br()
+
+
+
+
+class LeftPanelNotEditing extends React.Component
+  startEditing: => @props.editor.startEditing()
+  deleteDashboard: =>
+    @props.editorView.showConfirmDashboardDeleteDialog()
+  closeEditor: =>
+    @props.editorView.close()
+    @props.viewStore.showSetupPage()
+
+  render: ->
+    div =>
+      crel ExitEditorButton, onClick: @closeEditor
+      br()
+      br()
+      div className: 'title-row-container', =>
+        div className: 'title-edit middle between', =>
+          h3 'Editor'
+          crel EditButton, onClick: @startEditing
+        div =>
+          crel DeleteDashboardButton, onClick: @deleteDashboard
+      br()
+
+
+
+
+LeftPanel = observer(({editor, dashboard, viewStore, editorView}) ->
+  div className: 'pt-dark left-panel', =>
+    switch editor.isEditing
+      when yes then crel LeftPanelEditing, editorView: editorView, editor: editor
+      else crel LeftPanelNotEditing, editorView: editorView, viewStore: viewStore, editor: editor
+    div className: 'title-editor', ->
+      div className: 'content', ->
+        crel TitleEditor, dashboard: dashboard, editor: editor
+    div className: 'dashboard-editor', =>
+      crel DashboardProps, dashboard: dashboard, editor: editor
+      crel BaseWidgetProperties, editor: editor
+      br()
+      br()
+
+      crel AddNewWidgetButton, editor: editor
+)
+
+
+
+
+module.exports = inject('viewStore', 'editor', 'dashboard', 'editorView')(observer(LeftPanel))
 
 
 EditButton = ({onClick}) ->
@@ -85,88 +164,6 @@ DiscardChangesButton = ({onClick}) ->
     onClick: onClick
     className: 'pt-fill'
     intent: Intent.DANGER
-
-class TitleEditor extends React.Component
-  onTitleChange: (value) => @props.dashboard.setProp('title', value)
-  render: ->
-    {dashboard} = @props
-    div className: 'row between middle', =>
-      text 'Title'
-      crel Title, dashboard: dashboard, onChange: @onTitleChange
-
-
-class LeftPanelEditing extends React.Component
-  stopEditing: =>   @props.dashboard.stopEditing()
-  saveDashboard: => @props.editor.saveDashboard()
-  discardChanges: =>
-    @props.dashboard.setLayout()
-    @props.editor.showDiscardDashboardChangesDialog()
-  render: ->
-    {editor, dashboard} = @props
-    div =>
-      div className: 'dashboard-editor-buttons', =>
-        crel SaveDashboardButton, onClick: @saveDashboard, dashboard: dashboard
-        crel DoneEditButton, onClick: @stopEditing, dashboard: dashboard
-      br()
-      div className: 'title-row-container middle', =>
-        div className: 'middle between', =>
-          h3 'Editor'
-        div =>
-          crel DiscardChangesButton, onClick: @discardChanges
-      br()
-
-
-
-
-class LeftPanelNotEditing extends React.Component
-  startEditing: => @props.dashboard.startEditing()
-  deleteDashboard: =>
-    @props.editor.showConfirmDashboardDeleteDialog()
-  closeEditor: =>
-    @props.dashboard.close()
-    @props.viewStore.showSetupPage()
-
-  render: ->
-    {dashboard} = @props
-    div =>
-      crel ExitEditorButton, onClick: @closeEditor, dashboard: dashboard
-      br()
-      br()
-      div className: 'title-row-container', =>
-        div className: 'title-edit middle between', =>
-          h3 'Editor'
-          crel EditButton, onClick: @startEditing
-        div =>
-          crel DeleteDashboardButton, onClick: @deleteDashboard
-      br()
-
-
-
-
-LeftPanel = observer((props) ->
-  {editor, dashboard} = props
-  div className: 'pt-dark left-panel', =>
-    switch dashboard.isEditing
-      when yes then crel LeftPanelEditing, props
-      else crel LeftPanelNotEditing, props
-    div className: 'title-editor', ->
-      div className: 'content', ->
-        crel TitleEditor, dashboard: dashboard
-    div className: 'dashboard-editor', =>
-      crel DashboardProps, dashboard: dashboard
-      crel BaseWidgetProperties, dashboard: dashboard
-      br()
-      br()
-
-      crel AddNewWidgetButton, dashboard: dashboard, editor: editor
-)
-
-
-
-
-module.exports = inject('viewStore', 'editor', 'dashboard')(observer(LeftPanel))
-
-
 
 
 

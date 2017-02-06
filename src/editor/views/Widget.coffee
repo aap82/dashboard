@@ -1,21 +1,22 @@
 {crel, div} = require 'teact'
 {inject, observer} = require 'mobx-react'
 
-SwitchWidget = require '../../widgets/SwitchWidget'
-ButtonWidget = require '../../widgets/ButtonWidget'
+{getWidget} = require '../../widgets'
 
 
-Widget = observer(({widget, dashboard, deviceStore, stateStore}) ->
-  {devices} = stateStore
-  device = if widget.device is '' then 'office-cold' else widget.device
-  div id: widget.id, style: dashboard.baseWidgetStyle, className: 'base-widget z-depth-' + dashboard.widgetCardDepth, ->
-    if widget.type is 'ButtonWidget'
-      crel ButtonWidget, widget: widget, device: devices[widget.device]
-    else
-      crel SwitchWidget, widget: widget, device: devices[widget.device]
+Widget = observer(({widget, editor, state}) ->
+  displayName: 'Widget'
+  style = widget.style
+  cardDepth = widget.cardDepth
+  if !widget.overrideStyle
+    style = editor.widgetStyleProps
+    cardDepth = editor.widgetProps.cardDepth
+  div id: widget.id, style: style, className: 'base-widget z-depth-' + cardDepth, ->
+    getWidget(widget, state)
+
 
 )
 
 
 
-module.exports = inject('deviceStore', 'stateStore')(Widget)
+module.exports = inject('editor')(Widget)

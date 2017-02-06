@@ -1,7 +1,9 @@
 {extendObservable, action, computed, observable, toJS} = require 'mobx'
 keyBy = require('lodash.keyby')
-DeviceStore = require './deviceStore'
+DeviceStore = require '../../stores/DeviceStore'
 WidgetStore = require './widgetStore'
+
+
 class WidgetEditor
   constructor: ->
     @widget_oldLabel = ''
@@ -11,14 +13,34 @@ class WidgetEditor
       activeWidget: null
       activeDevice: null
       selectedDevice: '0'
+      selectedDeviceId: '0'
       widgets: WidgetStore.widgets
       newWidget: null
+      selectedWidgetProperties: computed(->
+        if @selectedWidgetType is '0'
+          return {}
+        else
+          return WidgetStore[@selectedWidgetType]
+      )
 
 
       setActiveWidget: action((widget) -> @activeWidget = widget)
 
       isEditing: no
       setActiveWidgetLabel: action((label) -> @activeWidget.label = label)
+
+
+      layout: computed(->
+        toJS({
+          i: @key.toString()
+          w: @newWidget.w
+          h: @newWidget.h
+          x: 1
+          y: 100
+          minW: @newWidget.w
+          minH: @newWidget.h
+        })
+      )
 
 
       saveEditChanges: action(->
@@ -83,7 +105,9 @@ class WidgetEditor
       changeNewWidgetLabel: action((label) -> @newWidgetLabel = label)
 
       changeSelectedDevice: action((device) ->
+
         @selectedDevice = device
+        @selectedDeviceId = DeviceStore.devices[device].deviceId
         @newWidgetLabel = switch device
           when '0' then 'Widget Label'
           else DeviceStore.devices[device].name
@@ -112,7 +136,22 @@ class WidgetEditor
 
 
     }
+  getProperties: ->
+    attrNames = {}
+    if WidgetStore[@selectedWidgetType].attrNamesMap? then attrNames = WidgetStore[@selectedWidgetType].attrNamesMap[@selectedDevicePlatform]
+    props = toJS({
+      key: @key.toString()
+      label: @newWidgetLabel
+      type: @selectedWidgetType
+      attrNames: JSON.stringify toJS(attrNames)
 
+      device:
+        id: @selectedDevice
+        deviceId: DeviceStore.devices[@selectedDevice].deviceId
+        platform: @selectedDevicePlatform
+
+      })
+    props
 
 
 

@@ -1,13 +1,13 @@
 {div, label, input, span} = require 'teact'
 {observer} = require 'mobx-react'
 
-
-ToggleSwitch = observer(({state}) =>
+ToggleSwitch = observer((props) =>
+  console.log props
   div className: 'card', ->
     label ->
       input
         type: 'checkbox'
-        checked: state.on
+        checked: props.state
         onChange: -> return
       span className: 'switch'
       span className: 'toggle'

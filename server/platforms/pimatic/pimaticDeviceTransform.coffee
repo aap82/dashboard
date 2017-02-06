@@ -34,15 +34,9 @@ baseMap =
         item.other.deviceClassType
     if item.type not in ['buttons', 'device']
       item.state = {}
-      for attr in item.attributes
-        item.state[attr.name] = attr.value
-      if item.type in ['switch', 'dimmer'] and attr.name is 'state'
-          item.state.on = attr.value
-          item.attributes.push
-            type: attr.type
-            name: 'on'
-            unit: attr.unit
-            value: attr.value
+      item.state[attr.name] = attr.value for attr in item.attributes
+
+
 
 
 

@@ -2,7 +2,7 @@ require 'isomorphic-fetch'
 defaults = require('101/defaults')
 
 
-module.exports = (graphqlUrl) ->
+module.exports = (graphqlUrl) =>
   (type, input, vars, opts) ->
     if type not in ['query','opName'] then return
     vars = vars or {}
@@ -23,5 +23,6 @@ module.exports = (graphqlUrl) ->
     if !headers.get('content-type')
       opts.headers.append 'content-type', 'application/json'
     fetch(graphqlUrl, opts).then (res) ->
+      console.log res
       res.json()
 

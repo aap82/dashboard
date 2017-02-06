@@ -22,10 +22,9 @@ widgetStyle =
 ContextMenuTarget(
   observer(class EditableWidget extends React.Component
     render: ->
-      {widget, dashboard} = @props
+      {widget, state} = @props
       div widget.key, style: widgetStyle, =>
-          crel Widget, widget: widget, dashboard: dashboard
-
+        crel Widget, widget: widget, state: state
 
 
     renderContextMenu: =>
@@ -37,11 +36,11 @@ ContextMenuTarget(
       {widget} = @props
       if widget.label?
         @props.widgetEditor.startEditing(widget)
-        @props.editor.showEditWidgetDialog()
+        @props.editorView.showEditWidgetDialog()
 
     handleDeleteWidget: (e) =>
       {widget} = @props
-      @props.dashboard.deleteWidget(widget)
+      @props.editor.deleteWidget(widget)
       return
   )
 )
@@ -50,44 +49,43 @@ ContextMenuTarget(
 
 
 
-Widgets = pureComponent (editor, dashboard, widgetEditor) ->
+Widgets = pureComponent (dashboard, editor, widgetEditor, editorView, deviceStates) ->
   dashboard.widgets.map (widget) ->
-    console.log widget.key
+    state = if deviceStates[widget.device.id]? then deviceStates[widget.device.id] else {}
     div key: widget.key,  ->
-      switch dashboard.isEditing
-        when yes then crel EditableWidget, widget: widget, editor: editor, dashboard: dashboard, widgetEditor: widgetEditor
+      switch editor.isEditing
+        when yes then crel EditableWidget, widget: widget, editor: editor, widgetEditor: widgetEditor, editorView: editorView, state: state
         else
           div widget.key, style: widgetStyle, =>
-            crel Widget, widget: widget, dashboard: dashboard
+            crel Widget, widget: widget, state: state
 
 
 
 
 class Dashboard extends React.Component
   render: ->
-    {editor, dashboard, widgetEditor} = @props
-    {activeDashboard} = dashboard
-    div style: activeDashboard.style, =>
+    {editor, dashboard, widgetEditor, editorView, states} = @props
+    div style: dashboard.dashboardStyle, =>
       crel GridLayout,
         verticalCompact: no
         autoSize: no
-        isDraggable: dashboard.isEditing
-        isResizable: dashboard.isEditing
-        cols: activeDashboard.cols
-        margin: [activeDashboard.marginX, activeDashboard.marginY]
+        isDraggable: editor.isEditing
+        isResizable: editor.isEditing
+        cols: dashboard.cols
+        margin: [dashboard.marginX, dashboard.marginY]
         containerPadding: [0, 0]
-        rowHeight: activeDashboard.rowHeight
-        layout: (activeDashboard.layouts).slice()
+        rowHeight: dashboard.rowHeight
+        layout: (dashboard.layouts).slice()
         onLayoutChange: @handleLayoutChange
-        Widgets editor, dashboard, widgetEditor
+        Widgets dashboard, editor, widgetEditor, editorView, states
 
 
-  handleLayoutChange: (layout) => @props.dashboard.newLayout = layout
-
-
-
+  handleLayoutChange: (layout) => @props.editor.newLayout = layout
 
 
 
 
-module.exports = inject('widgetEditor', 'stateStore')(observer(Dashboard))
+
+
+
+module.exports = inject('widgetEditor', 'dashboard', 'editor', 'editorView', 'states')(observer(Dashboard))

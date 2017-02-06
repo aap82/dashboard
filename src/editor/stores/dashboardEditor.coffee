@@ -1,84 +1,43 @@
-remotedev = require('mobx-remotedev')
 {extendObservable, action, computed, toJS, observable} = require 'mobx'
 WidgetEditor = require './widgetEditor'
 hexToRgba = require('hex-rgba')
-DashboardStoreEditor = require './dashboardStore'
 
-Widget = require '../../models/Widget'
+Dashboard = require './DashboardView'
+EditableWidget = require './Widget'
+
+
 
 class DashboardEditor
-  @activeDashboard
   constructor:  ->
-    @props = ['cols', 'marginX', 'marginY', 'rowHeight', 'title', 'width', 'deviceType', 'dashboardBackgroundColor', 'widgetBackgroundColor', 'widgetBackgroundAlpha']
-    @resetProps = ['deviceType', 'dashboardBackgroundColor', 'widgetBackgroundColor', 'widgetBackgroundAlpha']
+    @defaultWidgetProps =
+      backgroundColor: "#0900FF"
+      backgroundAlpha: 100
+      color: "#fff"
+      borderRadius: 2
+      cardDepth: 2
+
     @newDashboardId = 500
     @devices = []
     @newLayout = []
     extendObservable @, {
-      activeDashboard: {}
       isDefaultDashboardStyle: no
       isDefaultWidgetStyle: no
       dashboardId: -1
       isEditing: no
+      setLayout: action(-> Dashboard.layouts.replace(@newLayout))
+      widgetProps:
+        backgroundColor:  "#0900FF"
+        backgroundAlpha: 100
+        color: "#fff"
+        borderRadius: 2
+        cardDepth: 2
 
-      deviceType: ''
-      title: 'Dashboard Title'
-      cols: ''
-      rowHeight: ''
-      marginX: ''
-      marginY: ''
-      width: 1200
-      widgets: []
-      layouts: []
-      setLayout: action(-> @layouts.replace(@newLayout))
-
-      dashboardBackgroundColor: "#fff"
-      widgetBackgroundColor: "#fff"
-      widgetBackgroundAlpha: 100
-      widgetFontColor: "#fff"
-      widgetBorderRadius: 2
-      widgetCardDepth: 2
-
-      setProp: action((prop, value) ->
-        if prop is 'widgetCardDepth' and value > 5 then value = 5
-        @["#{prop}"] = value if prop in @props or prop in ['dashboardId', 'widgetFontColor', 'widgetBorderRadius', 'widgetCardDepth', 'widgetBackgroundAlpha']
+      setWidgetEditorProp: action((prop, value) -> @widgetProps["#{prop}"] = value)
+      widgetStyleProps: computed(->
+        backgroundColor: hexToRgba(@widgetProps.backgroundColor, @widgetProps.backgroundAlpha)
+        borderRadius: @widgetProps.borderRadius
+        color: @widgetProps.color
       )
-
-      load: action((dashboard) ->
-        @dashboardId = dashboard.id
-        @setAllPropsFromDashboard(dashboard)
-        WidgetEditor.key = parseInt(dashboard.widgets[dashboard.widgets.length-1].key, 10) if dashboard.widgets.length > 0
-        for widget in dashboard.widgets
-          @devices.push widget.device if widget.device not in @devices
-
-      )
-
-
-
-      resetAllPropsToDefault: action(->
-        @dashboardId = -1
-        @deviceType = 'tablet'
-        @title = 'Dashboard Title'
-        @cols = 155
-        @marginX = 0
-        @marginY = 0
-        @rowHeight = 5
-        @widgetCardDepth = 2
-        @widgetBackgroundColor = "#4e6eff"
-        @widgetBackgroundAlpha = 100
-        @dashboardBackgroundColor = "#fff"
-        @width = 1200
-        @widgetFontColor = "#fff"
-        @widgetBorderRadius = 2
-        @devices = []
-        @widgets.clear()
-        @layouts.clear()
-
-
-      )
-
-
-
 
 
       startEditing: action(->
@@ -92,51 +51,39 @@ class DashboardEditor
       )
 
       close: action(->
-        @layouts.clear()
-        @widgets.clear()
+        Dashboard.layouts.clear()
+        Dashboard.widgets.clear()
         @newLayout = []
         @dashboardId = -1
       )
-      setActiveDashboard: action((dashboard) => @activeDashboard = dashboard)
+
+      load: action((dashboard) ->
+        Dashboard.setProps(dashboard)
+        @setWidgetEditorProp key, value for key, value of dashboard.widgetEditor when value?
+        WidgetEditor.key = parseInt(Dashboard.widgets[Dashboard.widgets.length-1].key, 10) if Dashboard.widgets.length > 0
+
+
+      )
+
       create: action((title, deviceType) =>
-        @setActiveDashboard DashboardStoreEditor.getDashboard(
-          {id: @newDashboardId, title: title, deviceType: deviceType}
-        )
+        Dashboard.setProps({id: @newDashboardId, title: title, deviceType: deviceType})
+        @setWidgetEditorProp key, value for key, value of @defaultWidgetProps
         @isEditing = yes
         @newDashboardId++
       )
 
       deleteWidget: action((widget) ->
         WidgetEditor.stopEditing()
-        @widgets.remove(widget)
+        Dashboard.widgets.remove(widget)
       )
 
-      addWidget: action(->
-        console.log @widgets
-        @devices.push "#{WidgetEditor.selectedDevicePlatform}-#{WidgetEditor.selectedDevice}" if WidgetEditor.selectedDevice not in @devices
-        @layouts.replace(@newLayout)
+      addWidget: action(=>
+        Dashboard.layouts.replace(@newLayout)
         WidgetEditor.key++
-
-        @layouts.push {
-          i: WidgetEditor.key.toString()
-          w: WidgetEditor.newWidget.w
-          h: WidgetEditor.newWidget.h
-          x: @cols - WidgetEditor.newWidget.w * 2
-          y: 0
-          minW: WidgetEditor.newWidget.w
-          minH: WidgetEditor.newWidget.h
-
-
-        }
-
-        @widgets.push {
-          platform: WidgetEditor.selectedDevicePlatform
-          key: WidgetEditor.key.toString()
-          device: WidgetEditor.selectedDevice
-          label: WidgetEditor.newWidgetLabel
-          type: WidgetEditor.selectedWidgetType
-        }
-
+        Dashboard.layouts.push WidgetEditor.layout
+        widget = new EditableWidget(@widgetProps,  WidgetEditor.getProperties())
+        Dashboard.devices.push widget.device.id
+        Dashboard.widgets.push widget
         WidgetEditor.reset()
       )
 
@@ -146,28 +93,12 @@ class DashboardEditor
 
 
   toJSON: =>
-    toJS({
-      title: @title
-      deviceType: @deviceType
-      cols: @cols
-      rowHeight: @rowHeight
-      marginX: @marginX
-      marginY: @marginY
-      widgetCardDepth: @widgetCardDepth
-      widgetBackgroundColor: @widgetBackgroundColor
-      widgetBackgroundAlpha: @widgetBackgroundAlpha
-      widgets: JSON.stringify @widgets.map((widget) -> toJS(widget))
-      devices: JSON.stringify @devices
-      layouts: JSON.stringify @newLayout
-      dashboardStyle: JSON.stringify({
-        props: toJS(@dashboardStyle)
-      })
-      widgetStyle: JSON.stringify({
-        props:
-          backgroundColor: hexToRgba(@widgetBackgroundColor, @widgetBackgroundAlpha)
-          borderRadius: @widgetBorderRadius
-      })
-    })
+    dashboard = JSON.parse JSON.stringify(toJS(Dashboard))
+    dashboard.devices = []
+    dashboard.devices.push widget.device.id for widget in dashboard.widgets when widget.device.id not in dashboard.devices
+    dashboard[key] = JSON.stringify(value) for key, value of dashboard when typeof value not in ['string', 'number']
+    dashboard.widgetEditor = JSON.stringify(@widgetProps)
+    return dashboard
 
 
 
@@ -180,5 +111,5 @@ dashboardEditor = new DashboardEditor()
 
 
 
-module.exports =  remotedev(dashboardEditor)
+module.exports =  dashboardEditor
 

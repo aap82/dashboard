@@ -1,4 +1,3 @@
-remotedev = require('mobx-remotedev')
 {extendObservable, action, toJS} = require 'mobx'
 DashboardEditor = require './dashboardEditor'
 
@@ -48,4 +47,4 @@ class ViewStore
 
 viewStore = new ViewStore()
 
-module.exports = remotedev(viewStore)
+module.exports = viewStore
