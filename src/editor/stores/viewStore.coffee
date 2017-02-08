@@ -1,12 +1,9 @@
 {extendObservable, action, toJS} = require 'mobx'
-DashboardEditor = require './dashboardEditor'
-
 class ViewStore
-  constructor: ->
+  constructor: ({@modal, @editor, @store}) ->
+    console.log @store
+    @dashboards = @store.dashboards
     extendObservable @, {
-      dashboards: []
-      userDashboards: []
-      setUserDashboards: action((dashboards) -> @userDashboards.replace(dashboards))
 
       selectedDashboardId: 0
       setSelectedDashboard: action((id) -> @selectedDashboardId = id)
@@ -27,16 +24,25 @@ class ViewStore
       changeNewDashboardDeviceType: action((type) -> @newDashboardDeviceType = type)
 
       createNewDashboard: action( ->
-        DashboardEditor.create(@newDashboardTitle, @newDashboardDeviceType)
+        dashboard = @editor.create(@newDashboardTitle, @newDashboardDeviceType)
         @closeCreateDashboardPanel()
         @showEditorPage()
         @newDashboardTitle = ''
         @newDashboardDeviceType = 'tablet'
+        @store.add dashboard
       )
 
       handleDeletedDashboard: action( ->
         @selectedDashboardId = '0'
         @currentPageView = 'SetupPage'
+      )
+
+      loadAndShowDashboard: action(->
+        @store.loadDashboard(@selectedDashboardId)
+      )
+      closeAndShowSetupPage: action(->
+        @editor.close()
+        @showSetupPage()
 
       )
 
@@ -45,6 +51,6 @@ class ViewStore
 
 
 
-viewStore = new ViewStore()
 
-module.exports = viewStore
+
+module.exports = ViewStore

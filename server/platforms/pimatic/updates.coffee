@@ -24,5 +24,5 @@ exports.start =  (store) ->
   socket.on 'deviceAttributeChanged', (attrEvent) ->
     store.setDeviceState('pimatic', attrEvent.deviceId, attrEvent.attributeName, attrEvent.value)
     return
-  socket.on 'error', (error) -> return  console.log error
+  socket.on 'error', (error) -> return  console.log 'error'
   socket

@@ -23,6 +23,6 @@ module.exports = (graphqlUrl) =>
     if !headers.get('content-type')
       opts.headers.append 'content-type', 'application/json'
     fetch(graphqlUrl, opts).then (res) ->
-      console.log res
+#      console.log res
       res.json()
 

@@ -4,86 +4,75 @@ hexToRgba = require('hex-rgba')
 
 Dashboard = require './DashboardView'
 EditableWidget = require './Widget'
+EditableObject = require './EditableObject'
+DashboardModel = require '../../models/Dashboard'
+
+dashboard = DashboardModel.create()
+dashboard.widgetProps =
+  backgroundColor: "#fff"
+  backgroundAlpha: 100
+  fontColor: "#fff"
+  borderRadius: 2
+  cardDepth: 2
+
+widgetProps =
+  backgroundColor: "#fff"
+  backgroundAlpha: 100
+  fontColor: "#fff"
+  borderRadius: 2
+  cardDepth: 2
 
 
 
-class DashboardEditor
+
+
+class DashboardEditor extends Dashboard
   constructor:  ->
-    @defaultWidgetProps =
-      backgroundColor: "#0900FF"
-      backgroundAlpha: 100
-      color: "#fff"
-      borderRadius: 2
-      cardDepth: 2
-
-    @newDashboardId = 500
+    @createId = 500
     @devices = []
     @newLayout = []
+    super()
     extendObservable @, {
-      isDefaultDashboardStyle: no
-      isDefaultWidgetStyle: no
-      dashboardId: -1
-      isEditing: no
-      setLayout: action(-> Dashboard.layouts.replace(@newLayout))
-      widgetProps:
-        backgroundColor:  "#0900FF"
-        backgroundAlpha: 100
-        color: "#fff"
-        borderRadius: 2
-        cardDepth: 2
+      isDashboardStyleDefault: no
+      isWidgetStyleDefault: no
 
-      setWidgetEditorProp: action((prop, value) -> @widgetProps["#{prop}"] = value)
-      widgetStyleProps: computed(->
-        backgroundColor: hexToRgba(@widgetProps.backgroundColor, @widgetProps.backgroundAlpha)
-        borderRadius: @widgetProps.borderRadius
-        color: @widgetProps.color
+      create: action((title, type) ->
+        @createId++
+        dashboard = DashboardModel.create(title, type)
+        dashboard.widgetProps = widgetProps
+        dashboard.id = @createId
+        @setProps(dashboard)
+        dashboard
       )
 
+      loadDashboard: action((id) ->
+        dashboard = @getDashboardById(id)
+        console.log dashboard
 
-      startEditing: action(->
-        WidgetEditor.reset()
-        @isEditing = yes
-      )
 
-      stopEditing: action(->
-        WidgetEditor.reset()
-        @isEditing = no
       )
 
       close: action(->
-        Dashboard.layouts.clear()
-        Dashboard.widgets.clear()
+        @layouts.clear()
+        @widgets.clear()
         @newLayout = []
-        @dashboardId = -1
-      )
-
-      load: action((dashboard) ->
-        Dashboard.setProps(dashboard)
-        @setWidgetEditorProp key, value for key, value of dashboard.widgetEditor when value?
-        WidgetEditor.key = parseInt(Dashboard.widgets[Dashboard.widgets.length-1].key, 10) if Dashboard.widgets.length > 0
-
-
-      )
-
-      create: action((title, deviceType) =>
-        Dashboard.setProps({id: @newDashboardId, title: title, deviceType: deviceType})
-        @setWidgetEditorProp key, value for key, value of @defaultWidgetProps
-        @isEditing = yes
-        @newDashboardId++
+        @id = -1
       )
 
       deleteWidget: action((widget) ->
         WidgetEditor.stopEditing()
-        Dashboard.widgets.remove(widget)
+        @widgets.remove(widget)
       )
 
+
+
       addWidget: action(=>
-        Dashboard.layouts.replace(@newLayout)
+        @layouts.replace(@newLayout)
         WidgetEditor.key++
-        Dashboard.layouts.push WidgetEditor.layout
+        @layouts.push WidgetEditor.layout
         widget = new EditableWidget(@widgetProps,  WidgetEditor.getProperties())
-        Dashboard.devices.push widget.device.id
-        Dashboard.widgets.push widget
+        @devices.push widget.device.id
+        @widgets.push widget
         WidgetEditor.reset()
       )
 
@@ -93,17 +82,12 @@ class DashboardEditor
 
 
   toJSON: =>
-    dashboard = JSON.parse JSON.stringify(toJS(Dashboard))
+    dashboard = JSON.parse JSON.stringify(toJS(@))
     dashboard.devices = []
     dashboard.devices.push widget.device.id for widget in dashboard.widgets when widget.device.id not in dashboard.devices
     dashboard[key] = JSON.stringify(value) for key, value of dashboard when typeof value not in ['string', 'number']
     dashboard.widgetEditor = JSON.stringify(@widgetProps)
     return dashboard
-
-
-
-
-
 
 
 

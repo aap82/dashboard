@@ -53,6 +53,7 @@ class BaseWidgetPropertiesContent extends React.Component
 
   render: ->
     {editor} = @props
+    console.log @props
     getProps = (id) =>
       id: id
       editor: editor
@@ -61,8 +62,8 @@ class BaseWidgetPropertiesContent extends React.Component
       onChange: @handleChange
 
     div className: 'content', ->
-      crel WidgetBackgroundColorPicker,  editor: editor
-      crel WidgetFontColorPicker, editor: editor
+      crel WidgetBackgroundColorPicker
+      crel WidgetFontColorPicker
       div className: 'widget-props row middle between', ->
         text 'Border Radius'
         crel WidgetProp, getProps('borderRadius')

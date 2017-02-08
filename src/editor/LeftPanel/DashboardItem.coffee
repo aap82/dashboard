@@ -16,10 +16,10 @@ class DashboardItem extends React.Component
           value: editor.widgetProps[id]
           type: 'text'
           onChange: onChange
-          disabled: !editor.isEditing
+          disabled: !dashboard.isEditing
           autoFocus: yes
-        crel Button, iconName: 'pt-icon pt-icon-plus toggle-icon', onClick: increment, disabled: !editor.isEditing
-        crel Button, iconName: 'pt-icon pt-icon-minus toggle-icon', onClick: decrement, disabled: !editor.isEditing
+        crel Button, iconName: 'pt-icon pt-icon-plus toggle-icon', onClick: increment, disabled: !dashboard.isEditing
+        crel Button, iconName: 'pt-icon pt-icon-minus toggle-icon', onClick: decrement, disabled: !dashboard.isEditing
 
 
 

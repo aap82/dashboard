@@ -1,25 +1,25 @@
 React = require 'react'
 {crel, div, span, text} = require 'teact'
-{ observer} = require 'mobx-react'
+{inject, observer} = require 'mobx-react'
 ColorPicker = require('rc-color-picker')
 
 exports = module.exports
 class DashboardColorPicker extends React.Component
   handleDashboardChange: (colors) =>
-    {dashboard} = @props
-    dashboard.setStyleProp('backgroundColor', colors.color) if colors.color isnt  dashboard.dashboardStyle.backgroundColor
+    {editor} = @props
+    editor.setStyleProp('backgroundColor', colors.color) if colors.color isnt  editor.dashboardStyle.backgroundColor
     return
 
   render: ->
-    {dashboard, editor} = @props
+    {editor} = @props
     className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row', =>
       text 'Background Color'
       div className: 'color-picker-text', =>
-        text "#{dashboard.dashboardStyle.backgroundColor}"
+        text "#{editor.dashboardStyle.backgroundColor}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: dashboard.dashboardStyle.backgroundColor
+            color: editor.dashboardStyle.backgroundColor
             alpha: 100
             mode: 'RGB'
             align:
@@ -58,6 +58,7 @@ class WidgetFontColorPicker extends React.Component
     editor.setWidgetEditorProp('color', colors.color) if colors.color isnt editor.widgetProps.fontColor
     return
   render: ->
+    console.log @props
     {editor} = @props
     className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row widget-color-picker-row', =>
@@ -74,9 +75,12 @@ class WidgetFontColorPicker extends React.Component
             onChange: @handleWidgetFontColorChange, =>
               span className: 'rc-color-picker-trigger'
 
-exports.DashboardColorPicker = observer(DashboardColorPicker)
-exports.WidgetBackgroundColorPicker = observer(WidgetBackgroundColorPicker)
-exports.WidgetFontColorPicker = observer(WidgetFontColorPicker)
+WidgetFontColorPicker = inject('editor')(observer(WidgetFontColorPicker))
+
+
+exports.DashboardColorPicker = inject('editor')(observer(DashboardColorPicker))
+exports.WidgetBackgroundColorPicker = inject('editor')(observer(WidgetBackgroundColorPicker))
+exports.WidgetFontColorPicker = WidgetFontColorPicker
 
 
 

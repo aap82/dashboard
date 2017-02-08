@@ -82,8 +82,8 @@ class AddNewWidgetDialogContent extends React.Component
   onNewWidgetLabelChange: (value) => @props.widgetEditor.changeNewWidgetLabel(value)
   addNewWidget: =>
     @props.editor.addWidget()
-    @props.editorView.closeModal()
-  cancelAddNewWidget: => @props.editorView.closeModal()
+    @props.modal.closeModal()
+  cancelAddNewWidget: => @props.modal.closeModal()
 
   render: ->
     {widgetEditor} = @props

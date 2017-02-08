@@ -31,9 +31,7 @@ class SetupPage extends React.Component
         br()
         crel CreateNewDashboard, viewStore: viewStore
   handleLoadDashboard: =>
-    {selectedDashboardId} = @props.viewStore
-    @props.editorView.loadDashboard(selectedDashboardId)
     @props.viewStore.showEditorPage()
 
 
-module.exports = inject('viewStore', 'editorView')(observer(SetupPage))
+module.exports = inject('viewStore')(observer(SetupPage))

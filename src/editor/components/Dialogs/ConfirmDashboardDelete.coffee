@@ -20,8 +20,7 @@ CancelDeleteDashboard = ({onClick}) ->
 
 class ConfirmDashboardDeleteDialog extends React.Component
   deleteDashboard: =>
-    @props.editorView.closeModal()
-    @props.editorView.deleteDashboard()
+    @props.viewStore.deleteDashboard()
   cancelDeleteDashboard: =>  @props.editorView.closeModal()
 
   render: ->

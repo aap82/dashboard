@@ -23,7 +23,7 @@ DashboardDropDownListView = (observer(({viewStore, onChange}) ->
 
       select value: viewStore.selectedDashboardId, onChange: onChange, ->
         option value: 0, 'Select Dashboard...'
-        viewStore.userDashboards.map (dashboard) ->
+        viewStore.dashboards.map (dashboard) ->
           option key: dashboard.id, value: dashboard.id, "#{dashboard.title}" #" / #{dashboard.deviceType}"
 ))
 

@@ -5,10 +5,10 @@ React = require 'react'
 DashboardItem = require './DashboardItem'
 {DashboardColorPicker} = require './ColorPicker'
 
-DeviceType = (observer(({editor, dashboard, onChange}) ->
+DeviceType = (observer(({editor, onChange}) ->
   div ->
     div className: 'pt-select', ->
-      select onChange: onChange, value: dashboard.deviceType, disabled: !editor.isEditing, ->
+      select onChange: onChange, value: editor.deviceType, disabled: !editor.isEditing, ->
         option value: '', ''
         option value: 'tablet', 'Tablet'
         option value: 'phone', 'Phone'
@@ -34,6 +34,7 @@ PropertiesSectionTitleButton = ->
 
 
 DashboardProperties = (props) ->
+  console.log props
   div className: 'properties-section', ->
     div className: 'title-row button', ->
       crel PropertiesSectionTitleButton
