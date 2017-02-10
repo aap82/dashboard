@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" line="28" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" line="22" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b163a4bf-b6a6-41aa-96ec-1db2feacf279" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env_example" afterPath="$PROJECT_DIR$/.env_example" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware/deviceTypeHandler.coffee" afterPath="$PROJECT_DIR$/server/middleware/deviceTypeHandler.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/platforms/pimatic/updates.coffee" afterPath="$PROJECT_DIR$/server/platforms/pimatic/updates.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/editor.coffee" afterPath="$PROJECT_DIR$/server/routes/editor.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" afterPath="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" afterPath="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/devEntry.coffee" afterPath="$PROJECT_DIR$/src/editor/devEntry.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/hmrEntry.js" afterPath="$PROJECT_DIR$/src/editor/hmrEntry.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/styles.scss" afterPath="$PROJECT_DIR$/src/editor/styles.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/styles/_dashboard_editor.scss" afterPath="$PROJECT_DIR$/src/editor/styles/_dashboard_editor.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/styles/_left_panel.scss" afterPath="$PROJECT_DIR$/src/editor/styles/_left_panel.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/App.coffee" afterPath="$PROJECT_DIR$/src/editor/views/App.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/fetch.coffee" afterPath="$PROJECT_DIR$/src/utils/fetch.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/_flexbox-grid.scss" afterPath="$PROJECT_DIR$/src/styles/_flexbox-grid.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/client.base.coffee" afterPath="$PROJECT_DIR$/webpack/client.base.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/client.dev.coffee" afterPath="$PROJECT_DIR$/webpack/client.dev.coffee" />
     </list>
     <list id="16d32deb-3621-4f90-a184-0cf79608d48e" name="idea" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -42,108 +42,106 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3251493">
+    <splitter split-orientation="horizontal" split-proportion="0.51692104">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="dashboardEditor.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="663">
+                  <caret line="102" column="7" lean-forward="true" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
+                  <folding>
+                    <marker date="1486686630729" expanded="true" signature="1731:1797" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="buttonStore.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonStore.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="288">
+                  <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ButtonContainer.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/ButtonContainer.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="39" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BaseWidgetProperties.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="128">
+                  <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="store.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/editor/store.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
-                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                  <folding>
-                    <marker date="1486533649287" expanded="true" signature="674:1158" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="viewStore.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/stores/viewStore.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="128">
-                  <caret line="8" column="54" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+                <state relative-caret-position="256">
+                  <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DialogComponent.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/DialogComponent.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
-                  <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AddNewWidget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ConfirmDashboardDelete.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="217">
-                  <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-                  <folding>
-                    <marker date="1486533322722" expanded="true" signature="487:525" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DiscardDashboardChanges.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/index.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="174">
-                  <caret line="106" column="47" lean-forward="true" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="47" />
+                <state relative-caret-position="272">
+                  <caret line="32" column="43" lean-forward="true" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EditWidget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/EditWidget.coffee">
+          <file leaf-file-name="TitleEditor.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="311">
+                  <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CreateNewDashboard.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee">
+          <file leaf-file-name="DashboardProperties.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="352">
+                  <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DashboardView.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/stores/DashboardView.coffee">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/node_modules/rc-color-picker/lib/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="416">
-                  <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+                <state relative-caret-position="32">
+                  <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ColorPicker.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/node_modules/rc-color-picker/lib/ColorPicker.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -153,21 +151,45 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="SelectDashboardDropDown.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee">
+          <file leaf-file-name="dashboardEditor.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
-                  <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+                <state relative-caret-position="272">
+                  <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+                  <folding>
+                    <marker date="1486686630729" expanded="true" signature="1124:2730" ph="..." />
+                    <marker date="1486686630729" expanded="true" signature="1731:1797" ph="..." />
+                    <marker date="1486686630729" expanded="true" signature="2401:2440" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DashboardProperties.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="384">
+                  <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TitleEditor.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
+          <file leaf-file-name="buttons.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="17" />
+                <state relative-caret-position="304">
+                  <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="buttonStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonStore.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="160">
+                  <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -176,28 +198,28 @@
           <file leaf-file-name="dashboardStore.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+                <state relative-caret-position="96">
+                  <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AddNewWidget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee">
+          <file leaf-file-name="_dashboard_editor.scss" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/styles/_dashboard_editor.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1648">
-                  <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+                <state relative-caret-position="366">
+                  <caret line="151" column="19" lean-forward="true" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DiscardDashboardChanges.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee">
+          <file leaf-file-name="BaseWidgetProperties.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+                <state relative-caret-position="224">
+                  <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -206,51 +228,29 @@
           <file leaf-file-name="index.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/index.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="46">
-                  <caret line="97" column="41" lean-forward="false" selection-start-line="97" selection-start-column="41" selection-end-line="97" selection-end-column="41" />
+                <state relative-caret-position="480">
+                  <caret line="30" column="125" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="125" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DashboardProperties.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
+          <file leaf-file-name="types.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-176">
-                  <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+                <state relative-caret-position="208">
+                  <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ColorPicker.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-48">
-                  <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BaseWidgetProperties.coffee" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
+          <file leaf-file-name="modalStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/modalStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="256">
-                  <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+                  <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ConfirmDashboardDelete.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-                  <folding>
-                    <marker date="1486533322722" expanded="true" signature="487:525" ph="..." />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -268,39 +268,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>LeftPanelNotEditing</find>
-      <find>ExitEditorButton</find>
-      <find>close</find>
-      <find>DashboardEditor</find>
-      <find>@defaultProps</find>
-      <find>style.</find>
-      <find>@fetch</find>
-      <find>widgetB</find>
-      <find>typeof</find>
-      <find>@action</find>
-      <find>(records)</find>
-      <find>console.log</find>
-      <find>@</find>
-      <find>backgr</find>
-      <find>editor.isEditing</find>
-      <find>startE</find>
-      <find>=</find>
-      <find>setDashboardProps</find>
-      <find>:</find>
-      <find>editorView.close</find>
-      <find>Dashboard.</find>
-      <find>'editorView'</find>
-      <find>editorView</find>
       <find>dashboard.isEditing</find>
       <find>isEdi</find>
       <find>TitleTitle</find>
       <find>Title</find>
       <find>TitleEditor</find>
-      <find>dashboard.</find>
       <find>BaseWidgetProperties</find>
+      <find>-&gt;</find>
+      <find>edit</find>
+      <find>none</find>
+      <find>buttons</find>
+      <find>DONE_EDITING</find>
+      <find>DONE</find>
+      <find>SaveDashboardButtonSaveDashboardButton</find>
+      <find>DISCARD_CHANGES</find>
+      <find>SecondPanelButtons</find>
+      <find>editor</find>
+      <find>ButtonStore</find>
+      <find>b.</find>
+      <find>'dashboard''</find>
+      <find>'dashboard'</find>
+      <find>grow</find>
+      <find>flex-di</find>
+      <find>title-row-container</find>
+      <find>dashboard.</find>
+      <find>button.</find>
+      <find>buttons.</find>
+      <find>actions</find>
+      <find>dashboard</find>
+      <find>number-input-container</find>
+      <find>DashboardItem</find>
     </findStrings>
     <replaceStrings>
-      <replace>'</replace>
       <replace>flushHeaders()</replace>
       <replace>DeviceStore</replace>
       <replace>=</replace>
@@ -323,12 +322,13 @@
       <replace>b</replace>
       <replace>(</replace>
       <replace>dashboard.isEditing</replace>
-      <replace>:</replace>
-      <replace>=</replace>
       <replace>modal.close</replace>
       <replace>@</replace>
       <replace>editor.isEditing</replace>
       <replace>editor.</replace>
+      <replace>buttons.</replace>
+      <replace>inherit</replace>
+      <replace>props.</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/server/graphql</dir>
@@ -337,6 +337,9 @@
       <dir>$PROJECT_DIR$/</dir>
       <dir>$PROJECT_DIR$/src</dir>
       <dir>$PROJECT_DIR$/src/editor</dir>
+      <dir>$PROJECT_DIR$/src/editor/LeftPanel</dir>
+      <dir>$PROJECT_DIR$/src/styles</dir>
+      <dir>$PROJECT_DIR$/src/editor/</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -353,57 +356,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/platforms/pimatic/pimaticDeviceTransform.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Device.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/Widget.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/components/Dialogs/EditWidget.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/DeviceStore.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/Widget.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/StateStore.coffee" />
-        <option value="$PROJECT_DIR$/server/database/models/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/Widget.coffee" />
-        <option value="$PROJECT_DIR$/server/graphql/types/editor.coffee" />
-        <option value="$PROJECT_DIR$/server/graphql/types/dashboard.coffee" />
-        <option value="$PROJECT_DIR$/server/graphql/types/devices.coffee" />
-        <option value="$PROJECT_DIR$/server/graphql/types/widget.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/widgetEditor.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" />
-        <option value="$PROJECT_DIR$/src/models/EditableClass.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Editable.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/Editable.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/test.js" />
-        <option value="$PROJECT_DIR$/server/middleware/deviceTypeHandler.coffee" />
-        <option value="$PROJECT_DIR$/server/platforms/pimatic/updates.coffee" />
-        <option value="$PROJECT_DIR$/src/utils/fetch.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/index.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Widget.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/helpers.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/dialogStore.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/modalStore.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
-        <option value="$PROJECT_DIR$/src/models/DashboardView.coffee" />
-        <option value="$PROJECT_DIR$/src/models/EditableObject.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/EditableObject.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/DashboardView.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee" />
-        <option value="$PROJECT_DIR$/src/stores/DashboardStore.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
         <option value="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" />
         <option value="$PROJECT_DIR$/src/editor/stores/editorViewStore.coffee" />
         <option value="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
         <option value="$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/store.coffee" />
         <option value="$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
+        <option value="$PROJECT_DIR$/webpack/client.prod.coffee" />
+        <option value="$PROJECT_DIR$/.env_example" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/webpack/client.base.coffee" />
+        <option value="$PROJECT_DIR$/webpack/client.dev.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/views/App.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/actions/Buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Buttons/Buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Buttons/actions.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Buttons/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/constants.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/types.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/store.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/Editor_Buttons/actions.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/Buttons/actions.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/Buttons/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/Buttons/types.coffee" />
         <option value="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/Buttons/buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/Buttons/store.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/store.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/DashboardView.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
+        <option value="$PROJECT_DIR$/src/styles/_flexbox-grid.scss" />
+        <option value="$PROJECT_DIR$/src/editor/styles/_left_panel.scss" />
+        <option value="$PROJECT_DIR$/src/editor/actions/actions.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/styles.scss" />
+        <option value="$PROJECT_DIR$/src/editor/components/ButtonContainer.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/devEntry.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/hmrEntry.js" />
+        <option value="$PROJECT_DIR$/src/editor/stores/EditableObject.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/ColorPicker/store.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/ColorPicker/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
         <option value="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/styles/_dashboard_editor.scss" />
         <option value="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/buttonStore.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee" />
       </list>
     </option>
   </component>
@@ -445,7 +448,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -534,6 +536,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -556,75 +559,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webpack" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widgets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stores" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -708,7 +643,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
+              <option name="myItemId" value="LeftPanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buttons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -731,10 +670,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dialogs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -765,11 +700,11 @@
       <recent name="$PROJECT_DIR$/webpack" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/editor/stores" />
-      <recent name="$PROJECT_DIR$/src/stores" />
-      <recent name="$PROJECT_DIR$/server/platforms/pimatic" />
-      <recent name="$PROJECT_DIR$/src/editor/views" />
-      <recent name="$PROJECT_DIR$/server/platforms" />
+      <recent name="$PROJECT_DIR$/src/editor/actions" />
+      <recent name="$PROJECT_DIR$/src/editor/components" />
+      <recent name="$PROJECT_DIR$/src/editor/LeftPanel" />
+      <recent name="$PROJECT_DIR$/src/editor/components/Buttons" />
+      <recent name="$PROJECT_DIR$/src/editor" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.client.dev.coffee">
@@ -864,7 +799,8 @@
       <workItem from="1485861031077" duration="53661000" />
       <workItem from="1486064818244" duration="132718000" />
       <workItem from="1486450593795" duration="369000" />
-      <workItem from="1486450976646" duration="40706000" />
+      <workItem from="1486450976646" duration="72841000" />
+      <workItem from="1486659906281" duration="25916000" />
     </task>
     <task id="LOCAL-00001" summary="second commit&#10;">
       <created>1485835955798</created>
@@ -1006,17 +942,24 @@
       <option name="project" value="LOCAL" />
       <updated>1486360057509</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Everything working.">
+      <created>1486534640292</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1486534640292</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251098000" />
+    <option name="totallyTimeSpent" value="309149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1030" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20600632" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20600632" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1063,186 +1006,60 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/graphql/types/devices.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/graphql/types/widget.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="54" column="15" lean-forward="false" selection-start-line="38" selection-start-column="2" selection-end-line="54" selection-end-column="15" />
-          <folding>
-            <marker date="1486357931323" expanded="true" signature="641:665" ph="&quot;type&quot;: GraphQLString..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/widgetProperties.coffee">
+    <entry file="file://$PROJECT_DIR$/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
+    <entry file="file://$PROJECT_DIR$/webpack/client.base.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        <state relative-caret-position="64">
+          <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee">
+    <entry file="file://$PROJECT_DIR$/webpack/client.prod.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="444">
+          <caret line="58" column="23" lean-forward="true" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/database/models/index.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/prodEntry.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/graphql/types/dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="52" column="19" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="52" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/graphql/types/editor.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/database/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/Editable.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/middleware/deviceTypeHandler.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/platforms/pimatic/updates.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="58" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/fetch.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/EditorPage.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="448">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stores/DeviceStore.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/Buttons/store.coffee" />
+    <entry file="file://$PROJECT_DIR$/.happypack/s-302895035">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Device.coffee">
+    <entry file="file://$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ContextDependencyHelpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        <state relative-caret-position="183">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/middleware/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/DashboardView.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Widget.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <marker date="1486498240209" expanded="true" signature="49:52" ph="&quot;key&quot;: ''..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/modalStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="47" column="27" lean-forward="false" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee">
+    <entry file="file://$PROJECT_DIR$/src/stores/Editable.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1252,8 +1069,152 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stores/helpers.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="50" column="24" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stores/StateStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/views/EditorPage.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/views/App.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/widgetStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/_flexbox-grid.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/styles/_left_panel.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/styles.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stores/DashboardStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/editorViewStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1849">
+          <caret line="118" column="23" lean-forward="false" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/actions/actions.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/DialogComponent.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/devEntry.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/hmrEntry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/EditableObject.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/DashboardView.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1269,110 +1230,76 @@
     <entry file="file://$PROJECT_DIR$/src/editor/stores/widgetEditor.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/widgetStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/index.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="67" column="42" lean-forward="true" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DashboardStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/SetupPage.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="36" column="35" lean-forward="false" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/editorViewStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/EditWidget.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/stores/viewStore.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="54" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+        <state relative-caret-position="330">
+          <caret line="85" column="17" lean-forward="false" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/DashboardView.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/components/ColorPicker/store.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state relative-caret-position="256">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/EditableObject.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        <state relative-caret-position="288">
+          <caret line="45" column="22" lean-forward="true" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/rc-color-picker/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/rc-color-picker/lib/ColorPicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/ColorPicker/index.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/store.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1486533649287" expanded="true" signature="674:1158" ph="..." />
-          </folding>
+        <state relative-caret-position="256">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardItem.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1380,102 +1307,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/DialogComponent.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+        <state relative-caret-position="103">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1648">
-          <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state relative-caret-position="208">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/modalStore.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-          <folding>
-            <marker date="1486533322722" expanded="true" signature="487:525" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-464">
-          <caret line="28" column="11" lean-forward="true" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding>
-            <marker date="1486532118851" expanded="true" signature="1215:1281" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="256">
+          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="97" column="41" lean-forward="false" selection-start-line="97" selection-start-column="41" selection-end-line="97" selection-end-column="41" />
+        <state relative-caret-position="480">
+          <caret line="30" column="125" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/ButtonContainer.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/styles/_dashboard_editor.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="151" column="19" lean-forward="true" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        <state relative-caret-position="224">
+          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <marker date="1486686630729" expanded="true" signature="1124:2730" ph="..." />
+            <marker date="1486686630729" expanded="true" signature="1731:1797" ph="..." />
+            <marker date="1486686630729" expanded="true" signature="2401:2440" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
           <folding />
         </state>
       </provider>

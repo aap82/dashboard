@@ -36,6 +36,14 @@
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
+
+}
+.row-flexbox {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-right: var(--gutter-compensation, -0.5rem);
   margin-left: var(--gutter-compensation, -0.5rem);
 }

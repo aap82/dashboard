@@ -3,34 +3,30 @@ React = require 'react'
 { observer} = require 'mobx-react'
 {Button} = require('@blueprintjs/core')
 {WidgetBackgroundColorPicker, WidgetFontColorPicker} = require './ColorPicker'
+ButtonContainer = require '../components/ButtonContainer'
 
-BaseWidgetPropertiesTitleButton = ->
-    crel Button,
-      text: 'Base Widget Properties'
-      iconName: 'caret-down'
-      className: 'pt-minimal pt-fill pt-large'
-
-
-WidgetProp = observer(({id, editor, increment, decrement, onChange}) ->
-  value = editor.widgetProps[id]
-  div className: 'number-input-container', =>
-    div className: 'input-section', =>
-      input
-        id: id
-        className: 'pt-input pt-rtl number-input'
-        value: editor.widgetProps[id]
-        type: 'text'
-        onChange: onChange
-        disabled: !editor.isEditing
-        autoFocus: yes
-      crel Button, id: id,iconName: 'pt-icon pt-icon-plus toggle-icon',  value: value, onClick: increment, disabled: !editor.isEditing
-      crel Button, id: id,iconName: 'pt-icon pt-icon-minus toggle-icon',  value: value, onClick: decrement, disabled: !editor.isEditing
+WidgetProp = observer(({id, editor, onChange, button1, button2}) =>
+  div className: 'col-xs-6 number-input-container', =>
+    div className: 'row middle end', ->
+      div className: 'input-section', =>
+        input
+          id: id
+          className: 'pt-input pt-rtl number-input'
+          value: editor.widgetProps[id]
+          type: 'text'
+          onChange: onChange
+          disabled: !editor.isEditing
+          autoFocus: yes
+      crel ButtonContainer, button: button1
+      crel ButtonContainer, button: button2
 
 )
 
+WidgetProp.displayName = 'WidgetProp'
 
 class BaseWidgetPropertiesContent extends React.Component
   increment: (e) =>
+    console.log e.target.id
     {editor} = @props
     value = parseInt(e.target.value, 10)
     return if e.target.id is 'cardDepth' and value > 4
@@ -53,33 +49,31 @@ class BaseWidgetPropertiesContent extends React.Component
 
   render: ->
     {editor} = @props
-    console.log @props
-    getProps = (id) =>
+    {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, DEC_CARD_DEPTH } = editor.buttons
+    getProps = (id, button1, button2) ->
       id: id
       editor: editor
-      increment: @increment
-      decrement: @decrement
+      button1: button1
+      button2: button2
       onChange: @handleChange
-
-    div className: 'content', ->
-      crel WidgetBackgroundColorPicker
-      crel WidgetFontColorPicker
-      div className: 'widget-props row middle between', ->
-        text 'Border Radius'
-        crel WidgetProp, getProps('borderRadius')
-      div className: 'widget-props row middle between', ->
-        text 'Card Depth'
-        crel WidgetProp, getProps('cardDepth')
-      br()
-
-
-BaseWidgetProperties = (props) ->
-  div className: 'properties-section', ->
-    div className: 'title-row', ->
-      crel BaseWidgetPropertiesTitleButton
-    crel BaseWidgetPropertiesContent, props
+    div className: 'properties-section', ->
+      div className: 'title-row', ->
+        crel Button,
+          text: 'Base Widget Properties'
+          iconName: 'caret-down'
+          className: 'pt-minimal pt-fill pt-large'
+      div className: 'content', ->
+        crel WidgetBackgroundColorPicker
+        crel WidgetFontColorPicker
+        div className: 'widget-props row middle between', ->
+          text 'Border Radius'
+          crel WidgetProp, getProps('borderRadius', INC_BORDER_RADIUS, DEC_BORDER_RADIUS)
+        div className: 'widget-props row middle between', ->
+          text 'Card Depth'
+          crel WidgetProp, getProps('cardDepth', INC_CARD_DEPTH, DEC_CARD_DEPTH)
+        br()
 
 
 
 
-module.exports = BaseWidgetProperties
+module.exports = BaseWidgetPropertiesContent

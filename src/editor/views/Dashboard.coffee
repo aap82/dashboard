@@ -49,8 +49,8 @@ ContextMenuTarget(
 
 
 
-Widgets = pureComponent (dashboard, editor, widgetEditor, modal, deviceStates) ->
-  dashboard.widgets.map (widget) ->
+Widgets = pureComponent ( editor, widgetEditor, modal, deviceStates) ->
+  editor.widgets.map (widget) ->
     state = if deviceStates[widget.device.id]? then deviceStates[widget.device.id] else {}
     div key: widget.key,  ->
       switch dashboard.isEditing
@@ -64,20 +64,20 @@ Widgets = pureComponent (dashboard, editor, widgetEditor, modal, deviceStates) -
 
 class Dashboard extends React.Component
   render: ->
-    {editor, dashboard, widgetEditor, modal, states} = @props
-    div style: dashboard.dashboardStyle, =>
+    {editor, widgetEditor, modal, states} = @props
+    div style: editor.dashboardStyle, =>
       crel GridLayout,
         verticalCompact: no
         autoSize: no
-        isDraggable: dashboard.isEditing
-        isResizable: dashboard.isEditing
-        cols: dashboard.cols
-        margin: [dashboard.marginX, dashboard.marginY]
+        isDraggable: editor.isEditing
+        isResizable: editor.isEditing
+        cols: editor.cols
+        margin: [editor.marginX, editor.marginY]
         containerPadding: [0, 0]
-        rowHeight: dashboard.rowHeight
-        layout: (dashboard.layouts).slice()
+        rowHeight: editor.rowHeight
+        layout: (editor.layouts).slice()
         onLayoutChange: @handleLayoutChange
-        Widgets dashboard, editor, widgetEditor, modal, states
+        Widgets editor, widgetEditor, modal, states
 
 
   handleLayoutChange: (layout) => @props.editor.newLayout = layout
@@ -88,4 +88,4 @@ class Dashboard extends React.Component
 
 
 
-module.exports = inject('widgetEditor', 'dashboard', 'editor', 'modal', 'states')(observer(Dashboard))
+module.exports = inject('widgetEditor', 'editor', 'modal', 'states')(observer(Dashboard))

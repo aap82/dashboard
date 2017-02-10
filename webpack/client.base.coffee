@@ -11,7 +11,7 @@ config =
     alias:
       editor: paths.editor + '/'
       widgets: paths.widgets + '/'
-    modules: ["node_modules"]
+    modules: ["node_modules", "#{path.src}"]
     extensions: ['.js', '.json',  '.jsx', '.coffee', '.css', '.scss']
   module:
     rules: [

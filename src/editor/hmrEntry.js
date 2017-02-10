@@ -7,7 +7,13 @@ import gqlFetch from '../utils/fetch'
 import App from './devEntry';
 import {Provider, useStaticRendering} from 'mobx-react'
 FocusStyleManager.onlyShowFocusOnTabs()
+const { configureDevtool } = require('mobx-react-devtools')
 
+configureDevtool({
+  logEnabled: false,
+  updatesEnabled: false,
+  logFilter: change => change.type !== 'reaction'
+})
 const state = JSON.parse(window.__APP_STATE__)
 const stores = configureStores(state, gqlFetch('/graphql'))
 useStaticRendering(false)

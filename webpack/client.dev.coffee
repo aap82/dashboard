@@ -11,18 +11,10 @@ SERVER_PORT = getenv 'SERVER_PORT'
 SERVER_URL = 'http://' + SERVER_HOST + ':' + SERVER_PORT
 DEV_SERVER_PORT = getenv 'DEV_SERVER_PORT'
 DEV_SERVER_URL = 'http://' + SERVER_HOST + ':' + DEV_SERVER_PORT
-
 vendors = require './vendors'
 vendors.push '@blueprintjs/core'
 
 HappyPack = require('happypack')
-
-plugins = [
-  new HappyPack({
-    loaders: [ 'babel?presets[]=es2015' ],
-  })
-
-]
 
 devConfig =
   entry:
@@ -80,7 +72,7 @@ devConfig =
       filename: "vendors.js"
       minChunks: Infinity
     })
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 
 config = merge(devConfig, baseConfig)

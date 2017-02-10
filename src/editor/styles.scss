@@ -24,4 +24,14 @@
 
 }
 
+.editor-button {
+  span {pointer-events: inherit!important;}
+  span::before {
+    pointer-events: inherit!important;
+  }
+  button::before {
+    pointer-events: inherit!important;
+  }
+}
 
+.hidden { display: none!important;}

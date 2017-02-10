@@ -1,11 +1,13 @@
+t = require '../LeftPanel/buttons/types'
 {extendObservable, action, computed, toJS, observable} = require 'mobx'
 WidgetEditor = require './widgetEditor'
+ButtonContainer = require '../components/ButtonContainer'
 hexToRgba = require('hex-rgba')
-
 Dashboard = require './DashboardView'
 EditableWidget = require './Widget'
 EditableObject = require './EditableObject'
 DashboardModel = require '../../models/Dashboard'
+buttons = require '../LeftPanel/buttons/buttons'
 
 dashboard = DashboardModel.create()
 dashboard.widgetProps =
@@ -21,21 +23,36 @@ widgetProps =
   fontColor: "#fff"
   borderRadius: 2
   cardDepth: 2
-
-
+class DashboardHistory
+  class Memento
+    constructor:  ->
+      @dashboard = {}
+  constructor:  ->
+    @dashboard = {}
+  save: (dashboard) ->
+    console.log dashboard
+    memento = new Memento @dashboard
+    @dashboard = dashboard
+    memento
+  restore: (memento) ->
+    @dashboard = memento.dashboard
+    return
 
 
 
 class DashboardEditor extends Dashboard
+
+
   constructor:  ->
+    @history = new DashboardHistory({})
     @createId = 500
     @devices = []
     @newLayout = []
     super()
     extendObservable @, {
+      buttons: {}
       isDashboardStyleDefault: no
       isWidgetStyleDefault: no
-
       create: action((title, type) ->
         @createId++
         dashboard = DashboardModel.create(title, type)
@@ -44,42 +61,49 @@ class DashboardEditor extends Dashboard
         @setProps(dashboard)
         dashboard
       )
-
       loadDashboard: action((id) ->
         dashboard = @getDashboardById(id)
         console.log dashboard
-
-
       )
-
       close: action(->
         @layouts.clear()
         @widgets.clear()
         @newLayout = []
         @id = -1
       )
-
       deleteWidget: action((widget) ->
         WidgetEditor.stopEditing()
         @widgets.remove(widget)
       )
-
-
-
       addWidget: action(=>
         @layouts.replace(@newLayout)
         WidgetEditor.key++
         @layouts.push WidgetEditor.layout
-        widget = new EditableWidget(@widgetProps,  WidgetEditor.getProperties())
         @devices.push widget.device.id
         @widgets.push widget
         WidgetEditor.reset()
       )
 
+      startEditing: action(=>
+        for key, button of @buttons
+          @buttons[key].enable() if button.enableOnEdit
+          @buttons[key].show() if button.showOnEdit
+          @buttons[key].hide() if button.hideOnEdit
+        @isEditing = yes
+        return
+      )
+
+      stopEditing: action(=>
+        for key, button of @buttons
+          @buttons[key].disable() if button.enableOnEdit
+          @buttons[key].hide() if button.showOnEdit
+          @buttons[key].show() if button.hideOnEdit
+        @isEditing = no
+        return
+      )
 
 
     }
-
 
   toJSON: =>
     dashboard = JSON.parse JSON.stringify(toJS(@))

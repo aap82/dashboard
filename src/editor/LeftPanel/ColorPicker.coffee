@@ -75,12 +75,11 @@ class WidgetFontColorPicker extends React.Component
             onChange: @handleWidgetFontColorChange, =>
               span className: 'rc-color-picker-trigger'
 
-WidgetFontColorPicker = inject('editor')(observer(WidgetFontColorPicker))
 
 
 exports.DashboardColorPicker = inject('editor')(observer(DashboardColorPicker))
 exports.WidgetBackgroundColorPicker = inject('editor')(observer(WidgetBackgroundColorPicker))
-exports.WidgetFontColorPicker = WidgetFontColorPicker
+exports.WidgetFontColorPicker = inject('editor')(observer(WidgetFontColorPicker))
 
 
 

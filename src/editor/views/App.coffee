@@ -5,6 +5,7 @@ EditorPage = require './EditorPage'
 SetupPage = require './SetupPage'
 
 EditorApp = observer(({viewStore}) =>
+  displayName: 'App'
   switch viewStore.currentPageView
     when 'SetupPage' then return crel SetupPage
     when 'EditorPage' then return crel EditorPage
