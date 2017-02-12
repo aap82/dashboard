@@ -5,9 +5,10 @@ React = require 'react'
 {DashboardColorPicker} = require './ColorPicker'
 
 DeviceType = (observer(({editor, onChange}) ->
+  {dashboard} = editor
   div ->
     div className: 'pt-select', ->
-      select onChange: onChange, value: editor.deviceType, disabled: !editor.isEditing, ->
+      select onChange: onChange, value: dashboard.deviceType, disabled: !editor.isEditing, ->
         option value: '', ''
         option value: 'tablet', 'Tablet'
         option value: 'phone', 'Phone'
@@ -16,12 +17,14 @@ DeviceType = (observer(({editor, onChange}) ->
 
 
 class DeviceTypeEditor extends React.Component
-  onDeviceTypeChange: (e) => @props.editor.setProp('deviceType', e.target.value)
+  onDeviceTypeChange: (e) =>
+    {dashboard} = @props.editorView
+    dashboard.deviceType = e.target.value
   render: ->
-    {editor} = @props
+    {editorView} = @props
     div className: 'row between middle', =>
       crel 'div', 'Device Type'
-      crel DeviceType, editor: editor, onChange: @onDeviceTypeChange
+      crel DeviceType, editor: editorView, onChange: @onDeviceTypeChange
 
 DashboardProperties = (props) ->
   div className: 'properties-section', ->

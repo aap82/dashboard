@@ -1,7 +1,8 @@
-express = require('express')
-router = express.Router()
+Router = require 'koa-router'
 
 
+
+router = new Router()
 
 
 

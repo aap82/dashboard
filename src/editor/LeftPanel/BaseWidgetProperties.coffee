@@ -25,23 +25,27 @@ WidgetProp = observer(({id, editor, widgetProps, button1, button2}) =>
 WidgetProp.displayName = 'WidgetProp'
 
 class BaseWidgetPropertiesContent extends React.Component
+  setColorProps: =>
+    console.log 'hi'
   render: ->
-    {editor} = @props
-    {widgetProps} = editor.viewModel
-    {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, DEC_CARD_DEPTH } = editor.buttons
+    {editorView} = @props
+    {widgetProps} = editorView
+    {color, backgroundColor, backgroundAlpha} = widgetProps
+    {isEditing} = editorView
+    {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, DEC_CARD_DEPTH } = editorView.buttons
     getProps = (id, button1, button2) ->
       id: id
-      editor: editor
+      editor: editorView
       widgetProps: widgetProps
       button1: button1
       button2: button2
-    div className: 'properties-section', ->
+    div className: 'properties-section', =>
       div className: 'title-row', ->
         crel Button,
           text: 'Base Widget Properties'
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
-      div className: 'content', ->
+      div className: 'content', =>
         crel WidgetBackgroundColorPicker
         crel WidgetFontColorPicker
         div className: 'widget-props row middle between', ->

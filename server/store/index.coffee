@@ -59,7 +59,7 @@ that = module.exports =
     return if !@states[id]?
     return if @states[id][attr] is value
     @states[id][attr] = value
-    @sse.broadcast('update', [id: id, attribute: attr, value: value]) if @sse.clients.length > 0
+#    @sse.broadcast('update', [id: id, attribute: attr, value: value]) if @sse.clients.length > 0
 
     return
 

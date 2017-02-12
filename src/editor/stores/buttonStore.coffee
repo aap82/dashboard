@@ -1,15 +1,18 @@
-{extendObservable, action} = require 'mobx'
+{extendObservable, action, computed} = require 'mobx'
 {Intent} = require('@blueprintjs/core')
 
 class Button
-  constructor: (button, onClick) ->
+  constructor: (editor, button, onClick) ->
     @id = button.id
     @text = button.text or ''
     @className = button.className or ''
-    @onClick = onClick
     @enableOnEdit = button.enableOnEdit or no
+    @showOnDirty = button.showOnDirty or no
+    @hideOnDirty = button.hideOnDirty or no
     @showOnEdit = button.showOnEdit or no
     @hideOnEdit = button.hideOnEdit or no
+    @enableOnDirty = button.enableOnDirty or no
+    @disableOnDirty = button.disableOnDirty or no
     @intent = switch button.intent?
       when no then Intent.NONE
       else switch button.intent
@@ -21,15 +24,26 @@ class Button
     extendObservable @, {
       iconName: button.iconName or ''
       loading: button.loading or no
-      disabled: button.disabled or no
-      display: ''
+      isVisible: computed(->
+        if editor.isDirty and @showOnDirty then yes
+        else if editor.isDirty and @hideOnDirty then no
+        else if editor.isEditing and @hideOnEdit then no
+        else if editor.isEditing and @showOnEdit then yes
+        else if !!button.initiallyHidden
+          no
+        else
+          yes
 
-      show: action(=> @display = '')
-      hide: action(=> @display = 'hidden')
-      enable: action(=> @disabled = no)
-      disable: action(=> @disabled = yes)
+      )
+      disabled: computed(->
+        if editor.isDirty and @enableOnDirty then no
+        else if editor.isDirty and @disableOnDirty then yes
+        else if editor.isEditing and @enableOnEdit then no
+        else
+          button.disabled
+      )
+
     }
-    if !!button.initiallyHidden then @hide()
 
 
 module.exports = Button

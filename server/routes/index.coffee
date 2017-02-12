@@ -1,18 +1,39 @@
+Router = require 'koa-router'
 getenv = require('getenv')
-path = require 'path'
-express = require('express')
-pug = require 'pug'
-app = express()
 paths = require('../../config/paths')
-{ graphiqlExpress } = require 'graphql-server-express'
-
-viewPath = path.join paths.views, getenv('NODE_ENV')
-
-if getenv('NODE_ENV') is 'development'
-  app.use '/graphiql', graphiqlExpress({endpointURL: '/graphql'})
-
-app.use '/dashboard', require('./dashboard')
-app.get '/editor', require('./editor')(viewPath)
+router = new Router()
+commands = require './commands'
+device_handler = require('../middleware/device-router')
 
 
-module.exports = app
+
+
+
+
+router.use commands.routes(), commands.allowedMethods()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+require('./graphiql')(router) if getenv('NODE_ENV') is 'development'
+
+
+
+router.get('*', device_handler())
+router.get '/editor', require('./editor')
+
+
+
+module.exports = router

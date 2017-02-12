@@ -26,6 +26,7 @@ module.exports =
     className: 'pt-large pt-fill'
     iconName: 'cross align-center'
     intent: 'PRIMARY'
+    hideOnDirty: yes
     initiallyHidden: yes
     showOnEdit: yes
   SAVE_DASHBOARD:
@@ -37,6 +38,7 @@ module.exports =
     disabled: yes
     loading: no
     showOnEdit: yes
+    enableOnDirty: yes
   DELETE_DASHBOARD:
     id: t.DELETE_DASHBOARD
     iconName: 'trash'
@@ -45,13 +47,15 @@ module.exports =
     initiallyHidden: yes
     disabled: no
     showOnEdit: yes
+    disableOnDirty: yes
   DISCARD_CHANGES:
     id: t.DISCARD_CHANGES
-    iconName: 'cross'
+    iconName: 'refresh'
     className: 'pt-large pt-fill'
-    intent: 'WARNING'
+    intent: 'DANGER'
     initiallyHidden: yes
-    disabled: yes
+    disabled: no
+    showOnDirty: yes
     showOnEdit: no
   ADD_NEW_WIDGET:
     id: t.ADD_NEW_WIDGET

@@ -59,19 +59,19 @@ class DashboardEditor extends Dashboard
       )
 
       startEditing: action(=>
-        for key, button of @buttons
-          @buttons[key].enable() if button.enableOnEdit
-          @buttons[key].show() if button.showOnEdit
-          @buttons[key].hide() if button.hideOnEdit
+#        for key, button of @buttons
+#          @buttons[key].enable() if button.enableOnEdit
+#          @buttons[key].show() if button.showOnEdit
+#          @buttons[key].hide() if button.hideOnEdit
         @isEditing = yes
         return
       )
 
       stopEditing: action(=>
-        for key, button of @buttons
-          @buttons[key].disable() if button.enableOnEdit
-          @buttons[key].hide() if button.showOnEdit
-          @buttons[key].show() if button.hideOnEdit
+#        for key, button of @buttons
+#          @buttons[key].disable() if button.enableOnEdit
+#          @buttons[key].hide() if button.showOnEdit
+#          @buttons[key].show() if button.hideOnEdit
         @isEditing = no
         return
       )

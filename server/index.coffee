@@ -1,49 +1,55 @@
 require('dotenv').config()
 getenv = require('getenv')
-express = require 'express'
+path = require('path')
 paths = require('../config/paths')
-compression = require 'compression'
-device = require('express-device')
-bodyParser = require 'body-parser'
-{ graphqlExpress } = require 'graphql-server-express'
-{OperationStore} = require 'graphql-server-module-operation-store'
 
-{connect} = require './database/models'
-app = express()
-jsonParser = bodyParser.json()
+koa = require('koa')
+koaRouter = require('koa-router')
+koaBody = require 'koa-bodyparser'
+Pug = require('koa-pug')
+{ graphqlKoa } = require('graphql-server-koa')
+{OperationStore} = require('graphql-server-module-operation-store')
+
+{init_database } = require('./database/models')
 
 SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
 
 
-app.set 'view engine', 'pug'
-app.use(require('./routes'))
+app = new koa()
+router = new koaRouter()
+pug = new Pug({
+  viewPath: path.join paths.views, getenv('NODE_ENV')
+})
 
 
-if getenv('NODE_ENV') is 'production'
-  app.use('/assets', express.static(paths.prodBuild))
+pug.use(app)
+app.use(koaBody())
+app.use(require('./utils/device')())
 
 
 
-app.use(jsonParser);
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(device.capture({parseUserAgent: true}));
+#
+#app.use async((ctx, next) =>
+#  console.log ctx.request.user
+#  await type = require('util').inspect(ctx.userAgent)
+#  console.log type
+#)
+#app.use ((ctx, next) =>
+#
+#  console.log ctx.device
+#  next()
+#)
 
-app.use '/updates', require('./middleware/updates')
-app.use '/commands', require('./middleware/commands')
-app.use(require('./middleware/deviceTypeHandler'))
+start_server = ->
+  graphQLoptions = require('./graphql').getGraphQLOptions(OperationStore)
+  router.post('/graphql', graphqlKoa(graphQLoptions))
 
+  app.use(require('./routes').routes())
+  app.use(router.routes())
+  app.use(router.allowedMethods())
 
-app.get('/chicken', (req, res, next) -> next())
-
-
-start = ->
-  connect().then ->
-    graphQLoptions = require('./graphql').getGraphQLOptions(OperationStore)
-    app.use('/graphql', jsonParser, graphqlExpress(graphQLoptions))
-
-    app.listen(SERVER_PORT)
-    console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
-
-
-start()
+  app.listen(SERVER_PORT)
+  require('./platforms')
+  console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
+init_database().then start_server
