@@ -5,16 +5,16 @@ React = require 'react'
 {WidgetBackgroundColorPicker, WidgetFontColorPicker} = require './ColorPicker'
 ButtonContainer = require '../components/ButtonContainer'
 
-WidgetProp = observer(({id, editor, onChange, button1, button2}) =>
+WidgetProp = observer(({id, editor, widgetProps, button1, button2}) =>
   div className: 'col-xs-6 number-input-container', =>
     div className: 'row middle end', ->
       div className: 'input-section', =>
         input
           id: id
           className: 'pt-input pt-rtl number-input'
-          value: editor.widgetProps[id]
+          value: widgetProps[id]
           type: 'text'
-          onChange: onChange
+          onChange: -> return
           disabled: !editor.isEditing
           autoFocus: yes
       crel ButtonContainer, button: button1
@@ -25,37 +25,16 @@ WidgetProp = observer(({id, editor, onChange, button1, button2}) =>
 WidgetProp.displayName = 'WidgetProp'
 
 class BaseWidgetPropertiesContent extends React.Component
-  increment: (e) =>
-    console.log e.target.id
-    {editor} = @props
-    value = parseInt(e.target.value, 10)
-    return if e.target.id is 'cardDepth' and value > 4
-    value++
-    editor.setWidgetEditorProp(e.target.id, value)
-    return
-
-  decrement: (e) =>
-    {editor} = @props
-    value = parseInt(e.target.value, 10)
-    if value is 0 then return else value--
-    return editor.setWidgetEditorProp(e.target.id, value)
-
-  handleChange: (e) =>
-    {editor} = @props
-    return if e.target.value is ''
-    value = parseInt(e.target.value)
-    return editor.setWidgetEditorProp(id, value)
-
-
   render: ->
     {editor} = @props
+    {widgetProps} = editor.viewModel
     {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, DEC_CARD_DEPTH } = editor.buttons
     getProps = (id, button1, button2) ->
       id: id
       editor: editor
+      widgetProps: widgetProps
       button1: button1
       button2: button2
-      onChange: @handleChange
     div className: 'properties-section', ->
       div className: 'title-row', ->
         crel Button,

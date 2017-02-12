@@ -1,5 +1,6 @@
 {extendObservable, action} = require 'mobx'
 {Intent} = require('@blueprintjs/core')
+
 class Button
   constructor: (button, onClick) ->
     @id = button.id
@@ -15,6 +16,7 @@ class Button
         when "PRIMARY" then Intent.PRIMARY
         when "SUCCESS" then Intent.SUCCESS
         when "DANGER" then Intent.DANGER
+        when "WARNING" then Intent.WARNING
         else  Intent.NONE
     extendObservable @, {
       iconName: button.iconName or ''
@@ -27,7 +29,6 @@ class Button
       enable: action(=> @disabled = no)
       disable: action(=> @disabled = yes)
     }
-    console.log @display
     if !!button.initiallyHidden then @hide()
 
 

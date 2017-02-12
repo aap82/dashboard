@@ -2,8 +2,8 @@
 keyBy = require('lodash.keyby')
 DeviceStore = require '../../stores/DeviceStore'
 WidgetStore = require './widgetStore'
-
-
+EditableObject = require './EditableObject'
+WidgetModel = require './Widget'
 class WidgetEditor
   constructor: ->
     @widget_oldLabel = ''
@@ -30,13 +30,13 @@ class WidgetEditor
       setActiveWidgetLabel: action((label) -> @activeWidget.label = label)
 
 
-      layout: computed(->
+      layout: computed(=>
         toJS({
           i: @key.toString()
           w: @newWidget.w
           h: @newWidget.h
           x: 1
-          y: 100
+          y: 70
           minW: @newWidget.w
           minH: @newWidget.h
         })
@@ -59,9 +59,6 @@ class WidgetEditor
         @activeDevice = DeviceStore.devices[widget.device]
         @widget_oldLabel = @activeWidget.label
         @isEditing = yes
-      )
-      stopEditing: action(->
-        @isEditing = no
       )
 
       reset: action(->
@@ -95,6 +92,7 @@ class WidgetEditor
       selectedWidgetType: '0'
       changeSelectedWidgetType: action((type)->
         @newWidget = WidgetStore[type]
+        console.log @newWidget
         if type is '0' or type != @selectedWidgetType
           @selectedDevice = '0'
         @selectedWidgetType = type
@@ -127,15 +125,31 @@ class WidgetEditor
 
       addNewWidgetButtonDisabled: computed(->
         if (@selectedDevicePlatform is '0' or @selectedWidgetType is '0' or @selectedDevice is '0')
-            return yes
+          return yes
         else
           return no
       )
+      getNewWidget: action((baseStyle) ->
+        @key++
+        new WidgetModel(baseStyle, {
+          key: @key
+          label: @newWidgetLabel
+          type: @selectedWidgetType
+          attrNames: @newWidget.attrNamesMap[@selectedDevicePlatform]
+          device:
+            id: "#{@selectedDevicePlatform}-#{@selectedDeviceId}"
+            platform: @selectedDevicePlatform
+            deviceId: @selectedDeviceId
+          }))
+
 
 
 
 
     }
+
+
+
   getProperties: ->
     attrNames = {}
     if WidgetStore[@selectedWidgetType].attrNamesMap? then attrNames = WidgetStore[@selectedWidgetType].attrNamesMap[@selectedDevicePlatform]
@@ -150,7 +164,7 @@ class WidgetEditor
         deviceId: DeviceStore.devices[@selectedDevice].deviceId
         platform: @selectedDevicePlatform
 
-      })
+    })
     props
 
 

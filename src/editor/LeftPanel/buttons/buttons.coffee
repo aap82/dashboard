@@ -29,7 +29,7 @@ module.exports =
     initiallyHidden: yes
     showOnEdit: yes
   SAVE_DASHBOARD:
-    id: 'SAVE_DASHBOARD'
+    id: t.SAVE_DASHBOARD
     iconName: 'floppy-disk'
     intent: 'SUCCESS'
     className: 'pt-large'
@@ -38,24 +38,24 @@ module.exports =
     loading: no
     showOnEdit: yes
   DELETE_DASHBOARD:
-    id: 'DELETE_DASHBOARD'
-    iconName: 'cross'
+    id: t.DELETE_DASHBOARD
+    iconName: 'trash'
     className: 'pt-large pt-fill'
     intent: 'DANGER'
     initiallyHidden: yes
-
-
+    disabled: no
+    showOnEdit: yes
   DISCARD_CHANGES:
-    id: 'DISCARD_CHANGES'
+    id: t.DISCARD_CHANGES
     iconName: 'cross'
     className: 'pt-large pt-fill'
-    intent: 'DANGER'
+    intent: 'WARNING'
     initiallyHidden: yes
     disabled: yes
-    showOnEdit: yes
+    showOnEdit: no
   ADD_NEW_WIDGET:
     id: t.ADD_NEW_WIDGET
-    text: 'Add Widget Now'
+    text: 'Add Widget'
     iconName: 'add'
     className: 'pt-large pt-fill'
     intent: 'SUCCESS'
@@ -68,12 +68,12 @@ module.exports =
     enableOnEdit: yes
   DEC_BORDER_RADIUS:
     id: t.DEC_BORDER_RADIUS
-    iconName: 'plus'
+    iconName: 'minus'
     disabled:  yes
     enableOnEdit: yes
   INC_CARD_DEPTH:
     id: t.INC_CARD_DEPTH
-    iconName: 'minus'
+    iconName: 'plus'
     disabled:  yes
     enableOnEdit: yes
   DEC_CARD_DEPTH:

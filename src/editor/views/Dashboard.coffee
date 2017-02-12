@@ -1,5 +1,6 @@
 {crel, div, pureComponent} = require 'teact'
 React = require 'react'
+{toJS} = require 'mobx'
 {inject, observer} = require 'mobx-react'
 ReactGridLayout = require 'react-grid-layout'
 { WidthProvider}  = require 'react-grid-layout'
@@ -50,37 +51,43 @@ ContextMenuTarget(
 
 
 Widgets = pureComponent ( editor, widgetEditor, modal, deviceStates) ->
+  console.log 'rendering widgets'
   editor.widgets.map (widget) ->
     state = if deviceStates[widget.device.id]? then deviceStates[widget.device.id] else {}
     div key: widget.key,  ->
-      switch dashboard.isEditing
+      switch editor.isEditing
         when yes then crel EditableWidget, widget: widget, editor: editor, widgetEditor: widgetEditor, modal: modal, state: state
         else
           div widget.key, style: widgetStyle, =>
             crel Widget, widget: widget, state: state
 
-
-
-
 class Dashboard extends React.Component
   render: ->
-    {editor, widgetEditor, modal, states} = @props
-    div style: editor.dashboardStyle, =>
+    {editor, widgetEditor, modal, states, editorView} = @props
+    {dashboard} = editorView
+    style =
+      position: 'relative'
+      height: '100%'
+      backgroundColor: dashboard.backgroundColor
+
+    div style: style, ->
       crel GridLayout,
         verticalCompact: no
         autoSize: no
-        isDraggable: editor.isEditing
-        isResizable: editor.isEditing
-        cols: editor.cols
-        margin: [editor.marginX, editor.marginY]
+        isDraggable: editorView.isEditing
+        isResizable: editorView.isEditing
+        cols: dashboard.cols
+        margin: [dashboard.marginX, dashboard.marginY]
         containerPadding: [0, 0]
-        rowHeight: editor.rowHeight
-        layout: (editor.layouts).slice()
+        rowHeight: dashboard.rowHeight
+        layout: (dashboard.layouts).slice()
         onLayoutChange: @handleLayoutChange
         Widgets editor, widgetEditor, modal, states
 
 
-  handleLayoutChange: (layout) => @props.editor.newLayout = layout
+  handleLayoutChange: (layout) =>
+    @props.editor.newLayout = layout
+    console.log layout
 
 
 
@@ -88,4 +95,4 @@ class Dashboard extends React.Component
 
 
 
-module.exports = inject('widgetEditor', 'editor', 'modal', 'states')(observer(Dashboard))
+module.exports = inject('widgetEditor', 'editorView', 'editor', 'modal', 'states')(observer(Dashboard))

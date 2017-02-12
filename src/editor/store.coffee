@@ -1,3 +1,10 @@
+ViewState = require './stores/view-state'
+dashboarboardStore_New = require './stores/store-dashboards'
+editorView = require './stores/view-editor'
+
+
+
+
 ViewStore = require './stores/viewStore'
 DashboardStoreEditor = require './stores/dashboardStore'
 dashboardEditor = require './stores/dashboardEditor'
@@ -27,9 +34,17 @@ exports.configureStores = (data) ->
     editor: dashboardEditor
     store: DashboardStoreEditor
   })
-  console.log viewStore
+
+  viewState = new ViewState({
+    modal: modalStore
+    editor: editorView
+    store: dashboarboardStore_New
+  })
 
   return {
+    viewState: viewState
+    editorView: editorView
+
     modal: modalStore
     devices: DeviceStore
     states: StateStore

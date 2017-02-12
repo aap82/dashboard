@@ -5,8 +5,8 @@
 clientQueries = require './client/queries'
 clientMutations = require './client/mutations'
 
-queries = require './queries'
-mutations = require './mutations'
+queries = require './queries/index'
+mutations = require './mutations/index'
 
 schema = new GraphQLSchema(
   query: queries

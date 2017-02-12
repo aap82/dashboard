@@ -6,8 +6,7 @@ ColorPicker = require('rc-color-picker')
 exports = module.exports
 class DashboardColorPicker extends React.Component
   handleDashboardChange: (colors) =>
-    {editor} = @props
-    editor.setStyleProp('backgroundColor', colors.color) if colors.color isnt  editor.dashboardStyle.backgroundColor
+    @props.editor.setStyleProp('backgroundColor', colors.color)
     return
 
   render: ->
@@ -16,10 +15,10 @@ class DashboardColorPicker extends React.Component
     div className: 'color-picker-row', =>
       text 'Background Color'
       div className: 'color-picker-text', =>
-        text "#{editor.dashboardStyle.backgroundColor}"
+        text "#{editor.style.backgroundColor}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: editor.dashboardStyle.backgroundColor
+            color: editor.style.backgroundColor
             alpha: 100
             mode: 'RGB'
             align:
@@ -32,20 +31,21 @@ class DashboardColorPicker extends React.Component
 class WidgetBackgroundColorPicker  extends React.Component
   handleWidgetColorChange: (colors) =>
     {editor} = @props
-    editor.setWidgetEditorProp('backgroundColor', colors.color) if colors.color isnt editor.widgetProps.backgroundColor
-    editor.setWidgetEditorProp('backgroundAlpha', colors.alpha) if colors.alpha isnt editor.widgetProps.backgroundAlpha
+    editor.setWidgetProp('backgroundColor', colors.color) if colors.color isnt editor.widgetProps.backgroundColor
+    editor.setWidgetProp('backgroundAlpha', colors.alpha) if colors.alpha isnt editor.widgetProps.backgroundAlpha
     return
   render: ->
     {editor} = @props
+    {viewModel} = editor
     className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row widget-color-picker-row', =>
       text 'Background Color'
       div className: 'color-picker-text', =>
-        text "#{editor.widgetProps.backgroundColor}"
+        text "#{viewModel.widgetProps.backgroundColor}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: editor.widgetProps.backgroundColor
-            alpha: editor.widgetProps.backgroundAlpha
+            color: viewModel.widgetProps.backgroundColor
+            alpha: viewModel.widgetProps.backgroundAlpha
             align:
               points: ['br', 'tl']
               offset: [0, 0]
@@ -55,19 +55,19 @@ class WidgetBackgroundColorPicker  extends React.Component
 class WidgetFontColorPicker extends React.Component
   handleWidgetFontColorChange: (colors) =>
     {editor} = @props
-    editor.setWidgetEditorProp('color', colors.color) if colors.color isnt editor.widgetProps.fontColor
+    editor.setWidgetProp('color', colors.color) if colors.color isnt editor.widgetProps.fontColor
     return
   render: ->
-    console.log @props
     {editor} = @props
+    {viewModel} = editor
     className = if !editor.isEditing then 'color-picker-disabled' else ''
     div className: 'color-picker-row widget-color-picker-row', =>
       text 'Font Color'
       div className: 'color-picker-text', =>
-        text "#{editor.widgetProps.color}"
+        text "#{viewModel.widgetProps.color}"
         div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
           crel ColorPicker,
-            color: editor.widgetProps.color
+            color: viewModel.widgetProps.color
             alpha: 100
             align:
               points: ['br', 'tl']

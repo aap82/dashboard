@@ -6,8 +6,8 @@ class EditableWidget
   constructor: (widgetStyleProps, widgetProps) ->
     console.log widgetProps
     extendObservable(@, {
-      overrideStyle: no
       key: widgetProps.key
+      overrideStyle: no
       label: widgetProps.label
       type: widgetProps.type
       cardDepth: widgetStyleProps.cardDepth

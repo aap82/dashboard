@@ -1,13 +1,13 @@
 {GraphQLList} = require 'graphql'
 {deviceType} = require '../types/devices'
 {deviceStatesType, devicePlatformType} = require '../types/states'
-DeviceStore = require '../../store'
+DeviceStore = require '../../store/index'
 
 
 
 devicesSetupQuery =
   type: new GraphQLList(deviceType)
-  resolve: -> DeviceStore.devices
+  resolve: ->    DeviceStore.devices
 
 getFullStateQuery =
   type: deviceStatesType

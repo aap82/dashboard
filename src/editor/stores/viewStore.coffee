@@ -1,29 +1,10 @@
 t = require '../LeftPanel/buttons/types'
-{extendObservable, action, toJS} = require 'mobx'
+{extendObservable, action, autorun} = require 'mobx'
 buttons = require '../LeftPanel/buttons/buttons'
 Button = require './buttonStore'
 {clone} = require '../../stores/helpers'
-class DashboardHistory
-  class Memento
-    constructor:  ->
-      @dashboard = {}
-  constructor:  ->
-    @dashboard = {}
-  save: (dashboard) ->
-    console.log dashboard
-    memento = new Memento @dashboard
-    @dashboard = dashboard
-    memento
-  restore: (memento) ->
-    @dashboard = memento.dashboard
-    return
-
-
 
 class ViewStore
-
-
-
   constructor: ({@modal, @editor, @store}) ->
     @dashboards = @store.dashboards
     @buttons =
@@ -49,12 +30,11 @@ class ViewStore
       changeNewDashboardDeviceType: action((type) -> @newDashboardDeviceType = type)
 
       createNewDashboard: action( ->
-        dashboard = @editor.create(@newDashboardTitle, @newDashboardDeviceType)
+        @editor.create(@newDashboardTitle, @newDashboardDeviceType)
         @closeCreateDashboardPanel()
-        @showEditorPage()
+        @currentPageView = 'EditorPage'
         @newDashboardTitle = ''
         @newDashboardDeviceType = 'tablet'
-        @store.add dashboard
       )
 
       handleDeletedDashboard: action( ->
@@ -84,12 +64,17 @@ class ViewStore
           when t.ADD_NEW_WIDGET
             @modal.showAddNewWidgetDialog()
             break
+          else @editor.handleButtonPress(e.currentTarget.id)
       )
+
+
+
 
 
     }
 
     @editor.buttons[key] = new Button(value, @handleButtonPress) for key, value of buttons
+
 
 
 

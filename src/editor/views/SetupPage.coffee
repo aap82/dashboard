@@ -16,6 +16,9 @@ LoadDashboard = observer(({viewStore, onClick}) =>
 )
 
 class SetupPage extends React.Component
+  constructor: (props) ->
+    super props
+
 
   render: ->
     {viewStore} = @props

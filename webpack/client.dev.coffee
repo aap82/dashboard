@@ -41,7 +41,6 @@ devConfig =
     filename: 'bundle.js'
   module:
     rules: [
-#      { test: /\.js$/, use: ['babel-loader'], exclude: /node_modules/},
       { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: paths.src},
       { test: /\.coffee$/, loader: ['happypack/loader?id=coffee'], include: paths.src }
       { test: /\.(css|scss)$/, use: ['style-loader','css-loader', 'sass-loader'] }
@@ -65,14 +64,15 @@ devConfig =
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
-
+    new webpack.HotModuleReplacementPlugin()
     new webpack.NamedModulesPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
       filename: "vendors.js"
       minChunks: Infinity
     })
-    new webpack.HotModuleReplacementPlugin()
+
   ]
 
 config = merge(devConfig, baseConfig)

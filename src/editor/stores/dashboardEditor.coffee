@@ -1,65 +1,35 @@
 t = require '../LeftPanel/buttons/types'
-{extendObservable, action, computed, toJS, observable} = require 'mobx'
+{extendObservable, action, toJS} = require 'mobx'
 WidgetEditor = require './widgetEditor'
 ButtonContainer = require '../components/ButtonContainer'
-hexToRgba = require('hex-rgba')
 Dashboard = require './DashboardView'
-EditableWidget = require './Widget'
-EditableObject = require './EditableObject'
-DashboardModel = require '../../models/Dashboard'
 buttons = require '../LeftPanel/buttons/buttons'
-
-dashboard = DashboardModel.create()
-dashboard.widgetProps =
-  backgroundColor: "#fff"
-  backgroundAlpha: 100
-  fontColor: "#fff"
-  borderRadius: 2
-  cardDepth: 2
-
+{createViewModel} = require('mobx-utils')
 widgetProps =
-  backgroundColor: "#fff"
+  backgroundColor: "#ff525b"
   backgroundAlpha: 100
-  fontColor: "#fff"
+  color: "#fff"
   borderRadius: 2
   cardDepth: 2
-class DashboardHistory
-  class Memento
-    constructor:  ->
-      @dashboard = {}
-  constructor:  ->
-    @dashboard = {}
-  save: (dashboard) ->
-    console.log dashboard
-    memento = new Memento @dashboard
-    @dashboard = dashboard
-    memento
-  restore: (memento) ->
-    @dashboard = memento.dashboard
-    return
-
-
 
 class DashboardEditor extends Dashboard
-
-
   constructor:  ->
-    @history = new DashboardHistory({})
+    super()
     @createId = 500
     @devices = []
     @newLayout = []
-    super()
     extendObservable @, {
       buttons: {}
       isDashboardStyleDefault: no
       isWidgetStyleDefault: no
       create: action((title, type) ->
         @createId++
-        dashboard = DashboardModel.create(title, type)
-        dashboard.widgetProps = widgetProps
-        dashboard.id = @createId
-        @setProps(dashboard)
-        dashboard
+
+        @initDashboard(@createId, title, type)
+
+
+#        console.log model
+
       )
       loadDashboard: action((id) ->
         dashboard = @getDashboardById(id)
@@ -71,16 +41,20 @@ class DashboardEditor extends Dashboard
         @newLayout = []
         @id = -1
       )
+
       deleteWidget: action((widget) ->
         WidgetEditor.stopEditing()
         @widgets.remove(widget)
       )
-      addWidget: action(=>
-        @layouts.replace(@newLayout)
-        WidgetEditor.key++
-        @layouts.push WidgetEditor.layout
-        @devices.push widget.device.id
+      addWidget: action(->
+        @viewModel.layouts.replace(@newLayout)
+        widget = WidgetEditor.getNewWidget(widgetProps)
+        layout = WidgetEditor.layout
+        @layouts.push layout
         @widgets.push widget
+        @setProp('layouts', @layouts)
+        @setProp('widgets', @widgets)
+
         WidgetEditor.reset()
       )
 
@@ -100,6 +74,36 @@ class DashboardEditor extends Dashboard
           @buttons[key].show() if button.hideOnEdit
         @isEditing = no
         return
+      )
+
+      handleButtonPress: action((id) ->
+        console.log id
+        switch id
+          when t.INC_CARD_DEPTH
+            break if @viewModel.widgetProps.cardDepth is 5
+            value = @viewModel.widgetProps.cardDepth
+            value++
+            @setWidgetProp('cardDepth', value)
+            break
+          when t.DEC_CARD_DEPTH
+            break if @viewModel.widgetProps.cardDepth is 0
+            value = @viewModel.widgetProps.cardDepth
+            value--
+            @setWidgetProp('cardDepth', value)
+            break
+          when t.INC_BORDER_RADIUS
+            value = @viewModel.widgetProps.borderRadius
+            value++
+            @setWidgetProp('borderRadius', value)
+            break
+          when t.DEC_BORDER_RADIUS
+            break if @viewModel.widgetProps.borderRadius is 0
+            value = @viewModel.widgetProps.borderRadius
+            value--
+            @setWidgetProp('borderRadius', value)
+            break
+
+
       )
 
 

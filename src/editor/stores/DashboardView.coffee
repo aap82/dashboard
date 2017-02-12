@@ -2,12 +2,12 @@
 
 EditableObject = require './EditableObject'
 DashboardModel = require '../../models/Dashboard'
-
+hexToRgba = require 'hex-rgba'
 dashboard = DashboardModel.create()
 dashboard.widgetProps =
-  backgroundColor: "#fff"
+  backgroundColor: "#ff525b"
   backgroundAlpha: 100
-  fontColor: "#fff"
+  color: "#fff"
   borderRadius: 2
   cardDepth: 2
 
@@ -15,10 +15,10 @@ dashboard.widgetProps =
 
 class Dashboard extends EditableObject
   constructor: ->
+    @model = toJS(dashboard)
     extendObservable(@, dashboard)
     super()
     extendObservable @, {
-      dashboardStyle: computed(-> toJS(@style))
       widgetStyleProps: computed(->
         backgroundColor: hexToRgba(@widgetProps.backgroundColor, @widgetProps.backgroundAlpha)
         borderRadius: @widgetProps.borderRadius

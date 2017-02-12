@@ -11,48 +11,6 @@ class EditorView
   constructor:  ->
     @fetch = null
     extendObservable @, {
-      isModelOpen: no
-      activeModel: ''
-      modalTitle: ''
-      iconName: ''
-      closeModal: action(->
-        @activeModal = ''
-        @modalTitle = ''
-        @iconName = ''
-        @isModelOpen = no
-      )
-
-      showAddNewWidgetDialog: action(->
-        WidgetEditor.resetAddWidgetDialog()
-        @activeModal = 'addWidget'
-        @modalTitle = 'Add Widget'
-        @iconName = 'plus'
-        @isModelOpen = yes
-      )
-
-      showEditWidgetDialog: action(->
-        @activeModal = 'editWidget'
-        @modalTitle = 'Edit Widget'
-        @iconName = 'edit'
-        @isModelOpen = yes
-      )
-
-      showConfirmDashboardDeleteDialog: action(->
-        @activeModal = 'deleteDashboard'
-        @modalTitle = 'Confirm Delete'
-        @iconName = 'warning-sign'
-        @isModelOpen = yes
-
-      )
-
-      showDiscardDashboardChangesDialog: action(->
-        @activeModal = 'discardDashboardChanges'
-        @modalTitle = 'Confirm Discarding Changes'
-        @iconName = 'warning-sign'
-        @isModelOpen = yes
-
-      )
-
 
       loadDashboard: action((id) =>
         @selectedDashboardId = id

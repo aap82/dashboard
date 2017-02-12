@@ -1,16 +1,17 @@
-
+DialogComponentContainer = require '../components/DialogComponent'
 {inject, observer} = require 'mobx-react'
-{crel} = require 'teact'
+{crel, div} = require 'teact'
 EditorPage = require './EditorPage'
 SetupPage = require './SetupPage'
 
-EditorApp = observer(({viewStore}) =>
-  displayName: 'App'
-  switch viewStore.currentPageView
-    when 'SetupPage' then return crel SetupPage
-    when 'EditorPage' then return crel EditorPage
+App = observer(({viewState}) ->
+  div ->
+    crel DialogComponentContainer
+    switch viewState.visiblePage
+      when 'setup' then return crel SetupPage
+      when 'editor' then return crel EditorPage
 
 )
 
-
-module.exports = inject('viewStore')(EditorApp)
+App.displayName = 'App'
+module.exports = inject('viewStore', 'viewState')(App)

@@ -76,15 +76,6 @@ InputNewWidgetLabel = observer(({widgetEditor, onChange}) ->
 
 
 class AddNewWidgetDialogContent extends React.Component
-  onNewWidgetDevicePlatformChange: (e) => @props.widgetEditor.changeSelectedDevicePlatform(e.target.value)
-  onNewWidgetTypeChange: (e) => @props.widgetEditor.changeSelectedWidgetType(e.target.value)
-  onNewDeviceChange: (e) => @props.widgetEditor.changeSelectedDevice(e.target.value)
-  onNewWidgetLabelChange: (value) => @props.widgetEditor.changeNewWidgetLabel(value)
-  addNewWidget: =>
-    @props.editor.addWidget()
-    @props.modal.closeModal()
-  cancelAddNewWidget: => @props.modal.closeModal()
-
   render: ->
     {widgetEditor} = @props
     console.log widgetEditor.selectedWidgetProperties
@@ -107,7 +98,14 @@ class AddNewWidgetDialogContent extends React.Component
             intent: Intent.DANGER
             className: 'pt-large'
             onClick: @cancelAddNewWidget
-
+  onNewWidgetDevicePlatformChange: (e) => @props.widgetEditor.changeSelectedDevicePlatform(e.target.value)
+  onNewWidgetTypeChange: (e) => @props.widgetEditor.changeSelectedWidgetType(e.target.value)
+  onNewDeviceChange: (e) => @props.widgetEditor.changeSelectedDevice(e.target.value)
+  onNewWidgetLabelChange: (value) => @props.widgetEditor.changeNewWidgetLabel(value)
+  addNewWidget: =>
+    @props.editor.addWidget()
+    @props.modal.closeModal()
+  cancelAddNewWidget: => @props.modal.closeModal()
 
 module.exports = inject('widgetEditor', 'editor')(observer(AddNewWidgetDialogContent))
 
