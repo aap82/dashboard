@@ -1,6 +1,12 @@
-{extendObservable, action} = require 'mobx'
-DashboardModel = (id, title='New Dashboard', deviceType='tablet', defaults=null) ->
+{deserialize, update} = require 'serializr'
+{extendObservable, toJS} = require 'mobx'
+uuidV4 = require('uuid/v4')
+
+
+createDashboardObj = (id, title='New Dashboard', deviceType='tablet', defaults=null) ->
+  width = if deviceType is 'phone' then 500 else 1200
   return {
+    uuid: uuidV4()
     id: id
     title:  title
     deviceType:  deviceType
@@ -11,62 +17,33 @@ DashboardModel = (id, title='New Dashboard', deviceType='tablet', defaults=null)
     widgets:  []
     layouts:  []
     devices:  []
-    width:  if deviceType is 'phone' then 500 else 1200
-    backgroundColor: defaults?.backgroundColor ? '#be682e'
-    color: defaults?.color ? 'white'
+    width:  width
+    style:
+      position: 'relative'
+      height: '100%'
+      width:  width
+      backgroundColor: defaults?.backgroundColor ? '#be682e'
+      color: defaults?.color ? 'white'
   }
 
-WidgetProps = ->
-  return {
-    backgroundColor: "#ff525b"
-    backgroundAlpha: 100
-    color: "#fff"
-    borderRadius: 2
-    cardDepth: 2
-  }
-
-
-
-class Dashboard
-  constructor: (id, dashboard) ->
-    @id = id
-    @cols =  dashboard.cols
-    @marginX =  dashboard.marginX
-    @marginY  =  dashboard.marginY
-    @rowHeight = dashboard.rowHeight
-    @devices = dashboard.devices
-    extendObservable(@, {
-      title:  dashboard.title
-      deviceType:  dashboard.deviceType
-      widgets:  dashboard.widgets
-      layouts:  dashboard.layouts
-      width:  dashboard.width
-      backgroundColor: dashboard.backgroundColor
-      color: dashboard.color
-    })
-
-
-
-
-
-
-
-class DashboardStore_NEW
+class DashboardStore
   constructor: ->
     @dashboards = []
     @createId = 500
+    @activeRecord = -1
 
+  load: (d) ->
+    console.log 'child'
 
-  create: (props) ->
-    @createId++
-    dashboard = new DashboardModel(@createId, props.title, props.deviceType)
-    dashboard.widgetProps = new WidgetProps()
-#      new Dashboard(@createId, getNewDashboard(props.title, props.deviceType))
+  update: (id, dashboard) ->
+    idx = @dashboards.findIndex( (d) => d.id is id)
+    @dashboards[idx] = dashboard
+    return
 
-    @dashboards.push dashboard
-    return dashboard
-
-
+  delete: (id) ->
+    idx = @dashboards.findIndex( (d) => d.id is id)
+    @dashboards.splice(idx)
+    return
 
 
   getDashboardById: (id) ->
@@ -74,22 +51,10 @@ class DashboardStore_NEW
     @dashboards[idx]
 
 
-  load: (d) ->
-    console.log 'main'
-
-  getDashboards: ->
-    @dashboards
-
-  add: (dashboard) ->
-    @activeRecord = dashboard.id
-    console.log dashboard, @dashboards
-    @dashboards.push dashboard
-    return
 
 
 
-
-dashboardStore = new DashboardStore_NEW
+dashboardStore = new DashboardStore
 
 module.exports = dashboardStore
 

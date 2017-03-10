@@ -6,13 +6,15 @@ module.exports =
     iconName: 'arrow-left'
     className: 'pt-large pt-minimal'
     initiallyHidden: no
-    hideOnEdit: yes
+    disableOnEdit: yes
+    disableOnDirty: yes
   EDIT_DASHBOARD:
     id: t.EDIT_DASHBOARD
     iconName: 'edit'
     className: 'pt-large '
     intent: 'PRIMARY'
     loading: no
+    disabled: no
     initiallyHidden: no
     hideOnEdit: yes
   COPY_DASHBOARD:
@@ -26,9 +28,10 @@ module.exports =
     className: 'pt-large pt-fill'
     iconName: 'cross align-center'
     intent: 'PRIMARY'
-    hideOnDirty: yes
+    disableOnDirty: yes
     initiallyHidden: yes
     showOnEdit: yes
+    hideOnDirty: yes
   SAVE_DASHBOARD:
     id: t.SAVE_DASHBOARD
     iconName: 'floppy-disk'
@@ -39,6 +42,7 @@ module.exports =
     loading: no
     showOnEdit: yes
     enableOnDirty: yes
+    showOnDirty: yes
   DELETE_DASHBOARD:
     id: t.DELETE_DASHBOARD
     iconName: 'trash'
@@ -47,7 +51,7 @@ module.exports =
     initiallyHidden: yes
     disabled: no
     showOnEdit: yes
-    disableOnDirty: yes
+    hideOnDirty: yes
   DISCARD_CHANGES:
     id: t.DISCARD_CHANGES
     iconName: 'refresh'

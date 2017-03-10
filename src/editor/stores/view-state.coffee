@@ -7,6 +7,7 @@ t = require '../LeftPanel/buttons/types'
 class ViewState
   constructor: ({@modal, @editor, @store}) ->
     extendObservable @, {
+      dashboards: []
       selectedDashboardId: 0
       visiblePage: 'setup'
       setViewPageTo: action((view) -> if view in ['setup', 'editor'] then @visiblePage = view else return)

@@ -1,19 +1,15 @@
 ViewState = require './stores/view-state'
-dashboarboardStore_New = require './stores/store-dashboards'
-editorView = require './stores/view-editor'
+dashboards = require './stores/store-dashboards'
+editor = require './stores/view-editor'
 
+{setDefaultModelSchema, createModelSchema, primitive, reference, list, object, identifier, serialize, deserialize} = require 'serializr'
 
-
-
-ViewStore = require './stores/viewStore'
-DashboardStoreEditor = require './stores/dashboardStore'
-dashboardEditor = require './stores/dashboardEditor'
-widgets = require './stores/widgetEditor'
+widgets = require './stores/view-widgets'
 StateStore = require '../stores/StateStore'
 DeviceStore = require '../stores/DeviceStore'
 
 gqlFetch = require('../utils/fetch')('/graphql')
-modalStore = require('./stores/modalStore')
+modalStore = require('./stores/store-modals')
 
 loadDevicesAndStates = (devices) =>
   for device in devices
@@ -24,31 +20,23 @@ loadDevicesAndStates = (devices) =>
 
 
 exports.configureStores = (data) ->
-
+  console.log data
 
   loadDevicesAndStates(data.devicesSetup)
-  DashboardStoreEditor.init(data.dashboards, gqlFetch)
-  widgets.availablePlatforms = JSON.parse data.devicePlatforms.platforms
-  viewStore = new ViewStore({
-    modal: modalStore
-    editor: dashboardEditor
-    store: DashboardStoreEditor
-  })
-
-  viewState = new ViewState({
-    modal: modalStore
-    editor: editorView
-    store: dashboarboardStore_New
-  })
+  widgets.platforms = JSON.parse(data.devicePlatforms.platforms)
+  widgets.devices = DeviceStore.devices
 
   return {
-    viewState: viewState
-    editorView: editorView
-
+    viewState: new ViewState({
+      modal: modalStore
+      editor: editor
+      store: dashboards
+    })
+    editor: editor
+    widgets: widgets
     modal: modalStore
     devices: DeviceStore
     states: StateStore
-    editor: dashboardEditor
-    widgetEditor: widgets
-    viewStore: viewStore
+
+
   }

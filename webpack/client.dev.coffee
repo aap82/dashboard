@@ -42,7 +42,7 @@ devConfig =
   module:
     rules: [
       { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: paths.src},
-      { test: /\.coffee$/, loader: ['happypack/loader?id=coffee'], include: paths.src }
+      { test: /\.coffee$/, use: [ 'babel-loader', 'coffee-loader' ], exclude: /node_modules/ ,include: paths.src }
       { test: /\.(css|scss)$/, use: ['style-loader','css-loader', 'sass-loader'] }
     ]
   plugins: [
@@ -55,10 +55,10 @@ devConfig =
       id: 'js'
       loaders: [ 'babel-loader' ],
     })
-    new HappyPack({
-      id: 'coffee'
-      loaders: [ 'coffee-loader' ],
-    })
+#    new HappyPack({
+#      id: 'coffee'
+#      loaders: [ 'babel-loader', 'coffee-loader' ],
+#    })
     new webpack.optimize.OccurrenceOrderPlugin()
 
     new webpack.DefinePlugin({

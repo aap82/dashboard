@@ -1,20 +1,58 @@
-class DashboardModel
-  @create: (title, deviceType) ->
-    title:  title or 'Dashboard Title'
-    deviceType:  deviceType or 'tablet'
-    cols:  if @deviceType is 'phone' then 80 else 155
-    marginX:  0
-    marginY:  0
-    rowHeight: 5
-    widgets:  []
-    layouts:  []
-    devices:  []
-    style: 
-      position: 'relative'
-      height: '100%'
-      width:  if @deviceType is 'phone' then 500 else 1200
-      backgroundColor: '#be682e'
-      color: 'white'
+{createSimpleSchema, list, setDefaultModelSchema, custom, object, identifier, serialize, deserialize} = require 'serializr'
+{widgetSchema, WidgetModel} = require './Widget'
+setDefaultModelSchema(WidgetModel, widgetSchema)
+export layoutSchema = createSimpleSchema({
+  i: yes
+  w: yes
+  h: yes
+  x: yes
+  y: yes
+  minW: yes
+  minH: yes
+  static: yes
+})
+
+export styleSchema = createSimpleSchema({
+    position: yes
+    height: yes
+    width: yes
+    backgroundColor: yes
+    color: yes
+})
+
+export  class DashboardModel
+  constructor: ->
 
 
-module.exports = DashboardModel
+
+export dashboardSchema =
+  factory: ((context, json) =>  new DashboardModel)
+  props:
+    id: identifier()
+    cols: yes
+    marginX: yes
+    marginY: yes
+    rowHeight: yes
+    title: yes
+    deviceType: yes
+    width: yes
+    layouts: list(object(layoutSchema))
+    widgets: list(object(widgetSchema))
+    width: yes
+    backgroundColor: yes
+
+    widgetBorderRadius: yes
+    widgetCardDepth: yes
+    widgetBackgroundColor: yes
+    widgetBackgroundAlpha: yes
+    widgetFontColor: yes
+
+
+
+setDefaultModelSchema(DashboardModel, dashboardSchema)
+#
+#
+#exports.layoutSchema = layoutSchema
+#exports.dashboardSchema = dashboardSchema
+#exports.styleSchema = styleSchema
+#exports.Dashboard = Dashboard

@@ -1,62 +1,98 @@
 React = require 'react'
 {crel, div, br, text, input} = require 'teact'
-{ observer} = require 'mobx-react'
+{ inject, observer} = require 'mobx-react'
 {Button} = require('@blueprintjs/core')
-{WidgetBackgroundColorPicker, WidgetFontColorPicker} = require './ColorPicker'
-ButtonContainer = require '../components/ButtonContainer'
+MenuButton = require './../components/MenuButton'
+ColorPickerComponent = require './ColorPicker'
+t = require './buttons/types'
 
-WidgetProp = observer(({id, editor, widgetProps, button1, button2}) =>
-  div className: 'col-xs-6 number-input-container', =>
+
+WidgetProp = observer(({id, editor, dashboard, button1, button2, onClick}) =>
+  div className: 'col-xs-6 number-input-container', ->
     div className: 'row middle end', ->
-      div className: 'input-section', =>
+      div className: 'input-section', ->
         input
           id: id
           className: 'pt-input pt-rtl number-input'
-          value: widgetProps[id]
+          value: dashboard[id]
           type: 'text'
           onChange: -> return
           disabled: !editor.isEditing
           autoFocus: yes
-      crel ButtonContainer, button: button1
-      crel ButtonContainer, button: button2
+      crel MenuButton, buttons: [button1], editor: editor, onClick: onClick
+      crel MenuButton, buttons: [button2], editor: editor, onClick: onClick
 
 )
 
 WidgetProp.displayName = 'WidgetProp'
-
 class BaseWidgetPropertiesContent extends React.Component
-  setColorProps: =>
-    console.log 'hi'
   render: ->
-    {editorView} = @props
-    {widgetProps} = editorView
-    {color, backgroundColor, backgroundAlpha} = widgetProps
-    {isEditing} = editorView
-    {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, DEC_CARD_DEPTH } = editorView.buttons
-    getProps = (id, button1, button2) ->
+    {editor} = @props
+    {widgetProps, isEditing, dashboard} = editor
+    {background, fontColor} = widgetProps
+    {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, ADD_NEW_WIDGET, DEC_CARD_DEPTH } = editor.buttons
+    getProps = (id, button1, button2) =>
       id: id
-      editor: editorView
-      widgetProps: widgetProps
+      editor: editor
+      dashboard: dashboard
       button1: button1
       button2: button2
+      onClick: @handleClick
     div className: 'properties-section', =>
       div className: 'title-row', ->
         crel Button,
-          text: 'Base Widget Properties'
+          text: 'Widgets'
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
       div className: 'content', =>
-        crel WidgetBackgroundColorPicker
-        crel WidgetFontColorPicker
-        div className: 'widget-props row middle between', ->
+        crel MenuButton, buttons: [ADD_NEW_WIDGET], editor: editor, onClick: @handleClick
+        br()
+        crel ColorPickerComponent, picker: background, isEditing: isEditing
+        crel ColorPickerComponent, picker: fontColor, isEditing: isEditing
+        div className: 'widget-props row middle between', =>
           text 'Border Radius'
-          crel WidgetProp, getProps('borderRadius', INC_BORDER_RADIUS, DEC_BORDER_RADIUS)
+          crel WidgetProp, getProps('widgetBorderRadius', INC_BORDER_RADIUS, DEC_BORDER_RADIUS)
         div className: 'widget-props row middle between', ->
           text 'Card Depth'
-          crel WidgetProp, getProps('cardDepth', INC_CARD_DEPTH, DEC_CARD_DEPTH)
+          crel WidgetProp, getProps('widgetCardDepth', INC_CARD_DEPTH, DEC_CARD_DEPTH)
         br()
 
+  handleClick: (e) =>
+    {editor} = @props
+    {dashboard} = editor
+    {widgetProps} = dashboard
+    switch e.currentTarget.id
+      when t.ADD_NEW_WIDGET
+        if editor.isEditing then @props.modal.open('addWidget')
+        break
+      when t.INC_CARD_DEPTH
+        break if dashboard.widgetCardDepth is 5
+        value = dashboard.widgetCardDepth
+        value++
+        dashboard.widgetCardDepth = value
+        break
+      when t.DEC_CARD_DEPTH
+        break if dashboard.widgetCardDepth is 0
+        value = dashboard.widgetCardDepth
+        value--
+        dashboard.widgetCardDepth = value
+        break
+      when t.INC_BORDER_RADIUS
+        value = dashboard.widgetBorderRadius
+        value++
+        dashboard.widgetBorderRadius = value
+        break
+      when t.DEC_BORDER_RADIUS
+        break if dashboard.widgetBorderRadius is 0
+        value = dashboard.widgetBorderRadius
+        value--
+        dashboard.widgetBorderRadius = value
+        break
 
 
 
-module.exports = BaseWidgetPropertiesContent
+
+
+
+
+module.exports = inject('modal')(observer(BaseWidgetPropertiesContent))

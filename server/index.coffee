@@ -14,8 +14,7 @@ Pug = require('koa-pug')
 
 SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
-
-
+device_grabber = require './middleware/device-grabber'
 app = new koa()
 router = new koaRouter()
 pug = new Pug({
@@ -25,8 +24,7 @@ pug = new Pug({
 
 pug.use(app)
 app.use(koaBody())
-app.use(require('./utils/device')())
-
+app.use(device_grabber())
 
 
 #
@@ -44,8 +42,8 @@ app.use(require('./utils/device')())
 start_server = ->
   graphQLoptions = require('./graphql').getGraphQLOptions(OperationStore)
   router.post('/graphql', graphqlKoa(graphQLoptions))
-
   app.use(require('./routes').routes())
+  app.use(require('./routes').allowedMethods())
   app.use(router.routes())
   app.use(router.allowedMethods())
 

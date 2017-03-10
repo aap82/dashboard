@@ -1,10 +1,13 @@
+async = require('asyncawait/async')
+await = require('asyncawait/await')
+
 module.exports = ->
-  (ctx, next) ->
+  async (ctx, next) ->
+    type = ctx.deviceType
     url = ctx.url
-    type = ctx.device.type
     if url in ['/editor', '/graphiql'] and type is 'desktop' or
     url is '/dashboard' and type in ['tablet', 'phone']
-      return next()
+      await next()
     else if type is 'desktop'
       ctx.redirect '/editor'
     else if type in ['tablet', 'phone']

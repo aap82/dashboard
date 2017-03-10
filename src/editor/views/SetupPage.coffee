@@ -1,19 +1,9 @@
 {crel, div, h2, h3, br} = require 'teact'
 {inject, observer} = require 'mobx-react'
 React = require 'react'
-SelectDashboardDropDown = require '../components/SelectDashboardDropDown'
+#SelectDashboardDropDown = require '../components/SelectDashboardDropDown'
 { Button, Intent} = require('@blueprintjs/core')
 CreateNewDashboard = require '../components/CreateNewDashboard'
-LoadDashboard = observer(({viewStore, onClick}) =>
-  crel Button,
-    disabled: viewStore.selectedDashboardId is 0
-    className: 'pt-large'
-    iconName: 'pt-icon-dashboard',
-    intent: Intent.PRIMARY,
-    onClick: onClick
-    text: 'Load'
-
-)
 
 class SetupPage extends React.Component
   constructor: (props) ->
@@ -27,14 +17,23 @@ class SetupPage extends React.Component
         h2 'Select Dashboard'
         br()
         div className: 'pt-control-group pt-fill', =>
-          crel SelectDashboardDropDown, viewStore: viewStore
-          crel LoadDashboard, viewStore: viewStore, onClick: @handleLoadDashboard
+          #crel SelectDashboardDropDown, viewState: viewState
+          #crel LoadDashboard, viewState: viewState, onClick: @handleLoadDashboard
         br()
         h2 'or'
         br()
-        crel CreateNewDashboard, viewStore: viewStore
+        crel Button,
+          intent: Intent.SUCCESS
+          className: 'create-new-dashboard-button pt-large'
+          iconName: 'grid-view'
+          text: 'Create New Dashboard'
+          onClick: @handleAddNewDashboard
+
   handleLoadDashboard: =>
     @props.viewStore.showEditorPage()
 
+  handleAddNewDashboard: =>
+    @props.modal.open('addDashboard')
 
-module.exports = inject('viewStore')(observer(SetupPage))
+
+module.exports = inject('viewState', 'modal')(observer(SetupPage))

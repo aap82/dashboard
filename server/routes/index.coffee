@@ -3,36 +3,26 @@ getenv = require('getenv')
 paths = require('../../config/paths')
 router = new Router()
 commands = require './commands'
-device_handler = require('../middleware/device-router')
-
-
+device_router = require('../middleware/device-router')
+fetch_data = require('../middleware/fetch-data')
 
 
 
 
 router.use commands.routes(), commands.allowedMethods()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+router.get('*', device_router())
+router.get(['/editor', '/dashboard'], fetch_data())
 
 require('./graphiql')(router) if getenv('NODE_ENV') is 'development'
 
 
 
-router.get('*', device_handler())
-router.get '/editor', require('./editor')
+
+router.get '/editor', (ctx) ->
+  ctx.render 'editor', {
+    state: JSON.stringify ctx.state
+  }
 
 
 

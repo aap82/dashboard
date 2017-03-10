@@ -2,7 +2,6 @@
 {observer} = require 'mobx-react'
 
 ToggleSwitch = observer((props) =>
-  console.log props
   div className: 'card', ->
     label ->
       input
@@ -13,4 +12,6 @@ ToggleSwitch = observer((props) =>
       span className: 'toggle'
 )
 
+
+ToggleSwitch.displayName = 'ToggleSwitch'
 module.exports = ToggleSwitch

@@ -14,4 +14,4 @@ App = observer(({viewState}) ->
 )
 
 App.displayName = 'App'
-module.exports = inject('viewStore', 'viewState')(App)
+module.exports = inject('viewState')(App)

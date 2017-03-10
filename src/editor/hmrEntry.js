@@ -9,6 +9,11 @@ import {Provider, useStaticRendering} from 'mobx-react'
 FocusStyleManager.onlyShowFocusOnTabs()
 const { configureDevtool } = require('mobx-react-devtools')
 
+
+const {whyDidYouUpdate} = require('why-did-you-update')
+// whyDidYouUpdate(React)
+
+
 configureDevtool({
   logEnabled: false,
   updatesEnabled: false,

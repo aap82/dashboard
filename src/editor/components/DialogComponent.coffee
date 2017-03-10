@@ -1,29 +1,23 @@
 {crel, div} = require 'teact'
 {inject, observer} = require 'mobx-react'
 {Dialog} = require('@blueprintjs/core')
-{getDialog} = require '../stores/modalStore'
-AddNewWidget = require './Dialogs/AddNewWidget'
-EditWidget = require './Dialogs/EditWidget'
-ConfirmDashboardDelete = require './Dialogs/ConfirmDashboardDelete'
-DiscardDashboardChanges = require './Dialogs/DiscardDashboardChanges'
 
 DialogComponentContainer = observer(({modal}) =>
   crel Dialog,
     className: 'pt-dark'
+    lazy: yes
+    style: modal.style
     isCloseButtonShown: no
-    canEscapeKeyClose: yes
-    canOutsideClickClose: no
-    transitionDuration: 200
-    title: modal.modalTitle
+    canEscapeKeyClose: if modal.forceClose then no else yes
+    canOutsideClickClose: if modal.forceClose then no else yes
+    transitionDuration: 150
+    onClose: (-> modal.close() if modal.forceClose )
+    title: modal.title
     iconName: modal.iconName
-    isOpen: modal.isModelOpen, =>
+    isOpen: modal.isOpen, ->
       div 'pt-dialog-body', ->
-        switch modal.activeModal
-          when 'addWidget' then return getDialog()
-          when 'editWidget' then return crel EditWidget, modal: modal
-          when 'deleteDashboard' then return crel ConfirmDashboardDelete, modal: modal
-          when 'discardDashboardChanges' then return crel DiscardDashboardChanges, modal: modal
-          else return null
+        modal.component
+
 
 )
 

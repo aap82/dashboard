@@ -1,7 +1,7 @@
 express = require('express')
 router = express.Router()
 sse = require './utils/sse'
-Store = require '../store'
+Store = require '../store/index'
 Store.setSSE(sse)
 require('../platforms/pimatic/updates').start(Store)
 #require('../platforms/nest/updates').start()
