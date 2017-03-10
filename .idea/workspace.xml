@@ -2,79 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b163a4bf-b6a6-41aa-96ec-1db2feacf279" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/index.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/platforms/nest/index.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/platforms/nest/updates.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/platforms/pimatic/commands.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/platforms/pimatic/pimaticDeviceTransform.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/platforms/pimatic/updates.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/routes/dashboard.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/routes/editor.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/routes/index.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/store/index.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/views/development/editor.pug" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/server/views/production/editor.pug" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/middleware/device-grabber.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/middleware/fetch-data.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/editor/stores/store-modals.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/editor/stores/store-widgets.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/widgets/getWidget.coffee" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/editor.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/utils/device.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/components/ButtonContainer.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/DashboardView.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/EditableObject.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/Widget.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/dashboardEditor.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/dashboardStore.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/editorViewStore.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/modalStore.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/view-setup.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/widgetStore.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/widgets/index.coffee" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/middleware/commands.coffee" afterPath="$PROJECT_DIR$/old/server/middleware/commands.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/middleware/deviceTypeHandler.coffee" afterPath="$PROJECT_DIR$/old/server/middleware/deviceTypeHandler.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/middleware/updates.coffee" afterPath="$PROJECT_DIR$/old/server/middleware/updates.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/middleware/utils/sse.coffee" afterPath="$PROJECT_DIR$/old/server/middleware/utils/sse.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/utils/lib/device-parser.coffee" afterPath="$PROJECT_DIR$/server/utils/device-parser.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/stores/buttonStore.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/store-buttons.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/stores/widgetEditor.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/view-widgets.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/database/models/Dashboard.coffee" afterPath="$PROJECT_DIR$/server/database/models/Dashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/index.coffee" afterPath="$PROJECT_DIR$/server/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware/device-router.coffee" afterPath="$PROJECT_DIR$/server/middleware/device-router.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/index.coffee" afterPath="$PROJECT_DIR$/server/routes/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" afterPath="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/ConfirmDashboardDelete.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/DiscardDashboardChanges.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/hmrEntry.js" afterPath="$PROJECT_DIR$/src/editor/hmrEntry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/store.coffee" afterPath="$PROJECT_DIR$/src/editor/store.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/store-dashboards.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/store-dashboards.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/view-editor.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/view-editor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/view-state.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/view-state.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/App.coffee" afterPath="$PROJECT_DIR$/src/editor/views/App.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Widget.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Widget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/models/Dashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Widget.coffee" afterPath="$PROJECT_DIR$/src/models/Widget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/ButtonWidget/props.coffee" afterPath="$PROJECT_DIR$/src/widgets/ButtonWidget/props.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" afterPath="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" afterPath="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/Widget.coffee" afterPath="$PROJECT_DIR$/src/widgets/Widget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" afterPath="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/client.dev.coffee" afterPath="$PROJECT_DIR$/webpack/client.dev.coffee" />
     </list>
     <list id="16d32deb-3621-4f90-a184-0cf79608d48e" name="idea" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -751,7 +679,7 @@
       <workItem from="1488328360109" duration="3793000" />
       <workItem from="1488617590112" duration="2000" />
       <workItem from="1488621032289" duration="18000" />
-      <workItem from="1488948972337" duration="2532000" />
+      <workItem from="1488948972337" duration="2549000" />
     </task>
     <task id="LOCAL-00001" summary="second commit&#10;">
       <created>1485835955798</created>
@@ -921,11 +849,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486942125650</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Everything working.">
+      <created>1489113442355</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1489113442355</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="622366000" />
+    <option name="totallyTimeSpent" value="622383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1030" extended-state="6" />
