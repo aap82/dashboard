@@ -1,95 +1,76 @@
-{setDefaultModelSchema, identifier, object, deserialize, list} = require 'serializr'
-{extendObservable, computed, toJS, computed, runInAction} = require 'mobx'
-ObservableClass = require '../../models/Observable'
-{dashboardSchema, layoutSchema, Dashboard} = require '../../models/Dashboard'
-{colorPickers, colorPickerSchema, ColorPickerModel} = require './ColorPickers'
-{widgetPropsSchema, defaultWidgetProps} = require './WidgetProps'
-{widgetEditorSchema, WidgetEditorModel} = require '../models/Widget'
+{setDefaultModelSchema, identifier, object, createSimpleSchema, list} = require 'serializr'
+{extendObservable} = require 'mobx'
+{widgetSchema} = require './Widget'
 
 
-dashboardBackground = deserialize(colorPickerSchema, {
-  id: 'dashboardBackground'
-  target: 'backgroundColor'
-  text: 'Background Color'
-  color: '#5c5b58'
-  alpha: 100
+
+layoutSchema = createSimpleSchema({
+  i: yes
+  w: yes
+  h: yes
+  x: yes
+  y: yes
+  minW: yes
+  minH: yes
+  static: yes
 })
 
-class DashboardEditorModel
-  constructor: (args) ->
-    @background = args.background
+class DashboardModel
+  constructor: ->
     extendObservable @, {
       backgroundColor: '#fff'
-
       title: ''
       deviceType: ''
+      height: 0
       width: 0
-      widgetProps: args.widgetProps
-      widgets: []
+      marginX: 0
+      marginY: 0
+      cols: 155
+      rowHeight: 5
       layouts: []
-      style: computed(=>
-        position: 'relative'
-        height: '100%'
-        width:  @width
-        backgroundColor: @background.color
-        color: "#fff"
-      )
-      backgroundColor: computed(=>  @background.color)
+      widgets: []
+      deviceType: 'tablet'
+      userDevice: ''
       widgetBorderRadius: 2
       widgetCardDepth: 2
-      widgetBackgroundColor: computed(=> @widgetProps.background.color)
-      widgetBackgroundAlpha: computed(=> @widgetProps.background.alpha)
-      widgetFontColor: computed(=> @widgetProps.fontColor.color)
-
-
+      widgetBackgroundColor: '#be682e'
+      widgetBackgroundAlpha: 100
+      widgetFontColor: '#fff'
     }
 
 
 
 
 
-export dashboardEditorSchema =
-  factory: ((context) -> return new DashboardEditorModel(context.args))
+export dashboardSchema =
+  factory: ((context) -> return new DashboardModel(context.args))
   props:
-#    props:
-    id: identifier()
+
+#    id: identifier()
     uuid: identifier()
+    deviceId: yes
     cols: yes
     marginX: yes
     marginY: yes
     rowHeight: yes
     title: yes
+    userDevice: yes
     deviceType: yes
+    height: yes
     width: yes
-
-    widgets: list(object(widgetEditorSchema))
-    background: object(ColorPickerModel)
-    widgetProps: object(widgetPropsSchema)
+    backgroundColor: yes
     layouts: list(object(layoutSchema))
+    widgets: list(object(widgetSchema))
+    widgetBorderRadius: yes
+    widgetCardDepth: yes
+    widgetBackgroundColor: yes
+    widgetBackgroundAlpha: yes
+    widgetFontColor: yes
 
-    
 
 
-setDefaultModelSchema(DashboardEditorModel, dashboardEditorSchema)
 
-export DashboardEditor = deserialize(dashboardEditorSchema, {
-    id: -1
-    title: 'Dashboard Editor'
-    deviceType: 'Tablet'
-    cols: 155
-    marginX: 0
-    marginY: 0
-    rowHeight: 5
-    widgets: []
-    layouts: []
-    devices: []
-    width: 1200
-    
-    
-  },
-  (-> return),
-  {
-    background: dashboardBackground
-    widgetProps: defaultWidgetProps
-  }
-)
+
+setDefaultModelSchema(DashboardModel, dashboardSchema)
+
+export Dashboard = new DashboardModel

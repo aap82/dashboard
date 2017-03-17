@@ -1,7 +1,8 @@
-{createSimpleSchema, list, setDefaultModelSchema, custom, object, identifier, serialize, deserialize} = require 'serializr'
-{widgetSchema, WidgetModel} = require './Widget'
-setDefaultModelSchema(WidgetModel, widgetSchema)
-export layoutSchema = createSimpleSchema({
+{setDefaultModelSchema, identifier, object, createSimpleSchema, list} = require 'serializr'
+{extendObservable} = require 'mobx'
+{widgetSchema} = require './Widget'
+
+layoutSchema = createSimpleSchema({
   i: yes
   w: yes
   h: yes
@@ -12,23 +13,36 @@ export layoutSchema = createSimpleSchema({
   static: yes
 })
 
-export styleSchema = createSimpleSchema({
-    position: yes
-    height: yes
-    width: yes
-    backgroundColor: yes
-    color: yes
-})
-
-export  class DashboardModel
+class DashboardModel
   constructor: ->
+    extendObservable @, {
+      backgroundColor: '#fff'
+      title: ''
+      deviceType: ''
+      width: 0
+      marginX: 0
+      marginY: 0
+      cols: 155
+      rowHeight: 5
+      layouts: []
+      widgets: []
+      deviceType: 'tablet'
+      widgetBorderRadius: 2
+      widgetCardDepth: 2
+      widgetBackgroundColor: '#be682e'
+      widgetBackgroundAlpha: 100
+      widgetFontColor: '#fff'
+    }
+
+
 
 
 
 export dashboardSchema =
-  factory: ((context, json) =>  new DashboardModel)
+  factory: ((context) -> return new DashboardModel(context.args))
   props:
-    id: identifier()
+#    id: identifier()
+    uuid: identifier()
     cols: yes
     marginX: yes
     marginY: yes
@@ -36,11 +50,9 @@ export dashboardSchema =
     title: yes
     deviceType: yes
     width: yes
+    backgroundColor: yes
     layouts: list(object(layoutSchema))
     widgets: list(object(widgetSchema))
-    width: yes
-    backgroundColor: yes
-
     widgetBorderRadius: yes
     widgetCardDepth: yes
     widgetBackgroundColor: yes
@@ -49,10 +61,8 @@ export dashboardSchema =
 
 
 
+
+
 setDefaultModelSchema(DashboardModel, dashboardSchema)
-#
-#
-#exports.layoutSchema = layoutSchema
-#exports.dashboardSchema = dashboardSchema
-#exports.styleSchema = styleSchema
-#exports.Dashboard = Dashboard
+
+export Dashboard = new DashboardModel

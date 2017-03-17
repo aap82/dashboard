@@ -1,8 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b163a4bf-b6a6-41aa-96ec-1db2feacf279" name="Default" comment="">
+    <list default="true" id="b163a4bf-b6a6-41aa-96ec-1db2feacf279" name="Default" comment="Everything working.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/editor/stores/editorStore.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/database/config.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/database/models/Dashboard.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/database/models/index.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/database/sequelize.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/graphql/mutations/dashboard.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/graphql/queries/dashboard.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/graphql/types/dashboard.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/graphql/types/editor.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/graphql/types/widget.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/middleware/fetch-data.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/models/ColorPickers.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/models/WidgetProps.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/store-dashboards.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/view-editor.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/stores/view-state.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/stores/Editable.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/stores/StateStore.coffee" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/server/graphql/client/mutations.coffee" afterPath="$PROJECT_DIR$/server/graphql/store/mutations.coffee" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/server/graphql/client/queries.coffee" afterPath="$PROJECT_DIR$/server/graphql/store/queries.coffee" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/stores/store-buttons.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/buttonsStore.coffee" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/stores/store-modals.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/modalsStore.coffee" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/stores/view-widgets.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/widgetsStore.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env_example" afterPath="$PROJECT_DIR$/.env_example" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/paths.coffee" afterPath="$PROJECT_DIR$/config/paths.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/graphql/index.coffee" afterPath="$PROJECT_DIR$/server/graphql/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/graphql/mutations/index.coffee" afterPath="$PROJECT_DIR$/server/graphql/mutations/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/graphql/queries/devices.coffee" afterPath="$PROJECT_DIR$/server/graphql/queries/devices.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/graphql/queries/index.coffee" afterPath="$PROJECT_DIR$/server/graphql/queries/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/graphql/types/devices.coffee" afterPath="$PROJECT_DIR$/server/graphql/types/devices.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/index.coffee" afterPath="$PROJECT_DIR$/server/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware/device-grabber.coffee" afterPath="$PROJECT_DIR$/server/middleware/device-grabber.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware/device-router.coffee" afterPath="$PROJECT_DIR$/server/middleware/device-router.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/dashboard.coffee" afterPath="$PROJECT_DIR$/server/routes/dashboard.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/graphiql.coffee" afterPath="$PROJECT_DIR$/server/routes/graphiql.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/index.coffee" afterPath="$PROJECT_DIR$/server/routes/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/store/index.coffee" afterPath="$PROJECT_DIR$/server/store/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/utils/sse-koa.coffee" afterPath="$PROJECT_DIR$/server/utils/sse-koa.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/utils/sse.coffee" afterPath="$PROJECT_DIR$/server/utils/sse.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dashboard/hmrEntry.js" afterPath="$PROJECT_DIR$/src/dashboard/hmrEntry.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" afterPath="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/hmrEntry.js" afterPath="$PROJECT_DIR$/src/editor/hmrEntry.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/models/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/models/Dashboard.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/models/Widget.coffee" afterPath="$PROJECT_DIR$/src/editor/models/Widget.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/store.coffee" afterPath="$PROJECT_DIR$/src/editor/store.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/store-widgets.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/store-widgets.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Widget.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Widget.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/models/Dashboard.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Widget.coffee" afterPath="$PROJECT_DIR$/src/models/Widget.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stores/DeviceStore.coffee" afterPath="$PROJECT_DIR$/src/stores/DeviceStore.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/global.scss" afterPath="$PROJECT_DIR$/src/styles/global.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/SwitchWidget/_switch-widget.scss" afterPath="$PROJECT_DIR$/src/widgets/SwitchWidget/_switch-widget.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" afterPath="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" afterPath="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/Widget.coffee" afterPath="$PROJECT_DIR$/src/widgets/Widget.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/components/Toggle/_toggle_switch.scss" afterPath="$PROJECT_DIR$/src/widgets/components/Toggle/_toggle_switch.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" afterPath="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/client.base.coffee" afterPath="$PROJECT_DIR$/webpack/client.base.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/client.dev.coffee" afterPath="$PROJECT_DIR$/webpack/client.dev.coffee" />
     </list>
     <list id="16d32deb-3621-4f90-a184-0cf79608d48e" name="idea" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,32 +91,45 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="dashboard" />
+  </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.3838447">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Dashboard.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/models/Dashboard.coffee">
+          <file leaf-file-name="editorStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/editorStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+                <state relative-caret-position="75">
+                  <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="view-editor.coffee" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/editor/stores/view-editor.coffee">
+          <file leaf-file-name="viewStore.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/viewStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="855">
-                  <caret line="123" column="20" lean-forward="false" selection-start-line="123" selection-start-column="10" selection-end-line="123" selection-end-column="20" />
+                <state relative-caret-position="300">
+                  <caret line="23" column="80" lean-forward="false" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Widget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/models/Widget.coffee">
+          <file leaf-file-name="TitleEditor.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="17" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="buttonsStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonsStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -53,11 +138,61 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Widget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/models/Widget.coffee">
+          <file leaf-file-name="modalsStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/modalsStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="15">
-                  <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+                <state relative-caret-position="-135">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="store.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/store.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UserDeviceTitle.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/UserDeviceTitle.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="450">
+                  <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EditableText.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/EditableText.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="queries.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/graphql/store/queries.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mutations.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/graphql/store/mutations.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="450">
+                  <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -66,25 +201,105 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="Widget.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/editor/models/Widget.coffee">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="editorStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/editorStore.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+                <state relative-caret-position="930">
+                  <caret line="122" column="72" lean-forward="true" selection-start-line="122" selection-start-column="72" selection-end-line="122" selection-end-column="72" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Dashboard.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="DashboardProperties.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Dashboard.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/editor/models/Dashboard.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="665">
-                  <caret line="88" column="4" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+                <state relative-caret-position="230">
+                  <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TitleEditor.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="17" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UserDeviceTitle.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/components/UserDeviceTitle.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SetupPage.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/editor/views/SetupPage.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="336">
+                  <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="viewStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/viewStore.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
                   <folding>
-                    <marker date="1488347784895" expanded="true" signature="563:675" ph="&quot;id&quot;: 'dashboardBackground'..." />
+                    <marker date="1489715775950" expanded="true" signature="923:924" ph="..." />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="store-widgets.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/store-widgets.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="modalsStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/modalsStore.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="buttonsStore.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonsStore.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -97,58 +312,44 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CoffeeScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dashboards</find>
-      <find>createModelSchema</find>
+      <find>r</find>
+      <find>remove</find>
+      <find>router</find>
+      <find>ctx</find>
+      <find>setRetry</find>
+      <find>deviceState</find>
+      <find>states</find>
+      <find>SelectPlatform</find>
+      <find>.map</find>
+      <find>AddOrEditWidgetDialog</find>
+      <find>GRAPHQL_ENDPOINT</find>
+      <find>deviceIp</find>
+      <find>DashboardEditorQuery</find>
+      <find>console.log</find>
+      <find>window</find>
+      <find>align-items</find>
+      <find>: String</find>
+      <find>device.</find>
+      <find>@display</find>
+      <find>setDisplayProps</find>
+      <find>@device</find>
       <find>device</find>
-      <find>inputLabel</find>
-      <find>console.</find>
-      <find>@widget.props</find>
-      <find>props</find>
-      <find>newWidget</find>
-      <find>@newDevice</find>
-      <find>w</find>
-      <find>DefaultWidgetProps</find>
-      <find>uuidV4</find>
-      <find>platforms</find>
+      <find>Button</find>
+      <find>setDas</find>
+      <find>deviceTyp</find>
+      <find>setDash</find>
       <find>widgets</find>
-      <find>types</find>
-      <find>@widgets</find>
-      <find>@props.widgets.type</find>
-      <find>defaultWidgetProps</find>
-      <find>background</find>
-      <find>= yes</find>
-      <find>: yes</find>
-      <find>args.widgetProps</find>
-      <find>widgetPropsSchema</find>
-      <find>dashboardBackground</find>
-      <find>widgetProps</find>
-      <find>widgetProps.</find>
-      <find>borderRadius</find>
-      <find>colorPickerSchema</find>
-      <find>widgetFont</find>
-      <find>DashboardEditor</find>
+      <find>@props.widgets</find>
+      <find>@</find>
+      <find>@devices</find>
     </findStrings>
     <replaceStrings>
-      <replace>title</replace>
-      <replace>editorView</replace>
-      <replace>= value</replace>
-      <replace>@widgetProps.</replace>
-      <replace>-&gt;</replace>
-      <replace>editorView.</replace>
-      <replace>type</replace>
-      <replace>widgets.widgetTypes</replace>
-      <replace>{inject} = require 'mobx-react'</replace>
-      <replace>=</replace>
-      <replace>:  yes</replace>
-      <replace>widgetProps</replace>
-      <replace>ctx.</replace>
-      <replace>@editor.</replace>
-      <replace>@</replace>
       <replace>initiallyDisabled:</replace>
       <replace>?</replace>
       <replace>editor</replace>
@@ -164,24 +365,39 @@
       <replace>dashboard.</replace>
       <replace>widgetBorderRadius</replace>
       <replace>computed(=&gt; @widgetProps</replace>
+      <replace>WidgetModel</replace>
+      <replace>widgetSchema</replace>
+      <replace>DashboardTC</replace>
+      <replace>id</replace>
+      <replace>body =</replace>
+      <replace>= require</replace>
+      <replace>&quot;</replace>
+      <replace>@</replace>
+      <replace>#</replace>
+      <replace>userDevice</replace>
+      <replace>DashboardEditorFields</replace>
+      <replace>text</replace>
+      <replace>@display</replace>
+      <replace>@props.</replace>
+      <replace>@device</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/server/graphql</dir>
       <dir>$PROJECT_DIR$/server/graphql/mutations</dir>
-      <dir>$PROJECT_DIR$/server</dir>
       <dir>$PROJECT_DIR$/</dir>
       <dir>$PROJECT_DIR$/src/editor/LeftPanel</dir>
       <dir>$PROJECT_DIR$/src/styles</dir>
       <dir>$PROJECT_DIR$/src/editor/</dir>
-      <dir>$PROJECT_DIR$/src</dir>
       <dir>$PROJECT_DIR$/src/editor</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/server</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="koa" />
+        <entry key="$PROJECT_DIR$" value="another" />
       </map>
     </option>
     <option name="PUSH_TAGS">
@@ -194,57 +410,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/middleware/device-grabber.coffee" />
-        <option value="$PROJECT_DIR$/server/index.coffee" />
-        <option value="$PROJECT_DIR$/server/middleware/fetch-data.coffee" />
-        <option value="$PROJECT_DIR$/server/middleware/device-router.coffee" />
-        <option value="$PROJECT_DIR$/server/routes/index.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/index.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/temp.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/Widget.coffee" />
-        <option value="$PROJECT_DIR$/server/utils/sse-koa.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/MenuButton.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/store-buttons.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/components/MenuButton.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/store-modals.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/components/DialogComponent.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/store.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/test.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/hmrEntry.js" />
-        <option value="$PROJECT_DIR$/src/editor/stores/tranformer.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Observable.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/store-dashboards.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/view-widgets.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/store-widgets.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/stores/view-state.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/ButtonWidget/props.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/webpack/client.dev.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/models/test.coffee" />
+        <option value="$PROJECT_DIR$/src/stores/DeviceStore.coffee" />
         <option value="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/components/Toggle/index.coffee" />
+        <option value="$PROJECT_DIR$/server/routes/graphiql.coffee" />
+        <option value="$PROJECT_DIR$/server/routes/editor.coffee" />
+        <option value="$PROJECT_DIR$/server/routes/dashboard.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/types/dashboard.coffee" />
+        <option value="$PROJECT_DIR$/server/views/development/editor.pug" />
+        <option value="$PROJECT_DIR$/server/views/development/register.pug" />
+        <option value="$PROJECT_DIR$/webpack/client.dev.coffee" />
+        <option value="$PROJECT_DIR$/config/paths.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/index.coffee" />
+        <option value="$PROJECT_DIR$/server/index.coffee" />
+        <option value="$PROJECT_DIR$/src/styles/global.scss" />
+        <option value="$PROJECT_DIR$/server/graphql/store/queries.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/mutations/index.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/models/UserDevice.coffee" />
+        <option value="$PROJECT_DIR$/src/register/Register.coffee" />
+        <option value="$PROJECT_DIR$/server/views/development/dashboard_setup.pug" />
+        <option value="$PROJECT_DIR$/src/dashboard/SelectDefaultDashboard.coffee" />
+        <option value="$PROJECT_DIR$/server/routes/index.coffee" />
+        <option value="$PROJECT_DIR$/server/middleware/device-grabber.coffee" />
+        <option value="$PROJECT_DIR$/server/middleware/device-router.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/queries/index.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/queries/mta.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/types/mta.coffee" />
+        <option value="$PROJECT_DIR$/server/routes/register.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/view-widgets.coffee" />
+        <option value="$PROJECT_DIR$/src/widgets/Widget.coffee" />
+        <option value="$PROJECT_DIR$/src/dashboard/views/Dashboard.coffee" />
         <option value="$PROJECT_DIR$/src/editor/views/Widget.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/views/App.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/ColorPicker.coffee" />
-        <option value="$PROJECT_DIR$/src/models/AttrNamesMap.Coffee" />
-        <option value="$PROJECT_DIR$/src/models/AttrNamesMap.coffee" />
-        <option value="$PROJECT_DIR$/server/database/models/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/widgets/SwitchWidget/props.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Widget.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/models/WidgetProps.coffee" />
-        <option value="$PROJECT_DIR$/src/models/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/models/ColorPickers.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/view-state.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/models/Dashboard.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
         <option value="$PROJECT_DIR$/src/editor/models/Dashboard.coffee" />
-        <option value="$PROJECT_DIR$/src/editor/models/Widget.coffee" />
         <option value="$PROJECT_DIR$/src/editor/stores/view-editor.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/DeviceTitle.coffee" />
+        <option value="$PROJECT_DIR$/server/graphql/store/mutations.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/widgetsStore.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/EditableText.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/components/UserDeviceTitle.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/store.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/editorStore.coffee" />
+        <option value="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
       </list>
     </option>
   </component>
@@ -311,6 +527,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -350,6 +567,86 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widgets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widgets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwitchWidget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widgets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="actions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -383,7 +680,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="register" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,6 +699,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -446,12 +765,175 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LeftPanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LeftPanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buttons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dialogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphql" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphql" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -491,6 +973,10 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="widgets">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -505,7 +991,87 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="editor">
+            <PATH_ELEMENT USER_OBJECT="widgets">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="SwitchWidget">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="widgets">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="components">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Toggle">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="stores">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -533,7 +1099,47 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="config">
+            <PATH_ELEMENT USER_OBJECT="server">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="routes">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="server">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="middleware">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="dashboard">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="server">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="graphql">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -543,13 +1149,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.textmate.bundles" />
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v6.9.1/bin/node" />
     <property name="javascript.nodejs.core.library.configured.version" value="6.9.1" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../stink-app" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="ignore_missing_gitignore" value="true" />
@@ -558,22 +1164,33 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/server/utils" />
-      <recent name="$PROJECT_DIR$/server-koa" />
-      <recent name="$PROJECT_DIR$/server-koa/utils" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/server/views/development" />
+      <recent name="$PROJECT_DIR$/src/stores" />
+      <recent name="$PROJECT_DIR$/src/models" />
+      <recent name="$PROJECT_DIR$/src/dashboard" />
+      <recent name="$PROJECT_DIR$/server/graphql/models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/dashboard/views" />
       <recent name="$PROJECT_DIR$/src/editor/components" />
       <recent name="$PROJECT_DIR$/server/middleware" />
       <recent name="$PROJECT_DIR$/server/utils" />
       <recent name="$PROJECT_DIR$/old" />
-      <recent name="$PROJECT_DIR$/server-koa" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.client.dev.coffee">
     <configuration default="false" name="client.dev.coffee" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="client.dev.coffee" node-parameters="--require coffee-script/register" working-dir="$PROJECT_DIR$/webpack">
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -679,7 +1296,10 @@
       <workItem from="1488328360109" duration="3793000" />
       <workItem from="1488617590112" duration="2000" />
       <workItem from="1488621032289" duration="18000" />
-      <workItem from="1488948972337" duration="2549000" />
+      <workItem from="1488948972337" duration="92349000" />
+      <workItem from="1489451310779" duration="56431000" />
+      <workItem from="1489633707539" duration="611000" />
+      <workItem from="1489634377304" duration="27455000" />
     </task>
     <task id="LOCAL-00001" summary="second commit&#10;">
       <created>1485835955798</created>
@@ -856,11 +1476,27 @@
       <option name="project" value="LOCAL" />
       <updated>1489113442355</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Everything working.">
+      <created>1489113455254</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1489113455254</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="622383000" />
+    <option name="totallyTimeSpent" value="796680000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1030" extended-state="6" />
@@ -871,21 +1507,22 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997033" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5042644" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1345" y="146" width="557" height="594" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="3062" y="486" width="557" height="594" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.49578503" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.49573562" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.49789253" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="125" width="1720" height="830" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -908,210 +1545,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-state.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1486942429253" expanded="true" signature="159:575" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-buttons.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding>
-            <marker date="1487832809071" expanded="true" signature="2538:2547" ph="..." />
-            <marker date="1487832809071" expanded="true" signature="3201:3234" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-widgets.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <marker date="1488347784895" expanded="true" signature="563:675" ph="&quot;id&quot;: 'dashboardBackground'..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DashboardStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DeviceStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/ColorPickers.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/WidgetProps.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-editor.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="60" lean-forward="false" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/models/Widget.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-state.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1486942429253" expanded="true" signature="159:575" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-buttons.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding>
-            <marker date="1487832809071" expanded="true" signature="2538:2547" ph="..." />
-            <marker date="1487832809071" expanded="true" signature="3201:3234" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-widgets.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <marker date="1488347784895" expanded="true" signature="563:675" ph="&quot;id&quot;: 'dashboardBackground'..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DashboardStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DeviceStore.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/types/dashboard.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1119,81 +1565,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/types/states.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/ColorPickers.coffee">
+    <entry file="file://$PROJECT_DIR$/server/platforms/pimatic/pimaticDeviceTransform.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/WidgetProps.coffee">
+    <entry file="file://$PROJECT_DIR$/server/platforms/pimatic/updates.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-editor.coffee">
+    <entry file="file://$PROJECT_DIR$/server/platforms/pimatic/commands.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/graphiql.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/graphql/queries/index.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/commands.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="60" lean-forward="false" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/queries/mta.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/Widget.coffee">
+    <entry file="file://$PROJECT_DIR$/server/routes/register.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        <state relative-caret-position="390">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-state.coffee">
+    <entry file="file://$PROJECT_DIR$/src/widgets/getWidget.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1486942429253" expanded="true" signature="159:575" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-widgets.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="105">
+          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DashboardStore.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/DeviceStore.coffee">
+    <entry file="file://$PROJECT_DIR$/src/widgets/actions/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1201,98 +1653,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/ColorPickers.coffee">
+    <entry file="file://$PROJECT_DIR$/src/widgets/Widget.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="285">
+          <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/WidgetProps.coffee">
+    <entry file="file://$PROJECT_DIR$/src/dashboard/views/Dashboard.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state relative-caret-position="345">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/App.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/types.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/dashboard.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dashboard/store.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/views/EditorPage.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="345">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/SetupPage.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/models/Dashboard.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/DashboardView.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-buttons.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        <state relative-caret-position="50">
+          <caret line="129" column="7" lean-forward="true" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding>
-            <marker date="1487832809071" expanded="true" signature="2538:2547" ph="..." />
-            <marker date="1487832809071" expanded="true" signature="3201:3234" ph="..." />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Widget.coffee">
+    <entry file="file://$PROJECT_DIR$/src/editor/views/Dashboard.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/graphql/mutations/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1300,37 +1741,221 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/models/Widget.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/types/devices.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Dashboard.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/types/mta.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        <state relative-caret-position="0">
+          <caret line="0" column="62" lean-forward="false" selection-start-line="0" selection-start-column="62" selection-end-line="0" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/stores/view-editor.coffee">
+    <entry file="file://$PROJECT_DIR$/server/graphql/queries/devices.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="123" column="20" lean-forward="false" selection-start-line="123" selection-start-column="10" selection-end-line="123" selection-end-column="20" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-dashboards.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/widgetsStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/index.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/views/Widget.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="72" column="28" lean-forward="true" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widgets/SwitchWidget/index.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/MenuButton.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/DialogComponent.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/CreateNewDashboard.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="5" column="48" lean-forward="false" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/graphql/store/queries.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/graphql/store/mutations.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/models/Dashboard.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="88" column="4" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+        <state relative-caret-position="230">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/buttonsStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/store.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/store-widgets.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/TitleEditor.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/EditableText.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/modalsStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/editorStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="122" column="72" lean-forward="true" selection-start-line="122" selection-start-column="72" selection-end-line="122" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/stores/viewStore.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
           <folding>
-            <marker date="1488347784895" expanded="true" signature="563:675" ph="&quot;id&quot;: 'dashboardBackground'..." />
+            <marker date="1489715775950" expanded="true" signature="923:924" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/components/UserDeviceTitle.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/views/SetupPage.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

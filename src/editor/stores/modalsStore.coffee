@@ -48,7 +48,6 @@ class ModalStore
       iconName: ''
       style: {}
       open: action((id) =>
-        console.log id
         modal = @modals[id]
         runInAction(=>
           @id = modal.id
@@ -58,6 +57,7 @@ class ModalStore
           @style = modal.style ?= {}
         )
       )
+
       close: action(=>
         @id = ''
         @isOpen = no

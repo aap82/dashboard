@@ -7,14 +7,17 @@ BaseWidgetProperties = require './BaseWidgetProperties'
 CreateNewDashboard = require '../components/CreateNewDashboard'
 t = require './buttons/types'
 MenuButton = require './../components/MenuButton'
+UserDeviceTitle = require '../components/UserDeviceTitle'
 
 class LeftPanel extends React.Component
   render: ->
     console.log 'render left panel'
     {editor} = @props
     {buttons, dashboard} = editor
-    {EDIT_DASHBOARD,EXIT_EDITOR,SAVE_DASHBOARD,DONE_EDITING,DISCARD_CHANGES,DELETE_DASHBOARD,COPY_DASHBOARD } = buttons
+    {EDIT_DASHBOARD,EXIT_EDITOR,SAVE_DASHBOARD,DONE_EDITING,DISCARD_CHANGES,DELETE_DASHBOARD,COPY_DASHBOARD,CREATE_DASHBOARD } = buttons
     div className: 'pt-dark left-panel', =>
+      crel UserDeviceTitle, editor: editor
+      br()
       div className: 'row middle between', =>
         div style: {padding: 0}, className: 'col-xs-5', =>
           div className: 'row middle between', =>
@@ -24,6 +27,9 @@ class LeftPanel extends React.Component
           div className: 'row around middle', =>
             crel MenuButton, buttons: [EDIT_DASHBOARD, SAVE_DASHBOARD, DONE_EDITING], editor: editor, onClick: @handleClick
             crel MenuButton, buttons: [COPY_DASHBOARD, DELETE_DASHBOARD, DISCARD_CHANGES ], editor: editor, onClick: @handleClick
+      br()
+      br()
+      crel MenuButton, buttons: [CREATE_DASHBOARD], editor: editor, onClick: @handleClick
       br()
       br()
       crel Title, editor: editor
@@ -49,6 +55,11 @@ class LeftPanel extends React.Component
       when t.SAVE_DASHBOARD
         @props.editor.save()
         break
+      when t.DELETE_DASHBOARD
+        @props.editor.delete()
+        break
+
+
 
 
 

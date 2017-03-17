@@ -20,23 +20,22 @@ DeviceTypeDropDown =  ->
 DashboardDropDownListView = (observer(({viewStore, onChange}) ->
     displayName: 'SelectDashboardListView'
     div className: 'pt-select pt-fill pt-large', ->
-
       select value: viewStore.selectedDashboardId, onChange: onChange, ->
         option value: 0, 'Select Dashboard...'
         viewStore.dashboards.map (dashboard) ->
-          option key: dashboard.id, value: dashboard.id, "#{dashboard.title}" #" / #{dashboard.deviceType}"
+          option key: dashboard.uuid, value: dashboard.uuid, "#{dashboard.title}" #" / #{dashboard.deviceType}"
 ))
 
 
 
 class SelectDashboard extends React.Component
   onChange: (e) =>
-    id = parseInt(e.target.value, 10)
-    @props.viewStore.setSelectedDashboard(id)
+    @props.viewState.setSelectedDashboard(e.target.value)
 
   render: ->
-    {viewStore} = @props
-    crel DashboardDropDownListView, viewStore: viewStore, onChange: @onChange
+    {viewState} = @props
+    crel DashboardDropDownListView, viewStore: viewState, onChange: @onChange
+
 
 
 

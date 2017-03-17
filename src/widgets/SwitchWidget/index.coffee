@@ -1,24 +1,23 @@
-{crel, div, h4} = require 'teact'
+{crel, div, text} = require 'teact'
 React = require 'react'
 Toggle = require '../components/Toggle'
 Tappable = require 'react-tappable/lib/Tappable'
-{observer} = require 'mobx-react'
+{attrNamesMap} = require './props'
 
 
 
 class SwitchWidget extends React.Component
   render: ->
-    {props, state} = @props
+    {label, state, device} = @props
+    attrNames = attrNamesMap[device.platform]
     crel Tappable, onTap: @sendCommand, =>
       div className: 'widget switch-widget center', =>
         div className: 'title-container center middle',=>
-          h4 props.label
+          text label
         div className: 'switch-container center middle', =>
-          crel Toggle, state: state.get(props.attrNames.on)
+          crel Toggle, state: state, attr: attrNames.on
 
-  sendCommand: =>
-    console.log 'hi'
-    @props.sendCommand('toggle')
+  sendCommand: => @props.sendCommand('toggle')
 
 
-module.exports = observer(SwitchWidget)
+module.exports = SwitchWidget

@@ -1,4 +1,5 @@
 async = require('asyncawait/async')
+PassThrough = require('stream').PassThrough
 that = module.exports =
   clients: []
   heartbeat: 20000
@@ -9,26 +10,28 @@ that = module.exports =
         return @clients[i]
       i++
     null
-  add: aync (ctx) ->
+  add: (ctx) ->
     _id = uid++
     _o =
       id: _id
       rooms: []
       devices: []
-      res: ctx.response
+      stream: new PassThrough()
+      res: ctx.res
     @clients.push _o
     ctx.socket.setTimeout 0x7FFFFFFF
-    ctx.connection.addListener 'close', ->
+    ctx.req.on 'close', ->
       that.remove _id
+      ctx.res.end()
       return
-    res.writeHead 200,
-    ctx.set('Content-Type', 'text/event-stream')
-    ctx.set('Cache-Control', 'no-cache')
-    ctx.set('Connection', 'keep-alive')
+    ctx.type = 'text/event-stream'
     #should start interval ?
     if !heartInterval
       heartInterval = setInterval(that.sendHeartbeat, that.heartbeat)
+    ctx.body = _o.stream
+
     _o
+
   remove: (id) ->
     if typeof id == 'object'
       id = id.id

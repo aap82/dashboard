@@ -22,6 +22,13 @@ devConfig =
       "react-hot-loader/patch"
       "#{path.join(paths.editor, 'hmrEntry.js')}"
     ]
+    dashboard: [
+      "react-hot-loader/patch"
+      "#{path.join(paths.dashboard, 'hmrEntry.js')}"
+    ]
+    register: [
+      "#{path.join(paths.register, 'Register.coffee')}"
+    ]
     vendor: vendors
 
 

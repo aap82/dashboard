@@ -10,5 +10,4 @@ module.exports = ->
       ip: if ctx.ip.split('f:')?[1]? then ctx.ip.split('f:')[1] else ''
       name: mydevice.model
       type: mydevice.type
-    ctx.deviceType = mydevice.type
-    await next()
+    next()

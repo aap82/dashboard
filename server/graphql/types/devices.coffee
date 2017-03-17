@@ -20,6 +20,9 @@ actionType =  new GraphQLObjectType({
 })
 
 
+
+
+
 exports.deviceType = new GraphQLObjectType({
   name: 'DeviceType'
   fields: =>
@@ -37,9 +40,6 @@ exports.deviceType = new GraphQLObjectType({
       type: GraphQLString
       resolve: (root) ->
         return JSON.stringify(DeviceStore.states[root.id])
-
-
-
 })
 
 

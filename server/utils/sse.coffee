@@ -63,6 +63,7 @@ that = module.exports =
     if room == '*'
       return true
     client.rooms.indexOf(room) > -1
+
   send: (client, event, data) ->
     client = convertClient(client)
     if event == undefined
@@ -88,6 +89,8 @@ that = module.exports =
     if client.res.flush
       client.res.flushHeaders()
     return
+
+
   broadcast: (room, event, data) ->
     i = 0
     while i < @clients.length

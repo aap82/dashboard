@@ -1,7 +1,7 @@
 webpack = require 'webpack'
 path = require('path')
 paths = require '../config/paths.coffee'
-
+console.log paths.blueprintCSS
 config =
   context: paths.root
   entry:

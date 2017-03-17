@@ -86,6 +86,7 @@ class AddOrEditWidgetDialog extends React.Component
     })
   render: ->
     {widgets} = @props
+    console.log widgets
     div className: 'create-widget-dialog', =>
       crel SelectPlatform,  widget: @widget, widgets: widgets, onChange: @changePlatform
       br()

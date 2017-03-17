@@ -1,6 +1,14 @@
 t = require './types'
 
 module.exports =
+  CREATE_DASHBOARD:
+    id: t.CREATE_DASHBOARD
+    text: 'Create Dashboard'
+    iconName: 'add'
+    className: 'pt-large pt-fill'
+    intent: 'SUCCESS'
+    disabled: yes
+    enableOnEdit: yes
   EXIT_EDITOR:
     id: t.EXIT_EDITOR
     iconName: 'arrow-left'

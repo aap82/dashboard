@@ -1,14 +1,9 @@
-dashboard = require('./dashboard')
-{GraphQLObjectType} = require 'graphql'
-mutation = {
-  name: 'RootMutationType'
-  fields:
-    create: dashboard.createDashboardMutation
-    update: dashboard.updateDashboardMutation
-    delete: dashboard.deleteDashboardMutation
-}
+{DashboardTC, UserDeviceTC} = require '../models'
 
-
-mutations = new GraphQLObjectType(mutation)
-
-module.exports = mutations
+module.exports =
+  createDashboard: DashboardTC.getResolver('createOne')
+  updateDashboard: DashboardTC.getResolver('updateOne')
+  deleteDashboard: DashboardTC.getResolver('removeOne')
+  addUserDevice: UserDeviceTC.getResolver('createOne')
+  updateUserDevice: UserDeviceTC.getResolver('updateOne')
+  updateUserDeviceById: UserDeviceTC.getResolver('updateById')

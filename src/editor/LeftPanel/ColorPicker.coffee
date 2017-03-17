@@ -6,26 +6,34 @@ ColorPicker = require('rc-color-picker')
 
 class ColorPickerComponent  extends React.Component
   handleChange: (colors) =>
-    {picker} = @props
-    picker.color = colors.color
-    picker.alpha = colors.alpha
+    {picker, target, alpha, alphaTarget} = @props
+    picker[target] = colors.color
+    if alpha? then picker[alphaTarget] = colors.alpha
     return
   render: ->
-    {picker, isEditing} = @props
+    {picker, target, isEditing, alphaTarget} = @props
     div className: 'color-picker-row widget-color-picker-row', =>
-      text "#{picker.text}"
-      crel ColorPickerContainer, picker: picker, onChange: @handleChange, isEditing: isEditing
+      text "#{@props.label}"
+      crel ColorPickerContainer,
+        picker: picker,
+        target: target,
+        alphaTarget: alphaTarget,
+        isEditing: isEditing,
+        onChange: @handleChange
 
 
 
-ColorPickerContainer = observer(({isEditing, picker, onChange}) ->
+ColorPickerContainer = observer(({isEditing, picker, target, alphaTarget, onChange}) ->
   className = if !isEditing then 'color-picker-disabled' else ''
-  div className: 'color-picker-text', =>
-    text "#{picker.color}"
-    div style: {margin: '15px 15px 15px', textAlign: 'center'}, className: className, =>
+  div className: 'color-picker-text', ->
+    text "#{picker[target]}"
+    div style: {
+        margin: '15px 15px 15px',
+        textAlign: 'center'
+    }, className: className, ->
       crel ColorPicker,
-        color: picker.color
-        alpha: picker.alpha
+        color: picker[target]
+        alpha: picker[alphaTarget] or 100
         mode: 'HSL'
         align:
           points: ['br', 'tl']

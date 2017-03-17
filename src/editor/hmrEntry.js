@@ -10,8 +10,6 @@ FocusStyleManager.onlyShowFocusOnTabs()
 const { configureDevtool } = require('mobx-react-devtools')
 
 
-const {whyDidYouUpdate} = require('why-did-you-update')
-// whyDidYouUpdate(React)
 
 
 configureDevtool({

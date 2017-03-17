@@ -3,39 +3,46 @@ React = require 'react'
 {crel, div, text, br, input, select, option } = require 'teact'
 {inject, observer} = require 'mobx-react'
 {Intent, Button} = require('@blueprintjs/core')
+Tappable = require 'react-tappable/lib/Tappable'
 
 class NewDashboardPanel extends React.Component
   constructor: (props) ->
     super
+    @device = props.viewState.editor.devices[0]
     extendObservable(@, {
       dashboard:
         deviceType: 'tablet'
         title: ''
-      changeType: action((e) => @dashboard.deviceType = e.target.value)
+      changeType: action((e) =>
+        @device = props.viewState.editor.devices[e.target.value]
+        @dashboard.deviceType = @device.ip
+      )
       changeTitle: action((e) => @dashboard.title = e.target.value)
       createDashboard: action(=>
         {viewState} = @props
-        viewState.editor.create(toJS(@dashboard))
+        console.log toJS(@dashboard)
+        viewState.editor.create(toJS(@dashboard), @device)
         @props.close()
         @reset()
         viewState.showEditorPage()
-
       )
       reset: action(=>
         @props.close()
+        @device = null
         @dashboard=
-          deviceType: 'tablet'
+          deviceType: ''
           title: ''
       )
     })
 
   render: ->
+    {editor} = @props.viewState
     div className: 'col-xs-12', =>
       br()
       crel TitleInput, dashboard: @dashboard, changeTitle: @changeTitle
       br()
       br()
-      crel DeviceTypeSelect, dashboard: @dashboard, changeType: @changeType
+      crel DeviceTypeSelect, dashboard: @dashboard, editor: editor, changeType: @changeType
       br()
       br()
       div className: 'row around middle', =>
@@ -68,13 +75,13 @@ TitleInput = observer(({dashboard, changeTitle}) ->
 
 )
 
-DeviceTypeSelect = observer(({dashboard, changeType}) ->
+DeviceTypeSelect = observer(({dashboard, editor, changeType}) ->
   div className: 'row between middle', ->
     text 'Device Type'
     div className: 'pt-select', ->
       select value: dashboard.device, onChange: changeType, ->
-        option value: 'tablet', 'Tablet'
-        option value: 'phone', 'Phone'
+        for device,i in editor.devices
+          option key: i, value: i, "#{device.name}"
 )
 
 

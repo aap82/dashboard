@@ -1,36 +1,35 @@
 React = require 'react'
 {crel, div, select, option, br } = require 'teact'
-{ observer} = require 'mobx-react'
+{ inject, observer} = require 'mobx-react'
+MenuButton = require './../components/MenuButton'
 { Button} = require('@blueprintjs/core')
 ColorPickerComponent = require './ColorPicker'
 
-DeviceType = (observer(({dashboard, editor, onChange}) ->
-  div ->
-    div className: 'pt-select', ->
-      select onChange: onChange, value: dashboard.deviceType, disabled: !editor.isEditing, ->
-        option value: '', ''
-        option value: 'tablet', 'Tablet'
-        option value: 'phone', 'Phone'
+class DashboardDeviceOrientation extends React.Component
+  changeDeviceOrientation: (e) =>
+    {editor} = @props
+    editor.setDashboardOrientationTo(e.target.value)
 
-))
-
-
-class DeviceTypeEditor extends React.Component
-  onDeviceTypeChange: (e) =>
-    {dashboard} = @props
-    dashboard.deviceType = e.target.value
   render: ->
-    {dashboard, editor} = @props
-    div className: 'row between middle', =>
-      crel 'div', 'Device Type'
-      crel DeviceType, dashboard: dashboard, editor: editor, onChange: @onDeviceTypeChange
+    {editor} = @props
+    div =>
+      div className: 'row between middle', =>
+        div 'Device Orientation'
+        div className: 'pt-select', =>
+          select onChange: @changeDeviceOrientation, value: editor.dashboardOrientation, disabled: !editor.isEditing, ->
+            option key: 'landscape', value: 'landscape', "Landscape"
+            option key: 'portrait', value: 'portrait', "Portrait"
 
+
+
+
+DashboardDeviceOrientation = observer(DashboardDeviceOrientation)
 
 class DashboardProperties extends React.Component
+
   render: ->
     {editor} = @props
     {dashboard, isEditing} = editor
-    {background} = dashboard
     div className: 'properties-section', ->
       div className: 'title-row button', ->
         crel Button,
@@ -38,9 +37,15 @@ class DashboardProperties extends React.Component
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
       div className: 'content', ->
-        crel DeviceTypeEditor, dashboard: dashboard, editor: editor
+        crel DashboardDeviceOrientation,
+          editor: editor
         br()
-        crel ColorPickerComponent, picker: background, isEditing: isEditing
+        crel ColorPickerComponent,
+          picker: dashboard,
+          target: 'backgroundColor',
+          alpha: false,
+          isEditing: isEditing,
+          label: 'Background Color'
 
 
 

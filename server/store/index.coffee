@@ -1,6 +1,6 @@
 #Device = require '../../src/models/Device'
 {setDeviceProps} = require '../../src/stores/helpers'
-
+SSE = require '../sse'
 class Device
   constructor:  ->
     @platform = ''
@@ -17,7 +17,7 @@ that = module.exports =
   devices: []
   platforms: []
   states: {}
-  sse: null
+  sse: SSE
 
   getDevices: -> return @devices
   getPlatforms: -> return @platforms
@@ -59,7 +59,7 @@ that = module.exports =
     return if !@states[id]?
     return if @states[id][attr] is value
     @states[id][attr] = value
-#    @sse.broadcast('update', [id: id, attribute: attr, value: value]) if @sse.clients.length > 0
+    SSE.broadcastTopicUpdate(id, JSON.stringify ["#{id}": @states[id]])
 
     return
 

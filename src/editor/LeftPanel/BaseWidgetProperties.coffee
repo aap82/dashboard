@@ -28,8 +28,7 @@ WidgetProp.displayName = 'WidgetProp'
 class BaseWidgetPropertiesContent extends React.Component
   render: ->
     {editor} = @props
-    {widgetProps, isEditing, dashboard} = editor
-    {background, fontColor} = widgetProps
+    {isEditing, dashboard} = editor
     {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, ADD_NEW_WIDGET, DEC_CARD_DEPTH } = editor.buttons
     getProps = (id, button1, button2) =>
       id: id
@@ -47,8 +46,21 @@ class BaseWidgetPropertiesContent extends React.Component
       div className: 'content', =>
         crel MenuButton, buttons: [ADD_NEW_WIDGET], editor: editor, onClick: @handleClick
         br()
-        crel ColorPickerComponent, picker: background, isEditing: isEditing
-        crel ColorPickerComponent, picker: fontColor, isEditing: isEditing
+        crel ColorPickerComponent,
+          picker: dashboard,
+          target: 'widgetBackgroundColor',
+          alpha: yes,
+          alphaTarget: 'widgetBackgroundAlpha',
+          isEditing: isEditing,
+          label: 'Background Color'
+        crel ColorPickerComponent,
+          picker: dashboard,
+          target: 'widgetFontColor',
+          alpha: false,
+          isEditing: isEditing,
+          label: 'Background Color'
+
+
         div className: 'widget-props row middle between', =>
           text 'Border Radius'
           crel WidgetProp, getProps('widgetBorderRadius', INC_BORDER_RADIUS, DEC_BORDER_RADIUS)
@@ -60,7 +72,6 @@ class BaseWidgetPropertiesContent extends React.Component
   handleClick: (e) =>
     {editor} = @props
     {dashboard} = editor
-    {widgetProps} = dashboard
     switch e.currentTarget.id
       when t.ADD_NEW_WIDGET
         if editor.isEditing then @props.modal.open('addWidget')

@@ -9,15 +9,17 @@
 
     .title-container {
       min-height: 50%;
-      h4 { margin-bottom: 0!important;}
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1em;
       padding: {
-        left: 20%;
-        right: 20%;
+        left:   1.25em;
+        right:  1.25em;
       }
 
     }
     .switch-container {
-      margin-top: 1em;
+      margin-top: 0.35em;
 
     }
 

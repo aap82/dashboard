@@ -1,9 +1,7 @@
 {extendObservable, action, computed, observable, toJS} = require 'mobx'
-DeviceStore = require '../../stores/DeviceStore'
 WidgetStore = require './store-widgets'
 
 
-createWidgetObject = () ->
 
 Widget = (key, widget, device, props) ->
   return {
@@ -47,18 +45,18 @@ class Widgets
       )
 
 
-      layout: computed(=>
-        toJS({
-          i: @key.toString()
-          w: @newWidget.w
-          h: @newWidget.h
-          x: 1
-          y: 70
-          minW: @newWidget.w
-          minH: @newWidget.h
-          static: no
-        })
-      )
+#      layout: computed(=>
+#        toJS({
+#          i: @key.toString()
+#          w: @newWidget.w
+#          h: @newWidget.h
+#          x: 1
+#          y: 70
+#          minW: @newWidget.w
+#          minH: @newWidget.h
+#          static: no
+#        })
+#      )
 
 
     }

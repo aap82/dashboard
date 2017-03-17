@@ -7,6 +7,8 @@ paths =
   node_modules:   path.join root, 'node_modules'
   src:            path.join root, 'src'
   editor:         path.join root, 'src', 'editor'
+  dashboard:      path.join root, 'src', 'dashboard'
+  register:       path.join root, 'src', 'register'
   widgets:        path.join root, 'src', 'widgets'
   styles:         path.join root, 'src', 'styles'
   server:         path.join root, 'server'
