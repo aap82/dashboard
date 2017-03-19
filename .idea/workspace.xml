@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b163a4bf-b6a6-41aa-96ec-1db2feacf279" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/components/SelectDashboardDropDown.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/editor/components/TitleEditor.coffee" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/editor/components/UserDeviceTitle.coffee" afterPath="$PROJECT_DIR$/src/editor/components/UserDeviceProps.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/BaseWidgetProperties.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/DashboardProperties.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/buttons/buttons.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" afterPath="$PROJECT_DIR$/src/editor/LeftPanel/index.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" afterPath="$PROJECT_DIR$/src/editor/components/Dialogs/AddNewWidget.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/EditableText.coffee" afterPath="$PROJECT_DIR$/src/editor/components/EditableText.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/components/MenuButton.coffee" afterPath="$PROJECT_DIR$/src/editor/components/MenuButton.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/store.coffee" afterPath="$PROJECT_DIR$/src/editor/store.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/editorStore.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/editorStore.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" afterPath="$PROJECT_DIR$/src/editor/stores/viewStore.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/styles.scss" afterPath="$PROJECT_DIR$/src/editor/styles.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Dashboard.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/EditorPage.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" afterPath="$PROJECT_DIR$/src/editor/views/SetupPage.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editor/views/Widget.coffee" afterPath="$PROJECT_DIR$/src/editor/views/Widget.coffee" />
     </list>
     <list id="16d32deb-3621-4f90-a184-0cf79608d48e" name="idea" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -1277,7 +1259,7 @@
       <workItem from="1488948972337" duration="92349000" />
       <workItem from="1489451310779" duration="56431000" />
       <workItem from="1489633707539" duration="611000" />
-      <workItem from="1489634377304" duration="83238000" />
+      <workItem from="1489634377304" duration="83251000" />
     </task>
     <task id="LOCAL-00001" summary="second commit&#10;">
       <created>1485835955798</created>
@@ -1468,11 +1450,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489715850366</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Everything working.">
+      <created>1489918215559</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1489918215559</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="852463000" />
+    <option name="totallyTimeSpent" value="852476000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
