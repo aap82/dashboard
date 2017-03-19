@@ -56,7 +56,7 @@ createDashboard = (title='New Dashboard', device, defaults=null) ->
     userDevice: device.ip
     marginX:  0
     marginY:  0
-    rowHeight: 5
+    rowHeight: 1
     widgets:  []
     layouts:  []
     devices:  []
@@ -73,13 +73,23 @@ class EditorView
     @createId = 500
     @widgetKey = 0
     @dashboard = dashboard
+    @activeWidget = {}
+    @activeLayout = {}
     extendObservable @, {
       zoom: 1.25
+      editingWidgets: []
+      editingLayouts: []
+      dashboards: []
       buttons: {}
       backup: null
-      isEditing: yes
+      isEditing: no
       startEditing: action(-> @isEditing = yes)
-      stopEditing: action(-> @isEditing = no)
+      stopEditing: action(->
+        @editingWidgets.clear()
+        @editingLayouts.clear()
+        @isEditing = no
+      )
+
 
 
 
@@ -95,7 +105,7 @@ class EditorView
       updateDevice: action((update) -> @userDevices.get(@deviceId).replace(update))
       setActiveDevice: action((deviceId) -> @deviceId = deviceId)
 
-
+      getDashboardsForDevice: action(->  @dashboards.filter((dashboard) => dashboard.userDevice is @deviceId))
 
 
 
@@ -109,12 +119,15 @@ class EditorView
           else
             @dashboard.height = @device.get('height')
             @dashboard.width = @device.get('width')
+          @dashboard.cols = @dashboard.width
+          update(dashboardSchema, @dashboard, toJS(@dashboard))
         )
       )
 
       create: action((title, device) ->
         runInAction(=>
           @widgetKey = 0
+          @selectedWidgetId = 0
           @dashboard.widgets.clear()
           @dashboard.layouts.clear()
           @isEditing = yes
@@ -131,18 +144,26 @@ class EditorView
         )
       )
 
-      load: action((dashboard) =>
+      load: action((uuid) =>
         runInAction(=>
-          @dashboard.widgets.clear()
-          @dashboard.layouts.clear()
-          @widgetKey = switch dashboard.widgets.length
-            when 0 then 0
-            else parseInt dashboard.widgets[dashboard.widgets.length - 1].key, 10
-          @isEditing = no
-          update(dashboardSchema, @dashboard, dashboard)
-          @setActiveDevice(dashboard.userDevice)
-          @backup = serialize(dashboardSchema, @dashboard)
-        )
+          if uuid is '0'
+            return
+
+          else
+            @selectedWidgetId = 0
+            @selectedLayoutId = 0
+            idx = @dashboards.findIndex((d) => d.uuid is uuid)
+            dashboard = toJS @dashboards[idx]
+            @dashboard.widgets.clear()
+            @dashboard.layouts.clear()
+            @widgetKey = switch dashboard.widgets.length
+              when 0 then 0
+              else parseInt dashboard.widgets[dashboard.widgets.length - 1].key, 10
+            @isEditing = no
+            update(dashboardSchema, @dashboard, dashboard)
+            @setActiveDevice(dashboard.userDevice)
+            @backup = serialize(dashboardSchema, @dashboard)
+          )
       )
 
       save: action(->
@@ -181,22 +202,40 @@ class EditorView
           return
         )
       )
-
-      toggleWidgetStaticness: action((idx) ->
+      updateDashboard: action(=>
         runInAction(=>
-          @dashboard.layouts[idx].static = !@dashboard.layouts[idx].static
           update(dashboardSchema, @dashboard, toJS(@dashboard))
+          @updateEditingWidgets()
+
         )
+      )
+      updateEditingWidgets: action(=>
+        runInAction(=>
+          keys = (widget.key for widget in editor.editingWidgets)
+          @editingWidgets.replace((widget for widget in @dashboard.widgets when widget.key in keys))
+          @editingLayouts.replace((layout for layout in @dashboard.layouts when layout.i in keys))
+
+        )
+
       )
 #
       isDirty: computed(=>
         switch
+          when !@isEditing then return no
           when JSON.stringify(serialize(dashboardSchema, @dashboard)) isnt JSON.stringify(@backup) then return yes
           else no
       )
 
 
+      updateLayout: action((layout) =>
+        runInAction(=>
+          @dashboard.layouts.replace(layout)
+          @updateEditingWidgets()
 
+        )
+
+
+      )
 
 
     }

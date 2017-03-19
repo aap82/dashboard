@@ -19,21 +19,24 @@ module.exports =
   EDIT_DASHBOARD:
     id: t.EDIT_DASHBOARD
     iconName: 'edit'
-    className: 'pt-large '
+    className: 'pt-fill'
     intent: 'PRIMARY'
+    text: 'Start Editing'
     loading: no
     disabled: no
     initiallyHidden: no
     hideOnEdit: yes
   COPY_DASHBOARD:
     id: t.COPY_DASHBOARD
+    text: 'Copy'
     iconName: 'duplicate'
-    className: 'pt-large pt-fill'
+    className: 'pt-fill'
     initiallyHidden: no
     hideOnEdit: yes
   DONE_EDITING:
     id: 'DONE_EDITING'
-    className: 'pt-large pt-fill'
+    text: 'Done Editing'
+    className: 'pt-fill'
     iconName: 'cross align-center'
     intent: 'PRIMARY'
     disableOnDirty: yes
@@ -42,9 +45,10 @@ module.exports =
     hideOnDirty: yes
   SAVE_DASHBOARD:
     id: t.SAVE_DASHBOARD
+    text: 'Save to DB'
     iconName: 'floppy-disk'
     intent: 'SUCCESS'
-    className: 'pt-large'
+    className: 'pt-fill'
     initiallyHidden: yes
     disabled: yes
     loading: no
@@ -53,22 +57,24 @@ module.exports =
     showOnDirty: yes
   DELETE_DASHBOARD:
     id: t.DELETE_DASHBOARD
+    text: 'Delete'
     iconName: 'trash'
-    className: 'pt-large pt-fill'
+    className: 'pt-fill'
     intent: 'DANGER'
-    initiallyHidden: yes
-    disabled: no
-    showOnEdit: yes
-    hideOnDirty: yes
+    initiallyHidden: no
+    hideOnEdit: yes
   DISCARD_CHANGES:
     id: t.DISCARD_CHANGES
+    text: 'Discard Changes'
     iconName: 'refresh'
-    className: 'pt-large pt-fill'
+    className: 'pt-fill'
     intent: 'DANGER'
     initiallyHidden: yes
-    disabled: no
+    disabled: yes
+    loading: no
+    showOnEdit: yes
+    enableOnDirty: yes
     showOnDirty: yes
-    showOnEdit: no
   ADD_NEW_WIDGET:
     id: t.ADD_NEW_WIDGET
     text: 'Add Widget'

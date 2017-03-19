@@ -3,6 +3,7 @@
 { observer} = require 'mobx-react'
 MenuButton = observer(({buttons, onClick}) =>
   button = b for b in buttons when b.isVisible
+  if !button? then return null
   div className: button.display, id: button.id, onClick: onClick, =>
     crel Button,
       text: button.text

@@ -1,10 +1,11 @@
 React = require 'react'
-{crel, div, text} = require 'teact'
+{crel, div, br, text} = require 'teact'
 {inject,observer} = require 'mobx-react'
 LeftPanel = require('../LeftPanel')
 SplitPane = require 'react-split-pane'
 Dashboard = require './Dashboard'
-
+DashboardEditor = require '../LeftPanel/DashboardEditor'
+WidgetEditor = require '../LeftPanel/WidgetEditor'
 
 
 
@@ -15,16 +16,24 @@ class EditorPage extends React.Component
     {editor} = @props
     crel SplitPane, split: 'vertical', size: 350, allowResize: no, ->
       crel LeftPanel
-      crel SplitPane, split: 'vertical', size: 300, allowResize: no, ->
-        div style: borderStyle
+      crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
+        crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+          div style: borderStyle, ->
+            div style: {padding: 10}, ->
+              if editor.dashboard is null
+                return null
+              else
+                crel DashboardEditor, editor: editor
+          div style: borderStyle
         div ->
-          crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
-            div style: borderStyle
+          crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+            div style: borderStyle, ->
+              div style: {padding: 10}, ->
+                crel WidgetEditor, editor: editor
             div style: {padding: 10}, ->
               crel Dashboard
             div style: borderStyle
 
-EditorPage.displayName = 'EditorPage'
 
 
 module.exports = inject('editor')(observer(EditorPage))

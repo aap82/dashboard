@@ -5,14 +5,13 @@ React = require 'react'
 EditableText = require './EditableText'
 
 
-class UserDeviceName extends React.Component
+class UserDeviceProps extends React.Component
   constructor: (props) ->
-    @device = toJS(props.editor.device)
-    console.log @device
 
   handleSave: (id, value) =>
     {editor} = @props
-    editor.fetch('opName', 'UpdateUserDevice', {ip: @device.ip, device: {"#{id}": value}}).then (res) =>
+    ip = editor.device.get('ip')
+    editor.fetch('opName', 'UpdateUserDevice', {ip: ip, device: {"#{id}": value}}).then (res) =>
       if res.data.updateUserDevice?
         {record} = res.data.updateUserDevice
         editor.updateDevice(record)
@@ -22,7 +21,7 @@ class UserDeviceName extends React.Component
   render: ->
     {editor} = @props
     div className: 'title-editor', =>
-      div className: 'content', =>
+      div style: {marginBottom: 15}, className: 'content', =>
         div style: {marginBottom: 8}, className: 'row center between middle', =>
           h5 'User Device'
           crel EditableText,
@@ -38,14 +37,17 @@ class UserDeviceName extends React.Component
             text: editor.device.get('location')
             onSave: @handleSave
         div className: 'row center between middle', =>
+          div 'Device Type'
+          div editor.device.get('type')
+        div className: 'row center between middle', =>
           div 'IP Address'
-          div @device.ip
+          div editor.device.get('ip')
         div className: 'row center between middle', =>
           div 'Device Height'
-          div @device.height + 'px'
+          div editor.device.get('height') + 'px'
         div className: 'row center between middle', =>
           div 'Device Width'
-          div @device.width + 'px'
+          div editor.device.get('width') + 'px'
 
-module.exports = (observer(UserDeviceName))
+module.exports = (observer(UserDeviceProps))
 

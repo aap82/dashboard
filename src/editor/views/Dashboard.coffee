@@ -1,11 +1,8 @@
-{crel, div, pureComponent} = require 'teact'
+{crel, div} = require 'teact'
 React = require 'react'
 {inject, observer} = require 'mobx-react'
-ReactGridLayout = require 'react-grid-layout'
-{ WidthProvider}  = require 'react-grid-layout'
-GridLayout = WidthProvider(ReactGridLayout)
+GridLayout = require 'react-grid-layout'
 EditableWidget = require './Widget'
-{crel, div} = require 'teact'
 {sendCommand} = require('../../widgets/actions')
 
 
@@ -41,22 +38,19 @@ class Dashboard extends React.Component
           width: dashboard.width
           layout: dashboard.layouts.slice()
           onLayoutChange: @handleLayoutChange, =>
-            for layout, i in dashboard.layouts
-              div key: layout.i, data: layout, =>
-                crel EditableWidget, widget: dashboard.widgets[i], type: dashboard.widgets[i].type, sendCommand: sendDeviceCommand
+            for widget in dashboard.widgets
+              div key: widget.key,  =>
+                crel EditableWidget, dashboard: dashboard, widget: widget, sendCommand: sendDeviceCommand
+#
+#            for layout, i in dashboard.layouts
+#              div key: layout.i, data: layout, =>
+#                crel EditableWidget, dashboard: dashboard, widget: dashboard.widgets[i], type: dashboard.widgets[i].type, sendCommand: sendDeviceCommand
 
 
 
   handleLayoutChange: (layout) =>
-    {dashboard} = @props.editor
-    console.log layout
-    dashboard.layouts.replace(layout)
-
-
-Widgets = pureComponent ( editor, sendCommand ) ->
-  editor.widgets.map (widget) ->
-    div key: widget.key, ->
-      crel EditableWidget, widget: widget, type: widget.type, sendCommand: sendCommand
+    {editor} = @props
+    editor.updateLayout(layout)
 
 
 

@@ -46,19 +46,21 @@ class BaseWidgetPropertiesContent extends React.Component
       div className: 'content', =>
         crel MenuButton, buttons: [ADD_NEW_WIDGET], editor: editor, onClick: @handleClick
         br()
-        crel ColorPickerComponent,
-          picker: dashboard,
-          target: 'widgetBackgroundColor',
-          alpha: yes,
-          alphaTarget: 'widgetBackgroundAlpha',
-          isEditing: isEditing,
-          label: 'Background Color'
-        crel ColorPickerComponent,
-          picker: dashboard,
-          target: 'widgetFontColor',
-          alpha: false,
-          isEditing: isEditing,
-          label: 'Background Color'
+        div style: {marginRight: -10}, =>
+          crel ColorPickerComponent,
+            picker: dashboard,
+            target: 'widgetBackgroundColor',
+            alpha: yes,
+            alphaTarget: 'widgetBackgroundAlpha',
+            isEditing: isEditing,
+            label: 'Background Color'
+        div style: {marginRight: -10}, =>
+          crel ColorPickerComponent,
+            picker: dashboard,
+            target: 'widgetFontColor',
+            alpha: false,
+            isEditing: isEditing,
+            label: 'Background Color'
 
 
         div className: 'widget-props row middle between', =>
@@ -68,6 +70,8 @@ class BaseWidgetPropertiesContent extends React.Component
           text 'Card Depth'
           crel WidgetProp, getProps('widgetCardDepth', INC_CARD_DEPTH, DEC_CARD_DEPTH)
         br()
+
+
 
   handleClick: (e) =>
     {editor} = @props

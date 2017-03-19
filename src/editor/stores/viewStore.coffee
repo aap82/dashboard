@@ -4,31 +4,22 @@ t = require '../LeftPanel/buttons/types'
 
 
 
+
+
+
 class ViewState
   constructor: ({@modal, @editor, @store, @fetch, @dashboards}) ->
     @editor.fetch = @fetch
-    @editor.dashboards = @dashboards
     extendObservable @, {
       selectedUserDevice: ''
       setUserDevice: action((id) ->
         @selectedUserDevice = id
       )
-
       loadUserDevice: action(->
-        device = toJS(@editor.userDevices.get(@selectedUserDevice))
-        console.log device
-        if device.defaultDashboardId is null
-          @editor.create('New Dashboard', device)
-          @showEditorPage()
-        else
-          idx = @dashboards.findIndex((d) => d.uuid is device.defaultDashboardId)
-          dashboard = @dashboards[idx]
-          console.log dashboard
-          @editor.load dashboard
-          @showEditorPage()
-
+        console.log @selectedUserDevice
+        @editor.deviceId = @selectedUserDevice
+        @showEditorPage()
         return
-
 
       )
 
@@ -41,13 +32,6 @@ class ViewState
 
       showEditorPage: action(-> @visiblePage = 'editor')
       showSetupPage: action(-> @visiblePage = 'setup')
-
-      loadDashboard: action(->
-        idx = @dashboards.findIndex((d) => d.uuid is @selectedDashboardId)
-        dashboard = @dashboards[idx]
-        @editor.load dashboard
-        @showEditorPage()
-      )
 
       updateDashboard: action((dashboard) =>
         idx = @dashboards.findIndex((d) => d.uuid is @selectedDashboardId)
@@ -71,7 +55,7 @@ class ViewState
     }
     @editor.exit = => @showSetupPage()
     @editor.deleteDashboard = => @deleteDashboard()
-    @editor.updateDashboard = (dashboard) => @updateDashboard(dashboard)
+#    @editor.updateDashboard = (dashboard) => @updateDashboard(dashboard)
 
 
 
