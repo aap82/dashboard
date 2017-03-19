@@ -47,6 +47,7 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-grid-layout": "^0.13.9",
+    "react-number-editor": "^4.0.2",
     "react-split-pane": "^0.1.57",
     "react-tappable": "^0.8.4",
     "serializr": "^1.1.9",
