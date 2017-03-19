@@ -1,55 +1,62 @@
 require('dotenv').config()
+async = require('asyncawait/async')
+await = require('asyncawait/await')
 getenv = require('getenv')
 
-paths = require('../config/paths')
-{connect} = require './database/models'
-express = require 'express'
-{ graphqlExpress } = require 'graphql-server-express'
-{OperationStore} = require 'graphql-server-module-operation-store'
-app = express()
-
+GRAPHQL_ENDPOINT = getenv 'GRAPHQL_ENDPOINT'
+gqlFetch = require('../src/utils/fetch')(GRAPHQL_ENDPOINT)
 SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
 
 
+path = require('path')
+paths = require('../config/paths')
+db = require './graphql'
+koa = require('koa')
+koaRouter = require('koa-router')
+koaBody = require 'koa-bodyparser'
+Pug = require('koa-pug')
+{ graphqlKoa } = require('graphql-server-koa')
+sse_updates = require './routes/sse_updates'
+app = new koa()
 
 
+app.context.fetch = gqlFetch
+
+router = new koaRouter()
 
 
+pug = new Pug({
+  viewPath: path.join paths.views, getenv('NODE_ENV')
+})
 
 
+app.use  async (ctx, next) =>
+  try
+    await next()
+  catch err
+    console.error(err)
+    ctx.body = { message: err.message }
+    ctx.status = err.status || 500
 
-compression = require 'compression'
-
-bodyParser = require 'body-parser'
-jsonParser = bodyParser.json()
-device = require('express-device')
-app.use(jsonParser);
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(device.capture({parseUserAgent: true}));
-
-
-app.use('/assets', express.static(paths.prodBuild))
-
-
-app.get('*', require('./middleware/deviceTypeHandler'))
-app.use '/commands', require('./middleware/commands')
-app.use '/updates', require('./middleware/updates')
+app.use(sse_updates.routes())
+pug.use(app)
+app.use(koaBody())
 
 
+db.init async (devices, graphQLoptions) =>
+  app.context.devices = devices
+  router.post('/graphql', graphqlKoa(graphQLoptions))
+  app.use(router.routes())
+  app.use(router.allowedMethods())
+  app.use(require('./routes').routes())
+  app.use(require('./routes').allowedMethods())
 
 
+  app.listen(SERVER_PORT)
+  userDevices = await gqlFetch('opName', 'AllDeviceIPs').then((result) -> return result.data.userDevices)
+  app.context.ips = (value for key, value of userDevices)
 
+  require('./platforms')
+  console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
 
-
-
-start = ->
-  connect().then ->
-    graphQLoptions = require('./graphql').getGraphQLOptions(OperationStore)
-    app.use('/graphql', jsonParser, graphqlExpress(graphQLoptions))
-    app.use(require('./routes'))
-    app.listen(SERVER_PORT)
-    console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT
-
-
-start()

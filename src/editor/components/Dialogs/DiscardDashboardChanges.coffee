@@ -21,9 +21,9 @@ CancelDiscardChanges = ({onClick}) ->
 
 class DiscardDashboardChangesDialog extends React.Component
   discardDashboardChanges: =>
-    @props.editor.discardDashboardChanges()
-    @props.editor.closeModal()
-  cancelDiscardDashboard: =>  @props.editor.closeModal()
+#    @props.editor.discardDashboardChanges()
+    @props.modal.closeModal()
+  cancelDiscardDashboard: =>  @props.modal.closeModal()
 
   render: ->
     div className: 'create-widget-dialog', =>

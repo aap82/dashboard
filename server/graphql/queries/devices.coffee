@@ -1,12 +1,36 @@
-{GraphQLList} = require 'graphql'
-{getDeviceData} = require '../../platforms/pimatic/utils/fetchState'
+{GraphQLList, GraphQLString} = require 'graphql'
 {deviceType} = require '../types/devices'
+{deviceStatesType, devicePlatformType} = require '../types/states'
+DeviceStore = require '../../store/index'
 
-devicesQuery =
+
+
+devicesSetupQuery =
   type: new GraphQLList(deviceType)
-  resolve: -> getDeviceData().then((data) -> return data)
+  resolve: ->    DeviceStore.devices
 
 
+getDashboardDeviceStatesQuery =
+  type: GraphQLString
+  args:
+    devices: type: new GraphQLList(GraphQLString)
+  resolve: (obj, args) =>
+    return JSON.stringify(DeviceStore.getStates(args.devices))
+
+
+
+
+
+getFullStateQuery =
+  type: deviceStatesType
+  resolve: -> DeviceStore.getAllStatesQuery()
+
+getAllPlatformsQuery =
+  type: devicePlatformType
+  resolve: -> DeviceStore.getPlatformsQuery()
 
 module.exports =
-    devices: devicesQuery
+    devicesSetupQuery: devicesSetupQuery
+    getFullStateQuery: getFullStateQuery
+    getAllPlatformsQuery: getAllPlatformsQuery
+    getDashboardDeviceStatesQuery: getDashboardDeviceStatesQuery

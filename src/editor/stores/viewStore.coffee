@@ -1,50 +1,65 @@
 {extendObservable, action, toJS} = require 'mobx'
-DashboardEditor = require './dashboardEditor'
+t = require '../LeftPanel/buttons/types'
+{extendObservable, action, runInAction} = require 'mobx'
 
-class ViewStore
-  constructor: ->
+
+
+
+
+
+class ViewState
+  constructor: ({@modal, @editor, @store, @fetch, @dashboards}) ->
+    @editor.fetch = @fetch
     extendObservable @, {
-      userDashboards: []
-      setUserDashboards: action((dashboards) -> @userDashboards.replace(dashboards))
+      selectedUserDevice: ''
+      setUserDevice: action((id) ->
+        @selectedUserDevice = id
+      )
+      loadUserDevice: action(->
+        console.log @selectedUserDevice
+        @editor.deviceId = @selectedUserDevice
+        @showEditorPage()
+        return
+
+      )
 
       selectedDashboardId: 0
-      setSelectedDashboard: action((id) -> @selectedDashboardId = id)
+      setSelectedDashboard: action((id, dashboard) ->
+        @selectedDashboardId = id
+      )
+      visiblePage: 'setup'
+      setViewPageTo: action((view) -> if view in ['setup', 'editor'] then @visiblePage = view else return)
 
-      currentPageView: 'SetupPage'
-      showEditorPage: action(-> @currentPageView = 'EditorPage')
-      showSetupPage: action(-> @currentPageView = 'SetupPage')
+      showEditorPage: action(-> @visiblePage = 'editor')
+      showSetupPage: action(-> @visiblePage = 'setup')
 
-
-      isCreateNewDashboardPanelOpen: no
-      openCreateDashboardPanel: action(-> @isCreateNewDashboardPanelOpen = yes      )
-      closeCreateDashboardPanel: action( ->@isCreateNewDashboardPanelOpen = no      )
-
-      newDashboardTitle: ''
-      changeNewDashboardTitle: action((value) -> @newDashboardTitle = value)
-
-      newDashboardDeviceType: 'tablet'
-      changeNewDashboardDeviceType: action((type) -> @newDashboardDeviceType = type)
-
-      createNewDashboard: action( ->
-        DashboardEditor.resetAllPropsToDefault()
-        DashboardEditor.create(@newDashboardTitle, @newDashboardDeviceType)
-        @closeCreateDashboardPanel()
-        @showEditorPage()
-        @newDashboardTitle = ''
-        @newDashboardDeviceType = 'tablet'
+      updateDashboard: action((dashboard) =>
+        idx = @dashboards.findIndex((d) => d.uuid is @selectedDashboardId)
+        if idx < 0
+          @dashboards.push dashboard
+        else
+          @dashboards[idx] = dashboard
       )
 
-      handleDeletedDashboard: action( ->
-        @selectedDashboardId = '0'
-        @currentPageView = 'SetupPage'
 
+
+      deleteDashboard: action((uuid)->
+        runInAction(=>
+          idx = @dashboards.findIndex((d) => d.uuid is uuid)
+          @dashboards.splice(idx, 1)
+          @selectedDashboardId = 0
+          @showSetupPage()
+        )
       )
-
 
     }
+    @editor.exit = => @showSetupPage()
+    @editor.deleteDashboard = => @deleteDashboard()
+#    @editor.updateDashboard = (dashboard) => @updateDashboard(dashboard)
 
 
 
-viewStore = new ViewStore()
+module.exports = ViewState
 
-module.exports = viewStore
+
+

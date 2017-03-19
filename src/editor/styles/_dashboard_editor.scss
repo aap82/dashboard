@@ -140,17 +140,15 @@
 
 
 .number-input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  button, input {
+    border-radius: 0!important;
+  }
   padding-left: 5px;
   padding-right: 5px;
   font-size: 12px;
   .input-section {
     font-size: 12px;
-    button, input {
-      border-radius: 0!important;
-    }
+
     .number-input {
       width: 45px;
     }

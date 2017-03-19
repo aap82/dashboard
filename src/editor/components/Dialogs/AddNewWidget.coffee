@@ -1,40 +1,144 @@
+{extendObservable, action,computed, runInAction} = require 'mobx'
 React = require 'react'
 {crel, div, h4, h5, br, text, select, option} = require 'teact'
 {inject,observer} = require 'mobx-react'
 {Intent, Button, EditableText, Dialog} = require('@blueprintjs/core')
 
-AddNewWidgetButton = observer(({widgetEditor, onClick}) ->
+
+
+class AddOrEditWidgetDialog extends React.Component
+  constructor: (@props) ->
+    @availableTypes =[]
+
+    extendObservable(@, {
+      widget:
+        platform: '0'
+        type: '0'
+        deviceId: '0'
+        device: ''
+        label: 'Widget Label'
+      selectedWidgetType: null
+      selectedDevice: null
+      
+      changePlatform: action((e) =>
+        @widget.platform = e.target.value
+        if e.target.value is '0'
+          @widget.deviceId = '0'
+      )
+      changeWidgetType: action((e) =>
+        runInAction(=>
+          if e.target.value is '0' or @widget.type isnt e.target.value
+            @widget.deviceId = '0'
+            @selectedWidgetType = null
+          @widget.type = e.target.value
+          if e.target.value isnt '0'
+            for w in @props.widgets.widgetTypes
+              if w.id is e.target.value then @selectedWidgetType = w.widget
+        )
+      )
+
+
+
+      changeDeviceId: action((e) =>
+        @selectedDevice = @props.widgets.devices[e.target.value]
+        @widget.label = @props.widgets.devices[e.target.value].name
+        @widget.deviceId = e.target.value
+
+      )
+      
+      
+      
+      changeLabel: action((value) => @widget.label = value)
+      devices: computed(=>
+        (value: "#{key}" for key, value of  @props.widgets.devices when value.type in (@selectedWidgetType?.types or [] ) and value.platform is @widget.platform)
+      )
+      widgetLabel: computed(=>
+        deviceId = @widget.deviceId
+        if deviceId  is '0'
+          disabled: yes
+          label: 'Widget Label' 
+        else 
+          disabled: no
+          label:  @props.widgets.devices[deviceId].name
+      )
+
+
+
+      addWidget: action(=>
+        runInAction(=>
+#          widget = widgets.getWidget(@widget, @selectedDevice, @props.editor.widgetProps)
+          @props.editor.createWidget(@widget.label, @selectedWidgetType, @selectedDevice)
+          @reset()
+        )
+      )
+      reset: action(=>
+        @selectedDevice = null
+        @widget =
+          platform: '0'
+          type: '0'
+          deviceId: '0'
+          label: 'Widget Label'
+          props: {}
+        @props.close()
+
+      )
+
+    })
+  render: ->
+    {widgets} = @props
+    div className: 'create-widget-dialog', =>
+      crel SelectPlatform,  widget: @widget, widgets: widgets, onChange: @changePlatform
+      br()
+      crel SelectWidgetType, widget: @widget,widgets: widgets, onChange: @changeWidgetType
+      br()
+      crel SelectDeviceType, widget: @widget, onChange: @changeDeviceId, devices: @devices
+      br()
+      crel InputWidgetLabel,  widgetLabel: @widgetLabel, onChange: @changeLabel,
+      br()
+      br()
+      div className: 'pt-dialog-footer', =>
+        div className: "pt-dialog-footer-actions around", =>
+          crel AddselectedDeviceButton, widget: @widget, onClick: @addWidget
+          crel Button,
+            text: 'CANCEL'
+            intent: Intent.DANGER
+            className: 'pt-large'
+            onClick: @reset
+
+
+module.exports = inject('editor', 'widgets')(observer(AddOrEditWidgetDialog))
+
+AddselectedDeviceButton = observer(({widget, onClick}) ->
   crel Button,
     text: 'Add Widget'
     iconName: 'add'
     onClick: onClick
     className: 'pt-large'
     intent: Intent.SUCCESS
-    disabled: widgetEditor.addNewWidgetButtonDisabled
+    disabled: !(widget.platform isnt '0' and widget.type isnt '0' and widget.deviceId isnt '0')
 )
 
-SelectNewWidgetPlatform = observer(({widgetEditor, onChange}) ->
+SelectPlatform = observer(({widget, widgets, onChange}) ->
   div className: ' row between middle', ->
     text 'Widget Device Platform:'
     div className: 'pt-select ', ->
-      select value: widgetEditor.selectedDevicePlatform, onChange: onChange, ->
+      select value: widget.platform, onChange: onChange, ->
         option value: '0', 'Select Platform'
-        widgetEditor.availablePlatforms.map((platform) ->
+        widgets.platforms.map((platform) ->
           option value: platform, "#{platform}"
         )
 )
 
 
 
-SelectNewWidgetType = observer(({widgetEditor, onChange}) ->
-
+SelectWidgetType = observer(({widget, widgets, onChange}) ->
   div className: 'row between middle', ->
     text 'Widget Type:'
     div className: 'pt-select ', ->
-      select value: widgetEditor.selectedWidgetType, onChange: onChange, ->
+      select value: widget.type, onChange: onChange, ->
         option value: '0', 'Select Type'
-        widgetEditor.widgets.map((widget) ->
-          option value: widget, "#{widget}"
+        widgets.widgetTypes.map((widget) ->
+          option value: widget.id, "#{widget.name}"
         )
 )
 
@@ -42,71 +146,32 @@ SelectNewWidgetType = observer(({widgetEditor, onChange}) ->
 
 
 
-SelectNewDeviceId = observer(({widgetEditor, onChange}) ->
-  disabled = (widgetEditor.selectedWidgetType is '0' or widgetEditor.selectedDevicePlatform is '0')
+SelectDeviceType = observer(({widget, onChange, devices}) ->
+  disabled = (devices.length is 0)
   className = 'pt-select' + if disabled then ' pt-disabled' else ''
   div className: 'row between middle', =>
     text 'Widget Device Id:'
     div className: className, =>
-      select disabled: disabled, value: widgetEditor.selectedDevice, onChange: onChange, ->
+      select disabled: disabled, value: widget.deviceId, onChange: onChange, ->
         option className: 'pt-rtl', value: '0', 'Select Device'
-        widgetEditor.availableDevices.map((device) ->
-          option className: 'pt-rtl', value: device.id, "#{device.id}"
-        )
-
+        switch
+          when null
+          else
+            option value: device.value, "#{device.value}" for device in devices
 )
 
 
 
-InputNewWidgetLabel = observer(({widgetEditor, onChange}) ->
-  disabled = (widgetEditor.selectedDevice is '0')
+InputWidgetLabel = observer(({onChange, widgetLabel}) ->
   div className: 'row between middle', =>
     text 'Widget Label:'
     h5 =>
       crel EditableText,
-        value: if disabled then 'Widget Label' else widgetEditor.newWidgetLabel
+        defaultValue: widgetLabel.label
         selectAllOnFocus: yes
-        disabled: disabled
+        disabled: widgetLabel.disabled
         onChange: onChange
-        className: 'widget-label-editor ' + disabled
+        className: 'widget-label-editor ' + widgetLabel.disabled
 
 )
-
-
-
-
-class AddNewWidgetDialogContent extends React.Component
-  onNewWidgetDevicePlatformChange: (e) => @props.widgetEditor.changeSelectedDevicePlatform(e.target.value)
-  onNewWidgetTypeChange: (e) => @props.widgetEditor.changeSelectedWidgetType(e.target.value)
-  onNewDeviceChange: (e) => @props.widgetEditor.changeSelectedDevice(e.target.value)
-  onNewWidgetLabelChange: (value) => @props.widgetEditor.changeNewWidgetLabel(value)
-  addNewWidget: =>
-    @props.dashboard.addWidget()
-    @props.editor.closeModal()
-  cancelAddNewWidget: => @props.editor.closeModal()
-
-  render: ->
-    {widgetEditor} = @props
-    div className: 'create-widget-dialog', =>
-      crel SelectNewWidgetPlatform, widgetEditor: widgetEditor, onChange: @onNewWidgetDevicePlatformChange
-      br()
-      crel SelectNewWidgetType, widgetEditor: widgetEditor, onChange: @onNewWidgetTypeChange
-      br()
-      crel SelectNewDeviceId, widgetEditor: widgetEditor, onChange: @onNewDeviceChange
-      br()
-      crel InputNewWidgetLabel, widgetEditor: widgetEditor, onChange: @onNewWidgetLabelChange
-      br()
-      br()
-      div className: 'pt-dialog-footer', =>
-        div className: "pt-dialog-footer-actions", =>
-          crel AddNewWidgetButton, widgetEditor: widgetEditor, onClick: @addNewWidget
-
-          crel Button,
-            text: 'CANCEL'
-            intent: Intent.DANGER
-            className: 'pt-large'
-            onClick: @cancelAddNewWidget
-
-
-module.exports = inject('widgetEditor', 'dashboard')(observer(AddNewWidgetDialogContent))
 

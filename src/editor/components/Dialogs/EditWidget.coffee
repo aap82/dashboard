@@ -27,7 +27,7 @@ WidgetDevicePlatform = observer(({widgetEditor}) ->
     text 'Device Platform:'
     div className: 'pt-select ', ->
       select disabled: yes, defaultValue: 0, ->
-        option value: 0, activeDevice.platform
+        option value: 0, activeDevice.device.platform
 )
 
 
@@ -57,7 +57,7 @@ WidgetDeviceType = observer(({widgetEditor}) ->
     text 'Widget Device Id:'
     div className: 'pt-select ', ->
       select disabled: yes, defaultValue: 0, ->
-        option value: 0, activeDevice.id
+        option value: 0, activeDevice.device.id
 )
 
 

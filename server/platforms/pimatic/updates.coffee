@@ -1,3 +1,5 @@
+{getTransformedObj} = require './pimaticDeviceTransform'
+
 getenv = require('getenv')
 host = getenv 'PIMATIC_HOST'
 port = getenv 'PIMATIC_PORT'
@@ -9,9 +11,8 @@ p = encodeURIComponent(password)
 socketUrl = 'http://' + host + ':' + port + '/?username=' + u + '&password=' + p
 
 
-
-
-exports.start = (sse) ->
+exports.start =  (store) ->
+  store.addPlatform('pimatic')
   socket = io(socketUrl,
     reconnection: true
     reconnectionDelay: 1000
@@ -19,13 +20,11 @@ exports.start = (sse) ->
     timeout: 20000
     forceNew: true
   )
+  socket.on 'devices', (devices) ->
+    store.addDevices('pimatic', getTransformedObj({devices: devices}))
+    return
   socket.on 'deviceAttributeChanged', (attrEvent) ->
-    console.log attrEvent
-    console.log sse.clients.length
-    sse.broadcast('pimatic', attrEvent.deviceId, attrEvent)
+    store.setDeviceState('pimatic', attrEvent.deviceId, attrEvent.attributeName, attrEvent.value)
     return
-
-  socket.on 'error', (error) ->
-    console.log error
-    return
+  socket.on 'error', (error) -> return  console.log 'error'
   socket

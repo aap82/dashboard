@@ -8,9 +8,9 @@ vendors = require './vendors'
 ExtractTextPlugin = require('extract-text-webpack-plugin')
 CleanWebpackPlugin = require('clean-webpack-plugin');
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-#PurifyCSSPlugin = require('purifycss-webpack')
-prodConfig =
 
+prodConfig =
+  name: 'client'
   entry:
     editor: path.join(paths.editor, 'prodEntry.coffee')
     widgets: path.join paths.widgets, 'widgets.scss'
@@ -23,6 +23,7 @@ prodConfig =
 
   module:
     rules: [
+      { test: /\.coffee$/, loader: 'coffee-loader', include: paths.src }
       {
         test: /\.(css|scss)$/,
         loader: ExtractTextPlugin.extract({

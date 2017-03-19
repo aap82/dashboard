@@ -24,4 +24,25 @@
 
 }
 
+.editor-button {
+  span {pointer-events: inherit!important;}
+  span::before {
+    pointer-events: inherit!important;
+  }
+  button::before {
+    pointer-events: inherit!important;
+  }
+}
 
+.selected-widget {
+  border: {
+    style: solid;
+    width: 2px;
+    color: red;
+  }
+
+
+
+}
+
+.hidden { display: none!important;}

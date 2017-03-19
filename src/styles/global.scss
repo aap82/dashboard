@@ -4,15 +4,15 @@
 
 html {
   box-sizing: border-box;
-  min-height: 100vh;
-  max-height: 100vh;
   font-family: 'Ubuntu', sans-serif
 }
 
-html, body {
-  height: 100%;
-}
+html, body, #app {
+  backgroundColor: blue;
 
+}
+body {
+}
 .z-depth-0 {
   box-shadow: none !important;
 }
@@ -40,6 +40,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
 
 .widget {
   h4

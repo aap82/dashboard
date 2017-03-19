@@ -14,11 +14,19 @@
 
 }
 
+.button {
 
-.title-row-container {
-  h3 {
+
+}
+.left-panel {
+  h2, h3, h4 {
     margin-bottom: 0 !important;
   }
+}
+
+
+.title-row-container {
+
 
   display: flex;
   justify-content: space-between;

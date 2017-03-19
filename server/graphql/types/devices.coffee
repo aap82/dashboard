@@ -1,4 +1,5 @@
 {GraphQLObjectType, GraphQLString, GraphQLList} = require 'graphql'
+DeviceStore = require '../../store'
 exports = module.exports
 
 
@@ -6,7 +7,6 @@ attributeType = new GraphQLObjectType({
   name: 'DeviceAttributeType'
   fields: =>
     type: type: GraphQLString
-    value: type: GraphQLString
     name: type: GraphQLString
     unit: type: GraphQLString
 
@@ -20,35 +20,40 @@ actionType =  new GraphQLObjectType({
 })
 
 
+
+
+
 exports.deviceType = new GraphQLObjectType({
   name: 'DeviceType'
   fields: =>
     id:  type: GraphQLString
+    deviceId:  type: GraphQLString
     name: type: GraphQLString
     platform: type: GraphQLString
-    deviceClass: type: GraphQLString #Light, Thermostat, Sensor, etc.
-    deviceClassType: type: GraphQLString #define futher...switch, dimmer (with is switch, plus dimming => 0=off, 100=on)
-    state: type: GraphQLString
     type: type: GraphQLString
-    stateType: type: GraphQLString
     attributes: type: new GraphQLList(attributeType)
     actions: type: new GraphQLList(actionType)
-
-
+    other:
+      type: GraphQLString
+      resolve: (root) -> return JSON.stringify(root.other)
+    state:
+      type: GraphQLString
+      resolve: (root) ->
+        return JSON.stringify(DeviceStore.states[root.id])
 })
+
+
+
 
 exports.DevicesQueryFields = "
     id
+    deviceId
     platform
-    state
-    stateType
-    deviceClass
-    deviceClassType
     type
     name
+    other
     attributes {
       type
-      value
       name
       unit
     }
@@ -56,4 +61,5 @@ exports.DevicesQueryFields = "
       name
       description
     }
+    state
 "

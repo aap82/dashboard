@@ -43,3 +43,5 @@ jspm_packages
 /db.development.sqlite
 /dist/
 /.env
+/.happypack/
+/old/

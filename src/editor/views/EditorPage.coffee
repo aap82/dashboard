@@ -1,24 +1,60 @@
-{crel, div, text} = require 'teact'
 React = require 'react'
+{crel, div, br, text} = require 'teact'
+{inject,observer} = require 'mobx-react'
 LeftPanel = require('../LeftPanel')
 SplitPane = require 'react-split-pane'
 Dashboard = require './Dashboard'
-DialogComponentContainer = require '../components/DialogComponent'
-{inject} = require 'mobx-react'
+DashboardEditor = require '../LeftPanel/DashboardEditor'
+WidgetEditor = require '../LeftPanel/WidgetEditor'
 
 
 
+class EditorPage extends React.Component
+  render: ->
+    borderStyle = {height: '100%', width: '100%'}
 
-
-EditorPage = (props) =>
-  div ->
-    crel DialogComponentContainer, props
-    crel SplitPane, split: 'vertical', size: 350, allowResize: no, =>
+    {editor} = @props
+    crel SplitPane, split: 'vertical', size: 350, allowResize: no, ->
       crel LeftPanel
-      crel Dashboard, props
+      crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
+        crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+          div style: borderStyle, ->
+            div style: {padding: 10}, ->
+              if editor.dashboard is null
+                return null
+              else
+                crel DashboardEditor, editor: editor
+          div style: borderStyle
+        div ->
+          crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+            div style: borderStyle, ->
+              div style: {padding: 10}, ->
+                crel WidgetEditor, editor: editor
+            div style: {padding: 10}, ->
+              crel Dashboard
+            div style: borderStyle
 
 
 
+module.exports = inject('editor')(observer(EditorPage))
 
 
-module.exports = inject('editor', 'dashboard')(EditorPage)
+
+#
+#class EditorPage extends React.Component
+#  render: ->
+#    borderStyle = {height: '100%', width: '100%', backgroundColor: 'black'}
+#
+#    {editor} = @props
+#    crel SplitPane, split: 'vertical', size: 350, allowResize: no, ->
+#      crel LeftPanel
+#      crel SplitPane, split: 'vertical', size: 300, allowResize: no, ->
+#        div style: borderStyle
+#        crel SplitPane, split: 'vertical', size: 400, allowResize: no, ->
+#          crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
+#            div style: borderStyle
+#            crel SplitPane, split: 'horizontal', size: 800, allowResize: no, ->
+#              div style: {padding: 10},  ->
+#                crel Dashboard
+#              div style: borderStyle
+#          div style: borderStyle

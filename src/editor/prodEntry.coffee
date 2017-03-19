@@ -2,19 +2,18 @@ require './styles.scss'
 
 
 { FocusStyleManager } = require '@blueprintjs/core'
-
+FocusStyleManager.onlyShowFocusOnTabs()
 T = require 'teact'
-React = require 'react'
 ReactDOM = require 'react-dom'
 {Provider, useStaticRendering} = require 'mobx-react'
 gqlFetch = require('../utils/fetch')('/graphql')
-{configureStores} = require './stores'
+{configureStores} = require './store'
 
-EditorApp = require './EditorApp'
+EditorApp = require('./views/App')
 
 
 useStaticRendering(false)
-FocusStyleManager.onlyShowFocusOnTabs()
+
 
 
 state = JSON.parse(window.__APP_STATE__)

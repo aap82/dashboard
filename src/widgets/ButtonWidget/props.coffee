@@ -1,4 +1,5 @@
 module.exports =
+  id: 'buttonWidget'
   label: yes
   types: ['buttons']
   actions: yes

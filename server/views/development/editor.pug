@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title DashboardEditor
+    meta(charset='utf-8')
+    meta(name='format-detection', content='telephone=no')
+    meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+    meta(name='mobile-web-app-capable', content='yes')
+    meta(name='msapplication-tap-highlight', content='no')
+
+
+  body
+    div(id='app')
+    script.
+      window.__APP_STATE__ = !{state};
+
+    script(src='http://192.168.1.10:9001/vendors.js')
+    script(src='http://192.168.1.10:9001/global.js')
+    script(src='http://192.168.1.10:9001/editor.js')
+    script(src='http://192.168.1.10:9001/blueprint.js')
