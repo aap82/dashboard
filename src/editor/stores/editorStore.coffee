@@ -77,6 +77,7 @@ class EditorView
     @activeLayout = {}
     extendObservable @, {
       zoom: 1.25
+      selectedDashboardId: '0'
       editingWidgets: []
       editingLayouts: []
       dashboards: []
@@ -124,23 +125,27 @@ class EditorView
         )
       )
 
-      create: action((title, device) ->
+      create: action((title) =>
+        console.log @dashboards
         runInAction(=>
+          device = toJS(@device)
           @widgetKey = 0
-          @selectedWidgetId = 0
-          @dashboard.widgets.clear()
-          @dashboard.layouts.clear()
-          @isEditing = yes
+          @selectedDashboardId = '0'
+          @reset()
           update(dashboardSchema, @dashboard, createDashboard(title, device))
-          @setActiveDevice(device.ip)
-          @fetch('opName', 'CreateDashboard', {dashboard: serialize(dashboardSchema, @dashboard)}).then(@saveSnapshot)
-          @fetch('opName', 'UpdateUserDevice', {ip: device.ip, device: {defaultDashboardId: @dashboard.uuid}}).then (res) =>
-            if res.data.updateUserDevice?
-              {record} = res.data.updateUserDevice
-              @updateDevice(record)
-            else
-              console.log res
+          dashboard = serialize(dashboardSchema, @dashboard)
+          @fetch('opName', 'CreateDashboard', {dashboard: dashboard})
+          .then(action('CreateDashboard-callback', (response) =>
+              if response.data.createDashboard?
+                @selectedDashboardId = @dashboard.uuid
+                @dashboards.push dashboard
+                @isEditing = no
+                @backup = serialize(dashboardSchema, @dashboard)
+              else
+                console.log response
               return
+            )
+          )
         )
       )
 
@@ -150,8 +155,7 @@ class EditorView
             return
 
           else
-            @selectedWidgetId = 0
-            @selectedLayoutId = 0
+            @reset()
             idx = @dashboards.findIndex((d) => d.uuid is uuid)
             dashboard = toJS @dashboards[idx]
             @dashboard.widgets.clear()
@@ -161,7 +165,6 @@ class EditorView
               else parseInt dashboard.widgets[dashboard.widgets.length - 1].key, 10
             @isEditing = no
             update(dashboardSchema, @dashboard, dashboard)
-            @setActiveDevice(dashboard.userDevice)
             @backup = serialize(dashboardSchema, @dashboard)
           )
       )
@@ -174,19 +177,27 @@ class EditorView
         )
       )
 
-      delete: action(->
-        @fetch('opName', 'DeleteDashboard', {uuid: dashboard.uuid}).then (res) =>
-          if res.data.delete?
-            @deleteDashboard()
-
-
+      delete: action(=>
+        @fetch('opName', 'DeleteDashboard', {uuid: @dashboard.uuid})
+        .then(action('DeleteDashboard-callback', (response) =>
+            if response.data.deleteDashboard?
+              @selectedDashboardId = '0'
+              idx = @dashboards.findIndex((d) => d.uuid is @dashboard.uuid)
+              @dashboards.remove(@dashboards[idx])
+              @reset()
+              @isEditing = no
+            else
+              console.log response
+            return
+          )
+        )
       )
 
-      saveSnapshot: action((response) =>
-        console.log response
+      reset: action(=>
         runInAction(=>
-          if response.data?
-            @backup = serialize(dashboardSchema, @dashboard)
+          @dashboard.title = ''
+          @dashboard.widgets.clear()
+          @dashboard.layouts.clear()
         )
       )
 

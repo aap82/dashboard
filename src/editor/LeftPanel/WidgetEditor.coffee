@@ -4,8 +4,8 @@ React = require 'react'
 {inject, observer} = require 'mobx-react'
 {Button, Intent, Switch} = require('@blueprintjs/core')
 EditableText = require '../components/EditableText'
-NumberEditor = require('react-number-editor')
-
+GroupWidgetEditor = require './Widgets/GroupWidgetEditor'
+WidgetStyle = require './Widgets/WidgetStyleEditor'
 
 keys =
   CTRL: 17
@@ -14,78 +14,6 @@ keys =
   UP: 38
   RIGHT: 39
   DOWN: 40
-
-
-class GroupWidgetEditor extends React.Component
-  constructor: (props) ->
-
-
-
-  topAlign = (editor) =>
-    minY = editor.editingLayouts[0].y
-    for layout in editor.editingLayouts
-      console.log layout.y
-      if layout.y < minY then minY = layout.y
-
-    for layout in editor.editingLayouts
-      layout.y = minY
-    editor.updateDashboard()
-
-
-  handleAlignmentClick: (e) =>
-    console.log e.target.id
-    {editor} = @props
-    switch e.target.id
-      when 'top'
-        topAlign(editor)
-        break
-
-
-  handleKeyDown: (e) =>
-    {editor, layout} = @props
-    if e.keyCode is keys.ESC
-      editor.editingWidgets.clear()
-      editor.editingLayouts.clear()
-
-
-  componentDidMount: =>   document.addEventListener('keydown', @handleKeyDown)
-  componentWillUnmount: =>   document.removeEventListener('keydown', @handleKeyDown)
-
-
-  render: ->
-    {editor, widgets, layouts} = @props
-    div style: {paddingTop: 10}, =>
-      div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 5}, className: 'row center middle', =>
-        h5 'Group Widget Properties'
-      div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 5}, className: 'row between middle', =>
-        div 'Total Widgets'
-        div editor.dashboard.layouts.length
-      div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 15}, className: 'row between middle', =>
-        div 'Selected Widgets'
-        div editor.editingWidgets.length
-      div style: {marginBottom: 5}, className: 'row center middle', =>
-        div style: fontWeight: 500, 'Alignment'
-      div style: {marginBottom: 25}, className: 'row center middle', =>
-        div style: {width: '100%'}, =>
-          div className: 'pt-button-group pt-fill', onClick: @handleAlignmentClick, =>
-            a id: 'left', className: 'pt-button', role: 'button', 'Left'
-            a id: 'right',  className: 'pt-button', role: 'button', 'Right'
-            a id: 'top',  className: 'pt-button',  role: 'button',  'Top'
-            a id: 'bottom',  className: 'pt-button',  role: 'button', 'Bottom'
-      div style: {marginBottom: 5}, className: 'row center middle', =>
-        div style: fontWeight: 500, 'Distribution'
-      div style: {marginBottom: 10}, className: 'row center middle', =>
-        div style: {width: '100%'}, =>
-          div className: 'pt-button-group pt-fill', onClick: @handleAlignmentClick, =>
-            a id: 'horizontally', className: 'pt-button', role: 'button', 'Horizontally'
-            a id: 'vertically',  className: 'pt-button', role: 'button', 'Vertically'
-
-
-
-
-GroupWidgetEditor = observer(GroupWidgetEditor)
-
-
 
 
 WidgetProp = observer((props) ->
@@ -185,16 +113,6 @@ class SingleWidgetEditor extends React.Component
         when no then @handleWidgetPositionChange(e.keyCode)
         when yes then @handleWidgetResize(e.keyCode)
 
-
-
-
-
-
-  changeValue: (e) =>
-    console.log e.target.value
-
-  startEditing: => @isEditing = yes
-
   deleteWidget: =>
     {widget, layout, editor} = @props
     editor.editingWidgets.remove(widget)
@@ -212,17 +130,31 @@ class SingleWidgetEditor extends React.Component
     widget.overrideStyle = !widget.overrideStyle
 
 
+  handleWidgetLabelSave: (id, value) =>
+    {widget} = @props
+    widget.label = value
+
+  handleWidgetLabelChange: (value) =>
+    @props.widget.label = value
 
   render: ->
-    {widget, layout, dashboard} = @props
+    {widget, layout, dashboard, editor} = @props
     {rowHeight} = dashboard
+    {label} = widget
     {x, y, w, h} = layout
     div style: {paddingLeft: 5, paddingRight: 5, paddingTop: 10}, className: 'content', =>
       div style: {marginBottom: 5}, className: 'row center middle', =>
         h5 'Widget Properties'
       div style: {marginBottom: 10}, className: 'row between middle', =>
         div 'Label'
-        div widget.label
+        crel EditableText,
+          id: 'label'
+          type: 'div'
+          live: yes
+          obj: widget
+          text: label
+          onChange: @handleWidgetLabelChange
+          onSave: @handleWidgetLabelSave
       crel WidgetStaticLayoutSwitch,
         marginBottom: 8
         label: 'Is Static?'
@@ -255,18 +187,19 @@ class SingleWidgetEditor extends React.Component
         multiplier: rowHeight
       crel WidgetProp,
         label: 'Position Y - end'
-        marginBottom: 15
+        marginBottom: 45
         value: y + h
         multiplier: rowHeight
       crel WidgetPropsSwitch,
-        marginBottom: 8
+        marginBottom: 5
         label: 'Override Global Style?'
         obj: widget
         checked: 'overrideStyle'
         onChange: @toggleStyleOverride
+      crel WidgetStyle, editor: editor
       div style: {marginBottom: 15}, className: 'row around middle', =>
         crel Button,
-          text: 'Delete'
+          text: 'Delete Widget'
           intent: Intent.DANGER
           onClick: @deleteWidget
 
@@ -284,8 +217,10 @@ class WidgetEditor extends React.Component
           h5 'Widget Properties'
     else if editor.editingWidgets.length is 1
       crel SingleWidgetEditor, editor: editor, widget: editingWidgets[0], layout: editingLayouts[0], dashboard: dashboard
+
     else
       crel GroupWidgetEditor, editor: editor, widgets: editingWidgets, layouts: editingLayouts, dashboard: dashboard
+
 
 
 

@@ -29,7 +29,7 @@ class DashboardDeviceOrientation extends React.Component
 
   render: ->
     {editor} = @props
-    div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 5}, =>
+    div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 0}, =>
       div className: 'row between middle', =>
         div 'Device Orientation'
         div className: 'pt-select', =>
@@ -55,16 +55,14 @@ class DashboardProperties extends React.Component
           text: 'Dashboard'
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
-      div style: {padding: 5}, className: 'row between middle', =>
+      div style: {padding: 5}, className: 'row around middle', =>
         crel MenuButton, buttons: [EDIT_DASHBOARD, SAVE_DASHBOARD, DONE_EDITING], editor: editor, onClick: @handleClick
         crel MenuButton, buttons: [COPY_DASHBOARD, DISCARD_CHANGES ], editor: editor, onClick: @handleClick
-        crel MenuButton, buttons: [DELETE_DASHBOARD], editor: editor, onClick: @handleClick
       br()
       div style: {marginBottom: 12}, className: 'title-editor', =>
         crel Title, editor: editor
       crel DashboardDeviceOrientation,
         editor: editor
-      br()
       br()
       div style: {paddingLeft: 5, marginRight: -7}, =>
         crel ColorPickerComponent,

@@ -40,7 +40,8 @@ class Button
 
       )
       disabled: computed(->
-        if editor.isDirty and enableOnDirty then no
+        if editor.selectedDashboardId is '0' then yes
+        else if editor.isDirty and enableOnDirty then no
         else if editor.isDirty and disableOnDirty then yes
         else if editor.isEditing and enableOnEdit then no
         else if editor.isEditing and disableOnEdit then yes

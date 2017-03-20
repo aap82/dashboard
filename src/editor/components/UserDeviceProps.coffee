@@ -20,6 +20,11 @@ class UserDeviceProps extends React.Component
 
   render: ->
     {editor} = @props
+    defaultDashboardTitle = 'N/A'
+    if editor.device.get('defaultDashboardId') isnt null
+      for dashboard in editor.dashboards when dashboard.uuid is editor.device.get('defaultDashboardId')
+        defaultDashboardTitle = dashboard.title
+
     div className: 'title-editor', =>
       div style: {marginBottom: 15}, className: 'content', =>
         div style: {marginBottom: 8}, className: 'row center between middle', =>
@@ -48,6 +53,9 @@ class UserDeviceProps extends React.Component
         div className: 'row center between middle', =>
           div 'Device Width'
           div editor.device.get('width') + 'px'
+        div className: 'row center between middle', =>
+          div 'Default Dashboard'
+          div defaultDashboardTitle
 
 module.exports = (observer(UserDeviceProps))
 

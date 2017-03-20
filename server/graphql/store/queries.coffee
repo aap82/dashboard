@@ -50,13 +50,8 @@ q.GetUserDeviceAndDashboard = "
       height
       width
       defaultDashboardId
-      dashboard {
-        #{DashboardFields}
-      }
       dashboards {
-        _id
-        uuid
-        title
+        #{DashboardFields}
       }
     }
   }

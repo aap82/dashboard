@@ -16,6 +16,8 @@ class DecoratedEditableText extends React.Component
     if @newText isnt @props.text
       @props.onSave(@props.id, @newText)
   handleChange: (value) =>
+    if @props.live then @props.obj[@props.id] = value
+
     @newText = value
 
   makeEditable: (e) =>

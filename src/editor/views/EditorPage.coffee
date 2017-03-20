@@ -18,26 +18,28 @@ class EditorPage extends React.Component
       crel LeftPanel
       crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
         crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
-          div style: borderStyle, ->
-            div style: {padding: 10}, ->
-              if editor.dashboard is null
-                return null
-              else
-                crel DashboardEditor, editor: editor
           div style: borderStyle
+          crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+            div style: borderStyle, ->
+              div style: {padding: 10}, ->
+                crel DashboardEditor, editor: editor
+            div style: borderStyle
         div ->
           crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
             div style: borderStyle, ->
               div style: {padding: 10}, ->
                 crel WidgetEditor, editor: editor
             div style: {padding: 10}, ->
-              crel Dashboard
+              if editor.selectedDashboardId is '0'
+                return null
+              else
+                crel Dashboard
             div style: borderStyle
 
 
 
-module.exports = inject('editor')(observer(EditorPage))
-
+#module.exports = inject('editor')(observer(EditorPage))
+export default inject('editor')(observer(EditorPage))
 
 
 #

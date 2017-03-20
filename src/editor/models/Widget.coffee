@@ -26,6 +26,7 @@ class WidgetModel
       overrideStyle: no
       label: widget.label
       type: widget.type
+      style: widget.style
     })
 
 

@@ -18,6 +18,7 @@ class ViewState
       loadUserDevice: action(->
         console.log @selectedUserDevice
         @editor.deviceId = @selectedUserDevice
+
         @showEditorPage()
         return
 

@@ -13,7 +13,7 @@ class SwitchWidget extends React.Component
     crel Tappable, onTap: @sendCommand, =>
       div className: 'widget switch-widget center', =>
         div className: 'title-container center middle',=>
-          text label
+          div className: 'widget-label-primary', label
         div className: 'switch-container center middle', =>
           crel Toggle, state: state, attr: attrNames.on
 

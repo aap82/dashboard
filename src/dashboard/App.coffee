@@ -6,7 +6,7 @@ Dashboard = require './views/Dashboard'
 
 
 
-class App extends React.Component
+export default class App extends React.Component
   constructor: (props) ->
     super props
 
@@ -15,7 +15,7 @@ class App extends React.Component
 
   render: ->
     mainStyle =
-      height: '100vh'
+      height: '100%'
       width: '100%'
     crel 'div', style: mainStyle, ->
       crel Dashboard, @props
@@ -23,4 +23,3 @@ class App extends React.Component
 
 
 
-module.exports = App

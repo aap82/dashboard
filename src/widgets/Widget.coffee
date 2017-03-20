@@ -5,9 +5,9 @@ React = require 'react'
 
 class WidgetContainer extends React.Component
   render: ->
-    {style, device, state, type} = @props
+    {device, state, type} = @props
     Widget = getWidget(type)
-    div style: style, className: 'base-widget z-depth-' + @props.cardDepth, =>
+    div style: @props.style, className: 'base-widget z-depth-' + @props.cardDepth, =>
       crel Widget,
         label: @props.label
         state: state

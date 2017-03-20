@@ -48,7 +48,7 @@ devConfig =
     filename: 'bundle.js'
   module:
     rules: [
-      { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: paths.src},
+      { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: [paths.src]},
       { test: /\.coffee$/, use: [ 'babel-loader', 'coffee-loader' ], exclude: /node_modules/ ,include: paths.src }
       { test: /\.(css|scss)$/, use: ['style-loader','css-loader', 'sass-loader'] }
     ]

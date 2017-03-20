@@ -61,11 +61,17 @@ DashboardSchema.index({uuid: 1}, {unique: yes})
 Dashboard = mongoose.model 'Dashboard', DashboardSchema
 DashboardTC = composeWithMongoose(Dashboard)
 
+
+
 DashboardTC.addFields({
   devices:
     type: '[String]'
     description: 'Array of Devices'
-    resolve: (source) => return uniq(source.widgets.map((w) => w.device.id))
+    resolve: (source) =>
+      if source.widgets?
+        uniq(source.widgets.map((w) => w.device.id))
+      else
+        []
 })
 
 

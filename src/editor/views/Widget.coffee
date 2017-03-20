@@ -13,23 +13,23 @@ class EditableWidget extends React.Component
 #
 #    componentWillReceiveProps: (nextProps) =>
 #      {widget, editor, dashboard} = nextProps
-#      return if !editor.isEditing
-#      return if editor.editingWidgets.length isnt 1
-#      if widget.key is editor.editingWidgets[0].key
-#        layout = _getWidgetLayout(widget, dashboard)
-#        editor.editingLayouts.replace([layout])
 
 
-    getGlobalStyle: (dashboard) ->
-      backgroundColor: Color(dashboard.widgetBackgroundColor).alpha(dashboard.widgetBackgroundAlpha/100).hsl().string()
-      color: dashboard.widgetFontColor
-      borderRadius: dashboard.widgetBorderRadius
+
 
     render: ->
       {widget, editor, dashboard, sendCommand} = @props
       {widgetCardDepth} = dashboard
       {device, label, type} = widget
-      widget.style = if widget.overrideStyle then widget.style else @getGlobalStyle(dashboard)
+      widgetStyle = if !widget.overrideStyle
+          backgroundColor: Color(dashboard.widgetBackgroundColor).alpha(dashboard.widgetBackgroundAlpha/100).hsl().string()
+          color: dashboard.widgetFontColor
+          borderRadius: dashboard.widgetBorderRadius
+        else
+          backgroundColor: widget.style.backgroundColor
+          color: widget.style.color
+          borderRadius: widget.style.borderRadius
+
       class_name = if widget in editor.editingWidgets then 'selected-widget' else ''
 
       div className: class_name, style: {
@@ -44,7 +44,7 @@ class EditableWidget extends React.Component
           label: label
           type: type
           cardDepth: widgetCardDepth
-          style: widget.style
+          style: widgetStyle
           device: device
           sendCommand: sendCommand
 

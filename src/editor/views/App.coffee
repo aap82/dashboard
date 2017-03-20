@@ -1,7 +1,7 @@
 DialogComponentContainer = require '../components/DialogComponent'
 {inject, observer} = require 'mobx-react'
 {crel, div} = require 'teact'
-EditorPage = require './EditorPage'
+EditorPage = require('./EditorPage').default
 SetupPage = require './SetupPage'
 
 App = observer(({viewState}) ->
