@@ -1,8 +1,8 @@
-React = require 'react'
-{extendObservable} = require 'mobx'
-{crel } = require 'teact'
-{observer} = require 'mobx-react'
-{Intent, EditableText} = require('@blueprintjs/core')
+import React from 'react'
+import {extendObservable} from 'mobx'
+import {crel } from 'teact'
+import {observer} from 'mobx-react'
+import {Intent, EditableText} from  '@blueprintjs/core'
 
 class DecoratedEditableText extends React.Component
   constructor: (props) ->
@@ -16,6 +16,8 @@ class DecoratedEditableText extends React.Component
     if @newText isnt @props.text
       @props.onSave(@props.id, @newText)
   handleChange: (value) =>
+    if @props.live then @props.obj[@props.id] = value
+
     @newText = value
 
   makeEditable: (e) =>
@@ -47,4 +49,4 @@ class DecoratedEditableText extends React.Component
         onConfirm: @handleSave
 
 
-module.exports = observer(DecoratedEditableText)
+export default observer(DecoratedEditableText)

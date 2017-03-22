@@ -1,5 +1,6 @@
 @import '~normalize.css/normalize.css';
 @import 'flexbox-grid';
+@import 'widget-fonts';
 
 
 html {
@@ -8,9 +9,12 @@ html {
 }
 
 html, body, #app {
-  backgroundColor: blue;
-
+  height: 100%;
+  width: 100%;
+  padding: 0!important;
+  margin: 0!important;
 }
+
 body {
 }
 .z-depth-0 {

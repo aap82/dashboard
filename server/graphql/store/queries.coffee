@@ -50,13 +50,8 @@ q.GetUserDeviceAndDashboard = "
       height
       width
       defaultDashboardId
-      dashboard {
-        #{DashboardFields}
-      }
       dashboards {
-        _id
-        uuid
-        title
+        #{DashboardFields}
       }
     }
   }
@@ -91,7 +86,7 @@ q.getDashboardDeviceStates = "
 "
 
 
-q.getRegisteredDevices = "
+q.getAllDeviceIps = "
   query AllDeviceIPs {
     userDevices {
       ip
@@ -99,6 +94,60 @@ q.getRegisteredDevices = "
   }
 
 "
+q.registeredDevices = "
+  query isRegistered($ip: String!) {
+    userDevices(filter: {ip: $ip, registered: true}) {
+      ip
+    }
+  }
+
+"
+
+q.defaultDashboard = "
+  query defaultDashboard($ip: String!) {
+    userDevice(filter: {ip: $ip}) {
+      defaultDashboardId
+      dashboard {
+      uuid
+      title
+      backgroundColor
+      cols
+      marginX
+      marginY
+      rowHeight
+      height
+      width
+      widgets {
+        key
+        label
+        type
+        cardDepth
+        style {
+          backgroundColor
+          borderRadius
+          color
+        }
+        device {
+          id
+          deviceId
+          platform
+        }
+      }
+      layouts {
+        i
+        w
+        h
+        x
+        y
+      }
+      devices
+    }
+  }
+}
+
+
+"
+
 
 
 module.exports = q

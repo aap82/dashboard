@@ -1,12 +1,10 @@
-{crel, div, pureComponent} = require 'teact'
-React = require 'react'
-{inject, observer} = require 'mobx-react'
-ReactGridLayout = require 'react-grid-layout'
-{ WidthProvider}  = require 'react-grid-layout'
-GridLayout = WidthProvider(ReactGridLayout)
-WidgetContainer = require '../../widgets/Widget'
-{crel, div} = require 'teact'
-{sendCommand} = require('../../widgets/actions')
+import React from 'react'
+import {crel, div} from 'teact'
+import {inject, observer} from 'mobx-react'
+import ReactGridLayout from 'react-grid-layout'
+import WidgetContainer from '../../widgets/Widget'
+import cx from 'classnames'
+{sendCommand} = require '../../widgets/actions'
 
 
 class Dashboard extends React.Component
@@ -15,13 +13,17 @@ class Dashboard extends React.Component
 
   render: ->
     {dashboard} = @props
+    className = cx(
+      'primary-font-size-'+ dashboard.widgetFontSizePrimary,
+      'secondary-font-size-'+ dashboard.widgetFontSizeSecondary
+    )
     div style: {
-      height: '100%'
-      maxWidth: '100%'
+      height: dashboard.height
+      width: dashboard.width
       backgroundColor: dashboard.backgroundColor
       color: 'white'
-    }, =>
-      crel GridLayout,
+    }, className: className, =>
+      crel ReactGridLayout,
         verticalCompact: no
         autoSize: no
         isDraggable: no
@@ -30,13 +32,11 @@ class Dashboard extends React.Component
         margin: [dashboard.marginX, dashboard.marginY]
         containerPadding: [0, 0]
         rowHeight: dashboard.rowHeight
-        layout: dashboard.layouts.slice()
-        Widgets(dashboard, sendCommand)
+        width: dashboard.width
+        layout: dashboard.layouts.slice(), =>
+          for widget in dashboard.widgets
+            div key: widget.key,  =>
+              widget.sendCommand = sendCommand
+              crel WidgetContainer, widget
 
-Widgets = pureComponent ( dashboard,  command) ->
-  dashboard.widgets.map (widget) ->
-    widget.sendCommand = command
-    div key: widget.key, ->
-      crel WidgetContainer, widget
-
-module.exports = inject('dashboard')(observer(Dashboard))
+export default inject('dashboard')(observer(Dashboard))

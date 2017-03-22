@@ -20,11 +20,11 @@ devConfig =
   entry:
     editor: [
       "react-hot-loader/patch"
-      "#{path.join(paths.editor, 'hmrEntry.js')}"
+      "#{path.join(paths.editor, 'hmr_entry.js')}"
     ]
     dashboard: [
       "react-hot-loader/patch"
-      "#{path.join(paths.dashboard, 'hmrEntry.js')}"
+      "#{path.join(paths.dashboard, 'hmr_entry.js')}"
     ]
     register: [
       "#{path.join(paths.register, 'Register.coffee')}"
@@ -48,8 +48,8 @@ devConfig =
     filename: 'bundle.js'
   module:
     rules: [
-      { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: paths.src},
       { test: /\.coffee$/, use: [ 'babel-loader', 'coffee-loader' ], exclude: /node_modules/ ,include: paths.src }
+      { test: /\.(js|jsx)$/, loader: ['happypack/loader?id=js'], exclude: /node_modules/ , include: paths.src},
       { test: /\.(css|scss)$/, use: ['style-loader','css-loader', 'sass-loader'] }
     ]
   plugins: [

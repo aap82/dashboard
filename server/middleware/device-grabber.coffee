@@ -4,6 +4,7 @@ device = require('../utils/device-parser')
 
 module.exports = ->
   async (ctx, next) ->
+    console.log 'help'
     source = ctx.headers['user-agent'] or 'unknown'
     mydevice = device(source)
     ctx.device =

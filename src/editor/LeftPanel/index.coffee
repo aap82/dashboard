@@ -1,11 +1,11 @@
-React = require 'react'
-{crel, div, h2, h3, h4, br, text} = require 'teact'
-{inject, observer} = require 'mobx-react'
-DashboardProps = require './DashboardProperties'
-BaseWidgetProperties = require './BaseWidgetProperties'
-MenuButton = require './../components/MenuButton'
-UserDeviceProps = require '../components/UserDeviceProps'
-UserDashboardsSection = require '../components/UserDashboards'
+import React from 'react'
+import {crel, div, h2, h3, h4, br, text} from 'teact'
+import {inject, observer} from 'mobx-react'
+import DashboardProps from './DashboardProperties'
+import BaseWidgetProperties from './BaseWidgetProperties'
+import MenuButton from './../components/MenuButton'
+import UserDeviceProps from '../components/UserDeviceProps'
+import UserDashboardsSection from '../components/UserDashboards'
 
 class LeftPanel extends React.Component
   render: ->
@@ -29,7 +29,7 @@ class LeftPanel extends React.Component
 
 
 
-module.exports = inject('editor', 'modal')(observer(LeftPanel))
+export default inject('editor', 'modal')(observer(LeftPanel))
 
 
 

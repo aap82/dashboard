@@ -1,13 +1,22 @@
-{crel, div} = require 'teact'
-React = require 'react'
-{getWidget} = require './getWidget'
-{inject, observer} = require 'mobx-react'
+import {crel, div} from 'teact'
+import React from 'react'
+import {getWidget} from './getWidget'
+import {inject, observer} from 'mobx-react'
+import cx from 'classnames'
+
+
 
 class WidgetContainer extends React.Component
+
+
   render: ->
-    {style, device, state, type} = @props
+    {device, state, type} = @props
+    className = cx(
+      'base-widget z-depth-' + @props.cardDepth,
+
+    )
     Widget = getWidget(type)
-    div style: style, className: 'base-widget z-depth-' + @props.cardDepth, =>
+    div style: @props.style, className: className, =>
       crel Widget,
         label: @props.label
         state: state
@@ -23,6 +32,6 @@ class WidgetContainer extends React.Component
 
 
 
-module.exports = inject((stores, {device}) => ({
+export default inject((stores, {device}) => ({
   state: stores.deviceStore.states.get(device.id)
 }))(observer(WidgetContainer))

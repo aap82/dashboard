@@ -1,4 +1,4 @@
-{GraphQLList, GraphQLString} = require 'graphql'
+{GraphQLList, GraphQLString, GraphQLBoolean} = require 'graphql'
 {deviceType} = require '../types/devices'
 {deviceStatesType, devicePlatformType} = require '../types/states'
 DeviceStore = require '../../store/index'
@@ -16,7 +16,6 @@ getDashboardDeviceStatesQuery =
     devices: type: new GraphQLList(GraphQLString)
   resolve: (obj, args) =>
     return JSON.stringify(DeviceStore.getStates(args.devices))
-
 
 
 

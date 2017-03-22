@@ -1,5 +1,5 @@
-SwitchWidgetProps = require '../../widgets/SwitchWidget/props'
-ButtonWidgetProps = require '../../widgets/ButtonWidget/props'
+import SwitchWidgetProps from '../../widgets/SwitchWidget/props'
+import ButtonWidgetProps from '../../widgets/ButtonWidget/props'
 class WidgetStore
   constructor: ->
     @switchWidget = SwitchWidgetProps
@@ -13,4 +13,4 @@ class WidgetStore
 
 widgetStore = new WidgetStore
 
-module.exports = widgetStore
+export default widgetStore

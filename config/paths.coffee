@@ -14,7 +14,9 @@ paths =
   server:         path.join root, 'server'
   views:          path.join root, 'server', 'views'
   devBuild:       path.join root, 'build'
+  node_entry:     path.join root, 'src', 'dashboard'
   prodBuild:      path.join root, 'dist'
+  prodBuild_Node: path.join root, 'server', 'app'
   blueprintCSS:   path.join root, 'node_modules', '@blueprintjs', 'core', 'dist', 'blueprint.css'
 
 module.exports = paths

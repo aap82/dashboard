@@ -1,8 +1,7 @@
-require '../widgets/widgets.scss'
+import React from 'react'
 require './style.scss'
-React = require 'react'
-{crel, div, text} = require 'teact'
-Dashboard = require './views/Dashboard'
+import {crel, div, text} from 'teact'
+import Dashboard from './views/Dashboard'
 
 
 
@@ -11,16 +10,15 @@ class App extends React.Component
     super props
 
   componentDidMount: ->
-    @props.deviceStore.subscribe()
+    @props.viewStore.init()
+
+  componentWillUnmount: ->
+    @props.viewStore.exit()
 
   render: ->
-    mainStyle =
-      height: '100vh'
-      width: '100%'
-    crel 'div', style: mainStyle, ->
-      crel Dashboard, @props
+    crel Dashboard
 
 
 
 
-module.exports = App
+export default App

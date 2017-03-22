@@ -1,6 +1,6 @@
-{setDefaultModelSchema, identifier, object, createSimpleSchema, list} = require 'serializr'
-{extendObservable} = require 'mobx'
-{widgetSchema} = require './Widget'
+import {setDefaultModelSchema, identifier, object, createSimpleSchema, list} from 'serializr'
+import {extendObservable} from 'mobx'
+import {widgetSchema} from './Widget'
 
 layoutSchema = createSimpleSchema({
   i: yes
@@ -32,6 +32,10 @@ class DashboardModel
       widgetBackgroundColor: '#be682e'
       widgetBackgroundAlpha: 100
       widgetFontColor: '#fff'
+      widgetPrimaryFontSize: 18
+      widgetPrimaryFontWeight: 600
+      widgetSecondaryFontSize: 14
+      widgetSecondaryFontWeight: 18
     }
 
 

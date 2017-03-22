@@ -1,11 +1,10 @@
-{crel} = require 'teact'
-SwitchWidget = require './SwitchWidget'
-ButtonWidget = require './ButtonWidget'
+import {SwitchWidget} from './SwitchWidget'
+import ButtonWidget from './ButtonWidget'
 
 
 
 
-exports.getWidget = (type) =>
+export getWidget = (type) =>
   switch type
     when 'switchWidget' then return SwitchWidget
     when 'buttonWidget'then return ButtonWidget

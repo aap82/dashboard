@@ -1,6 +1,5 @@
-{extendObservable, action, toJS} = require 'mobx'
-t = require '../LeftPanel/buttons/types'
-{extendObservable, action, runInAction} = require 'mobx'
+import {extendObservable, action, toJS} from 'mobx'
+import t from '../LeftPanel/buttons/types'
 
 
 
@@ -16,8 +15,11 @@ class ViewState
         @selectedUserDevice = id
       )
       loadUserDevice: action(->
-        console.log @selectedUserDevice
-        @editor.deviceId = @selectedUserDevice
+        @editor.setActiveDevice(@selectedUserDevice)
+        @editor.dashboard.width = @editor.device.get('width')
+
+
+
         @showEditorPage()
         return
 
@@ -59,7 +61,7 @@ class ViewState
 
 
 
-module.exports = ViewState
+export default ViewState
 
 
 

@@ -1,7 +1,7 @@
-{crel, div, h2, select, option, br} = require 'teact'
-{inject, observer} = require 'mobx-react'
-React = require 'react'
-{ Button, Intent} = require('@blueprintjs/core')
+import {crel, div, h2, select, option, br} from 'teact'
+import {inject, observer} from 'mobx-react'
+import React from 'react'
+import { Button, Intent} from  '@blueprintjs/core'
 
 
 LoadUserDevice = observer(({viewState, onClick}) =>
@@ -48,4 +48,4 @@ class SetupPage extends React.Component
   handleUserDeviceChange: (e) => @props.viewState.setUserDevice(e.target.value)
 
 
-module.exports = inject('viewState', 'modal')(observer(SetupPage))
+export default inject('viewState', 'modal')(observer(SetupPage))

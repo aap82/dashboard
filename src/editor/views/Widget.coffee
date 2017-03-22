@@ -1,9 +1,9 @@
-React = require 'react'
-{crel, div} = require 'teact'
-{inject, observer} = require 'mobx-react'
-Color = require 'color'
-WidgetContainer = require '../../widgets/Widget'
-{ ContextMenuTarget, Menu, MenuItem } = require '@blueprintjs/core'
+import React from 'react'
+import {crel, div} from 'teact'
+import {inject, observer} from 'mobx-react'
+import Color from 'color'
+import WidgetContainer from '../../widgets/Widget'
+import { ContextMenuTarget, Menu, MenuItem } from  '@blueprintjs/core'
 
 
 class EditableWidget extends React.Component
@@ -13,23 +13,22 @@ class EditableWidget extends React.Component
 #
 #    componentWillReceiveProps: (nextProps) =>
 #      {widget, editor, dashboard} = nextProps
-#      return if !editor.isEditing
-#      return if editor.editingWidgets.length isnt 1
-#      if widget.key is editor.editingWidgets[0].key
-#        layout = _getWidgetLayout(widget, dashboard)
-#        editor.editingLayouts.replace([layout])
 
 
-    getGlobalStyle: (dashboard) ->
-      backgroundColor: Color(dashboard.widgetBackgroundColor).alpha(dashboard.widgetBackgroundAlpha/100).hsl().string()
-      color: dashboard.widgetFontColor
-      borderRadius: dashboard.widgetBorderRadius
+
 
     render: ->
       {widget, editor, dashboard, sendCommand} = @props
       {widgetCardDepth} = dashboard
       {device, label, type} = widget
-      widget.style = if widget.overrideStyle then widget.style else @getGlobalStyle(dashboard)
+      widgetStyle = if !widget.overrideStyle
+          editor.getGlobalWidgetStyle
+        else
+          backgroundColor: widget.style.backgroundColor
+          color: widget.style.color
+          borderRadius: widget.style.borderRadius
+
+
       class_name = if widget in editor.editingWidgets then 'selected-widget' else ''
 
       div className: class_name, style: {
@@ -38,13 +37,13 @@ class EditableWidget extends React.Component
         width: '100%'
         display: 'block'
         clear: 'both'
-        borderRadius: widget.style.borderRadius + 3
+        borderRadius: widgetStyle.borderRadius + 3
       }, onClick: @handleWidgetClick, ->
         crel WidgetContainer,
           label: label
           type: type
           cardDepth: widgetCardDepth
-          style: widget.style
+          style: widgetStyle
           device: device
           sendCommand: sendCommand
 
@@ -98,7 +97,7 @@ class EditableWidget extends React.Component
 
 
 
-module.exports = inject('modal', 'editor')(observer(EditableWidget))
+export default inject('modal', 'editor')(observer(EditableWidget))
 
 
 

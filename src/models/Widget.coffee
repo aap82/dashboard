@@ -1,6 +1,6 @@
-{getDefaultModelSchema, setDefaultModelSchema, object, createModelSchema, createSimpleSchema,identifier} = require 'serializr'
-uuidV4 = require('uuid/v4')
-{extendObservable, action, toJS, computed, runInAction} = require 'mobx'
+{getDefaultModelSchema, setDefaultModelSchema, object, createModelSchema, createSimpleSchema,identifier} from 'serializr'
+uuidV4 from('uuid/v4')
+{extendObservable, action, toJS, computed, runInAction} from 'mobx'
 createdWidgets = {}
 
 
@@ -11,10 +11,17 @@ deviceSchema = createSimpleSchema({
 })
 
 
-widgeStyleSchema = createSimpleSchema({
+widgetStyleSchema = createSimpleSchema({
   backgroundColor: yes
   borderRadius: yes
   color:yes
+})
+
+widgetFontSizeSchema = createSimpleSchema({
+  primaryFontSize: yes
+  primaryFontWeight: yes
+  secondaryFontSize:yes
+  secondaryFontWeight: yes
 })
 
 
@@ -47,7 +54,8 @@ export widgetSchema =
     type: yes
     cardDepth: yes
     device: object(deviceSchema)
-    style: object(widgeStyleSchema)
+    style: object(widgetStyleSchema)
+    fonts: object(widgetFontSizeSchema)
 
 
 setDefaultModelSchema(WidgetModel, widgetSchema)

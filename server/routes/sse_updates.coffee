@@ -13,7 +13,6 @@ sse_updates = new Router({
 
 sse_updates.get ['/', '/:topics'], async (ctx) ->
   topics = if ctx.params.topics? then ctx.params.topics.split(',') else []
-  console.log topics
   stream = new PassThrough()
   ctx.socket.setTimeout 0x7FFFFFFF
   ctx.type = 'text/event-stream'

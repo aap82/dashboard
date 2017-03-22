@@ -55,17 +55,27 @@ DashboardSchema = new Schema({
     type: Number
     defaultValue: 100
   widgetFontColor: String
+  widgetFontSizePrimary: Number
+  widgetFontSizeSecondary: Number
+  widgetFontWeightPrimary: String
+  widgetFontWeightSecondary: String
 })
 
 DashboardSchema.index({uuid: 1}, {unique: yes})
 Dashboard = mongoose.model 'Dashboard', DashboardSchema
 DashboardTC = composeWithMongoose(Dashboard)
 
+
+
 DashboardTC.addFields({
   devices:
     type: '[String]'
     description: 'Array of Devices'
-    resolve: (source) => return uniq(source.widgets.map((w) => w.device.id))
+    resolve: (source) =>
+      if source.widgets?
+        uniq(source.widgets.map((w) => w.device.id))
+      else
+        []
 })
 
 
@@ -86,6 +96,10 @@ DashboardFields = "
   widgetBackgroundColor
   widgetBackgroundAlpha
   widgetFontColor
+  widgetFontSizePrimary
+  widgetFontSizeSecondary
+  widgetFontWeightPrimary
+  widgetFontWeightSecondary
   devices
   layouts {
     i

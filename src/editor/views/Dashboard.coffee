@@ -1,11 +1,11 @@
-{crel, div} = require 'teact'
-React = require 'react'
-{inject, observer} = require 'mobx-react'
-GridLayout = require 'react-grid-layout'
-EditableWidget = require './Widget'
+import {crel, div} from 'teact'
+import React from 'react'
+import {inject, observer} from 'mobx-react'
+import ReactGridLayout from 'react-grid-layout'
+import EditableWidget from './Widget'
 {sendCommand} = require('../../widgets/actions')
 
-
+import cx from 'classnames'
 class Dashboard extends React.Component
   constructor: (props) ->
     super (props)
@@ -16,6 +16,10 @@ class Dashboard extends React.Component
     sendDeviceCommand = (platform, deviceId, command) =>
       if !editor.isEditing then sendCommand(platform, deviceId, command)
 
+    className = cx(
+      'primary-font-size-'+ dashboard.widgetFontSizePrimary,
+      'secondary-font-size-'+ dashboard.widgetFontSizeSecondary
+    )
 
 
 
@@ -25,8 +29,8 @@ class Dashboard extends React.Component
         width: dashboard.width
         backgroundColor: dashboard.backgroundColor
         color: 'white'
-      }, =>
-        crel GridLayout,
+      }, className: className, =>
+        crel ReactGridLayout,
           verticalCompact: no
           autoSize: no
           isDraggable: editor.isEditing
@@ -54,4 +58,4 @@ class Dashboard extends React.Component
 
 
 
-module.exports = inject('editor')(observer(Dashboard))
+export default inject('editor')(observer(Dashboard))

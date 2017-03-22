@@ -7,10 +7,7 @@ html
     meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
     meta(name='mobile-web-app-capable', content='yes')
     meta(name='msapplication-tap-highlight', content='no')
-    link(href='assets/styles/global.css' rel='stylesheet')
-    link(href='assets/styles/widgets.css' rel='stylesheet')
-    link(href='assets/styles/editor.css' rel='stylesheet')
-    link(href='assets/styles/blueprint.css' rel='stylesheet')
+    link(href='/css/editor.css' rel='stylesheet')
     link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet')
 
 
@@ -20,5 +17,5 @@ html
     div(id='app')
     script.
       window.__APP_STATE__ = !{state};
-    script(src='assets/vendors.js')
-    script(src='assets/editor.js')
+    script(src='vendors.js')
+    script(src='js/editor.js')

@@ -1,23 +1,39 @@
-{crel, div, text} = require 'teact'
-React = require 'react'
-Toggle = require '../components/Toggle'
-Tappable = require 'react-tappable/lib/Tappable'
-{attrNamesMap} = require './props'
+import {crel, div, text} from 'teact'
+import React from 'react'
+import Toggle from '../components/Toggle'
+import Tappable from 'react-tappable/lib/Tappable'
+import {attrNamesMap} from './props'
+
+
+Switch = (props) ->
+  {label, state, device} = props
+  attrNames = attrNamesMap[device.platform]
+  div className: 'widget switch-widget center', =>
+    div className: 'title-container center middle',=>
+      div className: 'widget-label-primary', label
+    div className: 'switch-container center middle', =>
+      crel Toggle, state: state, attr: attrNames.on
 
 
 
-class SwitchWidget extends React.Component
+export class SwitchWidget extends React.Component
   render: ->
-    {label, state, device} = @props
-    attrNames = attrNamesMap[device.platform]
     crel Tappable, onTap: @sendCommand, =>
-      div className: 'widget switch-widget center', =>
-        div className: 'title-container center middle',=>
-          text label
-        div className: 'switch-container center middle', =>
-          crel Toggle, state: state, attr: attrNames.on
+      crel Switch, @props
 
   sendCommand: => @props.sendCommand('toggle')
 
 
-module.exports = SwitchWidget
+export class DimmerSwitchWidget extends React.Component
+  render: ->
+    crel Tappable, onTap: @sendCommand, onPress: @showDimmer =>
+      crel Switch, @props
+
+  sendCommand: => @props.sendCommand('toggle')
+
+  showDimmer: => console.log 'hello'
+
+
+
+
+

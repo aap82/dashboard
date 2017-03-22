@@ -1,6 +1,6 @@
-React = require 'react'
-{crel, div} = require 'teact'
-{Intent, Button} = require('@blueprintjs/core')
+import React from 'react'
+import {crel, div} from 'teact'
+import {Intent, Button} from  '@blueprintjs/core'
 
 
 DeleteDashboard = ({onClick}) ->
@@ -33,5 +33,5 @@ class ConfirmDashboardDeleteDialog extends React.Component
 
 
 
-module.exports = ConfirmDashboardDeleteDialog
+export default ConfirmDashboardDeleteDialog
 

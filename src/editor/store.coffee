@@ -1,13 +1,14 @@
-ViewState = require './stores/viewStore'
-editor = require './stores/editorStore'
+import editor from './stores/editorStore'
+import ViewState from './stores/viewStore'
 
-widgets = require './stores/widgetsStore'
-DeviceStore = require '../stores/DeviceStore'
+import widgets from './stores/widgetsStore'
+import DeviceStore from '../stores/DeviceStore'
 
+
+import modalStore from './stores/modalsStore'
 gqlFetch = require('../utils/fetch')('/graphql')
-modalStore = require('./stores/modalsStore')
 
-exports.configureStores = (data) ->
+export configureStores = (data) ->
   console.log data
   editor.loadUserDevices(data.userDevices)
   editor.dashboards.replace( data.dashboards)
@@ -30,3 +31,4 @@ exports.configureStores = (data) ->
 
 
   }
+

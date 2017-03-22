@@ -2,7 +2,7 @@ async = require('asyncawait/async')
 await = require('asyncawait/await')
 getenv = require('getenv')
 GRAPHQL_ENDPOINT = getenv 'GRAPHQL_ENDPOINT'
-gqlFetch = require('../../src/utils/fetch')(GRAPHQL_ENDPOINT)
+
 
 
 
@@ -11,23 +11,20 @@ gqlFetch = require('../../src/utils/fetch')(GRAPHQL_ENDPOINT)
 module.exports = ->
   async (ctx, next) ->
     {ip, type} = ctx.device
-    {devices, url} = ctx
+    {url} = ctx
     if url is '/editor'and type is 'desktop' or
-    type in ['tablet', 'phone'] and url is '/updates'
+    (type in ['tablet', 'phone'] and url is '/updates') or
+    url in ['/graphql', '/favicon.ico']
       next()
     else if type is 'desktop'
       ctx.redirect '/editor'
     else if type in ['tablet', 'phone']
-
-      if ip not in  devices
-        redirect('/register')
+      if url is '/register'
+        next()
+      else if url is '/dashboard'
+        next()
       else
-        results = await gqlFetch('opName', 'GetUserDeviceAndDashboard', {ip: ctx.device.ip}).then((results)-> results.data.userDevice)
-        if url is '/dashboard' and results.dashboard isnt null
-          ctx.state = results
-          next()
-        else
-          ctx.status = 404
+        ctx.redirect('/dashboard')
     else
       ctx.status = 404
 

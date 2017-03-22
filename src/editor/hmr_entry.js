@@ -1,5 +1,5 @@
 import React from 'react';
-import { FocusStyleManager } from '@blueprintjs/core';
+import { FocusStyleManager } from  '@blueprintjs/core';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import {configureStores} from './store';
@@ -7,7 +7,7 @@ import gqlFetch from '../utils/fetch'
 import App from './devEntry';
 import {Provider, useStaticRendering} from 'mobx-react'
 FocusStyleManager.onlyShowFocusOnTabs()
-const { configureDevtool } = require('mobx-react-devtools')
+import { configureDevtool } from 'mobx-react-devtools'
 
 
 

@@ -23,7 +23,6 @@ module.exports =
     intent: 'PRIMARY'
     text: 'Start Editing'
     loading: no
-    disabled: no
     initiallyHidden: no
     hideOnEdit: yes
   COPY_DASHBOARD:

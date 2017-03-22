@@ -1,4 +1,5 @@
 getenv = require('getenv')
+
 MONGO_DB = getenv 'MONGO_DB'
 models = require './models'
 mongoose = require('mongoose')
@@ -21,19 +22,21 @@ MutationFields = require './mutations/index'
 GQC.rootQuery().addFields(QueryFields)
 GQC.rootMutation().addFields(MutationFields)
 schema = GQC.buildSchema()
+store = init_store(schema)
+graphQLoptions =
+  schema: schema
+  formatParams: (params) =>
+    if params.operationName?
+      params['query'] = store.get(params.operationName)
+    return params
+
+
+
+exports.graphQLoptions = graphQLoptions
+
 
 
 exports.init = (cb) ->
-  store = init_store(schema)
-  models.UserDevice.find null, {ip: 1}, (err, res) ->
-    devices = (device.ip for device in res)
-    gqlOptions =
-      schema: schema
-      formatParams: (params) =>
-        if params.operationName?
-          params['query'] = store.get(params.operationName)
-
-        return params
-    cb(devices, gqlOptions)
+  cb(graphQLoptions)
 
 

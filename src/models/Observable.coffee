@@ -1,5 +1,5 @@
-{getDefaultModelSchema} = require 'serializr'
-{extendObservable} = require 'mobx'
+{getDefaultModelSchema} from 'serializr'
+{extendObservable} from 'mobx'
 
 
 class ObservableClass
@@ -8,4 +8,4 @@ class ObservableClass
       extendObservable @, getDefaultModelSchema(clazz).observables
 
 
-module.exports = ObservableClass
+export default ObservableClass

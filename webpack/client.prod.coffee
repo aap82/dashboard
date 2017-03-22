@@ -1,79 +1,120 @@
-webpack = require 'webpack'
+require('dotenv').config()
 path = require 'path'
-glob = require('glob')
+getenv = require('getenv')
+webpack = require 'webpack'
 merge = require 'webpack-merge'
 paths = require '../config/paths.coffee'
 baseConfig = require './client.base'
-vendors = require './vendors'
-ExtractTextPlugin = require('extract-text-webpack-plugin')
 CleanWebpackPlugin = require('clean-webpack-plugin');
-UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+ExtractTextPlugin = require("extract-text-webpack-plugin")
+nodeExternals = require('webpack-node-externals')
+vendors = require './vendors'
 
-prodConfig =
-  name: 'client'
+prodClientConfig =
+  context: paths.root
+  resolve:
+    alias:
+      editor: paths.editor + '/'
+      widgets: paths.widgets + '/'
+      dashboard: paths.dashboard + '/'
+    modules: ["node_modules", "#{path.src}"]
+    extensions: ['.js', '.json',  '.jsx', '.coffee', '.css', '.scss']
+
   entry:
-    editor: path.join(paths.editor, 'prodEntry.coffee')
-    widgets: path.join paths.widgets, 'widgets.scss'
+    dashboard: "#{path.join(paths.dashboard, 'prod_entry.js')}"
+    editor: "#{path.join(paths.editor, 'prod_entry.js')}"
+    register: "#{path.join(paths.register, 'Register.coffee')}"
     vendor: vendors
   output:
+    filename: 'js/[name].js'
     path: paths.prodBuild
-    filename: '[name].js'
-    publicPath: '/'
-
-
   module:
     rules: [
-      { test: /\.coffee$/, loader: 'coffee-loader', include: paths.src }
+      { test: /\.coffee$/, use: [ 'babel-loader', 'coffee-loader' ], exclude: /node_modules/ ,include: paths.src }
+      { test: /\.(js|jsx)$/, use: [ 'babel-loader'], exclude: /node_modules/ , include: paths.src},
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/,  loader: ['url-loader'] }
       {
         test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader', 'sass-loader']
-        })
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ["css-loader", 'sass-loader']
+        }),
       }
+
     ]
-
-
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })
     new CleanWebpackPlugin(['dist'], {
       root: paths.root
       verbose: true,
       dry: false,
     })
-
-
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+    new webpack.optimize.OccurrenceOrderPlugin()
+    new ExtractTextPlugin({
+      filename: "css/[name].css"
+      allChunks: yes
+      disable: no
+    })
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
       filename: "vendors.js"
       minChunks: Infinity
     })
-
-    new UglifyJSPlugin({
-      minimize: yes
-      beautify: no
-      sourceMap: no
-      output:
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+#        conditionals: true,
+#        unused: true,
+#        comparisons: true,
+#        sequences: true,
+        dead_code: true,
+#        evaluate: true,
+#        join_vars: true,
+#        if_return: true
+      },
+      output: {
         comments: false
-
-      compressor:
-        warnings: false
-      mangle:
-        except: ['webpackJsonp']
-        screw_ie: yes
-    })
-
-    new ExtractTextPlugin({
-      filename: 'styles/[name].css',
-      allChunks: true
-    })
-
+      }
+    }),
 
   ]
 
 
-config = merge(prodConfig, baseConfig)
+prodServerConfig =
+  target:       'node'
+  devtool:       'source-maps'
+  context:      paths.root
+  resolve:      prodClientConfig.resolve
+  entry:        "#{path.join(paths.dashboard, 'server_entry.coffee')}"
+  output:
+    path:           paths.prodBuild_Node
+    filename:       'dashboard.js'
+    libraryTarget:  'commonjs2'
+  externals:    [nodeExternals()]
+  module:       prodClientConfig.module
+  plugins: [
+    new CleanWebpackPlugin(['server/app'], {
+      root: paths.root
+      verbose: true,
+      dry: false,
+    })
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+    new ExtractTextPlugin({
+      filename: "[name].css"
+      allChunks: yes
+      disable: no
+    })
+  ]
 
-module.exports = config
+
+
+
+
+
+
+module.exports = [prodClientConfig, prodServerConfig]

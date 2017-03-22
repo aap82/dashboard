@@ -1,7 +1,8 @@
-{crel, div, br, text, input} = require 'teact'
-{Button} = require('@blueprintjs/core')
-{ observer} = require 'mobx-react'
-MenuButton = observer(({buttons, onClick}) =>
+import {crel, div, br, text, input} from 'teact'
+import {Button} from  '@blueprintjs/core'
+import { observer} from 'mobx-react'
+
+export default MenuButton = observer(({buttons, onClick}) =>
   button = b for b in buttons when b.isVisible
   if !button? then return null
   div className: button.display, id: button.id, onClick: onClick, =>
@@ -14,4 +15,3 @@ MenuButton = observer(({buttons, onClick}) =>
       intent: button.intent
 )
 
-module.exports = MenuButton

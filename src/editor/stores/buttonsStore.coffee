@@ -1,5 +1,5 @@
-{extendObservable, computed} = require 'mobx'
-{Intent} = require('@blueprintjs/core')
+import {extendObservable, computed} from 'mobx'
+import {Intent} from '@blueprintjs/core'
 
 class Button
   constructor: (editor, button) ->
@@ -40,7 +40,8 @@ class Button
 
       )
       disabled: computed(->
-        if editor.isDirty and enableOnDirty then no
+        if editor.selectedDashboardId is '0' then yes
+        else if editor.isDirty and enableOnDirty then no
         else if editor.isDirty and disableOnDirty then yes
         else if editor.isEditing and enableOnEdit then no
         else if editor.isEditing and disableOnEdit then yes
@@ -51,4 +52,4 @@ class Button
     }
 
 
-module.exports = Button
+export default Button

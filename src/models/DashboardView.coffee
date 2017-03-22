@@ -17,4 +17,4 @@ class DashboardView
 
 
 
-module.exports = DashboardView
+export default DashboardView

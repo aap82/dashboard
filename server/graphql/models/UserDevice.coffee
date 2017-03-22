@@ -31,31 +31,28 @@ UserDeviceTC.addRelation(
   => {
     resolver: DashboardTC.getResolver('findOne')
     args:
-      filter: ((source) => uuid: source.defaultDashboardId)
+      filter: ((source) => {ip: source.ip, uuid: source.defaultDashboardId})
       skip: null
       sort: null
     projection:
-      defaultDashboardId: yes
+      ip: yes
+      uuid: yes
   }
-
-
-
 )
+
 UserDeviceTC.addRelation(
   'dashboards',
   => {
     resolver: DashboardTC.getResolver('findMany')
     args:
-      filter: ((source) => deviceType: source.type)
+      filter: ((source) => ip: source.ip)
       skip: null
       sort: null
     projection:
       type: yes
   }
-
-
-
 )
+
 
 UserDeviceFields = "
   ip

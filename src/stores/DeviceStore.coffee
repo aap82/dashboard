@@ -1,4 +1,4 @@
-{ extendObservable, observable, action, runInAction} = require 'mobx'
+import { extendObservable, observable, action, runInAction} from 'mobx'
 
 
 class DeviceStore
@@ -24,4 +24,4 @@ class DeviceStore
 
 deviceStore = new DeviceStore()
 
-module.exports =  deviceStore
+export default  deviceStore

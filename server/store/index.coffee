@@ -51,6 +51,11 @@ that = module.exports =
 
   getStates: (devices) -> ("#{id}": @states[id] for id in devices)
 
+  getStatesObj: (devices) ->
+    response = {}
+    response[id] = @states[id] for id in devices
+    response
+
 
 
 
