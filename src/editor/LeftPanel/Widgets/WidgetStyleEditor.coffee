@@ -1,9 +1,9 @@
-React = require 'react'
-{crel, div, a, h5, h4, text, span, pureComponent,br } = require 'teact'
-{inject, observer} = require 'mobx-react'
+import React from 'react'
+import {crel, div, a, h5, h4, text, span, pureComponent,br } from 'teact'
+import {inject, observer} from 'mobx-react'
 
-Color = require 'color'
-ColorPicker = require('rc-color-picker')
+import Color from 'color'
+import ColorPicker from 'rc-color-picker'
 
 
 
@@ -76,4 +76,4 @@ WidgetStyle = observer(({editor}) ->
 
 )
 
-module.exports = observer(WidgetStyle)
+export default observer(WidgetStyle)

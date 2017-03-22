@@ -1,7 +1,7 @@
-React = require 'react'
-{crel, div, h4, h5, br, text, select, option} = require 'teact'
-{inject,observer} = require 'mobx-react'
-{Intent, Button, EditableText} = require('@blueprintjs/core')
+import React from 'react'
+import {crel, div, h4, h5, br, text, select, option} from 'teact'
+import {inject,observer} from 'mobx-react'
+import {Intent, Button, EditableText} from  '@blueprintjs/core'
 
 
 SaveWidgetChangesButton = ({onClick}) ->
@@ -95,5 +95,5 @@ class EditWidgetDialogContent extends React.Component
 
 
 
-module.exports = inject('widgetEditor')(observer(EditWidgetDialogContent))
+export default inject('widgetEditor')(observer(EditWidgetDialogContent))
 

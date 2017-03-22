@@ -1,8 +1,8 @@
-React = require 'react'
-ReactDOM = require 'react-dom';
-{crel, div, br, text} = require 'teact'
-{extendObservable, action,runInAction} = require 'mobx'
-{observer} = require 'mobx-react'
+import React from 'react'
+import ReactDOM from 'react-dom';
+import {crel, div, br, text} from 'teact'
+import {extendObservable, action,runInAction} from 'mobx'
+import {observer} from 'mobx-react'
 gqlFetch = require('../utils/fetch')('/graphql')
 
 
@@ -98,15 +98,17 @@ class RegisterDevice extends React.Component
         @device.height = window.outerHeight
         @device.width = window.outerWidth
         runInAction(=>
-          @device.registered = yes
-          if @fullScreen then gqlFetch('opName', 'UpdateUserDevice', {ip: @device.ip, device: @device}).then(@handleUpdate)
+          gqlFetch('opName', 'UpdateUserDevice', {ip: @device.ip, device: @device}).then(@handleUpdate)
         )
       )
 
       handleUpdate: action((result) =>
+        console.log result
         runInAction(=>
-          @fullScreen = no
-          document.webkitExitFullscreen()
+          if @fullScreen
+            @fullScreen = no
+            document.webkitExitFullscreen()
+          @device.registered = yes
           @device.height = result.data.updateUserDevice.record.height
           @device.width = result.data.updateUserDevice.record.width
         )

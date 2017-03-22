@@ -55,6 +55,10 @@ DashboardSchema = new Schema({
     type: Number
     defaultValue: 100
   widgetFontColor: String
+  widgetFontSizePrimary: Number
+  widgetFontSizeSecondary: Number
+  widgetFontWeightPrimary: String
+  widgetFontWeightSecondary: String
 })
 
 DashboardSchema.index({uuid: 1}, {unique: yes})
@@ -92,6 +96,10 @@ DashboardFields = "
   widgetBackgroundColor
   widgetBackgroundAlpha
   widgetFontColor
+  widgetFontSizePrimary
+  widgetFontSizeSecondary
+  widgetFontWeightPrimary
+  widgetFontWeightSecondary
   devices
   layouts {
     i

@@ -1,8 +1,8 @@
-React = require 'react'
-{extendObservable, computed} = require 'mobx'
-{crel, div, text, label, button, select, option, pureComponent,br } = require 'teact'
-{inject, observer} = require 'mobx-react'
-{ Button, Intent, Checkbox} = require('@blueprintjs/core')
+import React from 'react'
+import {extendObservable, computed} from 'mobx'
+import {crel, div, text, label, button, select, option, pureComponent,br } from 'teact'
+import {inject, observer} from 'mobx-react'
+import { Button, Intent, Checkbox} from  '@blueprintjs/core'
 
 
 
@@ -12,10 +12,13 @@ DashboardDropDownListView = observer(({editor, onChange}) =>
   displayName: 'SelectDashboardListView'
   div className: 'pt-select pt-large pt-fill', ->
     select value: editor.selectedDashboardId, onChange: onChange, disabled: editor.isEditing, ->
-      option value: '0', 'Select Dashboard...'
+      option value: '0', 'Select/Create Dashboard'
       editor.getDashboardsForDevice().map (dashboard) ->
         option key: dashboard.uuid, value: dashboard.uuid, "#{dashboard.title}" #" / #{dashboard.deviceType}"
 )
+
+
+
 
 
 
@@ -43,15 +46,9 @@ class UserDashboardsSection extends React.Component
 
   toggleDefaultDashboard: =>
     {editor} = @props
-    ip = editor.device.get('ip')
+    return if editor.dashboard.widgets.length is 0
     uuid = if @isDefault then null else @value
-    editor.fetch('opName', 'UpdateUserDevice', {ip: ip, device: {defaultDashboardId: uuid}}).then (res) =>
-      if res.data.updateUserDevice?
-        {record} = res.data.updateUserDevice
-        console.log record
-        editor.updateDevice(record)
-      else
-        return
+    editor.updateUserDefaultDashboard('defaultDashboardId', uuid)
 
 
   render: ->
@@ -60,12 +57,20 @@ class UserDashboardsSection extends React.Component
       div style: {marginBottom: 10}, className: 'row between middle', =>
         div style: {width: '70%'}, =>
           crel DashboardDropDownListView, editor: editor, onChange: @onChange
-        crel Button,
-          text: 'Create'
-          disabled: editor.isEditing
-          className: 'pt-large'
-          intent: Intent.SUCCESS
-          onClick: @createDashboard
+        if @value is '0'
+          crel Button,
+            text: 'Create'
+            disabled: editor.isEditing
+            className: 'pt-large'
+            intent: Intent.SUCCESS
+            onClick: @createDashboard
+        else
+          crel Button,
+            text: 'Delete'
+            className: 'pt-large'
+            intent: Intent.DANGER
+            onClick: @deleteDashboard
+            disabled: (editor.selectedDashboardId is '0' or editor.isEditing)
       div className: 'row between middle', =>
         div style: {width: '70%'}, =>
           crel Checkbox,
@@ -73,12 +78,6 @@ class UserDashboardsSection extends React.Component
             label: 'Set to Default Dashboard?'
             onChange: @toggleDefaultDashboard
             disabled: (@value is '0')
-        crel Button,
-          text: 'Delete'
-          className: 'pt-large'
-          intent: Intent.DANGER
-          onClick: @deleteDashboard
-          disabled: (editor.selectedDashboardId is '0')
 
 
 
@@ -87,6 +86,7 @@ class UserDashboardsSection extends React.Component
 
 
 
-module.exports = inject('modal', 'editor')(observer(UserDashboardsSection))
+
+export default inject('modal', 'editor')(observer(UserDashboardsSection))
 
 

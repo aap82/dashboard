@@ -1,6 +1,6 @@
-{getDefaultModelSchema, setDefaultModelSchema, object, createModelSchema, createSimpleSchema,identifier} = require 'serializr'
-uuidV4 = require('uuid/v4')
-{extendObservable, action, toJS, computed, runInAction} = require 'mobx'
+import {getDefaultModelSchema, setDefaultModelSchema, object, createModelSchema, createSimpleSchema,identifier} from 'serializr'
+import uuidV4 from 'uuid/v4'
+import {extendObservable, action, toJS, computed, runInAction} from 'mobx'
 createdWidgets = {}
 
 
@@ -26,7 +26,10 @@ class WidgetModel
       overrideStyle: no
       label: widget.label
       type: widget.type
-      style: widget.style
+      style:
+        backgroundColor: ''
+        borderRadius: 2
+        color: ''
     })
 
 

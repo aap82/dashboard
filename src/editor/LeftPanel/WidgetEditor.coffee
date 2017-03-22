@@ -1,11 +1,11 @@
-React = require 'react'
-{extendObservable, observable, toJS} = require 'mobx'
-{crel, div, a, h5, h4, select, option, pureComponent,br } = require 'teact'
-{inject, observer} = require 'mobx-react'
-{Button, Intent, Switch} = require('@blueprintjs/core')
-EditableText = require '../components/EditableText'
-GroupWidgetEditor = require './Widgets/GroupWidgetEditor'
-WidgetStyle = require './Widgets/WidgetStyleEditor'
+import React from 'react'
+import {extendObservable, observable, toJS} from 'mobx'
+import {crel, div, a, h5, h4, select, option, pureComponent,br } from 'teact'
+import {inject, observer} from 'mobx-react'
+import {Button, Intent, Switch} from '@blueprintjs/core'
+import EditableText from '../components/EditableText'
+import GroupWidgetEditor from './Widgets/GroupWidgetEditor'
+import WidgetStyle from './Widgets/WidgetStyleEditor'
 
 keys =
   CTRL: 17
@@ -228,7 +228,7 @@ class WidgetEditor extends React.Component
 
 
 
-module.exports = observer(WidgetEditor)
+export default observer(WidgetEditor)
 
 
 

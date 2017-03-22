@@ -1,5 +1,5 @@
-{div, label, input, span} = require 'teact'
-{observer} = require 'mobx-react'
+import {div, label, input, span} from 'teact'
+import {observer} from 'mobx-react'
 
 ToggleSwitch = observer(({state, attr}) =>
   div className: 'card', ->
@@ -14,4 +14,4 @@ ToggleSwitch = observer(({state, attr}) =>
 
 
 ToggleSwitch.displayName = 'ToggleSwitch'
-module.exports = ToggleSwitch
+export default ToggleSwitch

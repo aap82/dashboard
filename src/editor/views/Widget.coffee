@@ -1,9 +1,9 @@
-React = require 'react'
-{crel, div} = require 'teact'
-{inject, observer} = require 'mobx-react'
-Color = require 'color'
-WidgetContainer = require '../../widgets/Widget'
-{ ContextMenuTarget, Menu, MenuItem } = require '@blueprintjs/core'
+import React from 'react'
+import {crel, div} from 'teact'
+import {inject, observer} from 'mobx-react'
+import Color from 'color'
+import WidgetContainer from '../../widgets/Widget'
+import { ContextMenuTarget, Menu, MenuItem } from  '@blueprintjs/core'
 
 
 class EditableWidget extends React.Component
@@ -22,13 +22,12 @@ class EditableWidget extends React.Component
       {widgetCardDepth} = dashboard
       {device, label, type} = widget
       widgetStyle = if !widget.overrideStyle
-          backgroundColor: Color(dashboard.widgetBackgroundColor).alpha(dashboard.widgetBackgroundAlpha/100).hsl().string()
-          color: dashboard.widgetFontColor
-          borderRadius: dashboard.widgetBorderRadius
+          editor.getGlobalWidgetStyle
         else
           backgroundColor: widget.style.backgroundColor
           color: widget.style.color
           borderRadius: widget.style.borderRadius
+
 
       class_name = if widget in editor.editingWidgets then 'selected-widget' else ''
 
@@ -38,7 +37,7 @@ class EditableWidget extends React.Component
         width: '100%'
         display: 'block'
         clear: 'both'
-        borderRadius: widget.style.borderRadius + 3
+        borderRadius: widgetStyle.borderRadius + 3
       }, onClick: @handleWidgetClick, ->
         crel WidgetContainer,
           label: label
@@ -98,7 +97,7 @@ class EditableWidget extends React.Component
 
 
 
-module.exports = inject('modal', 'editor')(observer(EditableWidget))
+export default inject('modal', 'editor')(observer(EditableWidget))
 
 
 

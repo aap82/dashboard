@@ -1,8 +1,9 @@
+import {crel} from 'teact'
 require '../widgets/widgets.scss'
 require './styles.scss'
-{crel} = require 'teact'
-DevTools = require('mobx-react-devtools').default
-App = require('./views/App')
+
+import DevTools from 'mobx-react-devtools'
+import App from './views/App'
 
 
 options =
@@ -12,7 +13,7 @@ options =
     bottom: 0
     left: 150
 
-DevApp = ->
+export default DevApp = ->
   displayName: 'DevApp'
   crel 'div', ->
     crel App
@@ -22,5 +23,5 @@ DevApp = ->
 
 
 
-module.exports = DevApp
+
 

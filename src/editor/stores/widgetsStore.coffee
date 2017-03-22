@@ -1,5 +1,5 @@
-{extendObservable, action, computed, observable, toJS} = require 'mobx'
-WidgetStore = require './store-widgets'
+import {extendObservable, action, computed, observable, toJS} from 'mobx'
+import WidgetStore from './store-widgets'
 
 
 
@@ -68,4 +68,4 @@ class Widgets
 
 
 widgets = new Widgets(WidgetStore, WidgetStore.widgetTypes)
-module.exports = widgets
+export default widgets

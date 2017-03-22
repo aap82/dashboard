@@ -1,5 +1,5 @@
-{extendObservable, computed} = require 'mobx'
-{Intent} = require('@blueprintjs/core')
+import {extendObservable, computed} from 'mobx'
+import {Intent} from '@blueprintjs/core'
 
 class Button
   constructor: (editor, button) ->
@@ -52,4 +52,4 @@ class Button
     }
 
 
-module.exports = Button
+export default Button

@@ -1,10 +1,51 @@
-React = require 'react'
-{crel, div, select, option, br, h4, h3 } = require 'teact'
-{ inject, observer} = require 'mobx-react'
-MenuButton = require './../components/MenuButton'
-{ Button, Intent, EditableText} = require('@blueprintjs/core')
-ColorPickerComponent = require './ColorPicker'
-t = require './buttons/types'
+import React from 'react'
+import {crel, div, select, input, option, br, h4, h3 } from 'teact'
+import { inject, observer} from 'mobx-react'
+import MenuButton from './../components/MenuButton'
+import { Button, Intent, EditableText} from '@blueprintjs/core'
+import ColorPickerComponent from './ColorPicker'
+import t from './buttons/types'
+
+
+
+
+class WidgetFontSize extends React.Component
+  constructor: (props) ->
+    super props
+
+  increment: =>
+    {editor, id} = @props
+    editor.dashboard[id] = editor.dashboard[id] + 1
+
+
+  decrement: =>
+    {editor, id} = @props
+    editor.dashboard[id] = editor.dashboard[id] - 1
+
+
+
+  render: =>
+    {editor, id} = @props
+    {dashboard} = editor
+    value = dashboard[id]
+    disabled = !editor.isEditing
+    div className: 'col-xs-6 widget-font-input-container', =>
+      div className: 'row middle end', =>
+        div className: 'input-section', =>
+          input
+            id: @props.id
+            className: 'pt-input pt-rtl number-input'
+            value: dashboard[id]
+            type: 'text'
+            onChange: -> return
+            disabled: disabled
+            autoFocus: yes
+        crel Button, iconName: 'plus', disabled: (value is 25 or disabled ), onClick: @increment
+        crel Button, iconName: 'minus', disabled:(value is 12 or disabled ), onClick: @decrement
+
+
+WidgetFontSize = observer(WidgetFontSize)
+
 
 
 Title = observer(({editor}) ->
@@ -46,19 +87,13 @@ class DashboardProperties extends React.Component
 
   render: ->
     {editor} = @props
-    {buttons, dashboard, isEditing} = editor
-    {EDIT_DASHBOARD,SAVE_DASHBOARD,DONE_EDITING,DISCARD_CHANGES,DELETE_DASHBOARD,COPY_DASHBOARD,CREATE_DASHBOARD } = buttons
+    {dashboard, isEditing} = editor
     div className: 'properties-section', =>
-      br()
       div className: 'title-row button', =>
         crel Button,
           text: 'Dashboard'
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
-      div style: {padding: 5}, className: 'row around middle', =>
-        crel MenuButton, buttons: [EDIT_DASHBOARD, SAVE_DASHBOARD, DONE_EDITING], editor: editor, onClick: @handleClick
-        crel MenuButton, buttons: [COPY_DASHBOARD, DISCARD_CHANGES ], editor: editor, onClick: @handleClick
-      br()
       div style: {marginBottom: 12}, className: 'title-editor', =>
         crel Title, editor: editor
       crel DashboardDeviceOrientation,
@@ -71,35 +106,31 @@ class DashboardProperties extends React.Component
           alpha: false,
           isEditing: isEditing,
           label: 'Background Color'
-
-
-
-
-  handleClick: (e) =>
-    switch e.currentTarget.id
-      when t.EDIT_DASHBOARD
-        @props.editor.startEditing()
-        break
-      when t.DONE_EDITING
-        @props.editor.stopEditing()
-        break
-      when t.DISCARD_DASHBOARD
-        @props.editor.restoreSnapshot()
-      when t.EXIT_EDITOR
-        @props.editor.exit()
-        break
-      when t.SAVE_DASHBOARD
-        @props.editor.save()
-        break
-      when t.DELETE_DASHBOARD
-        @props.editor.delete()
-        break
+      div style: {paddingLeft: 5, paddingRight: 5, marginBottom: 5}, =>
+        div className: 'row between middle', =>
+          div 'Primary Font Size'
+          crel WidgetFontSize,
+            id: 'widgetFontSizePrimary'
+            editor: editor
+        div className: 'row between middle', =>
+          div 'Primary Font Weight'
+          div dashboard.widgetFontWeightPrimary
+        div className: 'row between middle', =>
+          div 'Secondary Font Size'
+          crel WidgetFontSize,
+            id: 'widgetFontSizeSecondary'
+            editor: editor
+        div className: 'row between middle', =>
+          div 'Secondary Font Weight'
+          div dashboard.widgetFontWeightSecondary
 
 
 
 
 
-module.exports = observer(DashboardProperties)
+
+
+export default observer(DashboardProperties)
 
 
 

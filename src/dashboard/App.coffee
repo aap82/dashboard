@@ -1,25 +1,24 @@
-require '../widgets/widgets.scss'
+import React from 'react'
 require './style.scss'
-React = require 'react'
-{crel, div, text} = require 'teact'
-Dashboard = require './views/Dashboard'
+import {crel, div, text} from 'teact'
+import Dashboard from './views/Dashboard'
 
 
 
-export default class App extends React.Component
+class App extends React.Component
   constructor: (props) ->
     super props
 
   componentDidMount: ->
-    @props.deviceStore.subscribe()
+    @props.viewStore.init()
+
+  componentWillUnmount: ->
+    @props.viewStore.exit()
 
   render: ->
-    mainStyle =
-      height: '100%'
-      width: '100%'
-    crel 'div', style: mainStyle, ->
-      crel Dashboard, @props
+    crel Dashboard
 
 
 
 
+export default App

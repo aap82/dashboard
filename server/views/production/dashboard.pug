@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Dashboard
+    meta(charset='utf-8')
+    meta(name='format-detection', content='telephone=no')
+    meta(name='viewport', content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(name='mobile-web-app-capable', content='yes')
+    meta(name='msapplication-tap-highlight', content='no')
+    link(href='/css/dashboard.css' rel='stylesheet')
+
+
+  body
+    div#app!= html
+    script.
+      window.__APP_STATE__ = !{state};
+
+    script(src='/vendors.js')
+    script(src='/js/dashboard.js')
+
+

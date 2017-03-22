@@ -1,28 +1,27 @@
-React = require 'react'
-{crel, div, br, text} = require 'teact'
-{inject,observer} = require 'mobx-react'
-LeftPanel = require('../LeftPanel')
-SplitPane = require 'react-split-pane'
-Dashboard = require './Dashboard'
-DashboardEditor = require '../LeftPanel/DashboardEditor'
-WidgetEditor = require '../LeftPanel/WidgetEditor'
+import React from 'react'
+import {crel, div, br, text} from 'teact'
+import {inject,observer} from 'mobx-react'
+import LeftPanel from '../LeftPanel'
+import SplitPane from 'react-split-pane'
+import Dashboard from './Dashboard'
+import DashboardEditor from '../LeftPanel/DashboardEditor'
+import WidgetEditor from '../LeftPanel/WidgetEditor'
 
 
 
 class EditorPage extends React.Component
   render: ->
     borderStyle = {height: '100%', width: '100%'}
-
     {editor} = @props
+    {dashboard} = editor
     crel SplitPane, split: 'vertical', size: 350, allowResize: no, ->
       crel LeftPanel
-      crel SplitPane, split: 'horizontal', size: 100, allowResize: no, ->
+      crel SplitPane, split: 'horizontal', size: 150, allowResize: no, ->
         crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
           div style: borderStyle
-          crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+          crel SplitPane, split: 'vertical', size: dashboard.width + 20, allowResize: no, ->
             div style: borderStyle, ->
-              div style: {padding: 10}, ->
-                crel DashboardEditor, editor: editor
+              crel DashboardEditor, editor: editor
             div style: borderStyle
         div ->
           crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
@@ -38,7 +37,7 @@ class EditorPage extends React.Component
 
 
 
-#module.exports = inject('editor')(observer(EditorPage))
+#export default inject('editor')(observer(EditorPage))
 export default inject('editor')(observer(EditorPage))
 
 

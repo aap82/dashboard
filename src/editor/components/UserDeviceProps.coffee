@@ -1,8 +1,8 @@
-React = require 'react'
-{observable, toJS} = require 'mobx'
-{crel, div, span, h3, h4, h5, text, input, select, br } = require 'teact'
-{observer} = require 'mobx-react'
-EditableText = require './EditableText'
+import React from 'react'
+import {observable, toJS} from 'mobx'
+import {crel, div, span, h3, h4, h5, text, input, select, br } from 'teact'
+import {observer} from 'mobx-react'
+import EditableText from './EditableText'
 
 
 class UserDeviceProps extends React.Component
@@ -10,13 +10,9 @@ class UserDeviceProps extends React.Component
 
   handleSave: (id, value) =>
     {editor} = @props
-    ip = editor.device.get('ip')
-    editor.fetch('opName', 'UpdateUserDevice', {ip: ip, device: {"#{id}": value}}).then (res) =>
-      if res.data.updateUserDevice?
-        {record} = res.data.updateUserDevice
-        editor.updateDevice(record)
-      else
-        return
+    console.log value
+    editor.updateUserDefaultDashboard(id, value)
+
 
   render: ->
     {editor} = @props
@@ -57,5 +53,5 @@ class UserDeviceProps extends React.Component
           div 'Default Dashboard'
           div defaultDashboardTitle
 
-module.exports = (observer(UserDeviceProps))
+export default (observer(UserDeviceProps))
 

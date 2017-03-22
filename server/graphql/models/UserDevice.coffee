@@ -26,6 +26,19 @@ UserDeviceSchema.index({ip: 1}, {unique: yes})
 UserDevice = mongoose.model 'UserDevice', UserDeviceSchema
 UserDeviceTC = composeWithMongoose(UserDevice)
 
+UserDeviceTC.addRelation(
+  'dashboard',
+  => {
+    resolver: DashboardTC.getResolver('findOne')
+    args:
+      filter: ((source) => {ip: source.ip, uuid: source.defaultDashboardId})
+      skip: null
+      sort: null
+    projection:
+      ip: yes
+      uuid: yes
+  }
+)
 
 UserDeviceTC.addRelation(
   'dashboards',

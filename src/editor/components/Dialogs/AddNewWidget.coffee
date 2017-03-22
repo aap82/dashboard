@@ -1,8 +1,8 @@
-{extendObservable, action,computed, runInAction} = require 'mobx'
-React = require 'react'
-{crel, div, h4, h5, br, text, select, option} = require 'teact'
-{inject,observer} = require 'mobx-react'
-{Intent, Button, EditableText, Dialog} = require('@blueprintjs/core')
+import {extendObservable, action,computed, runInAction} from 'mobx'
+import React from 'react'
+import {crel, div, h4, h5, br, text, select, option} from 'teact'
+import {inject,observer} from 'mobx-react'
+import {Intent, Button, EditableText, Dialog} from '@blueprintjs/core'
 
 
 
@@ -106,7 +106,7 @@ class AddOrEditWidgetDialog extends React.Component
             onClick: @reset
 
 
-module.exports = inject('editor', 'widgets')(observer(AddOrEditWidgetDialog))
+export default inject('editor', 'widgets')(observer(AddOrEditWidgetDialog))
 
 AddselectedDeviceButton = observer(({widget, onClick}) ->
   crel Button,

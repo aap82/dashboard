@@ -1,7 +1,7 @@
-React = require 'react'
-{crel, div, span, text} = require 'teact'
-{ observer} = require 'mobx-react'
-ColorPicker = require('rc-color-picker')
+import React from 'react'
+import {crel, div, span, text} from 'teact'
+import { observer} from 'mobx-react'
+import ColorPicker from 'rc-color-picker'
 
 
 class ColorPickerComponent  extends React.Component
@@ -45,4 +45,4 @@ ColorPickerContainer = observer(({isEditing, picker, target, alphaTarget, onChan
 
 
 
-module.exports = observer(ColorPickerComponent)
+export default observer(ColorPickerComponent)

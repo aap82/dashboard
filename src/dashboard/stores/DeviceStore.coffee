@@ -1,4 +1,4 @@
-{ extendObservable, observable, action, runInAction} = require 'mobx'
+import { extendObservable, observable, action, runInAction} from 'mobx'
 
 
 class DeviceStore
@@ -17,9 +17,16 @@ class DeviceStore
           @stream.addEventListener 'update', @handleDeviceUpdate
         )
       )
+
+      unsubscribe: action(->
+        runInAction(=>
+          console.log 'exit'
+          @stream.close()
+        )
+      )
     }
 
 
 deviceStore = new DeviceStore()
 
-module.exports =  deviceStore
+export default  deviceStore

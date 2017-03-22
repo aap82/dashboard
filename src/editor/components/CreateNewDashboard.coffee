@@ -1,9 +1,9 @@
-{extendObservable, action,toJS, runInAction} = require 'mobx'
-React = require 'react'
-{crel, div, text, br, input, select, option } = require 'teact'
-{inject, observer} = require 'mobx-react'
-{Intent, Button} = require('@blueprintjs/core')
-Tappable = require 'react-tappable/lib/Tappable'
+import {extendObservable, action,toJS, runInAction} from 'mobx'
+import React from 'react'
+import {crel, div, text, br, input, select, option } from 'teact'
+import {inject, observer} from 'mobx-react'
+import {Intent, Button} from '@blueprintjs/core'
+import Tappable from 'react-tappable/lib/Tappable'
 
 class NewDashboardPanel extends React.Component
   constructor: (props) ->
@@ -61,4 +61,4 @@ TitleInput = observer((props) ->
 
 
 
-module.exports = inject('editor')(observer(NewDashboardPanel))
+export default inject('editor')(observer(NewDashboardPanel))

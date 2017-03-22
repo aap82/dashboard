@@ -1,0 +1,50 @@
+@import '../styles/global';
+@import '../widgets/widgets';
+@import 'styles/left_panel';
+@import 'styles/create_dashboard_panel';
+@import 'styles/color-picker';
+@import 'styles/create_widget_dialog';
+
+.setup-page {
+  height: 100vh;
+  min-width: 1500px;
+  overflow-x: hidden;
+  background-color: #293742;
+  padding: 15px;
+}
+
+
+.react-resizable-handle {
+  z-index: 50000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  min-height: 15px!important;
+  min-width: 15px!important;
+  height: 10px!important;
+  cursor: nwse-resize;
+
+}
+
+.editor-button {
+  span {pointer-events: inherit!important;}
+  span::before {
+    pointer-events: inherit!important;
+  }
+  button::before {
+    pointer-events: inherit!important;
+  }
+}
+
+.selected-widget {
+  border: {
+    style: solid;
+    width: 2px;
+    color: red;
+  }
+
+
+
+}
+
+.hidden { display: none!important;}

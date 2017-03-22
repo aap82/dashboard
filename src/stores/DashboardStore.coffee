@@ -58,5 +58,5 @@ class DashboardStore
 
 
 
-module.exports = DashboardStore
+export default DashboardStore
 

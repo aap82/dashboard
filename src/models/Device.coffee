@@ -11,4 +11,4 @@ class DeviceProps
 
 
 
-module.exports = DeviceProps
+export default DeviceProps

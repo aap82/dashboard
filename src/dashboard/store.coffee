@@ -1,10 +1,10 @@
-DeviceStore = require './stores/DeviceStore'
+import deviceStore from './stores/DeviceStore'
+import viewStore from './stores/ViewStore'
 
-exports.configureStores = (data) ->
-  console.log data
-  deviceStates = if data.deviceStates? then JSON.parse(data.deviceStates) else []
-  DeviceStore.addDeviceState(deviceState) for deviceState in deviceStates
+export configureStores = (data) ->
+  deviceStore.states.replace(data.deviceStates)
   return {
     dashboard:  data.dashboard
-    deviceStore: DeviceStore
+    deviceStore: deviceStore
+    viewStore: viewStore
   }

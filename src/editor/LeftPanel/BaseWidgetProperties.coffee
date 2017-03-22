@@ -1,10 +1,10 @@
-React = require 'react'
-{crel, div, br, text, input} = require 'teact'
-{ inject, observer} = require 'mobx-react'
-{Button} = require('@blueprintjs/core')
-MenuButton = require './../components/MenuButton'
-ColorPickerComponent = require './ColorPicker'
-t = require './buttons/types'
+import React from 'react'
+import {crel, div, br, text, input} from 'teact'
+import { inject, observer} from 'mobx-react'
+import {Button} from  '@blueprintjs/core'
+import MenuButton from '../components/MenuButton'
+import ColorPickerComponent from './ColorPicker'
+import t from './buttons/types'
 
 
 WidgetProp = observer(({id, editor, dashboard, button1, button2, onClick}) =>
@@ -110,4 +110,4 @@ class BaseWidgetPropertiesContent extends React.Component
 
 
 
-module.exports = inject('modal')(observer(BaseWidgetPropertiesContent))
+export default inject('modal')(observer(BaseWidgetPropertiesContent))

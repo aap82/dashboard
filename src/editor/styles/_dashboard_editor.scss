@@ -156,3 +156,23 @@
   }
 }
 
+.widget-font-input-container {
+  button, input {
+    border-radius: 0!important;
+  }
+  padding-left: 1px!important;
+  padding-right: 1px!important;
+  .pt-input {
+    padding: 0px 5px!important;
+
+  }
+  font-size: 12px;
+  .input-section {
+    font-size: 12px;
+
+    .number-input {
+      width: 30px;
+    }
+
+  }
+}

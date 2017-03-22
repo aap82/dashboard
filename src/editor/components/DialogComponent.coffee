@@ -1,6 +1,6 @@
-{crel, div} = require 'teact'
-{inject, observer} = require 'mobx-react'
-{Dialog} = require('@blueprintjs/core')
+import {crel, div} from 'teact'
+import {inject, observer} from 'mobx-react'
+import {Dialog} from '@blueprintjs/core'
 
 DialogComponentContainer = observer(({modal}) =>
   crel Dialog,
@@ -21,5 +21,5 @@ DialogComponentContainer = observer(({modal}) =>
 
 )
 
-module.exports = inject('modal')(DialogComponentContainer)
+export default inject('modal')(DialogComponentContainer)
 

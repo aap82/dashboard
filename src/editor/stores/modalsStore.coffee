@@ -1,10 +1,10 @@
-{extendObservable, action, runInAction, computed} = require 'mobx'
-{crel, div} = require 'teact'
-CreateNewDashboard = require '../components/CreateNewDashboard'
-AddNewWidget = require '../components/Dialogs/AddNewWidget'
-ConfirmDashboardDelete = require '../components/Dialogs/ConfirmDashboardDelete'
-DiscardDashboardChanges = require '../components/Dialogs/DiscardDashboardChanges'
-EditWidget = require '../components/Dialogs/EditWidget'
+import {extendObservable, action, runInAction, computed} from 'mobx'
+import {crel, div} from 'teact'
+import CreateNewDashboard from '../components/CreateNewDashboard'
+import AddNewWidget from '../components/Dialogs/AddNewWidget'
+import ConfirmDashboardDelete from '../components/Dialogs/ConfirmDashboardDelete'
+import DiscardDashboardChanges from '../components/Dialogs/DiscardDashboardChanges'
+import EditWidget from '../components/Dialogs/EditWidget'
 
 Modals = -> 
   addWidget: 
@@ -79,4 +79,4 @@ class ModalStore
 
 modalStore = new ModalStore(new Modals)
 
-module.exports = modalStore
+export default modalStore

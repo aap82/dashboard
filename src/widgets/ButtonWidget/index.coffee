@@ -1,7 +1,7 @@
-{crel, div, h4} = require 'teact'
-React = require 'react'
-Tappable = require 'react-tappable/lib/Tappable'
-{observer} = require 'mobx-react'
+import {crel, div, h4} from 'teact'
+import React from 'react'
+import Tappable from 'react-tappable/lib/Tappable'
+import {observer} from 'mobx-react'
 
 
 class ButtonWidget extends React.Component
@@ -17,4 +17,4 @@ class ButtonWidget extends React.Component
 
 
 
-module.exports = observer(ButtonWidget)
+export default observer(ButtonWidget)

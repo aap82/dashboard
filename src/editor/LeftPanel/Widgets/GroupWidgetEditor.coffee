@@ -1,8 +1,8 @@
-React = require 'react'
-{div, crel, a, h5} = require 'teact'
-{observer} = require 'mobx-react'
-WidgetStyle = require './WidgetStyleEditor'
-{Switch} = require('@blueprintjs/core')
+import React from 'react'
+import {div, crel, a, h5} from 'teact'
+import {observer} from 'mobx-react'
+import WidgetStyle from './WidgetStyleEditor'
+import {Switch} from  '@blueprintjs/core'
 keys =
   CTRL: 17
   ESC: 27
@@ -34,8 +34,26 @@ class GroupStyleOverrideSwitch extends React.Component
 
 GroupStyleOverrideSwitch = observer(GroupStyleOverrideSwitch)
 
+
+
+
+DistributionButtons = observer(({editor, onClick}) ->
+  isDisabled = {}
+  for layout in editor.editingLayouts
+    console.log layout
+
+  div className: 'pt-button-group pt-fill', onClick: onClick, =>
+    a id: 'horizontally', className: 'pt-button', role: 'button', 'Horizontally'
+    a id: 'vertically',  className: 'pt-button', role: 'button', 'Vertically'
+
+
+)
+
+
+
 class GroupWidgetEditor extends React.Component
   constructor: (props) ->
+
 
   topAlign = (editor) =>
     minY = editor.editingLayouts[0].y
@@ -64,8 +82,12 @@ class GroupWidgetEditor extends React.Component
       editor.editingLayouts.clear()
 
 
-  componentDidMount: =>   document.addEventListener('keydown', @handleKeyDown)
-  componentWillUnmount: =>   document.removeEventListener('keydown', @handleKeyDown)
+  componentDidMount: ->
+    console.log 'group mount'
+    document.addEventListener('keydown', @handleKeyDown)
+  componentWillUnmount: ->
+    console.log 'group unmount'
+    document.removeEventListener('keydown', @handleKeyDown)
 
 
   render: ->
@@ -103,4 +125,4 @@ class GroupWidgetEditor extends React.Component
 
 
 
-module.exports = observer(GroupWidgetEditor)
+export default observer(GroupWidgetEditor)

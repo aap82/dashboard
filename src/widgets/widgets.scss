@@ -1,2 +1,10 @@
+@import '../styles/widget-fonts';
+
 @import 'components/Toggle/toggle_switch';
 @import 'SwitchWidget/switch-widget';
+
+.widget {
+  font-size: inherit;
+}
+
+
