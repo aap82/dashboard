@@ -1,5 +1,9 @@
 require('dotenv').config()
 getenv = require('getenv')
+#
+#http = require 'http'
+#https = require 'spdy'
+#{le} = require './utils/greenlock-koa'
 SERVER_HOST = getenv 'SERVER_HOST'
 SERVER_PORT = getenv 'SERVER_PORT'
 GRAPHQL_ENDPOINT = getenv 'GRAPHQL_ENDPOINT'
@@ -37,7 +41,10 @@ app.use baseErrorHandling()
 app.use(graphql.routes(), graphql.allowedMethods())
 if getenv('NODE_ENV') is 'production'
   app.use compressResponse()
-  app.use serveStaticFiles()
+
+
+
+app.use serveStaticFiles(getenv('NODE_ENV'))
 
 
 
@@ -46,6 +53,19 @@ if getenv('NODE_ENV') is 'production'
 routes = require('./routes')
 app.use(routes.routes(), routes.allowedMethods())
 app.listen(SERVER_PORT)
+
+#server = https.createServer(le.httpsOptions, le.middleware(app.callback()))
+#
+#server.listen(443, ->
+#  console.log('Listening at https://localhost:' + this.address().port)
+#)
+#http = require('http')
+#koa2 = new koa()
+#redirectHttps = koa2.use(require('koa-sslify')()).callback()
+#http.createServer(le.middleware(redirectHttps)).listen(9000, ->
+#  console.log('handle ACME http-01 challenge and redirect to https')
+#)
+#
 
 require('./platforms')
 console.log 'server listing at http://' + SERVER_HOST + ':' + SERVER_PORT

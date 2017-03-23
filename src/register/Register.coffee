@@ -7,8 +7,6 @@ gqlFetch = require('../utils/fetch')('/graphql')
 
 
 state = JSON.parse(window.__APP_STATE__)
-console.log state
-
 
 style =
   main:

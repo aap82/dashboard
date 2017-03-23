@@ -20,9 +20,6 @@ class Dashboard extends React.Component
       'primary-font-size-'+ dashboard.widgetFontSizePrimary,
       'secondary-font-size-'+ dashboard.widgetFontSizeSecondary
     )
-
-
-
     div style: {
         position: 'relative'
         height: dashboard.height
@@ -58,4 +55,6 @@ class Dashboard extends React.Component
 
 
 
-export default inject('editor')(observer(Dashboard))
+Dashboard = inject('editor')(observer(Dashboard))
+
+export default Dashboard

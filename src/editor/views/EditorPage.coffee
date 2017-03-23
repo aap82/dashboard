@@ -8,7 +8,6 @@ import DashboardEditor from '../LeftPanel/DashboardEditor'
 import WidgetEditor from '../LeftPanel/WidgetEditor'
 
 
-
 class EditorPage extends React.Component
   render: ->
     borderStyle = {height: '100%', width: '100%'}
@@ -38,7 +37,9 @@ class EditorPage extends React.Component
 
 
 #export default inject('editor')(observer(EditorPage))
-export default inject('editor')(observer(EditorPage))
+
+EditorPage = inject('editor')(observer(EditorPage))
+export default EditorPage
 
 
 #

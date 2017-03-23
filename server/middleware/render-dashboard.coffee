@@ -9,13 +9,9 @@ useStaticRendering(yes)
 
 device_states = observable.map({})
 
-
-DeviceStore = require '../store'
-
-
 App = require('../app/dashboard').default
 
-renderDashboard = async ({dashboard, deviceStates}) ->
+render = async (dashboard, deviceStates) ->
   crel Provider,
     dashboard: dashboard
     deviceStore:
@@ -23,13 +19,12 @@ renderDashboard = async ({dashboard, deviceStates}) ->
     , ->
       crel App
 
-module.exports = ->
+exports.render_dashboard = ->
   async (ctx, next) ->
-    states = await DeviceStore.getStatesObj(ctx.state.store.dashboard.devices)
-    ctx.state.store.deviceStates = device_states.replace(states)
-    el = await renderDashboard(ctx.state.store)
+    console.log ctx.cacheControl
+    {dashboard, deviceStates} = ctx.state.store
+    el = await render(dashboard, device_states.replace(deviceStates))
     ctx.state.html = await renderToString(el)
-
     await next()
 
 

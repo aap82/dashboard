@@ -21,7 +21,8 @@ exports.compressResponse = ->
   return compress()
 
 
-exports.serveStaticFiles = ->
-  staticFolder = mount '/public', serve(paths.root)
-  distFolder = mount '/', serve(paths.prodBuild)
-  return compose([staticFolder, distFolder])
+exports.serveStaticFiles = (env) ->
+  static_files = [mount '/public', serve(paths.publicFiles)]
+  static_files.push mount('/', serve(paths.prodBuild)) if env is 'production'
+  return compose(static_files)
+
