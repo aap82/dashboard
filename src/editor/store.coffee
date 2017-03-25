@@ -4,7 +4,7 @@ import ViewState from './stores/viewStore'
 import widgets from './stores/widgetsStore'
 import DeviceStore from '../stores/DeviceStore'
 
-
+import Time from '../stores/Time'
 import modalStore from './stores/modalsStore'
 gqlFetch = require('../utils/fetch')('/graphql')
 
@@ -28,6 +28,8 @@ export configureStores = (data) ->
     widgets: widgets
     modal: modalStore
     deviceStore: DeviceStore
+    weather: data.weather
+    time: Time
 
 
   }

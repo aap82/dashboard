@@ -38,6 +38,15 @@
   flex-wrap: wrap;
 
 }
+
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .row-flexbox {
   box-sizing: border-box;
   display: flex;

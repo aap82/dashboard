@@ -171,6 +171,7 @@ class EditorView
       )
 
       load: action((uuid) =>
+        console.log @dashboard.getWidgetStyle()
         runInAction(=>
           if uuid is '0'
             return
@@ -178,10 +179,10 @@ class EditorView
           else
             @reset()
             idx = @dashboards.findIndex((d) => d.uuid is uuid)
+            console.log @dashboards[idx]
             dashboard = toJS @dashboards[idx]
 
-            @dashboard.widgets.clear()
-            @dashboard.layouts.clear()
+            @dashboard.reset()
             @widgetKey = switch dashboard.widgets.length
               when 0 then 0
               else parseInt dashboard.widgets[dashboard.widgets.length - 1].key, 10

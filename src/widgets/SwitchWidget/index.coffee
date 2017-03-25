@@ -8,10 +8,10 @@ import {attrNamesMap} from './props'
 Switch = (props) ->
   {label, state, device} = props
   attrNames = attrNamesMap[device.platform]
-  div className: 'widget switch-widget center', =>
-    div className: 'title-container center middle',=>
+  div className: 'widget column switch-widget center middle', =>
+    div style: {marginBottom: 5}, className: 'title-container center middle',=>
       div className: 'widget-label-primary', label
-    div className: 'switch-container center middle', =>
+    div style: {marginTop: 3},  className: 'center middle', =>
       crel Toggle, state: state, attr: attrNames.on
 
 

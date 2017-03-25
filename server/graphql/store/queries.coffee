@@ -18,6 +18,7 @@ q.getDashboardsAndDevices = "
     devicePlatforms {
       platforms
     }
+
     userDevices {
       ip
       type
@@ -26,6 +27,44 @@ q.getDashboardsAndDevices = "
       defaultDashboardId
       height
       width
+    }
+    weather {
+      currently {
+        time
+        precipType
+        summary
+        icon
+        temperature
+        apparentTemperature
+        humidity
+      }
+      summary {
+        current
+        currentIcon
+        extended
+        extendedIcon
+      }
+      hourly {
+        time
+        summary
+        icon
+        precipProbability
+        precipAccumulation
+        precipType
+        temperature
+        apparentTemperature
+      }
+      daily {
+        time
+        summary
+        icon
+        sunriseTime
+        sunriseTime
+        precipProbability
+        temperatureMin
+        temperatureMax
+        humidity
+      }
     }
 
   }

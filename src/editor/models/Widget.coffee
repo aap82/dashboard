@@ -3,6 +3,16 @@ import uuidV4 from 'uuid/v4'
 import {extendObservable, action, toJS, computed, runInAction} from 'mobx'
 createdWidgets = {}
 
+layoutSchema = createSimpleSchema({
+  i: yes
+  w: yes
+  h: yes
+  x: yes
+  y: yes
+  minW: yes
+  minH: yes
+  static: yes
+})
 
 deviceSchema = createSimpleSchema({
   id: yes
@@ -20,6 +30,7 @@ widgeStyleSchema = createSimpleSchema({
 
 class WidgetModel
   constructor: (widget) ->
+    console.log widget
     @device = widget.device
     @key = widget.key
     extendObservable(@, {

@@ -1,25 +1,17 @@
 .switch-widget {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-
-  min-height: 100%;
-  min-width: 100%;
-
-    .title-container {
-      min-height: 50%;
-      font-weight: bold;
-      line-height: 1em;
-      padding: {
-        left:   1rem;
-        right:  1rem;
-      }
-
+  line-height: 1.25em;
+  .title-container {
+    font-weight: bold;
+    line-height: 1.2em;
+    padding: {
+      left:   1rem;
+      right:  1rem;
     }
-    .switch-container {
-      margin-top: 0.35em;
 
-    }
+  }
+  .switch-container {
+    margin-top: 0.35em;
+
+  }
 
 }

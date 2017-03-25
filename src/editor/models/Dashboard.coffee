@@ -1,7 +1,7 @@
 import {setDefaultModelSchema, identifier, object, createSimpleSchema, list} from 'serializr'
 import {extendObservable} from 'mobx'
 import {widgetSchema} from './Widget'
-
+import Color from 'color'
 
 
 layoutSchema = createSimpleSchema({
@@ -20,7 +20,6 @@ class DashboardModel
     extendObservable @, {
       backgroundColor: '#fff'
       title: ''
-      deviceType: ''
       height: 0
       width: 0
       marginX: 0
@@ -41,6 +40,16 @@ class DashboardModel
       widgetFontWeightPrimary: 'bold'
       widgetFontWeightSecondary: 'normal'
     }
+
+  reset: ->
+    @layouts.clear()
+    @widgets.clear()
+
+  getWidgetStyle: ->
+    backgroundColor: Color(@widgetBackgroundColor).alpha(@widgetBackgroundAlpha/100).hsl().string()
+    color: @widgetFontColor
+    borderRadius: @widgetBorderRadius
+
 
 
 

@@ -2,12 +2,10 @@ import {crel, div} from 'teact'
 import React from 'react'
 import {getWidget} from './getWidget'
 import {inject, observer} from 'mobx-react'
+import {toJS} from 'mobx'
 import cx from 'classnames'
 
-
-
 class WidgetContainer extends React.Component
-
 
   render: ->
     {device, state, type} = @props
@@ -29,9 +27,16 @@ class WidgetContainer extends React.Component
     @props.sendCommand(platform, deviceId, command)
     return
 
+  @getState: =>
+    console.log toJS(@props.state)
 
 
 
-export default inject((stores, {device}) => ({
-  state: stores.deviceStore.states.get(device.id)
+
+
+WidgetContainer = inject(({deviceStore}, {device}) => ({
+  state: deviceStore.states.get(device.id)
 }))(observer(WidgetContainer))
+
+
+export default WidgetContainer

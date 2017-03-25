@@ -22,7 +22,7 @@ class EditableWidget extends React.Component
       {widgetCardDepth} = dashboard
       {device, label, type} = widget
       widgetStyle = if !widget.overrideStyle
-          editor.getGlobalWidgetStyle
+          dashboard.getWidgetStyle()
         else
           backgroundColor: widget.style.backgroundColor
           color: widget.style.color
@@ -96,8 +96,8 @@ class EditableWidget extends React.Component
 
 
 
-
-export default inject('modal', 'editor')(observer(EditableWidget))
+EditableWidget = inject('modal', 'editor')(observer(EditableWidget))
+export default EditableWidget
 
 
 

@@ -1,4 +1,4 @@
-import {crel, div, h2, select, option, br} from 'teact'
+import {crel, div, h2, select, option, br, code, text} from 'teact'
 import {inject, observer} from 'mobx-react'
 import React from 'react'
 import { Button, Intent} from  '@blueprintjs/core'
@@ -35,11 +35,13 @@ class SetupPage extends React.Component
     {editor} = viewState
     div className: 'pt-dark setup-page col-xs-12', =>
       div className: 'col-xs-offset-1 col-xs-3', =>
+        br()
         h2 'Select Device'
         br()
         div className: 'pt-control-group', =>
           crel UserDeviceDropDownListView, viewState: viewState, editor: editor, onChange: @handleUserDeviceChange
           crel LoadUserDevice, viewState: viewState, onClick: @handleLoadUserDevice
+
 
   handleLoadUserDevice: =>
     @props.viewState.loadUserDevice()
@@ -47,5 +49,5 @@ class SetupPage extends React.Component
 
   handleUserDeviceChange: (e) => @props.viewState.setUserDevice(e.target.value)
 
-
-export default inject('viewState', 'modal')(observer(SetupPage))
+SetupPage = inject('viewState', 'modal', 'time')(observer(SetupPage))
+export default SetupPage
