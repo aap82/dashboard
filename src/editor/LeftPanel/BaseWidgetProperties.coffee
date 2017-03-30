@@ -14,7 +14,7 @@ WidgetProp = observer(({id, editor, dashboard, button1, button2, onClick}) =>
         input
           id: id
           className: 'pt-input pt-rtl number-input'
-          value: dashboard[id]
+          value: dashboard[id] or ''
           type: 'text'
           onChange: -> return
           disabled: !editor.isEditing
@@ -27,8 +27,9 @@ WidgetProp = observer(({id, editor, dashboard, button1, button2, onClick}) =>
 WidgetProp.displayName = 'WidgetProp'
 class BaseWidgetPropertiesContent extends React.Component
   render: ->
-    {editor} = @props
-    {isEditing, dashboard} = editor
+    {editor, dashboard} = @props
+    if !dashboard? then return null
+    {isEditing} = editor
     {INC_BORDER_RADIUS,DEC_BORDER_RADIUS,INC_CARD_DEPTH, ADD_NEW_WIDGET, DEC_CARD_DEPTH } = editor.buttons
     getProps = (id, button1, button2) =>
       id: id
@@ -109,5 +110,5 @@ class BaseWidgetPropertiesContent extends React.Component
 
 
 
-
-export default inject('modal')(observer(BaseWidgetPropertiesContent))
+BaseWidgetPropertiesContent = inject('modal')(observer(BaseWidgetPropertiesContent))
+export default BaseWidgetPropertiesContent

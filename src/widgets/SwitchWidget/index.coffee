@@ -2,12 +2,27 @@ import {crel, div, text} from 'teact'
 import React from 'react'
 import Toggle from '../components/Toggle'
 import Tappable from 'react-tappable/lib/Tappable'
-import {attrNamesMap} from './props'
 
 
-Switch = (props) ->
-  {label, state, device} = props
-  attrNames = attrNamesMap[device.platform]
+SwitchProps =
+  id: 'switchWidget'
+  label: yes
+  layout:
+    w: 100
+    h: 100
+    minW: 90
+    minH: 90
+  types: ['switch', 'dimmer']
+  actions: yes
+  attributes: ['on']
+  attrNamesMap:
+    pimatic:
+      on: 'state'
+
+
+
+Switch = ({label, state, device} ) ->
+  attrNames = SwitchProps.attrNamesMap[device.platform]
   div className: 'widget column switch-widget center middle', =>
     div style: {marginBottom: 5}, className: 'title-container center middle',=>
       div className: 'widget-label-primary', label
@@ -16,7 +31,7 @@ Switch = (props) ->
 
 
 
-export class SwitchWidget extends React.Component
+export default class SwitchWidget extends React.Component
   render: ->
     crel Tappable, onTap: @sendCommand, =>
       crel Switch, @props

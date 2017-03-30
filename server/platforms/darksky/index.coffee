@@ -13,9 +13,9 @@ exports.updateDataForecast = ->
   .exclude('minutely, flags, alerts')
   .get()
   .then (_data) ->
-    _data.hourly.data[i].time = (hour.time + _data.offset * 3600 ) * 1000 for hour,i in _data.hourly.data
-    _data.daily.data[i].time = (day.time + _data.offset * 3600 ) * 1000 for day,i in _data.daily.data
-    _data.currently.time = (_data.currently.time + _data.offset * 3600 ) * 1000
+    _data.hourly.data[i].time = (hour.time + _data.offset * 0) * 1000 for hour,i in _data.hourly.data
+    _data.daily.data[i].time = (day.time + _data.offset * 0) * 1000 for day,i in _data.daily.data
+    _data.currently.time = (_data.currently.time + _data.offset * 0) * 1000
     Weather.summary =
         current: _data.hourly.summary
         currentIcon: _data.hourly.icon

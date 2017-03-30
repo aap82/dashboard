@@ -124,5 +124,5 @@ class GroupWidgetEditor extends React.Component
 
 
 
-
-export default observer(GroupWidgetEditor)
+GroupWidgetEditor = observer(GroupWidgetEditor)
+export default GroupWidgetEditor

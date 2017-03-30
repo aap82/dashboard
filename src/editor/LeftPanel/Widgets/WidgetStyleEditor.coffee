@@ -76,4 +76,4 @@ WidgetStyle = observer(({editor}) ->
 
 )
 
-export default observer(WidgetStyle)
+export default WidgetStyle

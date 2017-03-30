@@ -127,7 +127,7 @@ class SingleWidgetEditor extends React.Component
 
   toggleStyleOverride: (e) =>
     {widget, editor} = @props
-    widget.overrideStyle = !widget.overrideStyle
+    widget.toggleStyleOverride()
 
 
   handleWidgetLabelSave: (id, value) =>
@@ -227,8 +227,8 @@ class WidgetEditor extends React.Component
 
 
 
-
-export default observer(WidgetEditor)
+WidgetEditor = observer(WidgetEditor)
+export default WidgetEditor
 
 
 

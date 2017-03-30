@@ -12,6 +12,9 @@ class Time
 
 
     @interval = setInterval (() => @tick()), period
+  formatTime: (time, format = 'h:mma') ->
+    t = moment(time)
+    return t.format(format)
 
 time = new Time
 

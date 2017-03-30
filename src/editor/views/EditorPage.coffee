@@ -10,29 +10,33 @@ import WidgetEditor from '../LeftPanel/WidgetEditor'
 
 class EditorPage extends React.Component
   render: ->
-    borderStyle = {height: '100%', width: '100%'}
+    column2 = 350
+    borderStyle = {height: '100%', width: '100%', backgroundColor: '#293742', color: 'white' }
     {editor} = @props
-    {dashboard} = editor
     crel SplitPane, split: 'vertical', size: 350, allowResize: no, ->
       crel LeftPanel
       crel SplitPane, split: 'horizontal', size: 150, allowResize: no, ->
-        crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
-          div style: borderStyle
-          crel SplitPane, split: 'vertical', size: dashboard.width + 20, allowResize: no, ->
-            div style: borderStyle, ->
-              crel DashboardEditor, editor: editor
+        crel SplitPane, split: 'vertical', size: column2, allowResize: no, ->
+          div style: borderStyle, ->
+            crel DashboardEditor, editor: editor
+          crel SplitPane, split: 'vertical', size: editor.dashboard.width + 20, allowResize: no, ->
+            div style: borderStyle
             div style: borderStyle
         div ->
-          crel SplitPane, split: 'vertical', size: 250, allowResize: no, ->
+          crel SplitPane, split: 'vertical', size: column2, allowResize: no, ->
             div style: borderStyle, ->
               div style: {padding: 10}, ->
                 crel WidgetEditor, editor: editor
-            div style: {padding: 10}, ->
-              if editor.selectedDashboardId is '0'
-                return null
-              else
-                crel Dashboard
-            div style: borderStyle
+            crel SplitPane, split: 'vertical', size: editor.dashboard.width + 20, allowResize: no, ->
+              div ->
+                crel SplitPane, split: 'horizontal', size: editor.dashboard.height + 20, allowResize: no, ->
+                  div style: {padding: 10}, ->
+                    if editor.selectedDashboardId is '0'
+                      div style: borderStyle
+                    else
+                      crel Dashboard
+                  div style: borderStyle
+              div style: borderStyle
 
 
 

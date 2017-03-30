@@ -7,28 +7,8 @@ import t from '../LeftPanel/buttons/types'
 
 
 class ViewState
-  constructor: ({@modal, @editor, @store, @fetch, @dashboards}) ->
-    @editor.fetch = @fetch
+  constructor: () ->
     extendObservable @, {
-      selectedUserDevice: ''
-      setUserDevice: action((id) ->
-        @selectedUserDevice = id
-      )
-      loadUserDevice: action(->
-        @editor.setActiveDevice(@selectedUserDevice)
-        @editor.dashboard.width = @editor.device.get('width')
-
-
-
-        @showEditorPage()
-        return
-
-      )
-
-      selectedDashboardId: 0
-      setSelectedDashboard: action((id, dashboard) ->
-        @selectedDashboardId = id
-      )
       visiblePage: 'setup'
       setViewPageTo: action((view) -> if view in ['setup', 'editor'] then @visiblePage = view else return)
 
@@ -55,13 +35,10 @@ class ViewState
       )
 
     }
-    @editor.exit = => @showSetupPage()
-    @editor.deleteDashboard = => @deleteDashboard()
-#    @editor.updateDashboard = (dashboard) => @updateDashboard(dashboard)
 
 
-
-export default ViewState
+viewState = new ViewState
+export default viewState
 
 
 

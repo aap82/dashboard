@@ -1,28 +1,51 @@
-import {crel, div, h2, select, option, br, code, text} from 'teact'
+import {crel, label, div, h2, select, option, br, code, text} from 'teact'
 import {inject, observer} from 'mobx-react'
 import React from 'react'
 import { Button, Intent} from  '@blueprintjs/core'
+import Select from '../forms/components/Select'
+import CheckBox from '../forms/components/CheckBox'
 
 
-LoadUserDevice = observer(({viewState, onClick}) =>
+LoadUserDeviceButton = observer(({field, onClick}) =>
   crel Button,
-    disabled: viewState.selectedUserDevice is ''
+    disabled: field.value is ''
     className: 'pt-large'
-    iconName: 'pt-icon-dashboard',
     intent: Intent.PRIMARY,
     onClick: onClick
     text: 'Load'
 
 )
 
-UserDeviceDropDownListView = (observer(({viewState, editor, onChange}) ->
-  displayName: 'SelectUserDeviceDropDown'
-  div className: 'pt-select pt-fill pt-large', ->
-    select value: viewState.selectedUserDevice, onChange: onChange, ->
-      option value: 0, 'Select User Device...'
-      editor.userDevices.values().map (userDevice) ->
-        option key: userDevice.get('ip'), value: userDevice.get('ip'), "#{userDevice.get('name')}" #" / #{dashboard.deviceType}"
-))
+SelectForm = observer(({ userDevices, form }) =>
+  devices = ({value: device.get('ip'), label: device.get('name')} for device in userDevices.values())
+  div className: 'pt-control-group', ->
+    crel Select,
+      showLabel: no
+      large: yes
+      fill: yes
+      inline: yes
+      field: form.$('selectDevice')
+      options: devices,
+    crel LoadUserDeviceButton,
+      field: form.$('selectDevice')
+      onClick: form.onSubmit
+
+
+)
+
+
+
+
+LoadUserDevice =({onClick}) =>
+  crel Button,
+    className: 'pt-large'
+    iconName: 'pt-icon-dashboard',
+    intent: Intent.PRIMARY,
+    onClick: onClick
+    text: 'Load'
+
+
+
 
 
 class SetupPage extends React.Component
@@ -31,23 +54,21 @@ class SetupPage extends React.Component
 
 
   render: ->
-    {viewState} = @props
-    {editor} = viewState
+    {forms, userDevices} = @props
     div className: 'pt-dark setup-page col-xs-12', =>
       div className: 'col-xs-offset-1 col-xs-3', =>
         br()
         h2 'Select Device'
+        crel SelectForm, form: forms.selectDevice, userDevices: userDevices.devices
         br()
-        div className: 'pt-control-group', =>
-          crel UserDeviceDropDownListView, viewState: viewState, editor: editor, onChange: @handleUserDeviceChange
-          crel LoadUserDevice, viewState: viewState, onClick: @handleLoadUserDevice
+        br()
+        crel LoadUserDevice, onClick: @handleClick
 
 
-  handleLoadUserDevice: =>
-    @props.viewState.loadUserDevice()
+
+  handleClick: =>
+    @props.forms.selectDevice.testDashboard()
 
 
-  handleUserDeviceChange: (e) => @props.viewState.setUserDevice(e.target.value)
-
-SetupPage = inject('viewState', 'modal', 'time')(observer(SetupPage))
+SetupPage = inject('userDevices', 'forms')(observer(SetupPage))
 export default SetupPage

@@ -11,7 +11,7 @@ class LeftPanel extends React.Component
   render: ->
     console.log 'render left panel'
     handleClick = =>  @props.editor.exit()
-    {editor} = @props
+    {editor,  dashboard} = @props
     {buttons} = editor
     div className: 'pt-dark left-panel', =>
       div className: 'row middle between', =>
@@ -22,20 +22,19 @@ class LeftPanel extends React.Component
       br()
       crel UserDeviceProps, editor: editor
       crel UserDashboardsSection, editor: editor
-      crel DashboardProps, editor: editor
-      crel BaseWidgetProperties, editor: editor
+      crel DashboardProps, editor: editor, dashboard: dashboard
+      crel BaseWidgetProperties, editor: editor, dashboard: dashboard
 
 
 
+LeftPanel = inject(({editor, dashboards, modal}) => ({
+  editor: editor
+  modal: modal
+  dashboard: dashboards.get(editor.selectedDashboardId)
 
+}))(observer(LeftPanel))
 
-export default inject('editor', 'modal')(observer(LeftPanel))
-
-
-
-
-
-
+export default LeftPanel
 
 
 

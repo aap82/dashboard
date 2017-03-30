@@ -25,7 +25,7 @@ class ScratchPad extends React.Component
         width: 800
         rowHeight: 5
         , =>
-          div key: '0', data: grid: {i: '0', w: 275, h: 12, x:350, y: 10, minW: 275, minH: 12}, =>
+          div key: '0', data: grid: {i: '0', w: 275, h: 12, x:350, y: 10, minW: 275, minH: 10}, =>
             div style: widgetStyle, className: 'base-widget z-depth-2', =>
               crel CurrentWeather
 

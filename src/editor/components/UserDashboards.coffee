@@ -8,12 +8,12 @@ import { Button, Intent, Checkbox} from  '@blueprintjs/core'
 
 
 
-DashboardDropDownListView = observer(({editor, onChange}) =>
+DashboardDropDownListView = observer(({editor, dashboards, onChange}) =>
   displayName: 'SelectDashboardListView'
   div className: 'pt-select pt-large pt-fill', ->
     select value: editor.selectedDashboardId, onChange: onChange, disabled: editor.isEditing, ->
       option value: '0', 'Select/Create Dashboard'
-      editor.getDashboardsForDevice().map (dashboard) ->
+      editor.deviceDashboards.map (dashboard) ->
         option key: dashboard.uuid, value: dashboard.uuid, "#{dashboard.title}" #" / #{dashboard.deviceType}"
 )
 
@@ -52,11 +52,11 @@ class UserDashboardsSection extends React.Component
 
 
   render: ->
-    {editor} = @props
+    {editor, dashboards} = @props
     div style: {paddingLeft: 10, paddingRight: 10}, className: 'content', =>
       div style: {marginBottom: 10}, className: 'row between middle', =>
         div style: {width: '70%'}, =>
-          crel DashboardDropDownListView, editor: editor, onChange: @onChange
+          crel DashboardDropDownListView, dashboards: dashboards, editor: editor, onChange: @onChange
         if @value is '0'
           crel Button,
             text: 'Create'
@@ -86,7 +86,7 @@ class UserDashboardsSection extends React.Component
 
 
 
-
-export default inject('modal', 'editor')(observer(UserDashboardsSection))
+UserDashboardsSection = inject('modal', 'dashboards', 'editor')(observer(UserDashboardsSection))
+export default UserDashboardsSection
 
 

@@ -44,5 +44,5 @@ ColorPickerContainer = observer(({isEditing, picker, target, alphaTarget, onChan
 )
 
 
-
-export default observer(ColorPickerComponent)
+ColorPickerComponent = observer(ColorPickerComponent)
+export default ColorPickerComponent

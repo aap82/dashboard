@@ -1,8 +1,11 @@
 import {setDefaultModelSchema, identifier, object, createSimpleSchema, list} from 'serializr'
-import {extendObservable} from 'mobx'
+import {extendObservable, observable, computed} from 'mobx'
+import {Dashboard, dashboardStore} from '../stores/Dashboard'
 import {widgetSchema} from './Widget'
 import Color from 'color'
 
+
+#export dashboardStore = new DashboardStore
 
 layoutSchema = createSimpleSchema({
   i: yes
@@ -15,48 +18,16 @@ layoutSchema = createSimpleSchema({
   static: yes
 })
 
-class DashboardModel
-  constructor: ->
-    extendObservable @, {
-      backgroundColor: '#fff'
-      title: ''
-      height: 0
-      width: 0
-      marginX: 0
-      marginY: 0
-      cols: 155
-      rowHeight: 5
-      layouts: []
-      widgets: []
-      deviceType: 'tablet'
-      userDevice: ''
-      widgetBorderRadius: 2
-      widgetCardDepth: 2
-      widgetBackgroundColor: '#be682e'
-      widgetBackgroundAlpha: 100
-      widgetFontColor: '#fff'
-      widgetFontSizePrimary: 18
-      widgetFontSizeSecondary: 12
-      widgetFontWeightPrimary: 'bold'
-      widgetFontWeightSecondary: 'normal'
-    }
-
-  reset: ->
-    @layouts.clear()
-    @widgets.clear()
-
-  getWidgetStyle: ->
-    backgroundColor: Color(@widgetBackgroundColor).alpha(@widgetBackgroundAlpha/100).hsl().string()
-    color: @widgetFontColor
-    borderRadius: @widgetBorderRadius
-
-
-
-
 
 
 export dashboardSchema =
-  factory: ((context) -> return new DashboardModel(context.args))
+  factory: ((context) ->
+    {args, json} = context
+    if !dashboardStore.dashboards.has(json.uuid)
+      console.log 'adding'
+      dashboardStore.dashboards.set(json.uuid, new Dashboard(json))
+    return dashboardStore.dashboards.get(json.uuid)
+  )
   props:
 
 #    id: identifier()
@@ -88,6 +59,6 @@ export dashboardSchema =
 
 
 
-setDefaultModelSchema(DashboardModel, dashboardSchema)
+setDefaultModelSchema(Dashboard, dashboardSchema)
 
-export Dashboard = new DashboardModel
+export dashboard = new Dashboard

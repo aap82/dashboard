@@ -1,4 +1,4 @@
-import {SwitchWidget} from './SwitchWidget'
+import SwitchWidget from './SwitchWidget'
 import ButtonWidget from './ButtonWidget'
 
 

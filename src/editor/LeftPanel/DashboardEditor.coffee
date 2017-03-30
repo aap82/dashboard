@@ -53,8 +53,8 @@ class DashboardEditor extends React.Component
         break
 
 
-
-export default observer(DashboardEditor)
+DashboardEditor = observer(DashboardEditor)
+export default  DashboardEditor
 
 
 

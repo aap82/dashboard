@@ -1,11 +1,12 @@
 import React from 'react'
-import {crel, div, select, input, option, br, h4, h3 } from 'teact'
+import {crel, div, select, input, option, br, h4, h3, label, text } from 'teact'
 import { inject, observer} from 'mobx-react'
 import MenuButton from './../components/MenuButton'
 import { Button, Intent, EditableText} from '@blueprintjs/core'
 import ColorPickerComponent from './ColorPicker'
 import t from './buttons/types'
-
+import TextInput from '../forms/components/TextInput'
+import Select from '../forms/components/Select'
 
 
 
@@ -14,7 +15,7 @@ class WidgetFontSize extends React.Component
     super props
 
   increment: =>
-    {editor, id} = @props
+    {editor, dashboard, id} = @props
     editor.dashboard[id] = editor.dashboard[id] + 1
 
 
@@ -48,14 +49,12 @@ WidgetFontSize = observer(WidgetFontSize)
 
 
 
-Title = observer(({editor}) ->
-  {dashboard} = editor
-
+Title = observer(({editor, dashboard}) ->
   div style: {paddingRight: 10}, className: 'row between middle', ->
     h4 'Title'
     h4 ->
       crel EditableText,
-        className: 'pt-rtl pt-fill pt-align-right'
+        className: 'pt-rtl pt-fill'
         placeholder: dashboard.title
         value: dashboard.title
         disabled: !editor.isEditing
@@ -86,16 +85,27 @@ DashboardDeviceOrientation = observer(DashboardDeviceOrientation)
 class DashboardProperties extends React.Component
 
   render: ->
-    {editor} = @props
-    {dashboard, isEditing} = editor
+    {editor, dashboard, forms} = @props
+    if editor.selectedDashboardId is '0' then return null
+    {isEditing} = editor
     div className: 'properties-section', =>
+      h4 "#{forms.dashboard.changed}"
+      h4 "#{forms.dashboard.isDirty}"
       div className: 'title-row button', =>
         crel Button,
           text: 'Dashboard'
           iconName: 'caret-down'
           className: 'pt-minimal pt-fill pt-large'
       div style: {marginBottom: 12}, className: 'title-editor', =>
-        crel Title, editor: editor
+        crel Title, editor: editor, dashboard: dashboard
+      div style: {paddingLeft: 5, paddingRight: 5}, className: 'row between middle', ->
+        crel TextInput,
+          field: forms.dashboard.$('title')
+          showLabel: yes
+          large: no
+        crel Select,
+          showLabel: yes
+          field: forms.dashboard.$('orientation')
       crel DashboardDeviceOrientation,
         editor: editor
       br()
@@ -112,6 +122,7 @@ class DashboardProperties extends React.Component
           crel WidgetFontSize,
             id: 'widgetFontSizePrimary'
             editor: editor
+            dashboard: dashboard
         div className: 'row between middle', =>
           div 'Primary Font Weight'
           div dashboard.widgetFontWeightPrimary
@@ -120,6 +131,7 @@ class DashboardProperties extends React.Component
           crel WidgetFontSize,
             id: 'widgetFontSizeSecondary'
             editor: editor
+            dashboard: dashboard
         div className: 'row between middle', =>
           div 'Secondary Font Weight'
           div dashboard.widgetFontWeightSecondary
@@ -129,8 +141,8 @@ class DashboardProperties extends React.Component
 
 
 
-
-export default observer(DashboardProperties)
+DashboardProperties = inject('forms')(observer(DashboardProperties))
+export default DashboardProperties
 
 
 

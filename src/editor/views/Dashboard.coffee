@@ -11,8 +11,7 @@ class Dashboard extends React.Component
     super (props)
 
   render: ->
-    {editor} = @props
-    {dashboard} = editor
+    {editor, dashboard, forms} = @props
     sendDeviceCommand = (platform, deviceId, command) =>
       if !editor.isEditing then sendCommand(platform, deviceId, command)
 
@@ -35,13 +34,14 @@ class Dashboard extends React.Component
           cols: dashboard.cols
           margin: [dashboard.marginX, dashboard.marginY]
           containerPadding: [0, 0]
+          maxRows: dashboard.height / dashboard.rowHeight
           rowHeight: dashboard.rowHeight
           width: dashboard.width
           layout: dashboard.layouts.slice()
           onLayoutChange: @handleLayoutChange, =>
             for widget in dashboard.widgets
               div key: widget.key,  =>
-                crel EditableWidget, dashboard: dashboard, widget: widget, sendCommand: sendDeviceCommand
+                crel EditableWidget, dashboard: editor.dashboard, parent: dashboard.uuid, id: widget.uuid, sendCommand: sendDeviceCommand
 #
 #            for layout, i in dashboard.layouts
 #              div key: layout.i, data: layout, =>
@@ -55,6 +55,10 @@ class Dashboard extends React.Component
 
 
 
-Dashboard = inject('editor')(observer(Dashboard))
+Dashboard = inject(({editor, dashboards, forms}) => ({
+  forms: forms
+  editor: editor
+  dashboard: dashboards.get(editor.selectedDashboardId)
+}))(observer(Dashboard))
 
 export default Dashboard

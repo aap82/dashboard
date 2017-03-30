@@ -1,7 +1,10 @@
 import {getDefaultModelSchema, setDefaultModelSchema, object, createModelSchema, createSimpleSchema,identifier} from 'serializr'
 import uuidV4 from 'uuid/v4'
-import {extendObservable, action, toJS, computed, runInAction} from 'mobx'
+import {extendObservable, observable, action, toJS, computed, runInAction} from 'mobx'
 createdWidgets = {}
+
+
+
 
 layoutSchema = createSimpleSchema({
   i: yes
@@ -26,21 +29,41 @@ widgeStyleSchema = createSimpleSchema({
   borderRadius: yes
   color:yes
 })
+class WidgetStore
+  constructor: ->
+    extendObservable @, {
+      widgets: observable.map({})
+    }
+export widgetStore = new WidgetStore
 
 
 class WidgetModel
-  constructor: (widget) ->
-    console.log widget
+  constructor: (widget, @dashboard) ->
+    @parent = @dashboard.uuid
+    if widget.style is null
+      widget.style = {}
     @device = widget.device
     @key = widget.key
     extendObservable(@, {
-      overrideStyle: no
+      overrideStyle: widget.overrideStyle or no
       label: widget.label
       type: widget.type
-      style:
-        backgroundColor: ''
-        borderRadius: 2
-        color: ''
+      style: if widget.overrideStyle then widget.style else @dashboard.widgetStyle
+      widgetStyle: computed(->
+        if @overrideStyle
+          backgroundColor: @style.backgroundColor
+          color: @style.color
+          borderRadius: @style.borderRadius
+        else
+          @dashboard.widgetStyle
+      )
+
+      toggleStyleOverride: action(->
+        if !@overrideStyle
+          @style = @dashboard.widgetStyle
+        @overrideStyle = !@overrideStyle
+      )
+
     })
 
 
@@ -48,10 +71,11 @@ class WidgetModel
 
 export widgetSchema =
   factory: ((context) =>
-    {json} = context
-    if !createdWidgets[json.uuid]
-      createdWidgets[json.uuid] = new WidgetModel(json)
-    return createdWidgets[json.uuid]
+    {args, json, parentContext} = context
+    if !widgetStore.widgets.has(json.uuid)
+      store = if args?.dashboard? then args.dashboard else parentContext.target
+      widgetStore.widgets.set(json.uuid, new WidgetModel(json, store))
+    return widgetStore.widgets.get(json.uuid)
   )
 
   props:

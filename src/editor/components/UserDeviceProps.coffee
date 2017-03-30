@@ -1,7 +1,7 @@
 import React from 'react'
 import {observable, toJS} from 'mobx'
 import {crel, div, span, h3, h4, h5, text, input, select, br } from 'teact'
-import {observer} from 'mobx-react'
+import {inject, observer} from 'mobx-react'
 import EditableText from './EditableText'
 
 
@@ -15,10 +15,10 @@ class UserDeviceProps extends React.Component
 
 
   render: ->
-    {editor} = @props
+    {editor, dashboards} = @props
     defaultDashboardTitle = 'N/A'
     if editor.device.get('defaultDashboardId') isnt null
-      for dashboard in editor.dashboards when dashboard.uuid is editor.device.get('defaultDashboardId')
+      for dashboard in dashboards.values() when dashboard.uuid is editor.device.get('defaultDashboardId')
         defaultDashboardTitle = dashboard.title
 
     div className: 'title-editor', =>
@@ -53,5 +53,7 @@ class UserDeviceProps extends React.Component
           div 'Default Dashboard'
           div defaultDashboardTitle
 
-export default (observer(UserDeviceProps))
+
+UserDeviceProps = inject('dashboards')(observer(UserDeviceProps))
+export default UserDeviceProps
 

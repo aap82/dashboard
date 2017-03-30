@@ -31,7 +31,7 @@ UserDeviceTC.addRelation(
   => {
     resolver: DashboardTC.getResolver('findOne')
     args:
-      filter: ((source) => {ip: source.ip, uuid: source.defaultDashboardId})
+      filter: ((source) => {userDevice: source.ip, uuid: source.defaultDashboardId})
       skip: null
       sort: null
     projection:
@@ -45,13 +45,16 @@ UserDeviceTC.addRelation(
   => {
     resolver: DashboardTC.getResolver('findMany')
     args:
-      filter: ((source) => ip: source.ip)
+      filter: ((source) => {userDevice: source.ip})
       skip: null
       sort: null
     projection:
-      type: yes
+      uuid: yes
+      userDevice: yes
   }
 )
+
+
 
 
 UserDeviceFields = "

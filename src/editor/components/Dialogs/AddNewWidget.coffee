@@ -11,6 +11,7 @@ class AddOrEditWidgetDialog extends React.Component
     @availableTypes =[]
 
     extendObservable(@, {
+
       widget:
         platform: '0'
         type: '0'
@@ -19,7 +20,9 @@ class AddOrEditWidgetDialog extends React.Component
         label: 'Widget Label'
       selectedWidgetType: null
       selectedDevice: null
-      
+
+
+
       changePlatform: action((e) =>
         @widget.platform = e.target.value
         if e.target.value is '0'
@@ -87,9 +90,9 @@ class AddOrEditWidgetDialog extends React.Component
   render: ->
     {widgets} = @props
     div className: 'create-widget-dialog', =>
-      crel SelectPlatform,  widget: @widget, widgets: widgets, onChange: @changePlatform
-      br()
       crel SelectWidgetType, widget: @widget,widgets: widgets, onChange: @changeWidgetType
+      br()
+      crel SelectPlatform,  widget: @widget, widgets: widgets, onChange: @changePlatform, widgetType: @selectedWidgetType
       br()
       crel SelectDeviceType, widget: @widget, onChange: @changeDeviceId, devices: @devices
       br()
@@ -105,8 +108,8 @@ class AddOrEditWidgetDialog extends React.Component
             className: 'pt-large'
             onClick: @reset
 
-
-export default inject('editor', 'widgets')(observer(AddOrEditWidgetDialog))
+AddOrEditWidgetDialog = inject('editor', 'widgets')(observer(AddOrEditWidgetDialog))
+export default AddOrEditWidgetDialog
 
 AddselectedDeviceButton = observer(({widget, onClick}) ->
   crel Button,
@@ -118,11 +121,12 @@ AddselectedDeviceButton = observer(({widget, onClick}) ->
     disabled: !(widget.platform isnt '0' and widget.type isnt '0' and widget.deviceId isnt '0')
 )
 
-SelectPlatform = observer(({widget, widgets, onChange}) ->
+SelectPlatform = observer(({widget, widgets, onChange, widgetType}) ->
+  disabled = (widgetType is null)
   div className: ' row between middle', ->
     text 'Widget Device Platform:'
     div className: 'pt-select ', ->
-      select value: widget.platform, onChange: onChange, ->
+      select value: widget.platform, onChange: onChange, disabled: disabled, ->
         option value: '0', 'Select Platform'
         widgets.platforms.map((platform) ->
           option value: platform, "#{platform}"

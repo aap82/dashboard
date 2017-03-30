@@ -2,23 +2,12 @@ import {update, getDefaultModelSchema, setDefaultModelSchema, deserialize, seria
 import {extendObservable, action, toJS, observable, computed, runInAction} from 'mobx'
 import buttons from '../LeftPanel/buttons/buttons'
 import Button from './buttonsStore'
-
-import {dashboardSchema, Dashboard} from '../models/Dashboard'
-import {widgetSchema} from '../models/Widget'
+import {dashboardSchema, dashboard} from '../models/Dashboard'
+import { dashboardStore } from './Dashboard'
+import {widgetSchema, widgetStore} from '../models/Widget'
 import uuidV4 from 'uuid/v4'
 
 import Color from 'color'
-
-class Widget
-  constructor: (widget, widgetProps) ->
-    @device = widget.device
-    @key = widget.key
-    extendObservable(@, {
-      widgetProps: widgetProps
-      overrideStyle: no
-      label: widget.label
-      type: widget.type
-    })
 
 
 
@@ -50,7 +39,6 @@ getWidgetLayout = (key, widget, rowHeight) ->
   static: no
 
 createDashboard = (title='New Dashboard', device, defaults=null) ->
-  console.log device
   return {
     uuid: uuidV4()
     title:  title
@@ -66,11 +54,20 @@ createDashboard = (title='New Dashboard', device, defaults=null) ->
     devices:  []
     backgroundColor: '#5c5b58'
     color: 'white'
+    widgetBorderRadius: 2
+    widgetCardDepth: 2
+    widgetBackgroundColor: '#be682e'
+    widgetBackgroundAlpha: 100
+    widgetFontColor: '#fff'
+    widgetFontSizePrimary: 18
+    widgetFontSizeSecondary: 12
+    widgetFontWeightPrimary: 500
+    widgetFontWeightSecondary: 600
 
   }
 
 class EditorView
-  constructor: (dashboard) ->
+  constructor: (dashboard, store) ->
 
     @fetch = null
     @createId = 500
@@ -78,20 +75,25 @@ class EditorView
     @dashboard = dashboard
     @activeWidget = {}
     @activeLayout = {}
+    @dashboards = store.dashboards
+    @device = null
     extendObservable @, {
       zoom: 1.25
       selectedDashboardId: '0'
+      deviceDashboards: []
       editingWidgets: []
       editingLayouts: []
-      dashboards: []
       buttons: {}
       backup: null
       isEditing: no
-      startEditing: action(-> @isEditing = yes)
+      startEditing: action(->
+        @isEditing = yes
+        console.log @dashboard.widgets.length)
       stopEditing: action(->
         @editingWidgets.clear()
         @editingLayouts.clear()
         @isEditing = no
+        console.log @dashboard.widgets.length
       )
 
 
@@ -105,11 +107,9 @@ class EditorView
         for device in userDevices
           @userDevices.set(device.ip, observable.map(device))
       )
-      device: computed(-> @userDevices.get(@deviceId) )
-      updateDevice: action((update) -> @userDevices.get(@deviceId).replace(update))
-      setActiveDevice: action((deviceId) -> @deviceId = deviceId)
 
-      getDashboardsForDevice: action(->  @dashboards.filter((dashboard) => dashboard.userDevice is @deviceId))
+      updateDevice: action((update) -> @userDevices.get(@deviceId).replace(update))
+
       getGlobalWidgetStyle: computed(->
         backgroundColor: Color(@dashboard.widgetBackgroundColor).alpha(@dashboard.widgetBackgroundAlpha/100).hsl().string()
         color: @dashboard.widgetFontColor
@@ -129,29 +129,28 @@ class EditorView
             @dashboard.height = @device.get('height')
             @dashboard.width = @device.get('width')
           @dashboard.cols = @dashboard.width
+
           update(dashboardSchema, @dashboard, toJS(@dashboard))
         )
       )
 
       create: action((title) =>
-        console.log @dashboards
         runInAction(=>
           device = toJS(@device)
           @widgetKey = 0
           @selectedDashboardId = '0'
-          @reset()
-          update(dashboardSchema, @dashboard, createDashboard(title, device))
-          dashboard = serialize(dashboardSchema, @dashboard)
+          dashboard = serialize(dashboardSchema, createDashboard(title, device))
           @fetch('opName', 'CreateDashboard', {dashboard: dashboard})
           .then(action('CreateDashboard-callback', (response) =>
               if response.data.createDashboard?
-                @selectedDashboardId = @dashboard.uuid
-                @dashboards.push dashboard
+                @selectedDashboardId = dashboard.uuid
+                @dashboards.set(dashboard.uuid, deserialize(dashboardSchema, dashboard))
+                @dashboard = @dashboards.get(dashboard.uuid)
                 @isEditing = no
                 @backup = serialize(dashboardSchema, @dashboard)
               else
-                console.log response
-              return
+
+                return
             )
           )
         )
@@ -171,23 +170,17 @@ class EditorView
       )
 
       load: action((uuid) =>
-        console.log @dashboard.getWidgetStyle()
         runInAction(=>
           if uuid is '0'
             return
-
           else
-            @reset()
-            idx = @dashboards.findIndex((d) => d.uuid is uuid)
-            console.log @dashboards[idx]
-            dashboard = toJS @dashboards[idx]
-
-            @dashboard.reset()
-            @widgetKey = switch dashboard.widgets.length
+            console.log @dashboards
+            @dashboard = @dashboards.get(uuid)
+            console.log @dashboard
+            @widgetKey = switch @dashboard.widgets.length
               when 0 then 0
-              else parseInt dashboard.widgets[dashboard.widgets.length - 1].key, 10
+              else parseInt @dashboard.widgets[@dashboard.widgets.length - 1].key, 10
             @isEditing = no
-            update(dashboardSchema, @dashboard, dashboard)
             @backup = serialize(dashboardSchema, @dashboard)
           )
       )
@@ -195,7 +188,7 @@ class EditorView
       save: action(->
         runInAction(=>
           dashboard = serialize(dashboardSchema, @dashboard)
-          dashboard.widgets[i].style = @getGlobalWidgetStyle for widget, i in dashboard.widgets when widget.overrideStyle is no
+          console.log @dashboard.widgets[0]
           @fetch('opName', 'UpdateDashboard', {uuid: dashboard.uuid, dashboard: dashboard})
           .then(action('SaveDashboard-callback', (response) =>
               if response.data?
@@ -216,9 +209,7 @@ class EditorView
         .then(action('DeleteDashboard-callback', (response) =>
             if response.data.deleteDashboard?
               @selectedDashboardId = '0'
-              idx = @dashboards.findIndex((d) => d.uuid is @dashboard.uuid)
-              @dashboards.remove(@dashboards[idx])
-              @reset()
+              @dashboards.delete(@dashboard.uuid)
               @isEditing = no
             else
               console.log response
@@ -226,18 +217,6 @@ class EditorView
           )
         )
       )
-
-      reset: action(=>
-        runInAction(=>
-          @dashboard.title = ''
-          @dashboard.widgets.clear()
-          @dashboard.layouts.clear()
-          orientation = if @device.get('type') is 'phone' then 'portrait' else 'landscape'
-          @setDashboardOrientationTo(orientation)
-          return
-        )
-      )
-
       restoreSnapshot: action(-> update(dashboardSchema, @dashboard, toJS(@backup)))
 
 
@@ -245,7 +224,12 @@ class EditorView
         runInAction(=>
           @widgetKey++
           key = @widgetKey.toString()
-          @dashboard.widgets.push deserialize(widgetSchema, getWidget(key, label, widget.id, device, @dashboard))
+          @dashboard.widgets.push deserialize(
+            widgetSchema,
+            getWidget(key, label, widget.id, device, @dashboard),
+            ((err, widget) => console.log widget)
+            {dashboard: @dashboard }
+          )
           @dashboard.layouts.push getWidgetLayout(key, widget, @dashboard.rowHeight)
           return
         )
@@ -293,6 +277,6 @@ class EditorView
 
 
 
-editor = new EditorView(Dashboard)
+editor = new EditorView(dashboard, dashboardStore)
 
 export default editor

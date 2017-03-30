@@ -25,6 +25,7 @@ q.getDashboardsAndDevices = "
       name
       location
       defaultDashboardId
+      dashboards {uuid}
       height
       width
     }
