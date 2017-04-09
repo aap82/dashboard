@@ -25,9 +25,41 @@ q.getDashboardsAndDevices = "
       name
       location
       defaultDashboardId
-      dashboards {uuid}
+
+      dashboards {  #{DashboardEditorFields} }
       height
       width
+      defaults {
+      general {
+        backgroundColor {
+          color
+          alpha
+        }
+      }
+      grid {
+        orientation
+        cols
+        rowHeight
+        marginX
+        marginY
+      }
+      widgetColor {
+        backgroundColor {
+          color
+          alpha
+        }
+      }
+      widgetFont {
+        primaryColor
+        primaryFontSize
+        primaryFontWeight
+        secondaryColor
+        secondaryFontSize
+        secondaryFontWeight
+      }
+
+    }
+
     }
     weather {
       currently {

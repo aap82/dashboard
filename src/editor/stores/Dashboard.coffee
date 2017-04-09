@@ -1,69 +1,75 @@
-import {extendObservable, observable, computed, action} from 'mobx'
+import {extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
 import Color from 'color'
 
-
-export class Dashboard
-  constructor: (props = {}) ->
-    @uuid = props.uuid
-    extendObservable @, {
-      backgroundColor: props.backgroundColor or '#fff'
-      title: props.title or ''
-      height: props.height or 1200
-      width: props.width or 600
-      marginX: props.marginX or 0
-      marginY:props.marginY or   0
-      cols: props.cols or 600
-      rowHeight: props.rowHeight or 5
-      layouts: props.layouts or []
-      widgets: props.widgets or []
-      deviceType: props.deviceType or 'tablet'
-      userDevice: props.userDevice or ''
+import uuidV4 from 'uuid/v4'
 
 
 
-      widgetBorderRadius: props.widgetBorderRadius or 2
-      widgetCardDepth: props.widgetCardDepth or 2
-      widgetBackgroundColor: props.widgetBackgroundColor or '#be682e'
-      widgetBackgroundAlpha: props.widgetBackgroundAlpha or 100
-      widgetFontColor: props.widgetFontColor or '#fff'
-      widgetFontSizePrimary: props.widgetFontSizePrimary or 18
-      widgetFontSizeSecondary: props.widgetFontSizeSecondary or 12
-      widgetFontWeightPrimary: props.widgetFontWeightPrimary or 500
-      widgetFontWeightSecondary: props.widgetFontWeightSecondary or 600
-      widgetStyle: computed(->
-        backgroundColor: Color(@widgetBackgroundColor).alpha(@widgetBackgroundAlpha/100).hsl().string()
-        color: @widgetFontColor
-        borderRadius: @widgetBorderRadius
-
-      )
-
-    }
 
 
-  getWidgetStyle: ->
-    backgroundColor: Color(@widgetBackgroundColor).alpha(@widgetBackgroundAlpha/100).hsl().string()
-    color: @widgetFontColor
-    borderRadius: @widgetBorderRadius
-
-
-class DashboardStore
+class Dashboard
   constructor: ->
     extendObservable @, {
-      dashboards: observable.shallowMap({})
-      selected: action('activeDashboard', -> @dashboards.get(@selectedId))
-      getDeviceDashboards: action('dashboardsForDevice', (deviceId) -> (dashboard for dashboard in @dashboards.values() when dashboard.userDevice is deviceId))
-      load: action((dashboards) =>
-        for dashboard in dashboards
-          @dashboards.set(dashboard.uuid, new Dashboard(dashboard))
+      device: null
+      uuid: ''
+      title: ''
+      setDevice: action((device) ->
+        runInAction(=>
+          @device = device
+          @uuid = ''
+          @title = ''
+        )
       )
 
+      deviceIP: computed(-> if @device? then @device.ip else null)
+      useDefaults: observable.object({
+        grid: yes
+        widgetColor: yes
+        widgetFont: yes
+      })
+
+      overrideSettingDefault: action((prop, value) -> @useDefaults[prop] = value if @useDefaults[prop]?)
+      resetDefaults: action(->
+        @useDefaults =
+          grid: yes
+          widgetColor: yes
+          widgetFont: yes
+
+      )
+
+
+
+      initNew: action('initialize dashboard', (title) ->
+        runInAction(=>
+          @uuid = uuidV4()
+          @device.settings.active = 'default'
+          @title = title
+          @resetDefaults()
+
+        )
+
+      )
+
+
+      deserialize: action('deserialize dashboard', (device, props) ->
+        runInAction(=>
+
+          @title = props.title or ''
+          @uuid = props.uuid or null
+          @useDefaults = if props.useDefaults? then  @resetDefaults()
+        )
+      )
+      serialize: action('serialize dashboard', ->
+        uuid: @uuid
+        title: @title
+        deviceIP: @deviceIP
+        useDefaults: toJS(@useDefaults)
+      )
 
     }
 
 
+dashboard = new Dashboard
 
 
-export dashboardStore = new DashboardStore
-
-export default dashboardStore
-
+export default dashboard

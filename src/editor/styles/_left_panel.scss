@@ -1,6 +1,4 @@
 @import 'variables';
-@import 'dashboard_editor';
-@import 'widget_editor';
 
 .left-panel {
   position: absolute;
@@ -19,7 +17,7 @@
 
 }
 .left-panel {
-  h2, h3, h4 {
+  h2, h3, h4, h6 {
     margin-bottom: 0 !important;
   }
 }
