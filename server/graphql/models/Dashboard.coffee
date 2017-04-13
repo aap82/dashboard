@@ -32,10 +32,26 @@ WidgetSchema = new Schema({
 
 })
 
+GridSchema = new Schema({
+  backgroundColor: String
+  height: Number
+  width: Number
+  cols: Number
+  rowHeight: Number
+  maxRows: Number
+  marginX: Number
+  marginY: Number
+})
+
+
+
+
 DashboardSchema = new Schema({
   uuid:
     type: String
     index: yes
+  grid: GridSchema
+
   title: String
   userDevice: String
   deviceType: String
@@ -71,11 +87,9 @@ DashboardTC.addFields({
   devices:
     type: '[String]'
     description: 'Array of Devices'
-    resolve: (source) =>
-      if source.widgets?
-        uniq(source.widgets.map((w) => w.device.id))
-      else
-        []
+    resolve: (source) => uniq(source.widgets.map((w) => w.device.id))
+    projection:
+      widgets: yes
 })
 
 
@@ -185,6 +199,7 @@ DashboardEditorFields = "
 
 
 module.exports =
+  DashboardSchema: DashboardSchema
   Dashboard: Dashboard
   DashboardTC: DashboardTC
   fields:

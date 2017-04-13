@@ -1,0 +1,10 @@
+{
+  "name": "Dashboard",
+  "short_name": "Dashboard",
+  "orientation": "portrait",
+  "display": "standalone",
+  "background_color": "#000",
+  "description": "Home User Dashboard",
+  "lang": "en-US",
+  "prefer_related_applications": false
+}

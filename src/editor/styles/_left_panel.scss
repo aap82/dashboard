@@ -1,6 +1,4 @@
 @import 'variables';
-@import 'dashboard_editor';
-@import 'widget_editor';
 
 .left-panel {
   position: absolute;
@@ -19,7 +17,7 @@
 
 }
 .left-panel {
-  h2, h3, h4 {
+  h2, h3, h4, h6 {
     margin-bottom: 0 !important;
   }
 }
@@ -73,4 +71,27 @@
   justify-content: space-around;
 
 
+}
+
+
+.title-settings-panel {
+  cursor: move!important;
+}
+
+.settings-row {
+  cursor: default;
+  padding: 5px 5px 5px 5px;
+  border-bottom-color: white!important;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  font-size: 12px!important;
+  select,
+  input,
+  option {
+    font-size: inherit!important;
+    text-align: right!important;
+  }
+  input {
+    padding-right: 5px!important;
+  }
 }

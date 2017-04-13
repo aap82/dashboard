@@ -9,28 +9,11 @@ import { ContextMenuTarget, Menu, MenuItem } from  '@blueprintjs/core'
 class EditableWidget extends React.Component
     constructor: (props) ->
       super props
-
-#
-#    componentWillReceiveProps: (nextProps) =>
-#      {widget, editor, dashboard} = nextProps
-
-
-
-
     render: ->
       {widget, editor, dashboard, sendCommand} = @props
       {widgetCardDepth} = dashboard
-      {device, label, type} = widget
-      widgetStyle = if !widget.overrideStyle
-          editor.getGlobalWidgetStyle
-        else
-          backgroundColor: widget.style.backgroundColor
-          color: widget.style.color
-          borderRadius: widget.style.borderRadius
-
-
+      {device, label, type, widgetStyle} = widget
       class_name = if widget in editor.editingWidgets then 'selected-widget' else ''
-
       div className: class_name, style: {
         position: 'relative'
         height: '100%'
@@ -96,8 +79,12 @@ class EditableWidget extends React.Component
 
 
 
-
-export default inject('modal', 'editor')(observer(EditableWidget))
+EditableWidget = inject(({modal, editor, widgetStore}, {id}) => ({
+  modal: modal
+  editor: editor
+  widget: widgetStore.widgets.get(id)
+}))(observer(EditableWidget))
+export default EditableWidget
 
 
 

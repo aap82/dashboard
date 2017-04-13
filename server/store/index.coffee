@@ -19,6 +19,7 @@ that = module.exports =
   states: {}
   sse: SSE
 
+
   getDevices: -> return @devices
   getPlatforms: -> return @platforms
 

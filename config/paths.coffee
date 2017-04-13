@@ -13,6 +13,7 @@ paths =
   styles:         path.join root, 'src', 'styles'
   server:         path.join root, 'server'
   views:          path.join root, 'server', 'views'
+  publicFiles:    path.join root, 'public'
   devBuild:       path.join root, 'build'
   node_entry:     path.join root, 'src', 'dashboard'
   prodBuild:      path.join root, 'dist'

@@ -3,7 +3,7 @@ require '../widgets/widgets.scss'
 require './styles.scss'
 
 import DevTools from 'mobx-react-devtools'
-import App from './views/App'
+import App from './App'
 
 
 options =

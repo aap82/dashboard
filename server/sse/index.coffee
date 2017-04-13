@@ -20,6 +20,7 @@ class SSE
   remove: (id) =>
     idx = @clients.findIndex((c) -> c.id is id)
     @clients.splice idx, 1 if @clients[idx]?
+    console.log 'remove'
     if @clients.length is 0
       clearInterval @heartInterval
       @heartInterval = null

@@ -1,14 +1,14 @@
 getenv = require('getenv')
-{graphQLoptions} = require '../graphql'
+graphQLoptions = require '../graphql'
 { graphqlKoa, graphiqlKoa  } = require 'graphql-server-koa'
 
 
 Router = require 'koa-router'
-router = new Router()
+graphql = new Router()
+graphql.post('/graphql', graphqlKoa(graphQLoptions))
 
-router.post('/graphql', graphqlKoa(graphQLoptions))
 if getenv('NODE_ENV') is 'development'
-  router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql'}))
+  graphql.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql'}))
 
 
-module.exports = router
+module.exports = graphql

@@ -1,8 +1,12 @@
+async = require('asyncawait/async')
+await = require('asyncawait/await')
+
+{GraphQLObjectType, GraphQLString, GraphQLList} = require 'graphql'
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 composeWithMongoose = require('graphql-compose-mongoose').default
-{DashboardTC} = require './Dashboard'
-
+{Dashboard, DashboardTC} = require './Dashboard'
+{DashboardSettingSchema, DashboardSettingTC,DashboardSetting } = require './DashboardSettings'
 
 UserDeviceSchema = new Schema({
   id: String
@@ -18,6 +22,7 @@ UserDeviceSchema = new Schema({
   width: Number
   defaultDashboardId:
     type: String
+  settings: [DashboardSettingSchema]
 })
 
 
@@ -26,12 +31,24 @@ UserDeviceSchema.index({ip: 1}, {unique: yes})
 UserDevice = mongoose.model 'UserDevice', UserDeviceSchema
 UserDeviceTC = composeWithMongoose(UserDevice)
 
+
+UserDeviceTC.addFields({
+  dashboardIDs:
+    type: '[String]'
+    resolve: async (source) ->
+      await Dashboard.find({userDevice: source.ip}).lean().distinct('uuid')
+    projection:
+      ip: yes
+
+
+})
+
 UserDeviceTC.addRelation(
   'dashboard',
   => {
     resolver: DashboardTC.getResolver('findOne')
     args:
-      filter: ((source) => {ip: source.ip, uuid: source.defaultDashboardId})
+      filter: ((source) => {userDevice: source.ip, uuid: source.defaultDashboardId})
       skip: null
       sort: null
     projection:
@@ -45,13 +62,14 @@ UserDeviceTC.addRelation(
   => {
     resolver: DashboardTC.getResolver('findMany')
     args:
-      filter: ((source) => ip: source.ip)
+      filter: ((source) => {userDevice: source.ip})
       skip: null
       sort: null
     projection:
-      type: yes
+      ip: yes
   }
 )
+
 
 
 UserDeviceFields = "
