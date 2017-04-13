@@ -2,27 +2,33 @@ import {extendObservable, observable, computed, runInAction, action} from 'mobx'
 import Color from 'color'
 import UserDevice from './Device'
 import Dashboard from './Dashboard'
+import Settings from './Settings'
+import Editor from './Editor'
 
 export class AppStore
-  constructor: (dashboard) ->
+  constructor: (editor, settings, dashboard) ->
+    @editor = editor
     @dashboard = dashboard
+    @settings = settings
     extendObservable @, {
       device: null
       devices: []
 
-      selectedDashboardId: computed(-> @dashboard.uuid)
+      isSettingsPanelVisible: yes
+      isToolBarVisible: computed(-> @dashboard.uuid isnt null)
+      selectedDashboardId: ''
 
       selectDevice: action((device) ->
         runInAction(=>
+          @settings.create(device) if !device.settingsID?
           @device = device
-          @dashboard.setDevice(device)
+          @editor.selectDevice(@device)
 
         )
       )
-      selectDashboard: action((dash) -> @dashboard.deserialize(@device, dash))
 
       init: action((devices) ->
-        @devices = (new UserDevice(@, device) for device in devices)
+        @devices = (new UserDevice(device) for device in devices)
       )
 
 
@@ -36,7 +42,7 @@ export class AppStore
 
 
 
-export appStore = new AppStore(Dashboard)
+export appStore = new AppStore(Editor, Settings, Dashboard)
 
 export default appStore
 

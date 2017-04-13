@@ -1,7 +1,7 @@
 import React from 'react'
 import {crel, div, input, h3, label, select, option, text,span} from 'teact'
 import {inject, observer} from 'mobx-react'
-import {Tooltip, EditableText, Intent} from '@blueprintjs/core'
+import {Tooltip, EditableText} from '@blueprintjs/core'
 import {extendObservable} from 'mobx'
 
 export default EditableTextInput = observer(class EditableTextInput extends React.Component
@@ -18,10 +18,11 @@ export default EditableTextInput = observer(class EditableTextInput extends Reac
     crel "#{element}", =>
       crel EditableText,
         confirmOnEnterKey: yes
-        intent: Intent.PRIMARY
+        intent: @props.intent
         placeholder: @oldText
         value: @newText
         minWidth: 20
+        isEditing: @props.isEditing
         selectAllOnFocus: yes
         onCancel: @handleCancel
         onChange: @handleChange
@@ -30,10 +31,13 @@ export default EditableTextInput = observer(class EditableTextInput extends Reac
   handleConfirm: =>
     return if @newText is @oldText
     @handleCancel() if @newText is ''
+    @oldText = @newText
     @props.onConfirm(@newText)
 
   handleChange: (value) => @newText = value
-  handleCancel: => @newText = @oldText
+  handleCancel: =>
+    @newText = @oldText
+    @props.onCancel?()
 
 )
 

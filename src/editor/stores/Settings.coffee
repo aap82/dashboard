@@ -1,56 +1,85 @@
+import mobx,{extras, extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
+import {GridSettings, WidgetStyleSettings, WidgetFontSettings} from './DashboardSettings'
+import {extend} from 'lodash'
+import uuidV4 from 'uuid/v4'
 
-import mobx,{extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
-import {GridSettings, WidgetColor, WidgetFontStyles} from './DashboardSettings'
+
+
+DashboardSettings = (settings = {}, device = {}) ->
+  @uuid = settings.uuid or device.settingsID
+  @type = settings.type or device.type
+  @height = settings.height or device.height
+  @width = settings.width or device.width
+  extendObservable @, {
+    grid: new GridSettings(@type, @height, @width, settings)
+    widgetStyle: new WidgetStyleSettings(settings)
+    widgetFont: new WidgetFontSettings(settings)
+
+
+    serialize: action(->
+      uuid: @uuid
+      height: @height
+      width: @width
+      type: @type
+      grid: @grid.serialize()
+      widgetStyle: @widgetStyle.serialize()
+      widgetFont: @widgetFont.serialize()
+    )
+
+
+    save: action(->
+      runInAction(=>
+        @grid.save() if @grid.isDirty
+        @widgetStyle.save() if @widgetStyle.isDirty
+        @widgetFont.save() if @widgetFont.isDirty
+      )
+
+    )
+
+    restore: action(->
+      runInAction(=>
+        @grid.restore() if @grid.isDirty
+        @widgetStyle.restore() if @widgetStyle.isDirty
+        @widgetFont.restore() if @widgetFont.isDirty
+      )
+    )
+
+
+    isDirty: computed(->
+      if @grid.isDirty or @widgetStyle.isDirty or @widgetFont.isDirty
+        return yes
+      else
+        return no
+    )
+  }
 
 
 class SettingsStore
-  constructor: (device) ->
-    @height = Math.max(device.height, device.width)
-    @width = Math.min(device.height, device.width)
+  constructor: ->
     extendObservable @, {
-      active: 'default'
-      grid: computed((-> @dashboard.get('default').grid), compareStructural: yes)
-      widgetColor: computed((-> @dashboard.get('default').widgetColor), compareStructural: yes)
-      widgetFont: computed((-> @dashboard.get('default').widgetFont), compareStructural: yes)
+      store: observable.map({})
 
-
-      activeSettings: computed(->
-        grid: @dashboard.get(@active)
-        widgetFont: @dashboard.get(@active)
-        widgetColor: @dashboard.get(@active)
+      load: action((setting) ->
+        return if @store.has(setting.uuid)
+        @store.set(setting.uuid, new DashboardSettings(setting, null))
       )
 
-      dashboard: observable.map {
-        default:
-          grid: new GridSettings(device.type, @height, @width, device.defaults?.grid or null)
-          widgetColor: new WidgetColor(device.defaults?.widgetColor or null)
-          widgetFont: new WidgetFontStyles(device.defaults?.widgetFont or null)
-      }, compareStructural: yes
-
-      getDefaultSettings: action(->
-        default:
-          grid: @dashboard.get('default').grid.serialize()
-          widgetColor: @dashboard.get('default').widgetColor.serialize()
-          widgetFont: @dashboard.get('default').widgetFont.serialize()
+      create: action((device) ->
+        runInAction(=>
+          device.settingsID = uuidV4()
+          @store.set(device.settingsID, new DashboardSettings(null, device))
+        )
       )
 
-      getCurrentSettings: action(->
-        grid: @grid.serialize()
-        widgetColor: @widgetColor.serialize()
-        widgetFont: @widgetFont.serialize()
-
-      )
-
-      serialize: action(-> mobx.toJS(mobx.toJS(@dashboard)))
 
 
 
 
     }
 
+settingsStore = new SettingsStore
 
-
-export default SettingsStore
+export default settingsStore
 
 
 

@@ -1,60 +1,35 @@
 mongoose = require('mongoose')
 Schema = mongoose.Schema
-
-
-
-
-
-GeneralSettingsSchema = new Schema({
-  backgroundColor:
-    color: String
-    alpha: Number
-})
-
-
-
-GridSettingsSchema = new Schema({
-  orientation: String
-  cols: Number
-  rowHeight: Number
-  marginX: Number
-  marginY: Number
-  width: Number
-  height: Number
-  maxRows: Number
-})
-
-WidgetColorSchema = new Schema({
-  backgroundColor:
-    color: String
-    alpha: Number
-})
-
-
-
-WidgetFontStylesSchema = new Schema({
-  primaryColor: String
-  primaryFontSize: Number
-  primaryFontWeight: Number
-  secondaryColor: String
-  secondaryFontSize: Number
-  secondaryFontWeight: Number
-})
-
-
-DashboardSettingsSchema = new Schema({
+composeWithMongoose = require('graphql-compose-mongoose').default
+DashboardSettingSchema = new Schema({
   uuid: String
-  general: GeneralSettingsSchema
-  grid: GridSettingsSchema
-  widgetColor: WidgetColorSchema
-  widgetFont: WidgetFontStylesSchema
+  deviceIP: String
 
+  gridBackgroundColor: String
+  gridOrientation: String
+  gridColumns: Number
+  gridColUnit: String
+  gridCols: Number
+  griRowHeight: Number
+  gridMarginX: Number
+  gridMarginY: Number
+  gridWidth: Number
+  gridHeight: Number
+  gridMaxRows:Number
+  widgetBackgroundColor: String
+  widgetPrimaryColor: String
+  widgetPrimaryFontSize: Number
+  widgetPrimaryFontWeight: Number
+  widgetSecondaryColor: String
+  widgetSecondaryFontSize: Number
+  widgetSecondaryFontWeight: Number
 })
-
+DashboardSettingSchema.index({uuid: 1}, {unique: yes})
+DashboardSetting = mongoose.model 'DashboardSetting', DashboardSettingSchema
+DashboardSettingTC = composeWithMongoose(DashboardSetting)
 
 module.exports =
-  GeneralSettingsSchema: GeneralSettingsSchema
-  GridSettingsSchema: GridSettingsSchema
-  WidgetColorSchema: WidgetColorSchema
-  WidgetFontStylesSchema: WidgetFontStylesSchema
-  DashboardSettingsSchema: DashboardSettingsSchema
+  DashboardSettingSchema: DashboardSettingSchema
+  DashboardSetting: DashboardSetting
+  DashboardSettingTC: DashboardSettingTC
+

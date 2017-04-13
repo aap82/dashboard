@@ -2,21 +2,7 @@ import React from 'react'
 import {crel, div, input, h4,  label, select, option, text,span} from 'teact'
 import {inject, observer} from 'mobx-react'
 import TextInput from '../TextInput'
-
-
-
-DeviceOrientation = observer(class DeviceOrientation extends React.Component
-  handleChange: (e) =>
-    {settings} = @props
-    settings.grid.orientation = e.target.value
-  render: ->
-    {grid} = @props.settings
-    div className: 'pt-select pt-fill', =>
-      select onChange: @handleChange, value: grid.orientation, =>
-        option key: 'portrait', value: 'portrait', "Portrait"
-        option key: 'landscape', value: 'landscape', "Landscape"
-
-)
+import {Intent} from '@blueprintjs/core'
 
 
 export default AppBar = inject('editor')(observer(class AppBar extends React.Component
@@ -25,15 +11,13 @@ export default AppBar = inject('editor')(observer(class AppBar extends React.Com
 
   render: ->
     {editor} = @props
-    {device, dashboard} = editor
+    {device} = editor
     div style: {paddingLeft: 10, paddingRight: 10, height: '100%', color: 'white'}, className: 'pt-dark row middle between', =>
       crel DeviceTitle,
-        element: 'h3'
         device: device,
         onConfirm: @handleDeviceTitleChange
       crel DashboardTitle,
-        element: 'h4'
-        dashboard: dashboard,
+        editor: editor,
         onConfirm: @handleDashboardTitleChange
 
 
@@ -41,8 +25,8 @@ export default AppBar = inject('editor')(observer(class AppBar extends React.Com
     {device} = @props.editor
     device.name = v
   handleDashboardTitleChange: (v) =>
-    {dashboard} = @props.editor
-    dashboard.title = v
+    {editor} = @props
+    editor.getDashboards().get(editor.selectedDashboardID).title = v
 ))
 
 
@@ -50,22 +34,30 @@ export default AppBar = inject('editor')(observer(class AppBar extends React.Com
 
 
 
-DeviceTitle = observer(({element, device, onConfirm}) ->
+DeviceTitle = observer(({device, onConfirm}) ->
   div className: 'row middle', style: paddingLeft: 5, ->
     div ->
       span style: {color: "#5c7080"}, className: "pt-icon-standard pt-icon-info-sign"
     div style: marginLeft: 8, ->
       crel TextInput,
-        element: element
+        element: 'h3'
         value: device.name
         onConfirm: onConfirm
+        intent: Intent.PRIMARY
+
 )
 
-DashboardTitle = observer(({element, dashboard, onConfirm}) ->
-  div className: 'row middle', style: paddingLeft: 5, ->
-    div ->
-      crel TextInput,
-        element: element
-        value: dashboard.title
-        onConfirm: onConfirm
+DashboardTitle = observer(({editor, onConfirm}) ->
+  dashboard = editor.getDashboards().get(editor.selectedDashboardID)
+  if dashboard?
+    div className: 'row middle', style: paddingLeft: 5, ->
+      div ->
+        crel TextInput,
+          element: 'h4'
+          value: dashboard.title
+          onConfirm: onConfirm
+          intent: Intent.PRIMARY
+  else
+      div ->
+        null
 )

@@ -6,8 +6,6 @@ import userDevices from './old_stores/UserDevices'
 import appStore from './stores/App'
 import Editor from './stores/Editor'
 import Panel from './stores/Panel'
-import Dashboard from './stores/Dashboard'
-import settingsStore from './stores/Settings'
 
 export configureStores = (data) ->
   console.log data
@@ -18,7 +16,6 @@ export configureStores = (data) ->
   return {
     app: appStore
     panel: Panel
-    settings: settingsStore
     modal: modalStore
     editor: Editor
     deviceStore: DeviceStore

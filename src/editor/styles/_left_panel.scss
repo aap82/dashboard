@@ -72,3 +72,26 @@
 
 
 }
+
+
+.title-settings-panel {
+  cursor: move!important;
+}
+
+.settings-row {
+  cursor: default;
+  padding: 5px 5px 5px 5px;
+  border-bottom-color: white!important;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  font-size: 12px!important;
+  select,
+  input,
+  option {
+    font-size: inherit!important;
+    text-align: right!important;
+  }
+  input {
+    padding-right: 5px!important;
+  }
+}

@@ -1,2 +1,2 @@
-import {LeftPanel} from './LeftPanel'
+import LeftPanel from './LeftPanel'
 export default LeftPanel

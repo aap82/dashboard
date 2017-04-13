@@ -5,8 +5,8 @@ await = require('asyncawait/await')
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 composeWithMongoose = require('graphql-compose-mongoose').default
-{DashboardSchema, Dashboard, DashboardTC} = require './Dashboard'
-{GeneralSettingsSchema, GridSettingsSchema,WidgetColorSchema,WidgetFontStylesSchema } = require './DashboardSettings'
+{Dashboard, DashboardTC} = require './Dashboard'
+{DashboardSettingSchema, DashboardSettingTC,DashboardSetting } = require './DashboardSettings'
 
 UserDeviceSchema = new Schema({
   id: String
@@ -22,11 +22,7 @@ UserDeviceSchema = new Schema({
   width: Number
   defaultDashboardId:
     type: String
-  defaults:
-    general: GeneralSettingsSchema
-    grid: GridSettingsSchema
-    widgetColor: WidgetColorSchema
-    widgetFont: WidgetFontStylesSchema
+  settings: [DashboardSettingSchema]
 })
 
 

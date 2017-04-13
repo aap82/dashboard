@@ -1,32 +1,47 @@
-import mobx, {extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
-import SettingsStore from './Settings'
-
-class UserDevice
-  constructor: (store, device) ->
-    @store = store
+import mobx, {extras,extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
+import {Settings} from './DashboardSettings'
+class UserDevice extends Settings
+  constructor: (device) ->
+    super()
     @ip = device.ip
     @type = device.type
-    @settings = new SettingsStore(device)
+    @height = Math.max(device.height, device.width)
+    @width = Math.min(device.height, device.width)
     extendObservable @, {
       name: device.name
+      settingsID: device.settingsID
       location: device.location or ''
-      dashboards: device.dashboards or []
+      dashboards: observable.map({})
       defaultDashboardId: device.defaultDashboardId or null
-      isSelected: computed(-> @store.dashboard?.device?.ip is @ip)
 
 
-      serialize: action(->
-        ip: @ip
-        name: @name
-        location: @location
-        dashboards: toJS(@dashboards)
-        defaultDashboardId: @defaultDashboardId
-        settings: mobx.toJS(@settings.getDefaultSettings())
 
+
+      deserialize: action((props) ->
+        dashboards = props.dashboards ?= {}
+        runInAction(=>
+          @name = props.name
+          @location = props.location
+          @defaultDashboardId = props.defaultDashboardId
+          @dashboards.replace(dashboards)
+        )
       )
 
 
     }
+    @save()
+  serialize: ->
+    test = {
+      ip: @ip
+      name: @name
+      location: @location
+      dashboards: mobx.toJS(@dashboards)
+      defaultDashboardId: @defaultDashboardId
+    }
+    return test
+
+
+
 
 
 

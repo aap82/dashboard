@@ -1,16 +1,63 @@
-import mobx, {extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
+import mobx, {extras, extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
 import uuidV4 from 'uuid/v4'
 
 
-export class GridSettings
-  constructor: (type, @deviceHeight, @deviceWidth, props = {}) ->
+export class Settings
+  constructor: ->
     extendObservable @, {
-      backgroundColor: observable.object({
-        color: if props.background? then props.background.color else "#182026"
-        alpha: 100
-      })
+      backup: null
+      isDirty: computed(-> !extras.deepEqual(@backup, @serialize()))
+    }
+
+  serialize: ->
+  save: ->
+    @backup = mobx.toJS(@serialize())
+    return @backup
+  restore: ->
+    @deserialize(mobx.toJS(@backup))
+    return @backup
+
+
+
+
+
+export class GridSettings extends Settings
+  constructor: (type, @deviceHeight, @deviceWidth, props = {}) ->
+    super()
+    extendObservable @, {
+      backgroundColor: props.backgroundColor or "#182026"
       orientation: props.orientation or if type is 'phone' then 'landscape' else 'landscape'
-      cols: props.cols or @deviceWidth
+
+
+      columns: props.columns or 1
+      colUnit: props.colUnit or 'pixel_width'
+      changeUnit: action((unit) ->
+        runInAction(=>
+          if unit is 'pixel_width'
+            @columns = Math.floor(@colWidth)
+          else
+            @columns = Math.floor(@cols)
+          @colUnit = unit
+        )
+
+      )
+
+      cols: computed(->
+        if @colUnit is 'pixel_width'
+          @width / @columns
+        else
+          @columns
+      )
+
+      colWidth: computed(->
+        if @colUnit is 'pixel_width'
+          @cols / @width
+        else
+          @width / @cols
+      )
+
+
+
       rowHeight: props.rowHeight or 1
       marginX: props.marginX or 0
       marginY: props.marginY or 0
@@ -24,24 +71,31 @@ export class GridSettings
           when 'landscape' then @deviceWidth
           else @deviceHeight
       )
+
+
       maxRows: computed(-> @height / @rowHeight )
 
 
+
+
       deserialize: action((props) ->
-        @backgroundColor =
-          color: props.backgroundColor.color
-          alpha: props.backgroundColor.alpha
+        @backgroundColor = props.backgroundColor
         @orientation = props.orientation
-        @cols = props.cols
         @rowHeight = props.rowHeight
         @marginX = props.marginX
         @marginY = props.marginY
-      )      
-      
+        @columns = props.columns
+        @colUnit = props.colUnit
+      )
+
     }
+    @save()
+
   serialize: ->
-      backgroundColor: toJS(@backgroundColor)
+      backgroundColor: @backgroundColor
       orientation: @orientation
+      columns: @columns
+      colUnit: @colUnit
       cols: @cols
       rowHeight: @rowHeight
       marginX: @marginX
@@ -51,20 +105,19 @@ export class GridSettings
       maxRows: @maxRows
 
 
-export class WidgetColor
+export class WidgetStyleSettings  extends Settings
   constructor: (props = {}) ->
     extendObservable @, {
-      backgroundColor: observable.object({
-        color: if props.background? then props.background.color else "#182026"
-        alpha: 100
-      })      
-      
-      
+      backgroundColor: props.backgroundColor or "#182026"
+      deserialize: action((props) ->
+        @backgroundColor = props.backgroundColor
+      )
     }
-  serialize: ->    backgroundColor: toJS(@backgroundColor)
+    @save()
+  serialize: ->    widgetBackgroundColor: @backgroundColor
 
 
-export class WidgetFontStyles
+export class WidgetFontSettings  extends Settings
   constructor: (props = {}) ->
     extendObservable @, {
       primaryColor: props.primaryColor or '#ffffff'
@@ -82,7 +135,10 @@ export class WidgetFontStyles
         @secondaryFontSize = props.secondaryFontSize
         @secondaryFontWeight = props.secondaryFontWeight
       )
+
+
     }
+    @save()
 
   serialize: ->
     primaryColor: @primaryColor

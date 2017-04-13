@@ -4,26 +4,35 @@ class Panel
   constructor: ->
     @component = null
     extendObservable @, {
-      isOpen: no
       openPanel: action( -> @isOpen = yes)
       closePanel: action(-> @isOpen = no)
       togglePanel: action(->@isOpen = !@isOpen)
 
+      width: 250
+      height: 425
+      setPanelSize: action((size) ->
+        runInAction(=>
+          @width = size.width
+          @height = size.height
 
+        )
+
+      )
+
+      enableDrag: action(->@component.updateDraggability(yes))
+      disableDrag: action(->@component.updateDraggability(no))
 
       initial: observable.object({
         x: 500
         y: 25
-        width: 200
-        height: 400
+        width: 250
+        height: 425
       })
 
-      minWidth: 200
-      maxWidth: 225
-      minHeight: 160
+      minWidth: 250
+      minHeight: 425
       maxWidth: 800
       maxHeight: 800
-      moveAxis: 'both'
 
 
     }
