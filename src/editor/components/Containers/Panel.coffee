@@ -5,26 +5,20 @@ import FloatingPanel from '../FloatingPanel'
 import cx from 'classnames'
 
 
-class SettingsPanelContainer extends React.Component
+class PanelContainer extends React.Component
   constructor: (props) ->
     super (props)
-  componentDidMount: ->    @props.panel.component = @rnd
-
+  componentDidMount: -> @props.store.setComponent @props.id, @rnd
 
   render: ->
-    {panel, app} = @props
-
+    {panel} = @props
     class_name = cx(
       "z-depth-3": yes
-      hidden: !app.isSettingsPanelVisible
+      hidden: !panel.isShowing
     )
     crel FloatingPanel,
       ref: ((c) => @rnd = c)
-      style:
-        backgroundColor:  "rgba(0, 2, 0, 0.85)"
-        borderColor: 'black'
-        borderWidth: 1
-        borderStyle: 'solid'
+      style: panel.style
       zIndex: 250
       className: class_name
       bounds: 'parent'
@@ -33,19 +27,18 @@ class SettingsPanelContainer extends React.Component
       maxWidth: panel.maxWidth
       minHeight: panel.minHeight
       maxWidth: panel.maxWidth
-      maxHeight: panel.maxHeight
-      onResize: @updateSizeProps,      =>
-        div =>
-          crel 'div', @props.children
-
-
-  updateSizeProps: (e, size, client, delta, newPos ) =>
-    @props.panel.setPanelSize(size)
+      maxHeight: panel.maxHeight, =>
+        crel 'div', @props.children
 
 
 
 
 
-SettingsPanelContainer = observer(SettingsPanelContainer)
+
+SettingsPanelContainer = inject(({panel}, {id}) => ({
+
+    store: panel
+    panel: panel.panels[id]
+}))(observer(PanelContainer))
 
 export default SettingsPanelContainer

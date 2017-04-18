@@ -11,7 +11,7 @@ ButtonDisplayer = observer(({editor, device, onClick})->
   isSelected = expr(-> editor.device is device)
   labelClassName = cx(
     "pt-menu-item": yes
-    "pt-icon-layout-grid": yes
+    "pt-icon-mobile-phone": yes
     "pt-active": isSelected
     "pt-intent-primary": isSelected
 #    "pt-disabled": panel.isOpen
@@ -28,34 +28,27 @@ ButtonDisplayer = observer(({editor, device, onClick})->
 
 
 
-class UserDeviceItem extends React.Component
+UserDeviceItem = observer(class UserDeviceItem extends React.Component
   render: ->
-    {device, panel, editor} = @props
+    {device, editor} = @props
     li className: 'row', =>
       crel ButtonDisplayer,
         device: device
-        panel: panel
         editor: editor
         onClick: @selectDevice
 
   selectDevice: =>
-    {device, app} = @props
-    return if app.device?.ip is device.ip
-    app.selectDevice(device)
+    {device, editor} = @props
+    editor.selectDevice(device)
 
-
-
-
-UserDeviceItem = observer(UserDeviceItem)
-UserDeviceList = inject('app', 'editor', 'panel')(observer(({app, editor, panel}) =>
+)
+UserDeviceList = inject('app', 'editor', 'panel')(observer(({app, editor}) =>
   div ->
     app.devices.map (device) =>
       crel UserDeviceItem,
         key: "#{device.ip}"
         device: device
         editor: editor
-        app: app
-        panel: panel
       li className: 'pt-menu-header'
 
 ))

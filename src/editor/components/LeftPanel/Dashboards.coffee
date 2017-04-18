@@ -10,10 +10,10 @@ import cx from 'classnames'
 class DashboardItem extends React.Component
   render: ->
     {editor, dashboard} = @props
-    isSelected = expr(-> editor.selectedDashboardID is dashboard.uuid)
+    isSelected = expr(-> editor.dashboard is dashboard)
     labelClassName = cx(
       "pt-menu-item": yes
-      "pt-icon-dashboard": yes
+      "pt-icon-layout-grid": yes
       "pt-active": isSelected
       "pt-intent-primary": isSelected
     )
@@ -37,7 +37,7 @@ DashboardItem = observer(DashboardItem)
 DashboardList = inject('editor')(observer(({editor}) ->
   div ->
     if editor.device?
-      editor.getDashboards().forEach (dashboard) ->
+      editor.device.dashboards.forEach (dashboard) ->
         crel DashboardItem,
           dashboard: dashboard
           editor: editor

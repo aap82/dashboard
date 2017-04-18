@@ -1,5 +1,6 @@
 import mobx, {extras,extendObservable, observable, computed, runInAction, action, toJS} from 'mobx'
-import {Settings} from './DashboardSettings'
+import Settings from './settings/Settings'
+
 class UserDevice extends Settings
   constructor: (device) ->
     super()
@@ -10,35 +11,40 @@ class UserDevice extends Settings
     extendObservable @, {
       name: device.name
       settingsID: device.settingsID
-      location: device.location or ''
-      dashboards: observable.map({})
       defaultDashboardId: device.defaultDashboardId or null
+      dashboards: observable.map({})
+      widgets: observable.map({})
+
 
 
 
 
       deserialize: action((props) ->
         dashboards = props.dashboards ?= {}
+        widgets = props.widgets ?= {}
         runInAction(=>
           @name = props.name
-          @location = props.location
           @defaultDashboardId = props.defaultDashboardId
           @dashboards.replace(dashboards)
+          @widgets.replace(widgets)
+
         )
       )
 
 
     }
     @save()
-  serialize: ->
-    test = {
+
+
+
+  serialize: (to_json = no) ->
+    return mobx.toJS({
       ip: @ip
       name: @name
-      location: @location
-      dashboards: mobx.toJS(@dashboards)
+      dashboards: mobx.toJS(if to_json then @dashboards.values() else @dashboards)
+      widgets: mobx.toJS(if to_json then @widgets.values() else @widgets)
       defaultDashboardId: @defaultDashboardId
-    }
-    return test
+    })
 
 
 
@@ -50,18 +56,3 @@ export default UserDevice
 
 
 
-
-
-
-
-#
-#class Devices
-#
-#  constructor: ->
-#    extendObservable @, {
-#      selectedDevice: ''
-#      devices: []
-#    }
-#
-#  @init: (devices) =>
-#    @devices = (device for device in devices)

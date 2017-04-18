@@ -3,7 +3,7 @@ import {crel, div, input, h4,  label, select, option, text,span} from 'teact'
 import {inject, observer} from 'mobx-react'
 import TextInput from '../TextInput'
 import {Intent} from '@blueprintjs/core'
-
+import Button from '../Button'
 
 export default AppBar = inject('editor')(observer(class AppBar extends React.Component
   constructor: (props) ->
@@ -26,10 +26,8 @@ export default AppBar = inject('editor')(observer(class AppBar extends React.Com
     device.name = v
   handleDashboardTitleChange: (v) =>
     {editor} = @props
-    editor.getDashboards().get(editor.selectedDashboardID).title = v
+    editor.dashboard.title = v
 ))
-
-
 
 
 
@@ -45,19 +43,19 @@ DeviceTitle = observer(({device, onConfirm}) ->
         onConfirm: onConfirm
         intent: Intent.PRIMARY
 
+
+
+
 )
 
 DashboardTitle = observer(({editor, onConfirm}) ->
-  dashboard = editor.getDashboards().get(editor.selectedDashboardID)
-  if dashboard?
-    div className: 'row middle', style: paddingLeft: 5, ->
-      div ->
-        crel TextInput,
-          element: 'h4'
-          value: dashboard.title
-          onConfirm: onConfirm
-          intent: Intent.PRIMARY
-  else
-      div ->
-        null
+  div className: 'row middle', style: paddingLeft: 5, ->
+    if editor.dashboard isnt null
+      crel TextInput,
+        element: 'h4'
+        value: editor.dashboard.title
+        onConfirm: onConfirm
+        intent: Intent.PRIMARY
+    else
+      null
 )

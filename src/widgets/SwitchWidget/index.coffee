@@ -4,8 +4,12 @@ import Toggle from '../components/Toggle'
 import Tappable from 'react-tappable/lib/Tappable'
 
 
-SwitchProps =
-  id: 'switchWidget'
+export SwitchProperties =
+  defaultFont:
+    primaryFont: 'default'
+
+
+
   label: yes
   layout:
     w: 100
@@ -21,22 +25,23 @@ SwitchProps =
 
 
 
-Switch = ({label, state, device} ) ->
-  attrNames = SwitchProps.attrNamesMap[device.platform]
+#Switch = ({label, state, device} ) ->
+Switch = ->
+#  attrNames = SwitchProps.attrNamesMap[device.platform]
   div className: 'widget column switch-widget center middle', =>
     div style: {marginBottom: 5}, className: 'title-container center middle',=>
-      div className: 'widget-label-primary', label
+      div className: 'widget-label-primary', 'label'
     div style: {marginTop: 3},  className: 'center middle', =>
-      crel Toggle, state: state, attr: attrNames.on
+      crel Toggle, state: yes
 
 
 
 export default class SwitchWidget extends React.Component
   render: ->
-    crel Tappable, onTap: @sendCommand, =>
-      crel Switch, @props
+#    crel Tappable, onTap: @sendCommand, =>
+     crel Switch, @props
 
-  sendCommand: => @props.sendCommand('toggle')
+#  sendCommand: => @props.sendCommand('toggle')
 
 
 export class DimmerSwitchWidget extends React.Component

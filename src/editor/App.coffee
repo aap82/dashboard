@@ -2,7 +2,8 @@ import {inject, observer} from 'mobx-react'
 import {crel, div} from 'teact'
 import SplitPane from 'react-split-pane'
 import LeftPanel from './components/LeftPanel'
-import MainContainer from './components/Main'
+import MainApp from './components/Containers/MainApp'
+import SwitchProps from '../widgets/SwitchWidget/props'
 
 
 
@@ -19,5 +20,5 @@ export default App = ->
   div className: 'pt-dark', ->
     crel SplitPane, split: 'vertical', size: leftPaneWidth, allowResize: no, ->
       crel LeftPanel
-      crel MainContainer, leftBound: leftPaneWidth, borderStyle: borderStyle
+      crel MainApp, borderStyle: borderStyle
 

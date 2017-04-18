@@ -1,48 +1,44 @@
 import {extendObservable, observable, computed, runInAction, action} from 'mobx'
-import Color from 'color'
+
 import UserDevice from './Device'
-import Dashboard from './Dashboard'
-import Settings from './Settings'
-import Editor from './Editor'
 
 export class AppStore
-  constructor: (editor, settings, dashboard) ->
-    @editor = editor
-    @dashboard = dashboard
-    @settings = settings
+  constructor: ->
+    @devices
     extendObservable @, {
-      device: null
-      devices: []
-
-      isSettingsPanelVisible: yes
-      isToolBarVisible: computed(-> @dashboard.uuid isnt null)
-      selectedDashboardId: ''
-
-      selectDevice: action((device) ->
+      isSettingsColorPickerPanelOpen: no
+      openSettingsColorPicker: action(->
         runInAction(=>
-          @settings.create(device) if !device.settingsID?
-          @device = device
-          @editor.selectDevice(@device)
-
+          document.addEventListener('keydown', @handleColorPickerKeyDown)
+          @isSettingsColorPickerPanelOpen = yes
         )
       )
-
-      init: action((devices) ->
-        @devices = (new UserDevice(device) for device in devices)
+      closeSettingsColorPicker: action(->
+        runInAction(=>
+          document.removeEventListener('keydown', @handleColorPickerKeyDown)
+          @isSettingsColorPickerPanelOpen = no
+        )
       )
+      toggleSettingsColorPickerPanel: action(->
 
-
+        if @isSettingsColorPickerPanelOpen then @closeSettingsColorPicker() else @openSettingsColorPicker())
 
     }
 
+  init: (devices) ->
+    @devices = (new UserDevice(device) for device in devices)
+
+
+  handleColorPickerKeyDown: (e) =>
+    console.log 'h'
+    @closeSettingsColorPicker() if e.keyCode is 27
 
 
 
 
 
 
-
-export appStore = new AppStore(Editor, Settings, Dashboard)
+export appStore = new AppStore
 
 export default appStore
 

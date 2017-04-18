@@ -1,10 +1,8 @@
 import React from 'react'
 import {crel, div, input, text} from 'teact'
 import {inject, observer} from 'mobx-react'
-import SplitPane from 'react-split-pane'
-import Dashboard from './Dashboard'
-import AppBar from '../AppBar'
-import ToolBar from '../ToolBar'
+import Dashboard from '../Dashboard'
+
 
 DashboardContainer = observer(class DashboardContainer extends React.Component
   constructor: (props) ->
@@ -12,11 +10,14 @@ DashboardContainer = observer(class DashboardContainer extends React.Component
 
   render: ->
     {grid, editor} = @props
+    {dashboard} = editor
     div style: {
       height: grid.height
       width: grid.width
       backgroundColor: "#{grid.backgroundColor}"
-    }, "#{editor.isDirty}"
+    },
+      crel Dashboard, grid: grid
+
 
 
 

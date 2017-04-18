@@ -1,21 +1,41 @@
 import React from 'react'
 import {crel, div, input} from 'teact'
 import {inject, observer} from 'mobx-react'
-import GridProperties from './GridProperties'
-import SectionTitle from './SectionTitle'
+
+import Grid from './Grid'
+import WidgetStyle from './WidgetStyle'
+
 import cx from 'classnames'
+import {Tab2, Tabs2 } from '@blueprintjs/core'
 
 
 
-
-SettingsPanelView = observer(class SettingsPanelView extends React.Component
+SettingsPanel = inject('editor')(observer(class SettingsPanel extends React.Component
   render: ->
-    {settings} = @props
-    {grid} = settings
-    div =>
-      div style: height: 10
-      crel SectionTitle, title: 'Grid Properties'
-      crel GridProperties, grid: grid
-)
+    {settings, panel} = @props
+    {grid, widgetStyle, widgetFont} = settings
+    gridTab = crel(Grid, {grid: grid, settings: panel.settings})
+    widgetStyleTab = crel(WidgetStyle, {widgetStyle: widgetStyle, settings: panel.settings})
+    crel Tabs2,
+      id: 'SettingsPanelTabs'
+      animate: yes,
+      renderActiveTabPanelOnly: no
+      selectedTabId: panel.settings.tab
+      onChange: @handleTabChange, =>
+        crel Tab2,
+          id: 'grid',
+          title: 'Grid',
+          panel: gridTab
+        crel Tab2,
+          id: 'widgetStyle',
+          title: 'Widget Style',
+          panel: widgetStyleTab
+        crel Tab2,
+          id: 'grid3',
+          title: 'Widget Font',
+          panel: gridTab
 
-export default SettingsPanelView
+  handleTabChange: (id) => @props.panel.settings.tab = id
+))
+
+export default SettingsPanel

@@ -5,6 +5,11 @@ import {inject, observer} from 'mobx-react'
 import {toJS} from 'mobx'
 import cx from 'classnames'
 
+
+
+
+
+
 class WidgetContainer extends React.Component
 
   render: ->

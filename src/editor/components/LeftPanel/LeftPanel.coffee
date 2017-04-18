@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react'
 import UserDeviceList from './UserDevices'
 import DashboardList from './Dashboards'
 import AddNewDashboard from './AddNewDashboard'
-
+import Button from '../Button'
 
 
 
@@ -24,5 +24,6 @@ LeftPanel = =>
         crel DashboardList
         crel AddNewDashboard
         li className: 'pt-menu-header'
+
 
 export default LeftPanel

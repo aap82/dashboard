@@ -27,17 +27,20 @@ export default EditableTextInput = observer(class EditableTextInput extends Reac
         onCancel: @handleCancel
         onChange: @handleChange
         onConfirm: @handleConfirm
+        onBlur: @handleBlur
 
   handleConfirm: =>
+    return @handleCancel() if @newText is 'Enter Title'
     return if @newText is @oldText
-    @handleCancel() if @newText is ''
     @oldText = @newText
     @props.onConfirm(@newText)
 
   handleChange: (value) => @newText = value
   handleCancel: =>
+    console.log 'cancelling'
     @newText = @oldText
     @props.onCancel?()
+
 
 )
 

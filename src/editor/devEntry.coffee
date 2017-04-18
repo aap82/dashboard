@@ -11,7 +11,7 @@ options =
   setGraphEnabled: yes
   position:
     bottom: 0
-    left: 150
+    right: 150
 
 export default DevApp = ->
   displayName: 'DevApp'

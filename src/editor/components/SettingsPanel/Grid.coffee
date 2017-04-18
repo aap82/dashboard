@@ -1,5 +1,5 @@
 import React from 'react'
-import {crel, div, input, li, label, select, option, text} from 'teact'
+import {crel, div, input, li, label, h6, text} from 'teact'
 import {inject, observer} from 'mobx-react'
 import ColorPicker from './components/ColorPicker'
 import {DeviceOrientation, GridColumnUnits} from './components/Selects'
@@ -37,11 +37,10 @@ GridColumns = observer(({grid, unitChange, valueChange}) ->
 )
 
 
-GridNumberChange = observer(({primaryLabel, secondaryLabel, store, property, onChange}) ->
+GridNumberChange = observer(({label, store, property, onChange}) ->
   div className: "row middle between", ->
     div  "row middle start",->
-      text "#{primaryLabel}"
-      text "#{secondaryLabel}"
+      text "#{label}"
     div className: "row end", ->
       div style: width: 75, ->
         crel NumberInput,
@@ -57,21 +56,25 @@ GridNumberChange = observer(({primaryLabel, secondaryLabel, store, property, onC
 
 
 
-class GridProperties extends React.Component
+class GridSettings extends React.Component
   constructor: (props) ->
     super props
 
   render: ->
-    {grid} = @props
+    {grid, settings} = @props
     div style: {marginBottom: 10}, =>
-      div className: 'settings-row'
-      div className: 'settings-row', =>
+      div className: 'settings-row first', =>
+        h6 'Grid Settings'
+      div className: 'settings-row ', =>
         crel DeviceOrientation, grid: grid, onChange: @orientationChange
       div className: 'settings-row', =>
         crel ColorPicker,
+          id: 'grid'
+          panelID: 'settings'
           title: "BackgroundColor"
-          store: grid
           property: "backgroundColor"
+          settings: settings
+          store: grid
           onChange: @backgroundColorChange
       div className: 'settings-row', =>
         crel GridColumns,
@@ -80,25 +83,10 @@ class GridProperties extends React.Component
           valueChange: @handleGridColumnValueChange
       div className: 'settings-row', =>
         crel GridNumberChange,
-          primaryLabel: "Row Height"
-          secondaryLabel: "  (px)"
+          label: "Row Height (px)"
           onChange: @handleRowHeightChange
           store: grid
           property: "rowHeight"
-      div className: 'settings-row', =>
-        crel GridNumberChange,
-          primaryLabel: "Margin X "
-          secondaryLabel: "  (px)"
-          store: grid
-          property: "marginX"
-          onChange: @handleMarginXChange
-      div className: 'settings-row', =>
-        crel GridNumberChange,
-          primaryLabel: "Margin Y "
-          secondaryLabel: "  (px)"
-          store: grid
-          property: "marginY"
-          onChange: @handleMarginYChange
 
 
 
@@ -108,8 +96,7 @@ class GridProperties extends React.Component
   handleGridColumnUnitChange: (e) => @props.grid.changeUnit e.target.value
   handleGridColumnValueChange: (v) => @props.grid.columns = v
   handleRowHeightChange: (v) => @props.grid.rowHeight = v
-  handleMarginXChange: (v) => @props.grid.marginX = v
-  handleMarginYChange: (v) => @props.grid.marginY = v
 
 
-export default GridProperties 
+
+export default GridSettings

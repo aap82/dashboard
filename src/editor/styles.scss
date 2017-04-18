@@ -4,7 +4,7 @@
 @import 'styles/create_widget_dialog';
 
 .setup-page {
-  height: 100vh;
+  //height: 100vh;
   min-width: 1500px;
   overflow-x: hidden;
   background-color: #293742;
@@ -50,4 +50,12 @@
 h2, h3, h4, h5, h6 {
   color: white;
   margin-bottom: 0 !important;
+}
+
+.pt-tab-panel {
+  margin-top: 0px!important;
+}
+.pt-tab-list {
+  padding-left: 10px!important;
+
 }
