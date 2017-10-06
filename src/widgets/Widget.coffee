@@ -10,7 +10,10 @@ import cx from 'classnames'
 
 
 
-class WidgetContainer extends React.Component
+class Widget extends React.Component
+  constructor: (props) ->
+    super props
+
 
   render: ->
     {device, state, type} = @props

@@ -32,7 +32,7 @@ AddNewButton = observer(({editor, onClick}) ->
   buttonClass = cx(
     "pt-menu-item": yes
     "pt-button": yes
-    "pt-intent-success": yes
+#    "pt-intent-success": yes
     "pt-disabled": !editor.device?
     "pt-icon-plus": yes
   )
@@ -46,8 +46,7 @@ AddNewButton = observer(({editor, onClick}) ->
       disabled: !editor.device?
       onClick: onClick, ->
         h6 className: textClass,
-          style: marginTop: 2
-          "Add New"
+          "Add Dashboard"
 )
 
 DashboardTitle = observer(({onConfirm, onCancel}) ->

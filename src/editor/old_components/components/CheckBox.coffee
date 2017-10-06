@@ -32,7 +32,9 @@ export default CheckBox = observer(({
   props.checked = field.value
   label style: labelStyle,
     className: labelClass, htmlFor: field.id, ->
-      input props
+      input type: 'checkbox',
+        checked: field.value
+
       span className: spanClass
       text "#{field.label}"
 

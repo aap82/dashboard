@@ -31,7 +31,7 @@ ButtonDisplayer = observer(({editor, device, onClick})->
 UserDeviceItem = observer(class UserDeviceItem extends React.Component
   render: ->
     {device, editor} = @props
-    li className: 'row', =>
+    li className: 'row middle', =>
       crel ButtonDisplayer,
         device: device
         editor: editor

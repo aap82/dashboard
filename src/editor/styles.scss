@@ -50,6 +50,8 @@
 h2, h3, h4, h5, h6 {
   color: white;
   margin-bottom: 0 !important;
+  height: auto;
+  line-height: 1!important;
 }
 
 .pt-tab-panel {
@@ -58,4 +60,21 @@ h2, h3, h4, h5, h6 {
 .pt-tab-list {
   padding-left: 10px!important;
 
+}
+
+.settings-panel {
+  height: 100%;
+  padding-bottom: 5px;
+  color: #ffffff!important;
+  h6 {
+    color: #ffffff!important;
+  }
+}
+
+.pt-text-muted {
+  color: rgba(92, 112, 128, 0.5)!important;
+}
+
+.pt-text-muted > h6 {
+  color: #182026!important;
 }

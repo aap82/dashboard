@@ -1,13 +1,10 @@
 import React from 'react'
-import {extendObservable, computed, expr} from 'mobx'
+import {expr} from 'mobx'
 import {crel, div, text, label, button, select, option, pureComponent,br, ul, li,h5, h6,input,span  } from 'teact'
 import {inject, observer} from 'mobx-react'
-
-import { Button, Intent, Checkbox} from  '@blueprintjs/core'
 import cx from 'classnames'
 
-
-class DashboardItem extends React.Component
+DashboardItem = observer(class DashboardItem extends React.Component
   render: ->
     {editor, dashboard} = @props
     isSelected = expr(-> editor.dashboard is dashboard)
@@ -28,11 +25,7 @@ class DashboardItem extends React.Component
     {dashboard, editor} = @props
     editor.selectDashboard dashboard
 
-
-
-
-
-DashboardItem = observer(DashboardItem)
+)
 
 DashboardList = inject('editor')(observer(({editor}) ->
   div ->

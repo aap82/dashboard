@@ -6,22 +6,6 @@ export class AppStore
   constructor: ->
     @devices
     extendObservable @, {
-      isSettingsColorPickerPanelOpen: no
-      openSettingsColorPicker: action(->
-        runInAction(=>
-          document.addEventListener('keydown', @handleColorPickerKeyDown)
-          @isSettingsColorPickerPanelOpen = yes
-        )
-      )
-      closeSettingsColorPicker: action(->
-        runInAction(=>
-          document.removeEventListener('keydown', @handleColorPickerKeyDown)
-          @isSettingsColorPickerPanelOpen = no
-        )
-      )
-      toggleSettingsColorPickerPanel: action(->
-
-        if @isSettingsColorPickerPanelOpen then @closeSettingsColorPicker() else @openSettingsColorPicker())
 
     }
 

@@ -36,14 +36,14 @@ Switch = ->
 
 
 
-export default class SwitchWidget extends React.Component
+class SwitchWidget extends React.Component
   render: ->
 #    crel Tappable, onTap: @sendCommand, =>
      crel Switch, @props
 
 #  sendCommand: => @props.sendCommand('toggle')
 
-
+export default SwitchWidget
 export class DimmerSwitchWidget extends React.Component
   render: ->
     crel Tappable, onTap: @sendCommand, onPress: @showDimmer =>

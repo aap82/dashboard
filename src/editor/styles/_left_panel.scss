@@ -1,14 +1,14 @@
 @import 'variables';
 
 .left-panel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 100%;
+
   background-color: rgba(0,0,0,0.95);
   //padding: $pt-grid-size/2 $pt-grid-size;
-  padding-top: 10px;
+  padding: {
+    top: 10px;
+    bottom: 10px;
+  }
 
 }
 
@@ -17,6 +17,7 @@
 
 }
 .left-panel {
+  max-height: 100%!important;
   h2, h3, h4, h6 {
     margin-bottom: 0 !important;
   }
@@ -78,7 +79,10 @@
   cursor: move!important;
 }
 
+
+
 .settings-row {
+
   cursor: default;
   padding: 5px 5px 5px 5px;
   border-bottom-color: white!important;
@@ -94,6 +98,7 @@
   input {
     padding-right: 5px!important;
   }
+
 }
 
 .settings-row.first {
@@ -101,5 +106,17 @@
   border-top-color: white!important;
   border-top-style: solid;
   border-top-width: 1px;
+
+}
+
+.settings-row.content > .label {
+  z-index: 50000!important;
+}
+
+.settings-row.content {
+  background: rgb(35, 36, 35);
+}
+.settings-row.title {
+  cursor: move;
 
 }

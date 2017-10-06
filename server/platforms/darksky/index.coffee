@@ -1,7 +1,11 @@
-getenv = require('getenv')
-API_KEY = getenv('DARKSKY_KEY')
-LAT = getenv('LATITUDE')
-LON = getenv('LONGITUDE')
+
+LAT=40.6855
+LON=-73.9777
+API_KEY="6a80b45c889bbf9e6559710c5d31d5cc"
+#getenv = require('getenv')
+#API_KEY = getenv('DARKSKY_KEY')
+#LAT = getenv('LATITUDE')
+#LON = getenv('LONGITUDE')
 DarkSky = require 'dark-sky'
 forecast = new DarkSky(API_KEY)
 Weather = require './model'
@@ -10,7 +14,8 @@ exports.updateDataForecast = ->
   forecast
   .latitude(LAT)
   .longitude(LON)
-  .exclude('minutely, flags, alerts')
+  .exclude('minutely, flags')
+  .exclude('alerts')
   .get()
   .then (_data) ->
     _data.hourly.data[i].time = (hour.time + _data.offset * 0) * 1000 for hour,i in _data.hourly.data

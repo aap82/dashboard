@@ -8,10 +8,11 @@ import ToolBar from '../ToolBar'
 import Panel from './Panel'
 import SettingsPanel from '../SettingsPanel'
 import Button from '../Button'
+
+
+
 TogglePanel = inject('panel')(observer(({panel}) ->
-  handleClick = (=>
-    console.log 'hi'
-    panel.togglePanel('settings'))
+  handleClick = (=> panel.togglePanel('settings'))
   crel Button,
     icon: 'settings',
     intent: 'primary'
@@ -52,7 +53,8 @@ MainAppContainer = inject('app', 'panel')(observer(class MainAppContainer extend
           crel SettingsPanel,
             app: app,
             editor: editor
-            panel: panel.panels,
+            panel: panel
+            panels: panel.panels,
             settings: settings
 
 

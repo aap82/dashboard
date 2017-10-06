@@ -28,7 +28,7 @@ class PanelContainer extends React.Component
       minHeight: panel.minHeight
       maxWidth: panel.maxWidth
       maxHeight: panel.maxHeight, =>
-        crel 'div', @props.children
+        crel 'div', style: height: '100%', @props.children
 
 
 

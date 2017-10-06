@@ -7,8 +7,8 @@ app_panels =
     tab: 'grid'
     openPicker: null
     style:
-      backgroundColor:  "rgba(0, 2, 0, 0.85)"
-      borderColor: 'black'
+      backgroundColor:  "rgba(0, 2, 0, 1)"
+      borderColor: 'silver'
       borderWidth: 1
       borderStyle: 'solid'
     initial:
@@ -29,23 +29,61 @@ class PanelStore
     @component = null
     @components = {}
     extendObservable @, {
+      openPanels: []
+      activePanel: null
       panels: panels
-      openPanel: action((id)  -> @panels[id].isShowing = yes)
+      openPanel: action((id)  ->
+        @openPanels.push id
+        @panels[id].isShowing = yes
+      )
+
+      closePanel: action((id) ->
+        @openPanels.remove id
+        @panels[id].isShowing= no
+      )
+      togglePanel: action((id) ->
+        if @panels[id].isShowing
+          @closePanel(id)
+        else
+          @openPanel(id)
+      )
+      enableDrag: action((id) -> @components[id].updateDraggability(yes))
+      disableDrag: action((id) ->
+        @activePanel = id
+        @components[id].updateDraggability(no)
+      )
       openOnlyPanel: action((id)  ->
         runInAction(=>
           @panels[key].isShowing = no for key, panel of @panels when key isnt id
           @panels[id].isShowing = yes
         )
       )
-      closePanel: action((id) -> @panels[id].isShowing= no)
-      togglePanel: action((id) ->@panels[id].isShowing = !@panels[id].isShowing      )
-      enableDrag: action((id) -> @components[id].updateDraggability(yes))
-      disableDrag: action((id) ->@components[id].updateDraggability(no))
     }
 
   setComponent: (id, component) => @components[id] = component
 
 
+#  handleKeyDownWhenPanelOpen: (e) => @closeSettingsColorPicker() if e.keyCode is 27
+
+
 panel = new PanelStore(app_panels)
 
 export default panel
+
+#
+#isSettingsColorPickerPanelOpen: no
+#openSettingsColorPicker: action(->
+#  runInAction(=>
+#    document.addEventListener('keydown', @handleColorPickerKeyDown)
+#    @isSettingsColorPickerPanelOpen = yes
+#  )
+#)
+#closeSettingsColorPicker: action(->
+#  runInAction(=>
+#    document.removeEventListener('keydown', @handleColorPickerKeyDown)
+#    @isSettingsColorPickerPanelOpen = no
+#  )
+#)
+#toggleSettingsColorPickerPanel: action(->
+#
+#  if @isSettingsColorPickerPanelOpen then @closeSettingsColorPicker() else @openSettingsColorPicker())
